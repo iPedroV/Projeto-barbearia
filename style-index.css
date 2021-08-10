@@ -49,7 +49,7 @@ p
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url(/img/fundo-login.jpg);
+    background: url(img/fundo-login.jpg);
     background-size: cover;
 }
 
