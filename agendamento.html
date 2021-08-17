@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width. initial-scale=1.0">
     <title>💈 Barbearia Neves 💈</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/Estilo_Calend.css">
     <link rel="stylesheet" href="./css/Style-Agend.css">
 
     <!-- CSS only -->
@@ -24,7 +25,7 @@
     <link rel="stylesheet" href="sweetalert2.min.css">
 
     <!-- JavaScript Para Funções da Página -->  
-    <script src="Js/Calendario.js"></script>
+    
     <script>
         function mascara(t, mask){
             var i = t.value.length;
@@ -64,93 +65,46 @@
             <div class="conteudo">
                 <div class="calendario">
                     <div class="header">
-                        <div class="anoCalen">
-                            <div>
-                                <!--<span id="mes"></span>
-                                                <span id="ano"></span>-->
-                                <h2 id="ano"></h2>
-                                <h3 id="mes"></h3>
-                            </div>
-                            <span class="Entre01">de</span>
-                        </div>
-
                         <a class="btn-ant" id="btn_ant"><</a>
                         <a class="btn-pro" id="btn_prev">></a>
                     </div>
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>Dom</td>
-                                <td>Seg</td>
-                                <td>Ter</td>
-                                <td>Qua</td>
-                                <td>Qui</td>
-                                <td>Sex</td>
-                                <td>Sab</td>
-                            </tr>
-                        </thead>
-
-                        <tbody id="dias"> 
-                            <tr>
-                                <td>1</td>
-                                <td data-bs-toggle="modal" data-bs-target="#exampleModal">2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                            </tr>
-
-                            <tr>
-                                <td>1</td>
-                                <td >2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                            </tr>
-
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                            </tr>
-
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                            </tr>
-
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                            </tr>
-
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                            </tr>
+                    <div class="calendar disable-selection" id="calendar">
+                        <div class="left-side">
+                            <div class="current-day text-center">
+                                <h1 class="calendar-left-side-day"></h1>
+                                <div class="calendar-left-side-day-of-week"></div>
+                            </div>
+                            <div class="current-day-events">
+                                <div>Feriados:</div>
+                                <ul class="current-day-events-list"></ul>
+                            </div>
+                            <div class="add-event-day">
+                                <input type="text" class="add-event-day-field" placeholder="Create an Event">
+                                <span class="fa fa-plus-circle cursor-pointer add-event-day-field-btn"></span>
+                            </div>
+                        </div>
+                        <div class="right-side">
+                            <div class="text-right calendar-change-year">
+                                <div class="calendar-change-year-slider">
+                                    <span class="fa fa-caret-left cursor-pointer calendar-change-year-slider-prev"></span>
+                                    <span class="calendar-current-year"></span>
+                                    <span class="fa fa-caret-right cursor-pointer calendar-change-year-slider-next"></span>
+                                </div>
+                            </div>
+                            <div class="calendar-month-list">
+                                <ul class="calendar-month"></ul>
+                            </div>
+                            <div class="calendar-week-list">
+                                <ul class="calendar-week"></ul>
+                            </div>
+                            <div class="calendar-day-list">
+                                <ul class="calendar-days"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script async src="scripts/all.js"></script>
 
                             <!-- Modal para Cadstrar -->
                             <div class="modal" id="exampleModal" tabindex="-1"
@@ -239,6 +193,8 @@
     <a class="whatsapp-link" href="https://web.whatsapp.com/send?phone=559891355162" target="_blank">
         <i class="fa fa-whatsapp"></i>
     </a>
+
+    <script src="Js/Calendario.js"></script>
 </body>
 </head>
 

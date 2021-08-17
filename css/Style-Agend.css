@@ -157,14 +157,13 @@ header .navigation li a:hover{
     position: relative;
     background-color: #333;
     width: 100%;
-    height: 775px;
+    height: 650px;
 }
 
 .PainelAG {
     position: relative;
-    border: 3px solid #fff;
-    width: 73%;
-    height: 600px;
+    width: 0%;
+    height: 0px;
     left: 12%;
     top: -25px;
     border-radius: 4px;
@@ -173,7 +172,7 @@ header .navigation li a:hover{
 
 @media screen and (min-width: 1590px){
     .PainelAG {
-        left: 315px;
+        left: 300px;
         width: 1000px;
     }
 }
@@ -199,192 +198,3 @@ header .navigation li a:hover{
     font-weight: 500;
     text-decoration: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-/* ESTILO CSS JUTSU DO CALENDÁRIO INFINITO */
-.conteudo {
-    top: 2px;
-    left: 0px;
-    margin: 0px 0px 0px 20px;
-    position: relative;
-    width: 1000px;
-    background-color: #fff;
-    border-radius: 4px;
-    border-left: 3px solid white;
-    border-right: 3px solid white;
-    border-bottom: 3px solid white;
-    box-shadow: -7px -7px 5px 0px rgba(255,255,255, 0.2);
-}
-
-.calendario {
-    text-align: center;
-}
-
-.header {
-    padding-bottom: 0px;
-
-}
-
-.conteudo .calendario .header h2 {
-    position: relative;
-    margin-top: 15px;
-    width: 50px;
-    padding-top: 15px;
-    font-size: 25px;
-    text-transform: uppercase;
-}
-
-.btn-ant, .btn-pro {
-    position: absolute;
-    top: 36px;
-    height: 40px;
-    width: 40px;
-    line-height: 36px;
-    margin-top: 0px;
-    border: 2px solid rgb(0, 0, 0);
-    color: rgb(0, 0, 0);
-    border-radius: 50%;
-    font-size: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-    
-}
-
-.btn-ant {
-    left: 180px;
-}
-
-.btn-pro {
-    right: 180px;
-}
-
-.btn-ant:hover, .btn-pro:hover {
-    background-color: rgb(255, 255, 255);
-    color: #ff0157;
-    border: 2px solid #ff0157;
-    /*
-    -webkit-transform: scale(1.025);
-    -ms-transform: scale(1.025);
-    transform: scale(1.025);*/
-}
-
-table {
-    margin-top: 20px;
-    border-collapse: collapse;
-    /*border: 5px solid white;*/
-}
-
-.calendario thead {
-    font-weight: 600;
-    color: #1a1818;
-    text-transform: uppercase;
-    border-bottom: 3px solid #ff0157;
-}
-
-.calendario td {
-    border: 1px solid rgb(0, 0, 0);
-    height: 70px;
-    text-align: center;
-    width: 142.8px;
-    font-size: 20px;
-}
-
-.calendario tbody td {
-    cursor: pointer;
-}
-
-.calendario tbody td:hover {
-    background-color: rgba(0,173,223,0.8);
-}
-
-.calendario table .dia-atual {
-    background-color: #ff0157;
-    color: white;
-}
-
-.calendario .mes-anterior, .calendario .proximo-mes {
-    color: #b8bdbe;
-}
-
-.calendario .mes-anterior:hover, .calendario .proximo-mes:hover {
-    background-color: #98a0a0;
-}
-
-.event {
-    position: relative;
-}
-
-.event:after {
-    content: '';
-    width: 10px;
-    height: 10px;
-    left: 50%;
-    bottom: 7px;
-    margin: -3px 0 0 -5px;
-    background-color: #00addf;
-    display: block;
-    position: absolute;
-    border-radius: 50%;
-}
-
-.event:hover:after {
-    background-color: white;
-}
-
-.event.dia-atual:after {
-    background-color: white;
-}
-
-.anoCalen div h2 h3{
-    width: 450px;
-    position: absolute;
-    text-align: center;
-    align-items: center;
-    text-transform: uppercase;
-    color: #1a1818;
-}
-
-.anoCalen div label {
-    color: #1a1818;
-    position: absolute;
-    font-weight: 500;
-    top: 15px;
-
-}
-
-#ano {
-    
-    margin-left: 490px;
-    padding-top: 60px;
-    margin-bottom: 10px;
-
-}
-
-#mes {
-
-    margin-top: -85px;
-    padding-bottom: 40px;
-}
-
-span.Entre01 {
-    position: absolute;
-    font-size: 28px;
-    top: 54px;
-    left: 450px;
-
-}
-
-
-
-
-
