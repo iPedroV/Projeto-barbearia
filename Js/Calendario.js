@@ -1,4 +1,5 @@
 const AVAILABLE_WEEK_DAYS = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+const AVAILABLE_MONTH = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 const localStorageName = 'calendar-events';
 
 class CALENDAR {
@@ -14,6 +15,7 @@ class CALENDAR {
             eventAddBtn: this.getFirstElementInsideIdByClassName('btn-Enviar'),
             currentDay: this.getFirstElementInsideIdByClassName('calendar-left-side-day'),
             currentWeekDay: this.getFirstElementInsideIdByClassName('calendar-left-side-day-of-week'),
+            currentMonth: this.getFirstElementInsideIdByClassName('calendar-left-side-month'),
             prevYear: this.getFirstElementInsideIdByClassName('calendar-change-year-slider-prev'),
             nextYear: this.getFirstElementInsideIdByClassName('calendar-change-year-slider-next'),
 
@@ -61,9 +63,11 @@ class CALENDAR {
     
 
     drawYearAndCurrentDay() {
+        // SUBClasse que chama o dia, a semana e o ano dentro do calendário.
         let calendar = this.getCalendar();
         this.elements.year.innerHTML = calendar.active.year;
         this.elements.currentDay.innerHTML = calendar.active.day;
+        this.elements.currentMonth.innerHTML = AVAILABLE_MONTH[calendar.active.month];
         this.elements.currentWeekDay.innerHTML = AVAILABLE_WEEK_DAYS[calendar.active.week];
     }
 

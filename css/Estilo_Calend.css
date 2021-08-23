@@ -45,16 +45,26 @@
     height: 530px;
     border-radius: 10px;
     /*border: 2px solid black;*/
-    overflow: hidden; }
+    overflow: hidden; 
+  }
+
     .calendar .calendar-left-side-day-of-week, .calendar .current-day-events ul, .calendar .add-event-day, .calendar .calendar-change-year, .calendar .calendar-days li {
-      position: relative; }
+      position: relative; 
+    }
     .calendar .calendar-left-side-day, .calendar .calendar-left-side-day-of-week, .calendar .current-day-events, .calendar .add-event-day-field-btn, .calendar .add-event-day-field {
-      color: white; }
+      color: white; 
+    }
     .calendar .calendar-left-side-day-of-week, .calendar .calendar-week {
-      text-transform: uppercase; }
+      text-transform: uppercase; 
+    }
+    .calendar .calendar-left-side-month {
+      color: white;
+      text-transform: uppercase; 
+    }
     .calendar .left-side {
       padding: 30px;
-      height: 100%; }
+      height: 100%; 
+    }
 
     .calendar .left-side {
       width: 320px;
