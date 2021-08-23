@@ -11,14 +11,17 @@ class CALENDAR {
             year: this.getFirstElementInsideIdByClassName('calendar-current-year'),
             eventList: this.getFirstElementInsideIdByClassName('current-day-events-list'),
             eventField: this.getFirstElementInsideIdByClassName('add-event-day-field'),
-            eventAddBtn: this.getFirstElementInsideIdByClassName('add-event-day-field-btn'),
+            eventAddBtn: this.getFirstElementInsideIdByClassName('btn-Enviar'),
             currentDay: this.getFirstElementInsideIdByClassName('calendar-left-side-day'),
             currentWeekDay: this.getFirstElementInsideIdByClassName('calendar-left-side-day-of-week'),
             prevYear: this.getFirstElementInsideIdByClassName('calendar-change-year-slider-prev'),
-            nextYear: this.getFirstElementInsideIdByClassName('calendar-change-year-slider-next')
-        };
+            nextYear: this.getFirstElementInsideIdByClassName('calendar-change-year-slider-next'),
 
-        this.eventList = JSON.parse(localStorage.getItem(localStorageName)) || {};
+            // CHAMAR O DIA NA MODAL DO CADASTRO!!
+            diaEscolhido: this.getFirstElementInsideIdByClassName('calendar-event-year-day')
+        };
+        
+        this.eventList = 'Agendamento Realizado' || {};
 
         this.date = +new Date();
         this.options.maxDays = 42;
@@ -42,16 +45,20 @@ class CALENDAR {
 
     }
 
+    // Evento para Comentário se há ou não agendamento
+    
     drawEvents() {
         let calendar = this.getCalendar();
-        let eventList = this.eventList[calendar.active.formatted] || ['sem evento'];
+        let eventList = this.eventList[calendar.active.formatted] || ['Sem agendamento'];
         let eventTemplate = "";
+        
         eventList.forEach(item => {
-            eventTemplate += `<li>${item}</li>`;
+            eventTemplate += `<li>${item}</li>`; //CHAMAR O BANCO DE DADOS PARA CHAMAR AQUI!!
         });
 
         this.elements.eventList.innerHTML = eventTemplate;
     }
+    
 
     drawYearAndCurrentDay() {
         let calendar = this.getCalendar();
@@ -158,7 +165,6 @@ class CALENDAR {
             this.drawAll()
         });
 
-
         this.elements.days.addEventListener('click', e => {
             let element = e.srcElement;
             let day = element.getAttribute('data-day');
@@ -170,18 +176,19 @@ class CALENDAR {
             this.drawAll()
         });
 
-
+        //Evento do Calendáio de Comentário
+        /*
         this.elements.eventAddBtn.addEventListener('click', e => {
             let fieldValue = this.elements.eventField.value;
             if (!fieldValue) return false;
             let dateFormatted = this.getFormattedDate(new Date(this.date));
             if (!this.eventList[dateFormatted]) this.eventList[dateFormatted] = [];
-            this.eventList[dateFormatted].push(fieldValue);
+            this.eventList[dateFormatted].push(fieldValue );
             localStorage.setItem(localStorageName, JSON.stringify(this.eventList));
             this.elements.eventField.value = '';
             this.drawAll()
         });
-
+        */
 
     }
 
@@ -242,9 +249,9 @@ class CALENDAR {
     }
 }
 
-
 (function () {
     new CALENDAR({
         id: "calendar"
     })
 })();
+

@@ -64,10 +64,6 @@
         <div class="PainelAG">
             <div class="conteudo">
                 <div class="calendario">
-                    <div class="header">
-                        <a class="btn-ant" id="btn_ant"><</a>
-                        <a class="btn-pro" id="btn_prev">></a>
-                    </div>
 
                     <div class="calendar disable-selection" id="calendar">
                         <div class="left-side">
@@ -76,12 +72,13 @@
                                 <div class="calendar-left-side-day-of-week"></div>
                             </div>
                             <div class="current-day-events">
-                                <div>Feriados:</div>
+                                <div style="font-weight: 600; font-size: 18px;">Pesquisar status do Clinte:</div>
                                 <ul class="current-day-events-list"></ul>
                             </div>
                             <div class="add-event-day">
-                                <input type="text" class="add-event-day-field" placeholder="Create an Event">
-                                <span class="fa fa-plus-circle cursor-pointer add-event-day-field-btn"></span>
+                                <span type="" class="add-event-day-field" placeholder=""></span>
+                                <button type="button" class="fa cursor-pointer add-event-day-field-btn" id="Modalagenda"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">Agende-se Aqui!!</button>
                             </div>
                         </div>
                         <div class="right-side">
@@ -104,85 +101,97 @@
                         </div>
                     </div>
                     
-                    <script async src="scripts/all.js"></script>
+                    <!-- Modal para Cadstrar -->
+                    <link rel="stylesheet" href="./css/Style-Agend-Modal.css">
 
-                            <!-- Modal para Cadstrar -->
-                            <div class="modal" id="exampleModal" tabindex="-1"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-xl">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="exampleModalLabel">Agendamento Cliente</h4>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body" style="background-color: rgb(230, 230, 230);">
-                                            <form method="post" action="" class="cadastro" id="cadastro">
-                                                <label style="font-size: 20px;"><strong>Efetuar Agendamento para barbearia no campos a seguir... 
-                                                    </strong></label>
-
-                                                    <div class="card-body" style="border: 2px solid #252525;">
-                                                        <div class="card-header bg-dark text-center text-white border" 
-                                                                style="padding-bottom: 15px; padding-top: 15px; font-size: 25px;">
-                                                                    Dados do Cliente (CASO SEJA ANÔNIMO!!!!)
-                                                            </div><br>
-                                                            <div class="col-12 " style="margin-bottom: 25px;">
-                                                                <div class="card-header text-start text-dark border">
-                                                                
-                                                                    <div class="row">
-                                                                    <div class="col-md-6">
-                                                                    
-                                                                    <label><strong>Nome Completo</strong></label>  
-                                                                    <input class="form-control" type="text" 
-                                                                           name="nome" value="">
-                                                                    <label><strong>Data de Nascimento</strong></label>  
-                                                                    <input class="form-control" type="date" 
-                                                                           name="dtNasc" value="">  
-                                                                    <label><strong>E-mail</strong></label>  
-                                                                    <input class="form-control" type="email" 
-                                                                           name="email" value=""> 
-                                                                </div>
-
-                                                                <div class="col-md-6">
-
-                                                                    <label><strong>Sobrenome</strong></label>  
-                                                                    <input class="form-control" type="text" 
-                                                                           name="sobrenome" value="">
-
-                                                                    <label><strong>Cor</strong></label>  
-                                                                    <select name="cor" class="form-control">
-                                                                        <option>[--Selecione--]</option>
-                                                                        <option name="cor">Branco(a)</option>
-                                                                        <option name="cor">Negro(a)</option>
-                                                                        <option name="cor">Pardo(a)</option>
-                                                                    </select> 
-
-                                                                    <label><strong>Perfil</strong></label>  
-                                                                    <select name="Perfil" class="form-control">
-                                                                        <option>[--Selecione--]</option>
-                                                                        <option name="Perfil">Cliente</option>
-                                                                        <option name="Perfil">Funcionário</option>
-                                                                    </select>
-                                                                </div>       
+                    <div class="modal" id="exampleModal" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header cabecalhoModal">
+                                    <h3 class="modal-title" id="exampleModalLabel">Agendamento Cliente</h3>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" style="background-color: rgb(255, 255, 255);">
+                                    <form method="post" action="" class="cadastro" id="cadastro">
+                                            <div class="card-body" style="border: 2px solid #000000;">
+                                                <div class="card-header tituloAgend">
+                                                            Escolha o serviço desejado
+                                                </div><br>
+                    
+                                            <div class="col-12 " style="margin-bottom: 25px;">
+                                                    <div class="card-header text-start text-dark" 
+                                                        style="background-color: rgb(255, 255, 255);">
+                                                        
+                                                    <div class="row" style="background-color: rgb(255, 255, 255);">
+                                                        <div class="col-md-3">
+                                                            <img width="100%" height="180" src="img/corteMasculino.jpg" style="border: 1px solid black;">
+                                                            <div>
+                                                                <label><strong>Corte Masculino</strong></label>  
+                                                                <select name="cor" class="form-control">
+                                                                    <option>[--Nenhum Serviço--]</option>
+                                                                    <option name="cor">Serviço(1)</option>
+                                                                    <option name="cor">Serviço(2)</option>
+                                                                    <option name="cor">Serviço(3)</option>
+                                                                    <option name="cor">Serviço(4)</option>
+                                                                </select>
                                                             </div>
                                                         </div>
+                                                        <div class="col-md-3">
+                                                            <img width="100%" height="180" src="img/como-aparar-a-barba-02.jpg" style="border: 1px solid black;">
+                                                            <div>
+                                                                <label><strong>Barba Masculino</strong></label>  
+                                                                <select name="Perfil" class="form-control">
+                                                                    <option>[--Nenhum Serviço--]</option>
+                                                                    <option name="cor">Serviço(1)</option>
+                                                                    <option name="cor">Serviço(2)</option>
+                                                                    <option name="cor">Serviço(3)</option>
+                                                                    <option name="cor">Serviço(4)</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <img width="100%" height="180" src="img/corteFeminino.jpg" style="border: 1px solid black;">
+                                                            <div>
+                                                                <label><strong>Cabelo Feminino</strong></label>  
+                                                                <select name="Perfil" class="form-control">
+                                                                    <option>[--Nenhum Serviço--]</option>
+                                                                    <option name="cor">Serviço(1)</option>
+                                                                    <option name="cor">Serviço(2)</option>
+                                                                    <option name="cor">Serviço(3)</option>
+                                                                    <option name="cor">Serviço(4)</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <img width="100%" height="180" src="img/manicure-de-sucesso.jpg" style="border: 1px solid black;">
+                                                            <div>
+                                                                <label><strong>Manicure Feminino</strong></label>  
+                                                                <select name="Perfil" class="form-control">
+                                                                    <option>[--Nenhum Serviço--]</option>
+                                                                    <option name="cor">Serviço(1)</option>
+                                                                    <option name="cor">Serviço(2)</option>
+                                                                    <option name="cor">Serviço(3)</option>
+                                                                    <option name="cor">Serviço(4)</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>              
                                                     </div>
-                                                    
-                                                <div class="modal-footer bg-light" >
-                                                    <button type="submit" name="excluir" class="btn btn-primary" style="margin-right: 20px;">Enviar</button>
-                                                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" style="margin-right: 20px;">Cancelar</button>
-                                                    <input type="reset" class="btn btn-dark btInput" name="limpar" value="Limpar">
                                                 </div>
-                                            </form>
+                                            </div>
+                                            
+                                        <div class="modal-footer" >
+                                            <button type="submit" name="excluir" id="enviar" class="btn btn-primary" style="margin-right: 20px;">Enviar</button>
+                                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" style="margin-right: 20px;">Cancelar</button>
+                                            <input type="reset" class="btn btn-dark btInput" name="limpar" value="Limpar">
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+                        </div>
+                    </div>
+                  
     </section>
 
 

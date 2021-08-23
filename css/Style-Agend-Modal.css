@@ -1,272 +1,37 @@
 
-/* Sessão dentro da Modal Agendamento Masculino*/
-
-section.season2-masc {
-    position: relative;
-    background-color: #fff;
-    padding: 0px;
-    margin-top: 30px;
+.cabecalhoModal {
+    background-color: #868686;
 }
 
-.img-s2 {
-    position: relative;
-    width: 100%;
-    top: -11.6px;
-    margin-top: 11.6px;
-    margin-bottom: 0px;
-    display: block;
-    justify-content: space-between;
-    cursor: pointer;
+.cabecalhoModal h3{
+    color: white;
+    
 }
 
-.btn2 {
+.btn-close {
     position: absolute;
-    top: 52px;
-    right: 50px;
+    font-size: 25px;
+    right: 20px;
+    background-color: white;
 }
 
-.text-masc {
-    position: relative;
-    display: block;
-    width: 100%;
-}
-
-.text-masc h2{
-    color: #000;
-    height: 105px;
-    position: relative;
-    text-align: start;
-    margin: -11.6px auto 30px auto;
-    box-shadow: 0px 0px 10px rgba(0,0,0,.5);
-    padding-top: 35px;
-    padding-left: 50px;
-    top: 12px;
-    font-family: 'Calibri';
-    font-size: 30px;
-    text-transform: uppercase;
-}
-
-.text-masc img{
-    position: absolute;
-    height: 105px;
-    width: auto;
-    top: 425px;
-    left: 400px;
-}
-
-.botao-color-2 {
-    background-color: black;
-    color: rgb(255, 255, 255);
-    border: 3px solid #000;
-    border-radius: 4px;
-    transition: background-color 0.2s;
-    font-size: 17px;
-    font-family: Comic Sans MS;
-    padding-left: 35px;
-    padding-right: 35px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-decoration: none;
-}
-
-.botao-color-2:hover{
-    background-color: #fff;
-    color: #000;
-    border: 3px solid #000;
-}
-
-a.botao-color-2 span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s; 
-}
-  
-a.botao-color-2 span:after {
-    color: #000;
-    content: '\22d8';
-    position: absolute;
-    font-size: 22px;
-    font-weight: bolder;
-    opacity: 0;
-    top: -4px;
-    right: 180px;
-    transition: 0.5s;
-}
-  
-a.botao-color-2:hover span {
-    padding-right: 5px;
-}
-  
-a.botao-color-2:hover span:after {
-    opacity: 1;
-    right: 190px;
-}
-
-.hidden5 {
-    position: static;
-    display: none;
+.tituloAgend {
+    padding-bottom: 5px; 
+    padding-top: 5px; 
+    font-size: 30px; 
+    background-color: #868686;
     text-align: center;
-    margin: 50px 50px 25px 50px;
-    /* margin: TOP -- RIGTH -- BOTTOM -- LEFT */
-    cursor: auto;
+    color: white;
+    
 }
 
-div.mostrar-masc{
-    display: flex;
-    padding-top: 15px;
-}
-
-div.mostrar-masc p{
-    text-align: justify;
-    padding: 0px 0px 0px 50px;
-    font-family: 'Calibri';
-    font-size: 26px;
-    font-weight: 600;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Sessão dentro da Modal Agendamento Feminino*/
-
-section.season3-femin {
-    position: relative;
-    background-color: #fff;
-    padding: 0px;
-}
-
-.img-s3 {
-    position: relative;
-    width: 100%;
-    top: -11.6px;
-    margin-top: 11.6px;
-    margin-bottom: 0px;
-    display: block;
-    justify-content: space-between;
+select.form-control {
+    background-color: #868686;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
 }
-
-.btn3 {
-    position: absolute;
-    top: 52px;
-    right: 50px;
-}
-
-.text-femin {
-    position: relative;
-    display: block;
-    width: 100%;
-}
-
-.text-femin h2{
-    color: #000;
-    height: 105px;
-    position: relative;
-    text-align: start;
-    margin: -11.6px auto 30px auto;
-    box-shadow: 0px 0px 10px rgba(0,0,0,.5);
-    padding-top: 35px;
-    padding-left: 50px;
-    top: 12px;
-    font-family: 'Calibri';
-    font-size: 30px;
-    text-transform: uppercase;
-}
-
-.text-femin img{
-    position: absolute;
-    height: 105px;
-    width: auto;
-    top: 425px;
-    left: 400px;
-}
-
-.botao-color-3 {
-    background-color: black;
-    color: rgb(255, 255, 255);
-    border: 3px solid #000;
-    border-radius: 4px;
-    transition: background-color 0.2s;
-    font-size: 17px;
-    font-family: Comic Sans MS;
-    padding-left: 35px;
-    padding-right: 35px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-decoration: none;
-}
-
-.botao-color-3:hover{
-    background-color: #fff;
-    color: #000;
-    border: 3px solid #000;
-}
-
-a.botao-color-3 span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s; 
-}
-  
-a.botao-color-3 span:after {
-    color: #000;
-    content: '\22d8';
-    position: absolute;
-    font-size: 22px;
-    font-weight: bolder;
-    opacity: 0;
-    top: -4px;
-    right: 180px;
-    transition: 0.5s;
-}
-  
-a.botao-color-3:hover span {
-    padding-right: 5px;
-}
-  
-a.botao-color-3:hover span:after {
-    opacity: 1;
-    right: 190px;
-}
-
-.hidden7 {
-    position: static;
-    display: none;
-    text-align: center;
-    margin: 50px 50px 25px 50px;
-    /* margin: TOP -- RIGTH -- BOTTOM -- LEFT */
-    cursor: auto;
-}
-
-div.mostrar-femin{
-    display: flex;
-    padding-top: 15px;
-}
-
-div.mostrar-femin p{
-    text-align: justify;
-    padding: 0px 0px 0px 50px;
-    font-family: 'Calibri';
-    font-size: 20px;
-    text-align: center;
-}
-
-
 
 
 
