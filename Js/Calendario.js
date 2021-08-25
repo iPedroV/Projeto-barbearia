@@ -1,5 +1,6 @@
 const AVAILABLE_WEEK_DAYS = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
 const AVAILABLE_MONTH = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+const AVAILABLE_MONTH_NUMBER = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 const localStorageName = 'calendar-events';
 
 class CALENDAR {
@@ -20,7 +21,7 @@ class CALENDAR {
             nextYear: this.getFirstElementInsideIdByClassName('calendar-change-year-slider-next'),
 
             // CHAMAR O DIA NA MODAL DO CADASTRO!!
-            diaEscolhido: this.getFirstElementInsideIdByClassName('calendar-event-year-day')
+            diaEscolhido: this.getFirstElementInsideIdByClassName('calendar-event-escolido')
         };
         
         this.eventList = 'Agendamento Realizado' || {};
@@ -44,6 +45,7 @@ class CALENDAR {
         this.drawDays();
         this.drawYearAndCurrentDay();
         this.drawEvents();
+        this.drawDateConfirm();
 
     }
 
@@ -69,6 +71,17 @@ class CALENDAR {
         this.elements.currentDay.innerHTML = calendar.active.day;
         this.elements.currentMonth.innerHTML = AVAILABLE_MONTH[calendar.active.month];
         this.elements.currentWeekDay.innerHTML = AVAILABLE_WEEK_DAYS[calendar.active.week];
+    }
+
+    drawDateConfirm() {
+        // SUBClasse que chama o dia, a semana e o ano dentro do calendário.
+        /*let calendar = this.getCalendar();
+        this.elements.diaEscolhido.innerHTML = calendar.active.year;
+        this.elements.diaEscolhido.innerHTML = calendar.active.day;
+        this.elements.diaEscolhido.innerHTML = AVAILABLE_MONTH_NUMBER[calendar.active.month];
+        */
+        document.getElementById('dateAgend').value = "DATE.error.getCalendar#";
+        
     }
 
     drawDays() {
