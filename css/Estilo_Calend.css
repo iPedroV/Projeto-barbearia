@@ -68,7 +68,7 @@
 
     .calendar .left-side {
       width: 320px;
-      background: #ff0157;
+      background: #000;
       float: left; }
     .calendar .current-day, .calendar .current-day-events {
       padding-top: 40px; }
@@ -153,7 +153,7 @@
       font-size: 18px; }
 
       .calendar .calendar-month li.active {
-        color: #ff0157;
+        color: #000;
         font-size: 20px;
         font-weight: 600; }
     .calendar .calendar-days li {
@@ -188,7 +188,7 @@
 
       .calendar .calendar-days li.active-day:after {
         color: white;
-        background: #ff0157; }
+        background: #000; }
     .calendar .calendar-week {
       padding-top: 5px;
       margin-bottom: 5px;

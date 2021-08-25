@@ -63,7 +63,7 @@ header .logo
 
 header .logo:hover
 {
-    color: #ff0157;
+    color: #868686;
 }
 
 header.sticky .logo /* Não pode espaço em "header.stick"!!!*/
@@ -73,7 +73,7 @@ header.sticky .logo /* Não pode espaço em "header.stick"!!!*/
 
 header .logo span
 {
-    color: #ff0157;
+    color: #868686;
 }
 
 header .navigation
@@ -104,7 +104,7 @@ header.sticky .navigation li a
 }
 
 header .navigation li a:hover{
-    color: #ff0157;
+    color: #868686;
 }
 
 ::-webkit-scrollbar-track
@@ -148,7 +148,7 @@ header .navigation li a:hover{
 }
 
 .titleText span {
-    color: #ff0157;
+    color: #000;
     font-weight: 700;
     font-size: 1.5em;
 }
@@ -194,7 +194,193 @@ header .navigation li a:hover{
 
 .copyrightText a
 {
-    color:#ff0157;
+    color:#000;
     font-weight: 500;
     text-decoration: none;
 }
+
+
+
+
+
+
+
+
+/* MODAL AGENDAMENTO */
+.cabecalhoModal {
+    background-color: #868686;
+}
+
+.cabecalhoModal h3{
+    color: white;
+    
+}
+
+.btn-close {
+    position: absolute;
+    font-size: 25px;
+    right: 20px;
+    background-color: white;
+}
+
+.tituloAgend {
+    padding-bottom: 5px; 
+    padding-top: 5px; 
+    font-size: 30px; 
+    background-color: #868686;
+    text-align: center;
+    color: white;
+    
+}
+
+select.form-control {
+    background-color: #868686;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.cliqueAqui {
+    color: black;
+    position: relative;
+    font-size: 2px;
+
+}
+
+
+
+
+
+/* Parte 02 do Formulário Style */
+
+.formulario{
+    border: 2px solid black; 
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 900px;
+    margin-left: 88px;
+    margin-bottom: 30px;
+}
+
+.campoForm2 label{
+    color: #fff;
+    font-size: 22px;
+}
+
+.campoForm2 input{
+    color: black;
+    font-family: 'Calibri';
+    font-size: 20px;
+    padding: 0px 0px 0px 5px;
+    width: 325px;
+    margin-bottom: 10px;
+}
+
+/* Responsivo Form.prt2 */
+@media screen and (max-width: 380px){
+    #exampleModal {
+        margin-bottom: 10px;
+    }
+
+    .formulario{
+        width: 280px;
+        margin-left: -5px;
+    }
+
+    .campoForm2 label{
+        font-size: 18px;
+    }
+
+    .campoForm2 input{
+        font-size: 18px;
+        width: 225px;
+        margin-bottom: 10px;
+    }
+}
+
+
+.footer {
+    height: 80px;
+    padding: /*top*/15px /*left*/10px /*bottom*/15px /*rigth*/150px;
+}
+
+@media screen and (max-width: 380px){
+    .footer {
+        height: 170px;
+        padding: /*top*/25px /*left*/10px /*bottom*/25px /*rigth*/15px;
+    }
+}
+
+/*Codigo do botão*/
+.btn {
+line-height: 0px;
+height: 50px;
+text-align: center;
+width: 250px;
+cursor: pointer;
+font-size: 18px;
+}
+
+
+.efeito-btn {
+color: rgb(0, 0, 0);
+transition: all 0.5s;
+position: relative;
+margin-right: 15px;
+margin-left: 35px;
+
+}
+
+@media screen and (max-width: 380px){
+    .efeito-btn {
+        margin-right: 0px;
+        margin-left: 0px;     
+    }
+
+    .btn {
+        margin-top: 15px;
+    }
+}
+
+.efeito-btn::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1;
+background-color: rgba(0, 0, 0, 0.2);
+/*background-color: #ff0157;*/
+transition: all 0.3s;
+
+}
+
+.efeito-btn:hover::before {
+opacity: 0 ;
+transform: scale(0.5,0.5);
+
+}
+
+.efeito-btn::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1;
+opacity: 0;
+transition: all 0.3s;
+border: 1px solid #000;
+transform: scale(1.2,1.2);
+
+
+}
+
+.efeito-btn:hover::after {
+opacity: 1;
+transform: scale(1,1);
+
+}
+
