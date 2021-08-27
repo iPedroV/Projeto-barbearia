@@ -75,13 +75,12 @@ class CALENDAR {
 
     drawDateConfirm() {
         // SUBClasse que chama o dia, a semana e o ano dentro do calendário.
-        /*let calendar = this.getCalendar();
-        this.elements.diaEscolhido.innerHTML = calendar.active.year;
-        this.elements.diaEscolhido.innerHTML = calendar.active.day;
-        this.elements.diaEscolhido.innerHTML = AVAILABLE_MONTH_NUMBER[calendar.active.month];
-        */
-        document.getElementById('dateAgend').value = "DATE.error.getCalendar#";
-        
+        let calendar = this.getCalendar();
+        let eventListday = [this.elements.currentDay.innerHTML = calendar.active.day];
+        let eventListYear = [this.elements.year.innerHTML = calendar.active.year];
+        let eventListMonth = [this.elements.currentMonth.innerHTML = AVAILABLE_MONTH_NUMBER[calendar.active.month]];
+        document.getElementById('dateAgend').value = eventListYear +"-"+ eventListMonth +"-"+ eventListday;
+
     }
 
     drawDays() {

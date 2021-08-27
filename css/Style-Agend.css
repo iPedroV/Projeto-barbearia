@@ -209,7 +209,7 @@ header .navigation li a:hover{
 
 /* MODAL AGENDAMENTO */
 .cabecalhoModal {
-    background-color: #868686;
+    background-color: #000000;
 }
 
 .cabecalhoModal h3{
@@ -228,7 +228,7 @@ header .navigation li a:hover{
     padding-bottom: 5px; 
     padding-top: 5px; 
     font-size: 30px; 
-    background-color: #868686;
+    background-color: #000000;
     text-align: center;
     color: white;
     
