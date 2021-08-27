@@ -1,0 +1,330 @@
+@import url('https://font.giigkeapis.com/css?family=Poppins:200,300,400,500,700,800,900&display=swap');
+*
+{   
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    border: none;
+}
+
+ 
+
+
+body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    /*background: linear-gradient(135deg, #ffffff,#ff0157 );*/
+    background-image:url('/img/fundo-login.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+ 
+}
+
+.container{ /*PARTE BRANCO DO FORMULÁRIO*/
+    max-width: 700px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    padding: 25px 30px;
+    border-radius: 1px;
+    /*margin-left:50%;*/
+    /*border-color: yellowgreen;*/
+}
+.container .title{
+font-size: 25px;
+font-weight: 500;  
+position: relative;  
+}
+/*Classe para a imagem*/
+ .imagem {
+    width: 100px;
+   left:46%;
+   position:absolute; 
+   bottom: 75%;
+   padding: 10px;
+    /*style="width:100px;height:100px;"*/
+}
+
+.title span
+{
+    color: #000000;
+    font-weight: 500;
+    font-size: 1.5em;
+    left: 50%;
+    
+}
+.container .title::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 3%;
+    background: linear-gradient(135deg,#ffffff ,#000000);
+}
+.container .testte{
+    font-size: 25px;
+    font-weight: 500;  
+    position: relative;  
+    
+    }
+
+
+.container .testte::before{
+    content: '';
+    position: absolute;
+    right: 0%;
+    bottom: 0;
+    height: 3px;
+    width: 40%;
+    background: linear-gradient(135deg, #ffffff,#000000 );
+}
+
+
+.container form .detalhes-usuario{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+form .detalhes-usuario .input-box{
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+}
+.detalhes-usuario .input-box .detalhes{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    
+}
+.detalhes-usuario .input-box input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+.detalhes-usuario .input-box input:focus,
+.detalhes-usuario .input-box input:valid{
+    border-color: #000000;
+}
+form .genero  .seu-genero{
+    font-size: 20px;
+    font-weight: 500;
+}
+form .genero .categoria{
+    display:inherit;
+    width: 80%;
+    margin: 10px 0;
+    justify-content: space-between;
+}
+.genero .categoria label{
+    display: flex;
+    align-items: center;
+}
+.genero .categoria .ponto{
+    height: 18px;
+    width: 18px;
+    background: #d9d9d9;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 5px solid transparent;
+    transition: all 0.3s ease;
+
+}
+#ponto-1:checked ~ .categoria label .um,
+#ponto-2:checked ~ .categoria label .dois{
+    border-color: #d9d9d9;
+    background: #000000;
+}
+form input[type="radio"]{
+    display: none;
+}
+/*CÓDIGO BOTAO ANTIGO
+form .botao{
+    height: 45px;
+    margin: 45px 0;
+    cursor: pointer;
+}
+form .botao input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 0px;
+    letter-spacing: 1px;
+    background: #2a2a2a;
+    cursor: pointer;
+}
+form .botao input:hover{
+    background: #000000;
+    cursor: pointer;
+}*/
+
+.teste{
+    color: #ffffff;
+    /*padding-bottom: 100px;*/
+    font-size: 25px;
+    float: left;
+}
+.testandoHome{
+    font-size: 25px;
+    position: center;
+   
+    
+}
+
+
+/*Codigo do botão*/
+.btn {
+	line-height: 50px;
+	height: 50px;
+	text-align: center;
+	width: 100%;
+	cursor: pointer;
+}
+.efeito-btn {
+	color: rgb(0, 0, 0);
+	transition: all 0.5s;
+	position: relative;
+}
+.efeito-btn::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	background-color: rgba(163, 159, 159, 0.39);
+	transition: all 0.3s;
+}
+.efeito-btn:hover::before {
+	opacity: 0 ;
+	transform: scale(0.5,0.5);
+}
+.efeito-btn::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: 0;
+	transition: all 0.3s;
+	border: 1px solid #000000;
+	transform: scale(1.2,1.2);
+}
+.efeito-btn:hover::after {
+	opacity: 1;
+	transform: scale(1,1);
+}
+    
+
+
+
+@media (max-width: 584px){
+    .container{ /*PARTE BRANCO DO FORMULÁRIO*/
+        max-width: 100%;
+        position: fixed;
+        /*margin-left:100% ;*/
+}
+form .detalhes-usuario .input-box{
+    margin-bottom: 15px;
+    width:100%;
+}
+form .genero .categoria{
+    width: 100%;
+}
+/*.imagem{
+    width: 100px;
+   left:40%;
+   
+    bottom: 82%;
+   padding: 10px;
+
+}*/
+form .btn{
+    margin-bottom: 70px;
+}
+.container form .detalhes-usuario{
+    max-height: 300px;
+    overflow-y: scroll;
+}
+.detalhes-usuario::-webkit-scrollbar{
+    width: 0;
+}
+.testandoHome{
+
+    position: absolute;
+    
+}
+
+}
+
+
+
+/*@media (max-width: 730px){
+    .container{ PARTE BRANCO DO FORMULÁRIO
+        max-width: 100%;
+        position: fixed;
+        margin-left:100% ;
+}
+form .detalhes-usuario .input-box{
+    margin-bottom: 15px;
+    width:100%;
+}
+form .genero .categoria{
+    width: 100%;
+}
+form .btn{
+    margin-bottom: 100px;
+}
+.container form .detalhes-usuario{
+    max-height: 300px;
+    overflow-y: scroll;
+}
+.detalhes-usuario::-webkit-scrollbar{
+    width: 0;
+}
+.testandoHome{
+
+    position: absolute;
+    
+}
+
+}*/
+
+
+.whatsapp-link
+{
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 25px;
+    right: 30px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 1px 1px 2px #888;
+    z-index: 1000000;
+}
+
+.fa-whatsapp
+{
+    margin-top: 10px;
+}
