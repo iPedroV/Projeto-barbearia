@@ -42,10 +42,12 @@ class CALENDAR {
     drawAll() {
         this.drawWeekDays();
         this.drawMonths();
-        this.drawDays();
-        this.drawYearAndCurrentDay();
+        this.drawDays();       
         this.drawEvents();
-        this.drawDateConfirm();
+
+        /* Métodos para Chamar a Data no calendário */
+        this.drawDateConfirm(); /* Primeiro ele puxa os dados para o Input */
+        this.drawYearAndCurrentDay(); /* Depois ele joga na tela para a visuaçização do Usuári */
 
     }
 
@@ -69,8 +71,10 @@ class CALENDAR {
         let calendar = this.getCalendar();
         this.elements.year.innerHTML = calendar.active.year;
         this.elements.currentDay.innerHTML = calendar.active.day;
-        this.elements.currentMonth.innerHTML = AVAILABLE_MONTH[calendar.active.month];
         this.elements.currentWeekDay.innerHTML = AVAILABLE_WEEK_DAYS[calendar.active.week];
+        let monthLeft = [this.elements.currentMonth.innerHTML = AVAILABLE_MONTH[calendar.active.month]];
+
+        document.getElementsByClassName('calendar-left-side-month').value = monthLeft;
     }
 
     drawDateConfirm() {
@@ -79,6 +83,7 @@ class CALENDAR {
         let eventListday = [this.elements.currentDay.innerHTML = calendar.active.day];
         let eventListYear = [this.elements.year.innerHTML = calendar.active.year];
         let eventListMonth = [this.elements.currentMonth.innerHTML = AVAILABLE_MONTH_NUMBER[calendar.active.month]];
+
         document.getElementById('dateAgend').value = eventListYear +"-"+ eventListMonth +"-"+ eventListday;
 
     }
