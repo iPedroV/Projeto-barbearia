@@ -177,7 +177,20 @@ header .navigation li a:hover{
     }
 }
 
+@media screen and (max-width: 380px){
 
+    .agenda {
+        height: 880px;
+    }
+
+    .titleText {
+        left: 30%;
+    }
+
+    .PainelAG {
+        left: 0%;
+    }
+}
 
 .copyrightText
 {
