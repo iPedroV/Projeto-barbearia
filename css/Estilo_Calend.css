@@ -58,8 +58,10 @@
       text-transform: uppercase; 
     }
     .calendar .calendar-left-side-month {
-      color: transparent;
+      color: white;
       text-transform: uppercase; 
+      font-size: 20px;
+      font-weight: 500;
     }
     .calendar .left-side {
       padding: 30px;
@@ -71,7 +73,7 @@
 
     .calendar .calendar-left-side-day-of-week {
       padding-bottom: 30px;
-      font-weight: 600;
+      font-weight: 500;
       font-size: 20px;
     }
 
@@ -254,7 +256,7 @@
 
     .calendar {
       width: 375px;
-      height: 750px;
+      height: 760px;
       background-color: #000000;
     }
 
@@ -269,12 +271,20 @@
 
     .calendar .add-event-day .add-event-day-field-btn {
       position: absolute;
-      top: 835px;
+      top: 910px;
       background-color: white;
       height: 50px;
       color: black;
       border: 1px solid black;
 
+    }
+
+    .calendar .calendar-left-side-month {
+      position: absolute;
+      top: 125px;
+      text-align: center; 
+      color: black;
+      font-weight: 600;
     }
 
     /* Status Clinte NONE */
@@ -286,6 +296,17 @@
     .calendar .current-day-events ul {
       color: transparent;
     }
+
+    /* SEMANA do calendário PARTE DE CIMA MOBILE*/
+    .calendar .calendar-left-side-day-of-week {
+      position: absolute;
+      left: 32px;
+      top: 45px;
+      font-size: 20px;
+    }
+
+
+
 
     /* LADO DIREITO */
     .calendar .right-side {
@@ -324,7 +345,7 @@
 
     /* MES do calendário */
     .calendar .calendar-month {
-      margin-top: 20px;
+      margin-top: 40px;
       line-height: 40px;
     }
 
@@ -346,14 +367,6 @@
       height: 30px;
       line-height: 25px; 
       font-size: 16px;
-    }
-
-    /* SEMANA do calendário PARTE DE CIMA MOBILE*/
-    .calendar .calendar-left-side-day-of-week {
-      position: absolute;
-      left: 25px;
-      top: 45px;
-      font-size: 20px;
     }
 
 }
