@@ -1,3 +1,14 @@
+<?php
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/agendamentoController.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoAgendamento.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_model.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
+
+$msg = new Mensagem();
+$dt = new Agendamento();
+$dts = new AgendamentoController();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -21,9 +32,7 @@
         crossorigin="anonymous"></script>
 
     <!-- SweetAlert -->
-    <script src="sweetalert2.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="sweetalert2.min.css">
+    <script src="Js/sweetalert2.all.min.js"></script>
 
     <!-- JavaScript Para Funções da Página -->
 
@@ -60,13 +69,53 @@
         </ul>
     </header>
 
+    <?php
+        $defaultTimeZone='UTC';
+        if(date_default_timezone_get()!=$defaultTimeZone) date_default_timezone_set($defaultTimeZone);
+
+        function _dateAtual($format="r", $timestamp=false, $timezone=false) {
+            $userTimezone = new DateTimeZone(!empty($timezone) ? $timezone : 'GMT');
+            $gmtTimezone = new DateTimeZone('GMT');
+            $myDateTime = new DateTime(($timestamp!=false?date("r",(int)$timestamp):date("r")), $gmtTimezone);
+            $offset = $userTimezone->getOffset($myDateTime);
+            return date($format, ($timestamp!=false?(int)$timestamp:$myDateTime->format('U')) + $offset);
+        }
+        $dateEscolhida = _dateAtual("Y-m-d", false, 'America/Sao_Paulo');
+        
+        if (isset($_POST['enviar'])) {
+            $dataA = $_POST['data_agendamento'];
+            if ($dataA < $dateEscolhida) {
+                ?>
+                <script>
+                    Swal.fire({
+                            title: 'Cadastro não realizado!',
+                            text: 'O dia escolhido não pode ser agendado antes do dia atual (<?php echo $dateEscolhida ?>)!',
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                    })
+                </script>
+                <?php
+            } else {
+                $horario = $_POST['escolherHorario'];
+                if ($horario != "") {  
+                    $dataA = $_POST['data_agendamento'];
+                    $dts = new AgendamentoController();
+                    unset($_POST['enviar']);
+                    $msg = $dts->inserirDataAgendamento($dataA, $horario);
+                    echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
+                        URL='http://localhost/Calendario/agendamento.php'\">";
+                }
+            } 
+        }
+    ?>
+
     <div style="background-color: #333; position: relative; width: 100%; height: 100px;"></div>
     <section class="agenda" id="agenda">
         <h2 class="titleText"><span>A</span>gendamento</h2>
         <div class="PainelAG">
             <div class="conteudo">
                 <div class="calendario">
-
+                    <div>
                     <div class="calendar disable-selection" id="calendar">
                         <div class="left-side">
                             <div class="current-day text-center">
@@ -234,10 +283,12 @@
                                                 </div>
 
                                                 <!-- Lado direito do Formulário 2prt -->
+                                                
                                                 <div class="col-md-6 p-4">
                                                     <div class="campoForm2">
+                                                        <div class="barreira"></div>
                                                         <Label>Data de Agendamento:</Label><br>
-                                                        <input type="text" name="dateAgend" id="dateAgend" disabled>
+                                                        <input type="text" name="data_agendamento" id="dateAgend" value="" >
                                                     </div>
 
                                                     <div class="campoForm2">
@@ -250,6 +301,28 @@
                                                         <Label>Serviço Escolhido:</Label><br>
                                                         <input type="text" name="servico" id="servico"
                                                             value="Serviço(4)" disabled>
+                                                    </div>
+                                                    <div class="campoForm2">
+                                                        <Label>Serviço Escolhido:</Label><br>
+                                                        <div class="row">
+                                                            <div class="col-md-10">
+                                                                <select name="escolherHorario" class="form-control" required>
+                                                                    <option>[--Nenhum Serviço--]</option>
+                                                                    <option name="cor">08:30</option>
+                                                                    <option name="cor">09:15</option>
+                                                                    <option name="cor">10:45</option>
+                                                                    <option name="cor">11:10</option>
+                                                                    <option name="cor">11:40</option>
+                                                                    <option name="cor">14:00</option>
+                                                                    <option name="cor">14:20</option>
+                                                                    <option name="cor">15:00</option>
+                                                                    <option name="cor">15:30</option>
+                                                                    <option name="cor">16:15</option>
+                                                                    <option name="cor">16:50</option>
+                                                                    <option name="cor">17:30</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="footer" style="background-color: #fff;">
