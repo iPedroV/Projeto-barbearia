@@ -60,29 +60,44 @@
     .calendar .calendar-left-side-month {
       color: white;
       text-transform: uppercase; 
+      font-size: 20px;
+      font-weight: 500;
     }
     .calendar .left-side {
       padding: 30px;
       height: 100%; 
-    }
-
-    .calendar .left-side {
       width: 320px;
       background: #000;
-      float: left; }
+      float: left; 
+    }
+
+    .calendar .calendar-left-side-day-of-week {
+      padding-bottom: 30px;
+      font-weight: 500;
+      font-size: 20px;
+    }
+
     .calendar .current-day, .calendar .current-day-events {
-      padding-top: 40px; }
+      padding-top: 0px; }
     .calendar .current-day-events {
       height: 215px; }
+      .calendar .current-day-events div{
+        font-weight: 600; 
+        font-size: 18px;
+        
+      }
     .calendar .current-day-events ul {
       padding-left: 30px;
-      list-style: none; }
+      list-style: none; 
+    }
+
       .calendar .current-day-events ul li::before {
         content: '-';
         position: absolute;
         left: 3px; }
     .calendar h1.calendar-left-side-day {
-      font-size: 92px; }
+      font-size: 92px; 
+    }
 
     .calendar .add-event-day {
       border: 0px;
@@ -127,7 +142,8 @@
       padding-right: 80px;
       padding-top: 10px;
       padding-bottom: 20px;
-      float: right; }
+      float: right; 
+    }
 
     .calendar .calendar-change-year {
       font-size: 25px; }
@@ -150,16 +166,21 @@
       line-height: 20px;
       color: #868686;
       margin-right: 40px;
-      font-size: 18px; }
+      font-size: 18px; 
+    }
 
       .calendar .calendar-month li.active {
         color: #000;
         font-size: 20px;
-        font-weight: 600; }
+        font-weight: 600; 
+      }
+
     .calendar .calendar-days li {
       width: calc(460px / 7);
       height: 50px;
-      line-height: 50px; }
+      line-height: 50px; 
+    }
+
       .calendar .calendar-days li:after {
         content: attr(data-day);
         position: absolute;
@@ -169,11 +190,15 @@
         color: #000000; }
 
       .calendar .calendar-days li.another-month:after {
-        color: #b6b3b3; }
+        color: #b6b3b3; 
+      }
+
       .calendar .calendar-days li:hover:after, .calendar .calendar-days li.selected-day:after, .calendar .calendar-days li.event-day:before, .calendar .calendar-days li.active-day:after {
-        border-radius: 50%; }
+        border-radius: 0%;
+      }
+
       .calendar .calendar-days li:hover:after, .calendar .calendar-days li.selected-day:after {
-        background: #9e9999;
+        background: #898989;
         color: white; }
         
       .calendar .calendar-days li.event-day:before {
@@ -188,17 +213,179 @@
 
       .calendar .calendar-days li.active-day:after {
         color: white;
-        background: #000; }
+        background: #000; 
+        box-shadow: 0px 0px 0px 3px #fff;
+      }
+
+      .calendar .calendar-days li.active-day:hover {
+        width: 50px;
+        margin-left: 8px;
+        margin-right: 7.8px;
+        color: white;
+        background: #000; 
+        box-shadow: 0px 0px 0px 1px #000000;
+      }
+    
+    
     .calendar .calendar-week {
       padding-top: 5px;
       margin-bottom: 5px;
       font-weight: 600;
       color: #000000;
       border-top: 1px solid #ccc;
-      border-bottom: 1px solid #ccc; }
+      border-bottom: 1px solid #ccc; 
+      
+    }
 
       .calendar .calendar-week li {
         width: calc(460px / 7);
         height: 30px;
         line-height: 25px; 
       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Parte Responsiva do Calendário MOBILE WEB */
+
+@media screen and (max-width: 380px){
+
+    .calendario {
+      position: relative;
+      top: 380px;
+    }
+
+    .calendar {
+      width: 375px;
+      height: 760px;
+      background-color: #000000;
+    }
+
+    /* LADO ESQUERDO */
+    .calendar .left-side {
+      padding: 30px;
+      height: 15%; 
+      width: 100%;
+      background: #000;
+      float: none; 
+    }
+
+    .calendar .add-event-day .add-event-day-field-btn {
+      position: absolute;
+      top: 910px;
+      background-color: white;
+      height: 50px;
+      color: black;
+      border: 1px solid black;
+
+    }
+
+    .calendar .calendar-left-side-month {
+      position: absolute;
+      top: 125px;
+      text-align: center; 
+      color: black;
+      font-weight: 600;
+    }
+
+    /* Status Clinte NONE */
+    .calendar .current-day-events div{
+      color: transparent;
+      
+    }
+    
+    .calendar .current-day-events ul {
+      color: transparent;
+    }
+
+    /* SEMANA do calendário PARTE DE CIMA MOBILE*/
+    .calendar .calendar-left-side-day-of-week {
+      position: absolute;
+      left: 32px;
+      top: 45px;
+      font-size: 20px;
+    }
+
+
+
+
+    /* LADO DIREITO */
+    .calendar .right-side {
+      width: 380px;
+      background-color: rgb(255, 255, 255);
+      padding-right: 0px;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      float: none; 
+    }
+
+    .calendar .calendar-days li {
+      width: calc(360px / 8);
+      height: 40px;
+      line-height: 40px; 
+      font-size: 22px;
+      margin-top: 15px;
+      padding: 20px;
+    }
+
+    /* DIA do Calendário */
+    .calendar h1.calendar-left-side-day {
+      position: absolute;
+      top: 25px;
+      left: 160px;
+      font-size: 52px; 
+    }
+
+    /* ANO do calendário */
+    .calendar .calendar-change-year {
+      position: absolute;
+      font-size: 30px; 
+      right: 25px;
+      top: 17.5px;
+    }
+
+    /* MES do calendário */
+    .calendar .calendar-month {
+      margin-top: 40px;
+      line-height: 40px;
+    }
+
+    .calendar .calendar-month li {
+      width: calc(170px / 12);
+      font-size: 22px; 
+    }
+
+    /* SEMANA do calendário */
+    .calendar .calendar-week {
+      padding-top: 5px;
+      margin-bottom: 5px;
+      padding-left: 35px;
+      
+    }
+
+    .calendar .calendar-week li {
+      width: calc(315px / 7);
+      height: 30px;
+      line-height: 25px; 
+      font-size: 16px;
+    }
+
+}

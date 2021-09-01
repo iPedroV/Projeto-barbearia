@@ -42,10 +42,12 @@ class CALENDAR {
     drawAll() {
         this.drawWeekDays();
         this.drawMonths();
-        this.drawDays();
-        this.drawYearAndCurrentDay();
+        this.drawDays();       
         this.drawEvents();
-        this.drawDateConfirm();
+
+        /* Métodos para Chamar a Data no calendário */
+        this.drawDateConfirm(); /* Primeiro ele puxa os dados para o Input */
+        this.drawYearAndCurrentDay(); /* Depois ele joga na tela para a visuaçização do Usuári */
 
     }
 
@@ -69,19 +71,24 @@ class CALENDAR {
         let calendar = this.getCalendar();
         this.elements.year.innerHTML = calendar.active.year;
         this.elements.currentDay.innerHTML = calendar.active.day;
-        this.elements.currentMonth.innerHTML = AVAILABLE_MONTH[calendar.active.month];
         this.elements.currentWeekDay.innerHTML = AVAILABLE_WEEK_DAYS[calendar.active.week];
+        
+        // Passando para o nome por extenso dos meses para o calendário utilizando o metodo
+        // o método para colocar o Objeto dentro do array.
+        let monthLeft = [this.elements.currentMonth.innerHTML = AVAILABLE_MONTH[calendar.active.month]];
+        document.getElementsByClassName('calendar-left-side-month').value = monthLeft;
     }
 
     drawDateConfirm() {
-        // SUBClasse que chama o dia, a semana e o ano dentro do calendário.
-        /*let calendar = this.getCalendar();
-        this.elements.diaEscolhido.innerHTML = calendar.active.year;
-        this.elements.diaEscolhido.innerHTML = calendar.active.day;
-        this.elements.diaEscolhido.innerHTML = AVAILABLE_MONTH_NUMBER[calendar.active.month];
-        */
-        document.getElementById('dateAgend').value = "DATE.error.getCalendar#";
-        
+        // SUBClasse que chama o dia, a semana e o ano dentro do calendário. 
+        // Adicionando o Onjeto ao Input da data escolhida pelo usuário.
+        let calendar = this.getCalendar();
+        let eventListday = [this.elements.currentDay.innerHTML = calendar.active.day];
+        let eventListYear = [this.elements.year.innerHTML = calendar.active.year];
+        let eventListMonth = [this.elements.currentMonth.innerHTML = AVAILABLE_MONTH_NUMBER[calendar.active.month]];
+
+        document.getElementById('dateAgend').value = eventListYear +"-"+ eventListMonth +"-"+ eventListday;
+
     }
 
     drawDays() {
@@ -132,7 +139,8 @@ class CALENDAR {
 
         let daysTemplate = "";
         days.forEach(day => {
-            daysTemplate += `<li class="${day.currentMonth ? '' : 'another-month'}${day.today ? ' active-day ' : ''}${day.selected ? 'selected-day' : ''}${day.hasEvent ? ' event-day' : ''}" data-day="${day.dayNumber}" data-month="${day.month}" data-year="${day.year}"></li>`
+            daysTemplate += `<li class="${day.currentMonth ? '' : 'another-month'}${day.today ? ' active-day ' : ''}${day.selected ? 'selected-day' : ''}${day.hasEvent ? ' event-day' : ''}" data-day="${day.dayNumber}" data-month="${day.month}" data-year="${day.year}"></li>`;
+            document.getElementById('');
         });
 
         this.elements.days.innerHTML = daysTemplate;
