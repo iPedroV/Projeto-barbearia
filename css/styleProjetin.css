@@ -9,15 +9,11 @@
     border: none;
 }
 
- 
-
-
 body {
     display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
-    /*background: linear-gradient(135deg, #ffffff,#ff0157 );*/
     background-image:url('../img/fundo-login.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -38,15 +34,7 @@ body {
 font-size: 25px;
 font-weight: 500;  
 position: relative;  
-}
-/*Classe para a imagem*/
- .imagem {
-    width: 100px;
-   left:46%;
-   position:absolute; 
-   bottom: 75%;
-   padding: 10px;
-    /*style="width:100px;height:100px;"*/
+
 }
 
 .title span
@@ -57,6 +45,7 @@ position: relative;
     left: 50%;
     
 }
+
 .container .title::before{
     content: '';
     position: absolute;
@@ -66,24 +55,6 @@ position: relative;
     width: 3%;
     background: linear-gradient(135deg,#ffffff ,#000000);
 }
-.container .testte{
-    font-size: 25px;
-    font-weight: 500;  
-    position: relative;  
-    
-    }
-
-
-.container .testte::before{
-    content: '';
-    position: absolute;
-    right: 0%;
-    bottom: 0;
-    height: 3px;
-    width: 40%;
-    background: linear-gradient(135deg, #ffffff,#000000 );
-}
-
 
 .container form .detalhes-usuario{
     display: flex;
@@ -116,6 +87,44 @@ form .detalhes-usuario .input-box{
 .detalhes-usuario .input-box input:valid{
     border-color: #000000;
 }
+
+
+
+/*
+
+
+
+
+
+
+
+
+
+*/
+
+form   .p-viewer2{
+/*
+    position: relative;
+    z-index: 1;
+    font-size: 15px;
+    color: rgb(250, 0, 0);
+    margin: 30px 0 0 -70px;
+ cursor:pointer;
+*/
+ 
+ right: 10px;
+ position: relative;
+ z-index: 1;
+ font-size: 15px;
+ color: #888;
+ margin: 23px 0 0 -55px;
+cursor:pointer;
+}              
+.fa-eye{
+    margin-top: 16px;
+}
+
+
 form .genero  .seu-genero{
     font-size: 20px;
     font-weight: 500;
@@ -147,42 +156,6 @@ form .genero .categoria{
 }
 form input[type="radio"]{
     display: none;
-}
-/*CÓDIGO BOTAO ANTIGO
-form .botao{
-    height: 45px;
-    margin: 45px 0;
-    cursor: pointer;
-}
-form .botao input{
-    height: 100%;
-    width: 100%;
-    outline: none;
-    color: #fff;
-    border: none;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 0px;
-    letter-spacing: 1px;
-    background: #2a2a2a;
-    cursor: pointer;
-}
-form .botao input:hover{
-    background: #000000;
-    cursor: pointer;
-}*/
-
-.teste{
-    color: #ffffff;
-    /*padding-bottom: 100px;*/
-    font-size: 25px;
-    float: left;
-}
-.testandoHome{
-    font-size: 25px;
-    position: center;
-   
-    
 }
 
 
@@ -233,10 +206,8 @@ form .botao input:hover{
 }
     
 
-
-
 @media (max-width: 584px){
-    .container{ /*PARTE BRANCO DO FORMULÁRIO*/
+    .container { /*PARTE BRANCO DO FORMULÁRIO*/
         max-width: 100%;
         position: fixed;
         /*margin-left:100% ;*/
@@ -245,17 +216,33 @@ form .detalhes-usuario .input-box{
     margin-bottom: 15px;
     width:100%;
 }
+
+
+.p-viewer2{
+    /*
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    z-index: 1;
+    cursor:pointer;
+    color: red;
+    */
+    right: 10px;
+    position: relative;
+    
+    z-index: 1;
+    font-size: 15px;
+    color:#888;
+    margin: 23px 0 0 -30px;
+ cursor:pointer;
+  }
+.fa-eye{
+    margin-top: 16px;
+}
 form .genero .categoria{
     width: 100%;
 }
-/*.imagem{
-    width: 100px;
-   left:40%;
-   
-    bottom: 82%;
-   padding: 10px;
 
-}*/
 form .btn{
     margin-bottom: 70px;
 }
@@ -263,50 +250,24 @@ form .btn{
     max-height: 300px;
     overflow-y: scroll;
 }
-.detalhes-usuario::-webkit-scrollbar{
-    width: 0;
-}
-.testandoHome{
-
+/*
+form .input-box i{
     position: absolute;
-    
-}
-
-}
-
-
-
-/*@media (max-width: 730px){
-    .container{ PARTE BRANCO DO FORMULÁRIO
-        max-width: 100%;
-        position: fixed;
-        margin-left:100% ;
-}
-form .detalhes-usuario .input-box{
-    margin-bottom: 15px;
-    width:100%;
-}
-form .genero .categoria{
-    width: 100%;
-}
-form .btn{
-    margin-bottom: 100px;
-}
-.container form .detalhes-usuario{
-    max-height: 300px;
-    overflow-y: scroll;
-}
-.detalhes-usuario::-webkit-scrollbar{
-    width: 0;
-}
-.testandoHome{
-
-    position: absolute;
-    
-}
-
+    font-size: 25px;
+    color: rgb(255, 0, 0);
+    margin: 15px 0 0 -30px; 
+     overflow-y: auto;
+  
+}              
+i.fa-eye{
+    margin-top: 16px;
 }*/
 
+.detalhes-usuario::-webkit-scrollbar{
+    width: 0;
+}
+
+}
 
 .whatsapp-link
 {
