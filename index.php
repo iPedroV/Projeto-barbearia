@@ -33,7 +33,17 @@ $msg = new Mensagem();
             <section class="banner" id="banner">
                 <div class="content">
                     <h2>Bem-vindo</h2>
-                    
+                    <?php
+                                $cl = new ClientesController();
+                                $listaCliente = $cl->listarCliente($nome);
+                                $a = 0;
+                               
+                                   
+                                        $a++;
+                                        
+                                        ?>
+                                        <label><strong>Olá<?php echo $listaCliente->getNome(); ?>?</strong></label>
+                                   
                     <p>Pedro</p>
                     <a href="#" class="btn">Feed de notícias</a><br>
                     <a href="agendamento.php" class="btn">Fazer Agendamento</a>
