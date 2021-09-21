@@ -16,17 +16,19 @@ class DaoLogin
         if ($conecta) {
 
             try {
-                $vl = $conecta->prepare("select * from clientes where login = ? and senha = ? limit");
-
-                $vl->bindParam(1, $email);
-                $vl->bindParam(2, $senha);
-
+                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $vl = $conecta->prepare("select * from clientes where senha = md5(?)".
+                " and email = ? limit 1");
+                
+                $vl->bindParam(1, $senha);
+                $vl->bindParam(2, $email);
+                
                 if ($vl->execute()) {
                     if ($vl->rowCount() > 0) {
                         while ($valida = $vl->fetch(PDO::FETCH_OBJ));
 
-                        $cliente->setId($valida->idcliente);
-                        $cliente->setNome($valida->nomeCliente);
+                        $cliente->setId($valida->id);
+                        $cliente->setNome($valida->nome);
                     }
                     return $cliente;
                 } else {

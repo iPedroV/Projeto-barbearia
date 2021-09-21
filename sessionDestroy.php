@@ -1,8 +1,8 @@
 <?php
 
-ob_start($validarlogin);
-session_start($validarlogin);
-session_destroy($validarlogin);
+ob_start();
+session_start();
+session_destroy();
 header("Location: login.php");
 exit;
-ob_end_flush($validarlogin);
+ob_end_flush();

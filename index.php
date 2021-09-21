@@ -1,4 +1,16 @@
 <?php
+
+//pedro a validação só esta nessa pagina.
+ob_start();
+session_start();
+
+if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec'])) 
+    || !isset($_SESSION['nr']) ||
+    ($_SESSION['nr'] != $_SESSION['confereNr'])) { 
+    header("Location: sessionDestroy.php");
+    exit;
+}
+
 include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/ClientesController.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Clientes.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
@@ -17,6 +29,19 @@ $msg = new Mensagem();
         <link rel="stylesheet" href="css/style-index.css">
         
         <body>
+
+        <?php
+                if(isset($_SESSION['msg'])){
+                    if($_SESSION['msg']!=""){
+                        echo $_SESSION['msg'];
+                        echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                                URL='./index.php'\">";
+                        $_SESSION['msg'] = "";
+                    }
+                }
+                    
+            ?>
+
             <header>
                 <a href="#" class="logo">Barbearia Neves<span>.</span></a>
                 <div class="menuToggle" onclick=" toggleMenu();"></div>
@@ -262,3 +287,5 @@ $msg = new Mensagem();
                 </body>
             </head>
         </html>
+
+        <?php ob_end_flush();?>
