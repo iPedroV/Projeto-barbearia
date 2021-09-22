@@ -87,7 +87,7 @@ class CALENDAR {
         let eventListYear = [this.elements.year.innerHTML = calendar.active.year];
         let eventListMonth = [this.elements.currentMonth.innerHTML = AVAILABLE_MONTH_NUMBER[calendar.active.month]];
 
-        document.getElementById('dateAgend').value = eventListYear +"-"+ eventListMonth +"-"+ eventListday;
+        document.getElementById('dataAgendamento').value = eventListYear +"-"+ eventListMonth +"-"+ eventListday;
 
     }
 

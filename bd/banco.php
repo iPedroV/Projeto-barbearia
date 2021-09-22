@@ -1,12 +1,21 @@
 <?php
 
+//Banco Utilizado para poder chamar de forma estruturada a chamada dos Selects com interação
+$servidor = "localhost";
+$usuario = "root";
+$senha = "root";
+$dbname = "dbbarbearia";
+
+//Criar a conexão
+$conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
+
 class Conecta {
     
     public function conectadb(){
         $pdo = null;
         try{
             $pdo = new PDO("mysql:host=localhost;dbname=dbbarbearia", 
-            "root", "senac");
+            "root", "root");
         }catch(Exception $ex){
             echo "<script>alert('Erro na conexão com o "
                 . "banco de dados.')</script>";
