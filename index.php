@@ -1,12 +1,14 @@
 <?php
 
 //pedro a validação só esta nessa pagina.
+//Pedro tem um erro nas linhas 63, e 68 ... o login do cliente já está validando.
+
 ob_start();
 session_start();
 
 if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec'])) 
     || !isset($_SESSION['nr']) ||
-    ($_SESSION['nr'] != $_SESSION['confereNr'])) { 
+    ($_SESSION['nr'] != $_SESSION['conferenr'])) { 
     header("Location: sessionDestroy.php");
     exit;
 }
@@ -31,6 +33,7 @@ $msg = new Mensagem();
         <body>
 
         <?php
+                //Também faz parte da validação de login ... Logica do professor ...
                 if(isset($_SESSION['msg'])){
                     if($_SESSION['msg']!=""){
                         echo $_SESSION['msg'];
@@ -52,22 +55,20 @@ $msg = new Mensagem();
                     <li><a href="#salao" onclick=" toggleMenu();">Salão</a></li>
                     <li><a href="#feedbacks" onclick=" toggleMenu();">Feedbacks</a></li>
                     <li><a href="#contato" onclick=" toggleMenu();">Contato</a></li>
-                    <li><a href="#sair" onclick=" toggleMenu();">Contato</a></li>
+                    <li><a href="./sessionDestroy.php" onclick=" toggleMenu();">sair</a></li>
                 </ul>
             </header>
             <section class="banner" id="banner">
                 <div class="content">
                     <h2>Bem-vindo</h2>
                     <?php
-                                $cl = new ClientesController();
-                                $listaCliente = $cl->listarCliente($nome);
-                                $a = 0;
-                               
-                                   
-                                        $a++;
+                        $cl = new ClientesController();
+                        $listaCliente = $cl->listarCliente($nome);
+                        $a = 0;   
+                        $a++;
                                         
-                                        ?>
-                                        <label><strong>Olá<?php echo $listaCliente->getNome(); ?>?</strong></label>
+                    ?>
+                       <label><strong>Olá<?php echo $listaCliente->getNome(); ?>?</strong></label>
                                    
                     <p>Pedro</p>
                     <a href="#" class="btn">Feed de notícias</a><br>
