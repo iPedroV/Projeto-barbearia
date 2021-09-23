@@ -32,7 +32,9 @@ class DaoAgendamento {
            $dateTime = _dateRegis("Y-m-d H:i:s", false, 'America/Sao_Paulo');
 
             try {
-                $stmt = $conecta->prepare("insert into testedate values "
+                // id, horario, data, forma_de_pagamento, status_agendamento, data_regs_agendamento,
+                // data_do_pagamento, confir_envio, cliente_id, despesas_id;
+                $stmt = $conecta->prepare("insert into agendamentos values "
                         . "(null, ?, ?, '$dateTime')");
                 $stmt->bindParam(1, $data);
                 $stmt->bindParam(2, $horario);
