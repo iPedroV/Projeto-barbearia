@@ -9,7 +9,7 @@ OR empty($_POST['senha']))){
 session_start($validarlogin);
 if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomep'])) 
     || !isset($_SESSION['nr']) ||
-    $_SESSION['nr'] < 1 || ($_SESSION['nr'] != $_SESSION['confereNr'])) { 
+    $_SESSION['nr'] < 1 || ($_SESSION['nr'] != $_SESSION['conferenr'])) { 
     header("Location: sessionDestroy.php");
     exit;
 }
