@@ -38,14 +38,14 @@ $_SESSION['conferenr'] = "-2";
             <label for="senha">Senha:</label>
             <input type="password" id="senha" placeholder="Digite sua senha" name="senha">
 
-            <button class="btn efeito-btn">Entrar</button>
+            <button class="btn efeito-btn" name="enviar" type="submit" value="Enviar">Entrar</button>
 
             <a href="#" id="lembrar-senha">Esqueceu a sua senha?</a>
         </form>
 
         <div id="novo-cadastro">
             <p>Ainda não tem uma conta?</p>
-            <a href="cadastro.html">Registre-se</a>
+            <a href="cadastroClientes.php">Registre-se</a>
         </div>
 
     </div>
