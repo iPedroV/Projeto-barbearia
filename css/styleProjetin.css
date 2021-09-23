@@ -123,7 +123,10 @@ cursor:pointer;
 .fa-eye{
     margin-top: 16px;
 }
-
+#risco{
+    display: none;
+    margin-top: 16px;
+}
 
 form .genero  .seu-genero{
     font-size: 20px;
@@ -232,12 +235,18 @@ form .detalhes-usuario .input-box{
     
     z-index: 1;
     font-size: 15px;
-    color:#888;
+    color:#000000;
     margin: 23px 0 0 -30px;
  cursor:pointer;
   }
 .fa-eye{
     margin-top: 16px;
+    
+}
+#risco{
+    display: none;
+    margin-top: 16px;
+    
 }
 form .genero .categoria{
     width: 100%;
