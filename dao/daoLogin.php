@@ -25,10 +25,13 @@ class DaoLogin
                 
                 if ($vl->execute()) {
                     if ($vl->rowCount() > 0) {
-                        while ($valida = $vl->fetch(PDO::FETCH_OBJ));
-
-                        $cliente->setId($valida->id);
-                        $cliente->setNome($valida->nome);
+                        while ($valida = $vl->fetch(PDO::FETCH_OBJ)){
+                            $cliente->setId($valida->id);
+                            $cliente->setNome($valida->nome);
+                            $cliente->setEmail($valida->email);
+                            //$teste = $cliente->getEmail();
+                            //echo "<script>alert('$teste')</script>";
+                        }
                     }
                     return $cliente;
                 } else {
