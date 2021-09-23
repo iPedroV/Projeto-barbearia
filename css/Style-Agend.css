@@ -186,7 +186,7 @@ header .navigation li a:hover{
 
     .titleText {
         left: 30%;
-        margin-top: -100px;
+        margin-top: 0px;
         padding-bottom: 50px;
     }
 
@@ -359,8 +359,7 @@ div.mostrar-011 p{
 
 
 .tituloAgend {
-    margin-bottom: 25px;
-    padding-bottom: 5px; 
+    padding-bottom: 30px; 
     padding-top: 5px; 
     font-size: 30px; 
     background-color: #000;
@@ -562,10 +561,12 @@ select.form-control {
 }
 
 div.botaoCancelar {
+    margin-top: -125px;
     background-color: #333;
     width: 100%;
-    height: 90px;
+    height: 190px;
     text-align: center;
+    
 }
 
 a.CancelarAgendamento {
@@ -573,6 +574,9 @@ a.CancelarAgendamento {
     width: 200px;
     height: 100px;
     padding: 15px 15px 15px 15px;
+    top: 50px;
+
+
     background-color: #fff;
     text-align: center;
     text-decoration: none;
@@ -597,6 +601,12 @@ a.CancelarAgendamento:hover {
 }
 
 @media screen and (max-width: 380px){
+
+    div.botaoCancelar {
+        margin-top: -225px;    
+        height: 150px; 
+    }
+    
     a.CancelarAgendamento {
         bottom: 90px;
     }
