@@ -157,7 +157,7 @@
             }else{
                 $_SESSION['dataAgendamento'] = $_POST['data_agendamento'];
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
-                    URL='http://localhost/Calendario/agendamentoFormulario.php'\">";
+                    URL='http://localhost/Projeto-barbearia/agendamentoFormulario.php'\">";
             }
         }
     ?>
