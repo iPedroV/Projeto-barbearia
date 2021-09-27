@@ -5,10 +5,10 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Clientes.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Mensagem.php';
 
-class DaoClientes
+class daoIndex
 {
 
-    public function pesquisarClienteNomeDAO($nome)
+    public function pesquisarClienteDAO($id)
     {
         $msg = new Mensagem();
         $conn = new Conecta();
@@ -17,8 +17,8 @@ class DaoClientes
         if ($conecta) {
             try {
                 $rs = $conecta->prepare("select * from clientes where "
-                    . "nome = ?");
-                $rs->bindParam(1, $nome);
+                    . "id = ?");
+                $rs->bindParam(1, $id);
                 if ($rs->execute()) {
                     if ($rs->rowCount() > 0) {
                         while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {

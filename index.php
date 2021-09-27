@@ -3,6 +3,7 @@
 //pedro a validação só esta nessa pagina.
 //Pedro tem um erro nas linhas 63, e 68 ... o login do cliente já está validando.
 
+
 ob_start();
 session_start();
 
@@ -62,15 +63,12 @@ $msg = new Mensagem();
                 <div class="content">
                     <h2>Bem-vindo</h2>
                     <?php
-                        $cl = new ClientesController();
-                        $listaCliente = $cl->listarCliente($nome);
-                        $a = 0;   
-                        $a++;
+                        
                                         
                     ?>
-                       <label><strong>Olá<?php echo $listaCliente->getNome(); ?>?</strong></label>
+                       <p class="nome"><strong>Olá, <?php echo $_SESSION['nomec']; ?></strong></p>
                                    
-                    <p>Pedro</p>
+                    
                     <a href="#" class="btn">Feed de notícias</a><br>
                     <a href="agendamento.php" class="btn">Fazer Agendamento</a>
                 </div>

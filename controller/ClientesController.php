@@ -1,6 +1,7 @@
 <?php
 
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/DaoClientes.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoIndex.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Clientes.php';
 
 class ClientesController {
@@ -19,8 +20,8 @@ class ClientesController {
         return $daoClientes->inserir($clientes);
     }
 
-    public function listarCliente($nome){
-        $daoClientes = new DaoClientes();
-        return $daoClientes->pesquisarClienteNomeDAO($nome);
+    public function listarCliente($id){
+        $daoClientes = new daoIndex();
+        return $daoClientes->pesquisarClienteDAO($id);
     }
 }
