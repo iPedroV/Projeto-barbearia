@@ -125,8 +125,8 @@ $serv = new Servicos_has_funcionariosController();
                         
                             <option value="">Escolher serviço</option>
                         <?php
-                        $result_post = "select * from servicos_has_funcionarios "
-                            . "left join servicos on servicos.id = servicos_has_funcionarios.servicos_id "
+                        $result_post = "select * from servicos_do_funcionario "
+                            . "left join servicos on servicos.id = servicos_do_funcionario.servicos_id "
                             . "order by nome";
                         $resultado_post = mysqli_query($conn, $result_post);
                         while ($row_post = mysqli_fetch_assoc($resultado_post)) {
@@ -142,7 +142,7 @@ $serv = new Servicos_has_funcionariosController();
                     <label class="cliqueAqui" style="color: White; position: relative; font-size: 14px; margin-left: 5px;">
                             Clique aqui.&#9660;</label>
                     <select name="id_funcionarios" id="id_funcionarios" class="form-control">
-                        <option value="">Escolher funcionario</option>
+                        <option value="">Escolher Funcionario</option>
                     </select>
                 </div>
             </div>
@@ -169,7 +169,7 @@ $serv = new Servicos_has_funcionariosController();
 
                             <!-- Lado direito do Formulário 2prt -->
 
-                            <div class="col-md-6 p-4" style="margin: 0px;">
+                            <div class="col-md-6 p-4" style="margin-top: -35px;">
                                 <div class="campoForm2">
                                     <div class="barreira"></div>
                                     <Label>Data de Agendamento:</Label><br>
@@ -177,7 +177,18 @@ $serv = new Servicos_has_funcionariosController();
                                 </div>
 
                                 <div class="campoForm2">
-                                    <Label>Agendar horário do Serviço:</Label><br>
+                                    <Label>Início do Serviço:</Label><br>
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <select name="escolherHorario" class="form-control">
+                                                <option>[--Selecione--]</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="campoForm2">
+                                    <Label>Fim do Serviço:</Label><br>
                                     <div class="row">
                                         <div class="col-md-10">
                                             <select name="escolherHorario" class="form-control">
@@ -212,7 +223,7 @@ $serv = new Servicos_has_funcionariosController();
 					$('#id_funcionarios').hide();
 					$('.cliqueAqui').show();
 					$.getJSON('agendamentoFormularioSub.php?search=',{id_servicos: $(this).val(), ajax: 'true'}, function(j){
-						var options = '<option value="">Escolher serviço</option>';	
+						var options = '<option value="">Escolher Funcionario</option>';	
 						for (var i = 0; i < j.length; i++) {
 							options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
 						}	
