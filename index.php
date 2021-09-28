@@ -8,7 +8,7 @@ ob_start();
 session_start();
 
 if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec'])) 
-    || !isset($_SESSION['nr']) ||
+    || !isset($_SESSION['nr']) || 
     ($_SESSION['nr'] != $_SESSION['conferenr'])) { 
     header("Location: sessionDestroy.php");
     exit;
@@ -32,7 +32,7 @@ $msg = new Mensagem();
         <link rel="stylesheet" href="css/style-index.css">
         
         <body>
-
+       
         <?php
                 //Também faz parte da validação de login ... Logica do professor ...
                 if(isset($_SESSION['msg'])){
@@ -48,16 +48,11 @@ $msg = new Mensagem();
 
             <header>
                 <a href="#" class="logo">Barbearia Neves<span>.</span></a>
-                <div class="menuToggle" onclick=" toggleMenu();"></div>
-                <ul class="navigation">
-                    <li><a href="#banner"  onclick=" toggleMenu();">Home</a></li>
-                    <li><a href="#about" onclick=" toggleMenu();">Sobre</a></li>
-                    <li><a href="#menu" onclick=" toggleMenu();">Cortes</a></li>
-                    <li><a href="#salao" onclick=" toggleMenu();">Salão</a></li>
-                    <li><a href="#feedbacks" onclick=" toggleMenu();">Feedbacks</a></li>
-                    <li><a href="#contato" onclick=" toggleMenu();">Contato</a></li>
-                    <li><a href="./sessionDestroy.php" onclick=" toggleMenu();">sair</a></li>
-                </ul>
+                <?php
+                include_once 'C:/xampp/htdocs/Projeto-barbearia/nav.php';
+                echo navBar();
+                ?>
+                
             </header>
             <section class="banner" id="banner">
                 <div class="content">

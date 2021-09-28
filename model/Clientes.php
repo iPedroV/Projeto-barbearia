@@ -9,6 +9,7 @@ class Clientes {
     private $sexo;
     private $email;
     private $telefone;
+    private $perfil;
 
     public function getId()
     {
@@ -85,6 +86,18 @@ class Clientes {
     public function setTelefone($telefone)
     {
         $this->telefone = $telefone;
+
+        return $this;
+    }
+
+    public function getPerfil()
+    {
+        return $this->perfil;
+    }
+
+    public function setPerfil($perfil)
+    {
+        $this->perfil = $perfil;
 
         return $this;
     }
