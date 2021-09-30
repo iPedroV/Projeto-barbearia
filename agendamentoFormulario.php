@@ -11,17 +11,17 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 
 $data = $_SESSION['dataAgendamento'];
 
-include_once 'C:/xampp/htdocs/Calendario/controller/agendamentoController.php';
-include_once 'C:/xampp/htdocs/Calendario/dao/daoAgendamento.php';
-include_once 'C:/xampp/htdocs/Calendario/model/agendamento_model.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/agendamentoController.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoAgendamento.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_model.php';
 
 $dt = new Agendamento();
 $dts = new AgendamentoController();
 
-include_once 'C:/xampp/htdocs/Calendario/bd/banco.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 
-include_once 'C:/xampp/htdocs/Calendario/model/servicos_has_funcionarios.php';
-include_once 'C:/xampp/htdocs/Calendario/controller/servicos_has_funcionariosController.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/servicos_has_funcionarios.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/servicos_has_funcionariosController.php';
 $serv = new Servicos_has_funcionariosController();
 
 ?>
