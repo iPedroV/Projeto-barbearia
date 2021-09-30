@@ -1,8 +1,8 @@
 <?php
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     session_start();
 }
-if(!isset($_SESSION['msg'])){
+if (!isset($_SESSION['msg'])) {
     $_SESSION['msg'] = "";
 }
 
@@ -23,15 +23,15 @@ $_SESSION['conferenr'] = "-2";
 </head>
 
 <body>
-    
+
     <div id="login">
         <img src="img/barbearianeves.png" class="imagem">
         <form method="post" action="./controller/ValidaLogincontroller.php">
             <?php
-                if($_SESSION['msg'] != ""){
-                    echo $_SESSION['msg'];
-                    $_SESSION['msg'] = "";
-                }
+            if ($_SESSION['msg'] != "") {
+                echo $_SESSION['msg'];
+                $_SESSION['msg'] = "";
+            }
             ?>
             <label for="usuario">E-mail:</label>
             <input id="usuario" placeholder="Digite seu usuário" name="email">
@@ -55,11 +55,11 @@ $_SESSION['conferenr'] = "-2";
     <div id="modal-esqueceu" class="modal-container">
         <div class="modal">
             <button class="fechar">x</button>
-
-            <label for="recuperar-email">Email:</label>
-            <input id="usuario" placeholder="Digite seu Email">
-            <button class="btn efeito-btn">Enviar</button>
-
+            <form method="post" action="enviar.php">
+                <label name="recuperaremail">Email:</label>
+                <input id="usuario" placeholder="Digite seu Email">
+                <button class="btn efeito-btn">Enviar</button>
+            </form>
         </div>
     </div>
 </body>
