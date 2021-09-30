@@ -51,11 +51,11 @@ $msg = new Mensagem();
             unset($_POST['cadastrar']);
             $msg = $cc->inserirClientes(
 
-                $senha,
                 $nome,
-                $sexo,
+                $telefone,
                 $email,
-                $telefone
+                $senha,
+                $sexo
             );
             echo $msg->getMsg();
             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
