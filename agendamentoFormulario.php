@@ -1,4 +1,16 @@
 <?php
+ob_start();
+session_start();
+
+if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec'])) 
+    || !isset($_SESSION['nr']) || 
+    ($_SESSION['nr'] != $_SESSION['conferenr'])) { 
+    header("Location: sessionDestroy.php");
+    exit;
+}
+
+$data = $_SESSION['dataAgendamento'];
+
 include_once 'C:/xampp/htdocs/Calendario/controller/agendamentoController.php';
 include_once 'C:/xampp/htdocs/Calendario/dao/daoAgendamento.php';
 include_once 'C:/xampp/htdocs/Calendario/model/agendamento_model.php';
@@ -108,8 +120,6 @@ $serv = new Servicos_has_funcionariosController();
         }
     }
 
-    session_start();
-    $data = $_SESSION['dataAgendamento'];
     ?>
 
     <form method="POST" action="" class="agendamento" id="agendamento" style="background-color: #333;">
@@ -155,7 +165,7 @@ $serv = new Servicos_has_funcionariosController();
                             <div class="col-md-6 p-4">
                                 <div class="campoForm2">
                                     <label for="nome">Nome/Usuário: </label><br>
-                                    <input type="text" id="nome" name="nome" value="testeNome" disabled><br>
+                                    <input type="text" id="nome" name="nome" value="<?php echo $_SESSION['nomec'];?>" disabled><br>
                                 </div>
                                 <div class="campoForm2">
                                     <label for="telefone">Telefone: </label><br>
@@ -163,7 +173,7 @@ $serv = new Servicos_has_funcionariosController();
                                 </div>
                                 <div class="campoForm2">
                                     <label for="email">E-mail: </label><br>
-                                    <input type="text" id="email" name="email" value="testeEmail20@gmail.com" disabled><br>
+                                    <input type="text" id="email" name="email" value="<?php echo $_SESSION['emailc'];?>" disabled><br>
                                 </div>
                             </div>
 

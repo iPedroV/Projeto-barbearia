@@ -1,6 +1,13 @@
 <?php
     ob_start();
     session_start();
+
+if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec'])) 
+    || !isset($_SESSION['nr']) || 
+    ($_SESSION['nr'] != $_SESSION['conferenr'])) { 
+    header("Location: sessionDestroy.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -65,6 +72,9 @@
 
     <div class="pcs" style="background-color: #333; position: relative; width: 100%; height: 200px;"></div>
     <section class="agenda" id="agenda">
+        <div class="nome_agendamento" style="color: #fff; font-size: 25px; position: relative; left: 16%; width: 400px;">
+        <strong>Olá, <?php echo $_SESSION['nomec']; ?></strong></div>
+
         <h2 class="titleText"><span>A</span>gendamento</h2>
         <div class="PainelAG">
             <div class="conteudo">

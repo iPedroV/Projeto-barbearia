@@ -17,7 +17,7 @@ class DaoLogin
 
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $vl = $conecta->prepare("select * from clientes where senha = md5(?)".
+                $vl = $conecta->prepare("select * from usuario where senha = md5(?)".
                 " and email = ? limit 1");
                 
                 $vl->bindParam(1, $senha);

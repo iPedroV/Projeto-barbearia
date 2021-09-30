@@ -31,15 +31,15 @@ class DaoClientes
                     $msg->setMsg("<p style='color: red;'>"
                     . "Email já cadastrado!</p>");
                 }else{
-                    $stmt = $conecta->prepare("insert into clientes values "
-                    . "(null,md5(?),?,?,?,?,?)");
+                    $stmt = $conecta->prepare("insert into usuario values "
+                    . "(null,?,?,?,?,md5(?),?)");
 
-                $stmt->bindParam(1, $senha);
-                $stmt->bindParam(2, $nome);
-                $stmt->bindParam(3, $sexo);
+                $stmt->bindParam(1, $nome);
+                $stmt->bindParam(2, $perfil);
+                $stmt->bindParam(3, $telefone);
                 $stmt->bindParam(4, $email);
-                $stmt->bindParam(5, $telefone);
-                $stmt->bindParam(6, $perfil);
+                $stmt->bindParam(5, $senha);
+                $stmt->bindParam(6, $sexo);
                 $stmt->execute();
                 $msg->setMsg("<p style='color: green;'>"
                     . "Dados Cadastrados com sucesso</p>");

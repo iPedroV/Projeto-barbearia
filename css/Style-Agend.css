@@ -161,6 +161,11 @@ header .navigation li a:hover{
     top: -100px;
 }
 
+.nome_agendamento{
+    color: #fff;
+    font-size: 20px;
+  }
+
 .PainelAG {
     position: relative;
     width: 0%;

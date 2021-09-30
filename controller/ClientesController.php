@@ -6,15 +6,15 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Clientes.php';
 
 class ClientesController {
     
-    public function inserirClientes( $senha, 
-            $nome, $sexo, $email, $telefone){
+    public function inserirClientes( $nome, 
+            $telefone, $email, $senha, $sexo){
         $clientes = new Clientes();
         
-        $clientes->setSenha($senha);
         $clientes->setNome($nome);
-        $clientes->setSexo($sexo);
-        $clientes->setEmail($email);
         $clientes->setTelefone($telefone);
+        $clientes->setEmail($email);
+        $clientes->setSenha($senha);
+        $clientes->setSexo($sexo);
         
         $daoClientes = new DaoClientes();
         return $daoClientes->inserir($clientes);
