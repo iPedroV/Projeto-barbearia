@@ -24,7 +24,7 @@ class DaoClientes
             $telefone = $clientes->getTelefone();
             $perfil = 'cliente';
             try {
-                $st = $conecta->prepare("SELECT * FROM clientes where email = ?");
+                $st = $conecta->prepare("SELECT * FROM usuario where email = ?");
                 $st->execute([$email]);
                 $result = $st->rowCount();
                 if($result >0){
