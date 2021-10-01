@@ -57,7 +57,7 @@ $_SESSION['conferenr'] = "-2";
             <button class="fechar">x</button>
             <form method="post" action="enviar.php">
                 <label name="recuperaremail">Email:</label>
-                <input id="usuario" placeholder="Digite seu Email">
+                <input id="usuario" placeholder="Digite seu Email" name="recuperaremail">
                 <button class="btn efeito-btn">Enviar</button>
             </form>
         </div>
