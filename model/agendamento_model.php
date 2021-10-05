@@ -5,6 +5,7 @@ class Agendamento {
     private $dataAgenda;
     private $horario;
     private $dateTime;
+    private $valor;
 
     /**
      * Get the value of idFornecedor
@@ -82,6 +83,26 @@ class Agendamento {
     public function setDateTime($dateTime)
     {
         $this->dateTime = $dateTime;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of valor
+     */ 
+    public function getValor()
+    {
+        return $this->valor;
+    }
+
+    /**
+     * Set the value of valor
+     *
+     * @return  self
+     */ 
+    public function setValor($valor)
+    {
+        $this->valor = $valor;
 
         return $this;
     }

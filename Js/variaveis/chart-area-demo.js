@@ -1,3 +1,5 @@
+
+
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
@@ -30,6 +32,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 //esse é de lucro
 var ctx = document.getElementById("myAreaChart");
+
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
@@ -77,7 +80,7 @@ var myLineChart = new Chart(ctx, {
         ticks: {
           maxTicksLimit: 5,
           padding: 10,
-          // Include a dollar sign in the ticks
+          // Inclui o R$ no número
           callback: function(value, index, values) {
             return 'R$' + number_format(value);
           }
@@ -111,8 +114,11 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           //Retorna a data
+          var today = new Date();
+          var date = ' ' + today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear();
+          
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': R$ ' + number_format(tooltipItem.yLabel) + ' Data: 25/08/2021';
+          return datasetLabel + ': R$ ' + number_format(tooltipItem.yLabel) + date;
         }
       }
     }
