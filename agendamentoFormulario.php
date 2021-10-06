@@ -16,17 +16,17 @@ $servico = null;
 $servico2 = null;
 
 
-include_once 'C:/xampp/htdocs/Calendario/controller/agendamentoController.php';
-include_once 'C:/xampp/htdocs/Calendario/dao/daoAgendamento.php';
-include_once 'C:/xampp/htdocs/Calendario/model/agendamento_model.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/agendamentoController.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoAgendamento.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_model.php';
 
 $dt = new Agendamento();
 $dts = new AgendamentoController();
 
-include_once 'C:/xampp/htdocs/Calendario/bd/banco.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 
-include_once 'C:/xampp/htdocs/Calendario/model/servicos_has_funcionarios.php';
-include_once 'C:/xampp/htdocs/Calendario/controller/servicos_has_funcionariosController.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/servicos_has_funcionarios.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/servicos_has_funcionariosController.php';
 $serv = new Servicos_has_funcionariosController();
 
 ?>
@@ -107,7 +107,7 @@ $serv = new Servicos_has_funcionariosController();
 
             echo " <p style='color: white;'>-: $dataA, $horario, servico 01: $servico, $funcionario -- servico 02:  $servico2, $funcionario2 </p>";
                 //echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
-                        //URL='http://localhost/Calendario/agendamentoFormulario.php'\">";
+                        //URL='http://localhost/Projeto-barbearia/agendamentoFormulario.php'\">";
             
         
     }
@@ -317,7 +317,7 @@ $serv = new Servicos_has_funcionariosController();
         });
     </script>
     <script src="Js/Agendamento.js"></script>
-    <script src="Js/Calendario.js"></script>
+    <script src="Js/Projeto-barbearia.js"></script>
 </body>
 </head>
 
