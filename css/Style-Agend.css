@@ -58,7 +58,7 @@ header .logo
     font-weight: 700;
     font-size: 2em;
     text-decoration: none;
-    margin-top: -10px;
+    margin-top: 0px;
 }
 
 header .logo:hover
@@ -80,13 +80,17 @@ header .navigation
 {
     position: relative;
     display: flex;
+    left: 70px;
 }
 
 header .navigation li
 {
+    position: relative;
+    top: 10px;
+    left: -10px;
     list-style: none; /* Tira os pontinhos da lista ul */
     margin-left: 30px; /* Separa os itens da lista */
-    margin-top: 15px;
+    margin-top: 12px;
 }
 
 header .navigation li a
@@ -124,7 +128,76 @@ header .navigation li a:hover{
 	background-color: #050505;
 }
 
+.dados{
+    position: relative;
+    top: -20px;
 
+}
+
+.notification-list{
+    display: flex;
+
+    background-color: #fff!important;
+    padding: 7px;
+
+    margin-right: 10px;
+    margin-top: 0px;
+    margin-bottom: -22.5px;
+
+    border: 2px solid #888!important;
+    border-bottom: 1px solid #000!important;
+    border-top: 1px solid #000!important;
+    color: #000!important;
+    
+}
+
+span.account-user-name{
+    color: #000;
+    margin-right: 4px;
+}
+
+span.account-position{
+    border: 1px solid transparent;
+    border-left: 2px solid #000;
+    padding-top: 2px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    color: #000!important;
+}
+
+.nav-link {
+    display: block;
+    padding: .5rem 1rem;
+    color: #888!important;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #000!important;
+}
+
+.SairDiv{
+    position: relative;
+    width: 100%;
+    height: 35px;
+    top: 0px;
+    background-color:#888 ;
+}
+
+.SairLogin{
+    position: relative;
+    top: 5px;
+    text-decoration: none; 
+    color: #fff!important; 
+    padding-left: 15px;
+
+}
+
+.SairLogin :hover{
+    color: black;
+    font-weight: 600;
+}
 
 
 
@@ -364,14 +437,14 @@ div.mostrar-011 p{
 
 
 .tituloAgend {
-    padding-bottom: 30px; 
+    padding-bottom: 5px; 
     padding-top: 5px; 
     font-size: 30px; 
     background-color: #000;
     text-align: center;
     color: white;
     width: 100%;
-    
+    margin-bottom: 20px;
 }
 
 .salaoMasculino, .combosMasc, .belezaFeminina {
@@ -400,6 +473,38 @@ select.form-control {
 
 
 /* Parte 02 do Formulário Style */
+#myList li{display: none; list-style: none;}
+
+#loadMore{
+    color: #ffffff;
+    cursor: pointer;
+    background-color: black;
+    width: 250px;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+#loadMore:hover{
+    color: #888;
+}
+
+#showLess{
+    color: #ffffff;
+    cursor: pointer;
+    display: none;
+    background-color: black;
+    width: 250px;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+#showLess:hover{
+    color: #888;
+}
 
 .formulario{
     border: 2px solid black; 
@@ -474,6 +579,15 @@ select.form-control {
         font-size: 1.6em;
         font-weight: 300;
     }
+
+    .notification-list{
+        display: none;
+    }
+
+    .nav-link {
+        display: none;
+    }
+
     .menuToggle
     {
         position: relative;

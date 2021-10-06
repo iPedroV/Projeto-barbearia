@@ -5,7 +5,7 @@
 if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec'])) 
     || !isset($_SESSION['nr']) || 
     ($_SESSION['nr'] != $_SESSION['conferenr'])) { 
-    header("Location: sessionDestroy.php");
+        header("Location: agendamento.php");
     exit;
 }
 ?>
@@ -28,9 +28,6 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
     <link rel="sorcut icon" href="./img/LogoGuia.png" type="image/png" style="width: 16px; height: 16px;">
 
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
 
     <!-- SweetAlert -->
     <script src="Js/sweetalert2.all.min.js"></script>
@@ -67,14 +64,50 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
             <li><a href="#salao" onclick=" toggleMenu();">Salão</a></li>
             <li><a href="#feedbacks" onclick=" toggleMenu();">Feedbacks</a></li>
             <li><a href="#contato" onclick=" toggleMenu();">Contato</a></li>
+
+        <div class="dados">
+        <li class="dropdown notification-list">
+            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                aria-expanded="false" style="padding: 0px; margin: 0px;">
+                <span class="account-user-avatar"> 
+                    <img src="img/user.png" alt="user-image" class="rounded-circle" width="45px" height="45px" style="background-color: white; border: 1px solid #fff;">
+                </span>
+                <span>
+                    <span class="account-user-name"><?php echo $_SESSION['nomec']; ?></span>
+                    <span class="account-position"><?php echo $_SESSION['perfilc']; ?></span>
+                </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown" style="height: 135px;">
+                <!-- item-->
+                <div class=" dropdown-header noti-title">
+                    <h6 class="text-overflow m-0">Bem-Vindo !</h6>
+                </div>
+
+                <!-- item-->
+                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <i class="mdi mdi-account-circle me-1"></i>
+                    <span>Minha Página</span>
+                </a>
+
+                <div class="dropdown-divider"></div>
+
+                <!-- item-->
+                <div class="SairDiv">
+                  <a href="index.html" class="SairLogin">
+                    <i class="mdi mdi-lock-outline me-1"></i> 
+                    <span>Sair &#8608;</span>
+                  </a>
+                </div>
+
+            </div>
+        </li>
+        </div>
         </ul>
+          
     </header>
 
     <div class="pcs" style="background-color: #333; position: relative; width: 100%; height: 200px;"></div>
     <section class="agenda" id="agenda">
-        <div class="nome_agendamento" style="color: #fff; font-size: 25px; position: relative; left: 16%; width: 400px;">
-        <strong>Olá, <?php echo $_SESSION['nomec']; ?></strong></div>
-
         <h2 class="titleText"><span>A</span>gendamento</h2>
         <div class="PainelAG">
             <div class="conteudo">
@@ -133,7 +166,7 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
     </section>
 
     <div class="botaoCancelar">
-        <a href="index.html" class="CancelarAgendamento"><span>C</span>ancelar agendamento</a>
+        <a href="index.php" class="CancelarAgendamento"><span>C</span>ancelar agendamento</a>
     </div>
     
     <?php
@@ -149,7 +182,7 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
         $offset = $userTimezone->getOffset($myDateTime);
         return date($format, ($timestamp != false ? (int)$timestamp : $myDateTime->format('U')) + $offset);
     }
-    $dateEscolhida = _dateAtual("Y-m-j", false, 'America/Sao_Paulo');
+    $dateEscolhida = _dateAtual("Y-m-d", false, 'America/Sao_Paulo');
 
         if(isset($_POST['enviar'])) {
             $data = $_POST['data_agendamento'];
@@ -157,7 +190,7 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
                 ?>
                     <script>
                         Swal.fire({
-                            title: 'Cadastro não realizado!',
+                            title: 'Agendamento não pode ser realizado!',
                             text: 'O dia escolhido não pode ser agendado antes do dia atual (<?php echo $dateEscolhida ?>)!',
                             icon: 'error',
                             confirmButtonText: 'Ok'
@@ -180,7 +213,14 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
         <i class="fa fa-whatsapp"></i>
     </a>
 
-    <script src="Js/Calendario.js"></script>
+    <script src="./Js/Calendario.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
 </body>
 </head>
 
