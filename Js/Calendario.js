@@ -68,9 +68,16 @@ class CALENDAR {
 
     drawYearAndCurrentDay() {
         // SUBClasse que chama o dia, a semana e o ano dentro do calendário.
+        function adicionaZero(numero){
+            if (numero <= 9) 
+                return "0" + numero;
+            else
+                return numero; 
+        }
+
         let calendar = this.getCalendar();
         this.elements.year.innerHTML = calendar.active.year;
-        this.elements.currentDay.innerHTML = calendar.active.day;
+        this.elements.currentDay.innerHTML = adicionaZero([calendar.active.day]);
         this.elements.currentWeekDay.innerHTML = AVAILABLE_WEEK_DAYS[calendar.active.week];
         
         // Passando para o nome por extenso dos meses para o calendário utilizando o metodo
@@ -82,12 +89,19 @@ class CALENDAR {
     drawDateConfirm() {
         // SUBClasse que chama o dia, a semana e o ano dentro do calendário. 
         // Adicionando o Onjeto ao Input da data escolhida pelo usuário.
+        function adicionaZero(numero){
+            if (numero <= 9) 
+                return "0" + numero;
+            else
+                return numero; 
+        }
+
         let calendar = this.getCalendar();
         let eventListday = [this.elements.currentDay.innerHTML = calendar.active.day];
         let eventListYear = [this.elements.year.innerHTML = calendar.active.year];
         let eventListMonth = [this.elements.currentMonth.innerHTML = AVAILABLE_MONTH_NUMBER[calendar.active.month]];
 
-        document.getElementById('dataAgendamento').value = eventListYear +"-"+ eventListMonth +"-"+ eventListday;
+        document.getElementById('dataAgendamento').value = eventListYear +"-"+ eventListMonth +"-"+ adicionaZero(eventListday);
 
     }
 
