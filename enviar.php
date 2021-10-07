@@ -6,13 +6,13 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/login.php';
  * Como enviar emails do localhost com o Sendmail no Xampp usando o Gmail
  * https://www.carloshdebrito.com.br/como-enviar-emails-do-localhost-com-o-sendmail-no-xampp-usando-o-gmail/
  */
-/*$email = $_POST['recuperaremail'];*/
+$email = $_POST['recuperaremail'];
 
-/*date_default_timezone_set('America/Sao_Paulo');
+date_default_timezone_set('America/Sao_Paulo');
 $data_envio = date('d/m/y');
-$hora_envio = date('H:i:s');*/
+$hora_envio = date('H:i:s');
 
-$corpoemail = "
+/*$corpoemail = "
 <html>
     <body>
         <div>
@@ -78,22 +78,10 @@ $corpoemail = "
             padding-top: 20px;
         }
     </style>
-</html>";
-
-
-$to_email = $_POST['recuperaremail'];
-$subject = "Teste simples de envio de email via PHP";
-$body = $corpoemail;
-$headers = "From: sender\'s email";
- 
-if (mail($to_email, $subject, $body, $headers)) {
-    echo "Email enviado com sucesso para $to_email.";
-} else {
-    echo "Falha no envio do email.";
-}
+</html>";*/
 
 // Compo E-mail
-/*$arquivo = "
+$arquivo = "
   <style type='text/css'>
   body {
   margin:0px;
@@ -124,11 +112,26 @@ if (mail($to_email, $subject, $body, $headers)) {
             </tr>
         </table>
     </html>
-  ";*/
+  ";
+
+
+$to_email = $_POST['recuperaremail'];
+$subject = "Teste simples de envio de email via PHP";
+$body = $arquivo;
+$headers = "From: sender\'s email";
+ 
+if (mail($to_email, $subject, $body, $headers)) {
+    echo "Email enviado com sucesso para $to_email.";
+} else {
+    echo "Falha no envio do email.";
+    header("Location: login.php"); exit();
+}
+
+
 
 /*//enviar
 // emails para quem será enviado o formulário
-$destino = $email;
+$destino = $_POST['recuperaremail'];
 $assunto = "Teste de envio de e-mail pelo site.";
 
 // É necessário indicar que o formato do e-mail é html

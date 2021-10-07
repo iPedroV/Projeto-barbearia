@@ -10,16 +10,34 @@
 </head>
 
 <body>
+
+<script>
+    function validarSenha(name1, name2)
+{
+    var n_senha = document.getElementById(n_senha).value;
+    var c_senha = document.getElementById(c_senha).value;
+		
+    if (senha1 != "" && senha2 != "" && senha1 === senha2)
+    {
+    	alert('senha iguais');
+    }
+    else
+    {
+      	alert('senhas diferentes');
+    }
+}
+</script>
+
     <div id="login">
         <img src="img/barbearianeves.png" class="imagem">
         <form method="post">
-            <label for="n-senha">Nova senha:</label>
-            <input type="password" id="n-senha" name="nsenha">
+            <label for="n_senha">Nova senha:</label>
+            <input type="password" id="n_senha" name="nsenha" required>
 
-            <label for="c-senha">Confirmar senha:</label>
-            <input type="password" id="c-senha" name="csenha">
+            <label for="c_senha">Confirmar senha:</label>
+            <input type="password" id="c_senha" name="csenha" required>
 
-            <button type="submit" class="btn efeito-btn" name="e-senha">Confirmar</button>
+            <button type="submit" onclick="validarSenha('n_senha','c_senha')" class="btn efeito-btn" name="e-senha">Confirmar</button>
         </form>
     </div>
 </body>
