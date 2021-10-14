@@ -49,7 +49,7 @@ $msg = new Mensagem();
 
             $cc = new ClientesController();
             unset($_POST['cadastrar']);
-            $msg = $cc->inserirClientes(
+            $resp = $cc->inserirClientes(
 
                 $nome,
                 $telefone,
@@ -57,9 +57,14 @@ $msg = new Mensagem();
                 $senha,
                 $sexo
             );
-            echo $msg->getMsg();
-            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                                URL='cadastroClientes.php'\">";
+            if(getType($resp) == 'object'){
+                $ce = $resp;
+                echo "<p style='color: red;'>Email já cadastrado!</p>";
+            }else{
+                echo $resp;
+                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                URL='cadastroClientes.php'\">";
+            }
         }
 
 
@@ -109,8 +114,14 @@ $msg = new Mensagem();
             </div> 
             
             <div class="genero">
-                <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>" required>
-                <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>" required>
+                <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>"
+                    <?php if($ce->getSexo()!=null) { 
+                        if($ce->getSexo() == "Masculino") echo "checked = checked";
+                    }?> checked = 'checked' required>
+                <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>" 
+                    <?php if($ce->getSexo()!=null) { 
+                        if($ce->getSexo() == "Feminino") echo "checked = checked";
+                    }?>required>
                 <span class="seu-genero">Gênero</span>
                 <div class="categoria">
                     <label for="ponto-1">
