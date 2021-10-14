@@ -13,7 +13,7 @@ $data_envio = date('d/m/y');
 $hora_envio = date('H:i:s');
 
 /*$corpoemail = "
-<html>
+<html lang="pt-br">
     <body>
         <div>
             <h1>Recuperação de senha</h1>

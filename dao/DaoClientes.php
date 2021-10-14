@@ -16,7 +16,7 @@ class DaoClientes
 
         if ($conecta) {
 
-
+            $resp = null;
             $senha = $clientes->getSenha();
             $nome = $clientes->getNome();
             $sexo = $clientes->getSexo();
@@ -28,8 +28,9 @@ class DaoClientes
                 $st->execute([$email]);
                 $result = $st->rowCount();
                 if($result >0){
-                    $msg->setMsg("<p style='color: red;'>"
-                    . "Email já cadastrado!</p>");
+                    $resp = $clientes;
+                    //$msg->setMsg("<p style='color: red;'>"
+                    //. "Email já cadastrado!</p>");
                 }else{
                     $stmt = $conecta->prepare("insert into usuario values "
                     . "(null,?,?,?,?,md5(?),?)");
@@ -41,19 +42,19 @@ class DaoClientes
                 $stmt->bindParam(5, $senha);
                 $stmt->bindParam(6, $sexo);
                 $stmt->execute();
-                $msg->setMsg("<p style='color: green;'>"
-                    . "Dados Cadastrados com sucesso</p>");
+                $resp = "<p style='color: green;'>"
+                    . "Dados Cadastrados com sucesso</p>";
                 }
                 
             } catch (Exception $ex) {
-                $msg->setMsg($ex);
+                $resp = $ex;
             }
         } else {
-            $msg->setMsg("<p style='color: red;'>"
-                . "Erro na conexão com o banco de dados.</p>");
+            $resp = "<p style='color: red;'>"
+                . "Erro na conexão com o banco de dados.</p>";
         }
         $conn = null;
-        return $msg;
+        return $resp;
     }
 
    

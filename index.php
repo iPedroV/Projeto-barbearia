@@ -66,6 +66,7 @@ $msg = new Mensagem();
                     
                     <a href="#" class="btn">Feed de notícias</a><br>
                     <a href="agendamento.php" class="btn">Fazer Agendamento</a>
+                    
                 </div>
             </section>
 
