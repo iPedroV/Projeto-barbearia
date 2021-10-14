@@ -1,22 +1,31 @@
 <?php
-#Colocar os includ de acordo com a seu proprio máquina
 
-Class FuncionarioController{
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoFuncionario.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoIndex.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
 
-    #Preencher com os dados que vão vir da DAO
-    public function inserrirFuncionario(){
+class FuncionarioController
+{
 
-        $daoFuncioario = new DaoFuncionario();
-        return $daoFuncioario->inserirFuncionarioDAO();
-    }
-    public function excluirFuncionario(){
+    public function inserirFuncioanrio(
+        $nome,
+        $perfil,
+        $telefone,
+        $email,
+        $senha,
+        $sexo
+    ) {
+        $funcionarios = new Funcionario();
 
-        $daoFuncioario = new DaoFuncionario();
-        return $daoFuncioario->exluirFuncionarioDAO();
-    }
-    public function editarFuncionario(){
+        $funcionarios->setNome($nome);
+        $funcionarios->setPerfil($perfil);
+        $funcionarios->setTelefone($telefone);
+        $funcionarios->setEmail($email);
+        $funcionarios->setSenha($senha);
+        $funcionarios->setSexo($sexo);
+        
 
-        $daoFuncioario = new DaoFuncionario();
-        return $daoFuncioario->editarFuncionarioDAO();
+        $daofuncionarios = new DaoFuncionario();
+        return $daofuncionarios->inserirFuncionarioDAO($funcionarios);
     }
 }

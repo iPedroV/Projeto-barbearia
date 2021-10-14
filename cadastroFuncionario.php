@@ -1,12 +1,20 @@
 <?php
-include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/ClientesController.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Clientes.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/funcionarioController.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
-$ce = new Clientes();
+$ce = new Funcionario();
 $msg = new Mensagem();
 ?>
+<?php
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/DaoClientes.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoIndex.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
+?>
+
+
 <!DOCTYPE html>
+
 <html lang="pt-br">
 
 <head>
@@ -15,6 +23,7 @@ $msg = new Mensagem();
     <link rel="stylesheet" href="./css/style-Funcioario.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font/awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,24 +43,27 @@ $msg = new Mensagem();
             if ($senha != "") {
 
                 $nome = $_POST['nome'];
+                $perfil = $_POST['cargo'];
                 $sexo = $_POST['sexo'];
                 $email = $_POST['email'];
                 $telefone = $_POST['telefone'];
+                
             }
 
-            $cc = new ClientesController();
+            $cc = new FuncionarioController();
             unset($_POST['cadastrar']);
-            $msg = $cc->inserirClientes(
-
-                $senha,
+            $msg = $cc->inserirFuncioanrio(
                 $nome,
-                $sexo,
+                $telefone,
+                $perfil,
                 $email,
-                $telefone
+                $senha,
+                $sexo,
+                
             );
             echo $msg->getMsg();
             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                                URL='cadastroClientes.php'\">";
+                                URL='cadastroFuncionario.php'\">";
         }
 
 
@@ -73,12 +85,8 @@ $msg = new Mensagem();
                     <input type="text" placeholder="Digite seu nome" name="nome" required value="<?php echo $ce->getNome(); ?>">
                 </div>
                 <div class="input-box">
-                    <span class="detalhes">CPF:</span>
-                    <input type="text" placeholder="Digite o cpf" name="cpf" required value="<?php echo $ce->getEmail(); ?>">
-                </div>
-                <div class="input-box">
                     <span class="detalhes">Cargo:</span>
-                    <select name="Cargo" class="select">
+                    <select name="cargo" class="select">
                         <option>Selecione</option>
                         <option>Admnistrador</option>
                         <option>Funcionário</option>
@@ -95,10 +103,11 @@ $msg = new Mensagem();
                 <div class="input-box">
                     <span class="detalhes">Senha:</span>
                     <input type="password" placeholder="Digite a senha" name="senha" id="senha" required value="<?php echo $ce->getSenha(); ?>">
+                    <span class="p-viewer2">
+                        <i class="fa fa-eye" aria-hidden="true" id="olho" onclick="toggle()"></i>
+                        <i class="fas fa-eye-slash" id="risco" onclick="toggle()"></i>
+                    </span>
                 </div>
-                <span class="p-viewer2">
-                    <i class="fa fa-eye" aria-hidden="true" id="olho" onclick="toggle()"></i>
-                </span>
             </div>
             <div class="genero">
                 <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>" required>
@@ -122,23 +131,20 @@ $msg = new Mensagem();
     </div>
 
     <script>
-        var state = false;
-
         function toggle() {
-            if (state) {
-                document.getElementById(
-                    "senha").
-                setAttribute("type", "password");
-                document.getElementById(
-                    "olho").style.color = '#888';
-                state = false;
+            var x = document.getElementById("senha");
+            if (x.type === "password") {
+                x.type = "text";
+                document.getElementById("risco").style.display = "inline-block";
+                document.getElementById("olho").style.display = 'none';
+                document.getElementById("risco").style.color ='#000000';
+                document.getElementById("olho").style.color ='#000000';
             } else {
-                document.getElementById(
-                    "senha").
-                setAttribute("type", "text");
-                document.getElementById(
-                    "olho").style.color = '#000000';
-                state = true;
+                x.type = "password";
+                document.getElementById("risco").style.display = 'none';
+                document.getElementById("olho").style.display = 'inline-block';
+                document.getElementById("risco").style.color ='#000000';
+                document.getElementById("olho").style.color ='#000000';
             }
         }
     </script>
