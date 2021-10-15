@@ -13,57 +13,118 @@ $_SESSION['conferenr'] = "-2";
 
 <!DOCTYPE html>
 <html lang="pt-bt">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
     <title>Login</title>
     <link rel="sorcut icon" href="img/barber-shop.png" type="image/png" style="width: 16px; height: 16px;">
-    <Link rel="stylesheet" href="css/style-login.css">
-</head>
+    <Link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font/awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
-<body>
+    <body>
+        <div class="container">
 
-    <div id="login">
-        <img src="img/barbearianeves.png" class="imagem">
-        <form method="post" action="./controller/ValidaLogincontroller.php">
-            <?php
-            if ($_SESSION['msg'] != "") {
-                echo $_SESSION['msg'];
-                $_SESSION['msg'] = "";
-            }
-            ?>
-            <label for="usuario">E-mail:</label>
-            <input id="usuario" placeholder="Digite seu usuário" name="email">
+            <img src="img/barbearianeves.png" class="imagem">
+ 
+            <form method="post" action="./controller/ValidaLogincontroller.php">
+                <?php
+                if ($_SESSION['msg'] != "") {
+                    echo $_SESSION['msg'];
+                    $_SESSION['msg'] = "";
+                }
+                ?>
+                <div class="detalhes-usuario">
 
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" placeholder="Digite sua senha" name="senha">
+                    <div class="input-box">
+                        <span class="detalhes">Email:</span>
+                        <input id="usuario" type="email" placeholder="Digite seu email" name="email" required >
+                    </div>
 
-            <button class="btn efeito-btn" name="enviar" type="submit" value="Enviar">Entrar</button>
+                    <div class="input-box">
+                        <span class="detalhes">Senha:</span>
+                        <input type="password" placeholder="Digite sua senha" name="senha" id="senha" required>
+                    </div>
 
-            <a href="#" id="lembrar-senha">Esqueceu a sua senha?</a>
-        </form>
+                    <a class="esqueciminhasenha"  href="#" id="lembrar-senha">Esqueci minha senha</a>
 
-        <div id="novo-cadastro">
-            <p>Ainda não tem uma conta?</p>
-            <a href="cadastroClientes.php">Registre-se</a>
-        </div>
+                    <span class="p-viewer2">
+                        <i class="fas fa-eye" aria-hidden="true" id="olho" style="color: #000000;" onclick="toggle()"></i>
+                        <i class="fas fa-eye-slash" id="risco" onclick="toggle()"></i>
+                    </span>
+    
+                </div>
 
-    </div>
+                <button type="submit" class="btn efeito-btn" name="Enviar" value="Enviar">Entrar</button>
 
-    <!--Modal de esqueceu a senha-->
-    <div id="modal-esqueceu" class="modal-container">
-        <div class="modal">
-            <button class="fechar">x</button>
-            <form method="post" action="enviar.php">
-                <label name="recuperaremail">Email:</label>
-                <input id="usuario" placeholder="Digite seu Email" name="recuperaremail">
-                <button class="btn efeito-btn">Enviar</button>
+                 <div class="naopossuiconta">
+                <p>Não uma conta?</p><a href="cadastroClientes.php">Cadastrar</a>
+                 </div>
+
             </form>
+
         </div>
-    </div>
-</body>
 
-<script src="js/script-login.js"></script>
+        <div id="modal-esqueceu" class="modal-container">
+            <div class="modal">
+                <button class="fechar">X</button>
+                <form method="post" action="enviar.php">
+                    <div class="input-boxmodal">
+                        <span class="detalhes">Email:</span>
+                        <input type="email" style="font-size: 20px; padding: 10px; " placeholder="Digite seu email" name="email" required >
+                    </div>
+                    <button class="btn efeito-btn">Enviar</button>
+                </form>
+            </div>
+        </div>
 
-</html>
+        <script>
+            //Modal da esqueceu a senha
+function iniciaModal(modalID) {
+
+var modal = document.getElementById(modalID);
+if (modal) {
+    modal.classList.add('mostrar');
+    modal.addEventListener('click', (e) => {
+        if (e.target.id == modalID || e.target.className == 'fechar') {
+            modal.classList.remove('mostrar');
+        }
+    });
+}
+}
+var logo = document.querySelector('#lembrar-senha');
+logo.addEventListener('click', () => iniciaModal('modal-esqueceu'));
+
+document.addEventListener('scroll', () => {
+if (window.pageYOffset > 800) {
+    iniciaModal('modal-esqueceu')
+}
+})
+
+        </script>
+        <script>
+            function toggle() {
+                var x = document.getElementById("senha");
+                if (x.type === "password") {
+                    x.type = "text";
+                    document.getElementById("risco").style.display = "inline-block";
+                    document.getElementById("olho").style.display = 'none';
+                    document.getElementById("risco").style.color ='#000000';
+                    document.getElementById("olho").style.color ='#000000';
+                } else {
+                    x.type = "password";
+                    document.getElementById("risco").style.display = 'none';
+                    document.getElementById("olho").style.display = 'inline-block';
+                    document.getElementById("risco").style.color ='#000000';
+                    document.getElementById("olho").style.color ='#000000';
+                }
+            }
+        </script>
+    
+    
+    </body>
+    
+    </html>
+

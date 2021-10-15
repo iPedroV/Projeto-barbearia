@@ -7,14 +7,13 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
 class FuncionarioController
 {
 
-    public function inserirFuncioanrio(
+    public function inserirFuncionario(
         $nome,
         $perfil,
         $telefone,
         $email,
         $senha,
-        $sexo
-    ) {
+        $sexo) {
         $funcionarios = new Funcionario();
 
         $funcionarios->setNome($nome);

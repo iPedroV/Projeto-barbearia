@@ -14,13 +14,15 @@ class DaoFuncionario{
 
         if ($conecta) {
 
-
-            $senha = $funcionario->getSenha();
             $nome = $funcionario->getNome();
-            $sexo = $funcionario->getSexo();
-            $email = $funcionario->getEmail();
-            $telefone = $funcionario->getTelefone();
             $perfil = $funcionario->getPerfil();
+            $telefone = $funcionario->getTelefone();
+            $email = $funcionario->getEmail();
+            $senha = $funcionario->getSenha();
+            $sexo = $funcionario->getSexo();
+           
+            
+            
             try {
                 $st = $conecta->prepare("SELECT * FROM usuario where email = ?");
                 $st->execute([$email]);

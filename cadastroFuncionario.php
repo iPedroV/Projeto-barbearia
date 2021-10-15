@@ -44,18 +44,21 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
 
                 $nome = $_POST['nome'];
                 $perfil = $_POST['cargo'];
-                $sexo = $_POST['sexo'];
+                $telefone = $_POST['telefone']; 
                 $email = $_POST['email'];
-                $telefone = $_POST['telefone'];
+                $sexo = $_POST['sexo'];
+               
+                
                 
             }
 
             $cc = new FuncionarioController();
             unset($_POST['cadastrar']);
-            $msg = $cc->inserirFuncioanrio(
+            $msg = $cc->inserirFuncionario(
+                /*precisa ta na MESMA ORDEM DO BANCO*/
                 $nome,
-                $telefone,
                 $perfil,
+                $telefone,
                 $email,
                 $senha,
                 $sexo,
@@ -84,22 +87,37 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
                     <span>Nome Completo:</span>
                     <input type="text" placeholder="Digite seu nome" name="nome" required value="<?php echo $ce->getNome(); ?>">
                 </div>
-                <div class="input-box">
-                    <span class="detalhes">Cargo:</span>
-                    <select name="cargo" class="select">
-                        <option>Selecione</option>
-                        <option>Admnistrador</option>
-                        <option>Funcionário</option>
-                    </select>
-                </div>
-                <div class="input-box">
-                    <span class="detalhes">Email:</span>
-                    <input type="email" placeholder="Digite seu email" name="email" required value="<?php echo $ce->getEmail(); ?>">
-                </div>
+
                 <div class="input-box">
                     <span class="detalhes">Telefone Celular:</span>
                     <input type="text" placeholder="Digite o telefone celular" name="telefone" required value="<?php echo $ce->getTelefone(); ?>">
                 </div>
+
+                <div class="input-box">
+                    <span class="detalhes">Cargo:</span>
+                    <select name="cargo" class="select">
+                        <option hidden>Selecione</option>
+                        <option
+                        <?php
+                        if($ce->getPerfil() == "Admnistrador"){
+                            echo "selected = 'selected'";
+                        }?>>Admnistrador</option>
+
+                        <option
+                        <?php
+                        if($ce->getPerfil() == "Funcionário"){
+                            echo "selected = 'selected'";
+                        }?>>Funcionário</option>
+                    </select>
+                </div>
+
+
+
+                <div class="input-box">
+                    <span class="detalhes">Email:</span>
+                    <input type="email" placeholder="Digite seu email" name="email" required value="<?php echo $ce->getEmail(); ?>">
+                </div>
+                
                 <div class="input-box">
                     <span class="detalhes">Senha:</span>
                     <input type="password" placeholder="Digite a senha" name="senha" id="senha" required value="<?php echo $ce->getSenha(); ?>">
@@ -110,8 +128,15 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
                 </div>
             </div>
             <div class="genero">
-                <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>" required>
-                <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>" required>
+                
+                <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>"
+                    <?php if($ce->getSexo()!=null) { 
+                        if($ce->getSexo() == "Masculino") echo "checked = checked";
+                    }?> checked = 'checked' required>
+                <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>" 
+                    <?php if($ce->getSexo()!=null) { 
+                        if($ce->getSexo() == "Feminino") echo "checked = checked";
+                    }?>required>
                 <span class="seu-genero">Gênero</span>
                 <div class="categoria">
                     <label for="ponto-1">
@@ -131,7 +156,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
     </div>
 
     <script>
-        function toggle() {
+       function toggle() {
             var x = document.getElementById("senha");
             if (x.type === "password") {
                 x.type = "text";
