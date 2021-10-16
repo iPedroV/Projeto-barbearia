@@ -88,7 +88,20 @@ form .detalhes-usuario .input-box{
     border-color: #000000;
 }
 
-
+form .input-boxlogar{
+  position: relative;
+    
+    margin: 15px 0px 10px 0;
+    
+} 
+form .input-boxlogar a{
+    position: absolute;
+      color: red;
+   margin-top: -18.2px;
+   margin-left: 117px;
+   text-decoration: none;
+    
+  } 
 
 /*
 
@@ -216,9 +229,10 @@ form input[type="radio"]{
         /*margin-left:100% ;*/
 }
 form .detalhes-usuario .input-box{
-    margin-bottom: 15px;
+    margin-bottom:  18px;
     width:100%;
 }
+
 
 
 .p-viewer2{
@@ -259,6 +273,21 @@ form .btn{
     max-height: 300px;
     overflow-y: scroll;
 }
+form .input-boxlogar{
+    position: relative;
+      
+      margin: -50px 10px 15px 0 ;
+    
+  } 
+  form .input-boxlogar a{
+    position: absolute;
+      color: red;
+   margin-top: -18.5px;
+   margin-left: 117px;
+   text-decoration: none;
+    
+  } 
+  
 /*
 form .input-box i{
     position: absolute;

@@ -72,38 +72,15 @@ $_SESSION['conferenr'] = "-2";
                 <button class="fechar">X</button>
                 <form method="post" action="enviar.php">
                     <div class="input-boxmodal">
-                        <span class="detalhes">Email:</span>
-                        <input type="email" style="font-size: 20px; padding: 10px; " placeholder="Digite seu email" name="email" required >
+                        <span class="detalhes" name="recuperaremail">Email:</span>
+                        <input id="usuario" type="email" style="font-size: 20px; padding: 10px; " placeholder="Digite seu email" name="email" required >
                     </div>
                     <button class="btn efeito-btn">Enviar</button>
                 </form>
             </div>
         </div>
 
-        <script>
-            //Modal da esqueceu a senha
-function iniciaModal(modalID) {
-
-var modal = document.getElementById(modalID);
-if (modal) {
-    modal.classList.add('mostrar');
-    modal.addEventListener('click', (e) => {
-        if (e.target.id == modalID || e.target.className == 'fechar') {
-            modal.classList.remove('mostrar');
-        }
-    });
-}
-}
-var logo = document.querySelector('#lembrar-senha');
-logo.addEventListener('click', () => iniciaModal('modal-esqueceu'));
-
-document.addEventListener('scroll', () => {
-if (window.pageYOffset > 800) {
-    iniciaModal('modal-esqueceu')
-}
-})
-
-        </script>
+        
         <script>
             function toggle() {
                 var x = document.getElementById("senha");
@@ -126,5 +103,6 @@ if (window.pageYOffset > 800) {
     
     </body>
     
+<script src="js/script-login.js"></script>
     </html>
 

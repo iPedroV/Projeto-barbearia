@@ -4,7 +4,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Clientes.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 $ce = new Clientes();
-$msg = new Mensagem();
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -91,15 +91,15 @@ $msg = new Mensagem();
                 </div>
 
                 <div class="input-box">
+                    <span class="detalhes">Telefone Celular </span>
+                    <input type="text" placeholder="Digite seu telefone celular" name="telefone" required value="<?php echo $ce->getTelefone(); ?>">
+                </div>
+
+                <div class="input-box">
                     <span class="detalhes">Email</span>
                     <input type="email" placeholder="Digite seu email" name="email" required value="<?php echo $ce->getEmail(); ?>">
                 </div>
 
-
-                <div class="input-box">
-                    <span class="detalhes">Telefone Celular </span>
-                    <input type="text" placeholder="Digite seu telefone celular" name="telefone" required value="<?php echo $ce->getTelefone(); ?>">
-                </div>
                 <div class="input-box">
                     <span class="detalhes">Senha</span>
                     <input type="password" placeholder="Digite sua senha" name="senha" id="senha" required value="<?php echo $ce->getSenha(); ?>">
@@ -122,6 +122,7 @@ $msg = new Mensagem();
                     <?php if($ce->getSexo()!=null) { 
                         if($ce->getSexo() == "Feminino") echo "checked = checked";
                     }?>required>
+
                 <span class="seu-genero">Gênero</span>
                 <div class="categoria">
                     <label for="ponto-1">
@@ -134,7 +135,12 @@ $msg = new Mensagem();
                     </label>
                 </div>
             </div>
+
             <button type="submit" class="btn efeito-btn" name="cadastrar">Cadastrar</button>
+            <div class="input-boxlogar">
+            <p>Já possui login?</p><a href="index.php">Logar</a>
+
+                </div>
         </form>
     </div>
 

@@ -54,7 +54,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
 
             $cc = new FuncionarioController();
             unset($_POST['cadastrar']);
-            $msg = $cc->inserirFuncionario(
+            $resp = $cc->inserirFuncionario(
                 /*precisa ta na MESMA ORDEM DO BANCO*/
                 $nome,
                 $perfil,
@@ -64,11 +64,15 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
                 $sexo,
                 
             );
-            echo $msg->getMsg();
+            if(getType($resp) == 'object'){
+                $ce = $resp;
+                echo "<p style='color: red;'>Email já cadastrado!</p>"; 
+            }else{
+            echo $resp;
             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                                 URL='cadastroFuncionario.php'\">";
         }
-
+    }
 
         ?>
 
@@ -122,7 +126,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
                     <span class="detalhes">Senha:</span>
                     <input type="password" placeholder="Digite a senha" name="senha" id="senha" required value="<?php echo $ce->getSenha(); ?>">
                     <span class="p-viewer2">
-                        <i class="fa fa-eye" aria-hidden="true" id="olho" onclick="toggle()"></i>
+                        <i class="fa fa-eye" aria-hidden="true" id="olho" style="color: #000000;" onclick="toggle()"></i>
                         <i class="fas fa-eye-slash" id="risco" onclick="toggle()"></i>
                     </span>
                 </div>

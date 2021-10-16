@@ -13,7 +13,8 @@ class DaoFuncionario{
         $conecta = $conn->conectadb();
 
         if ($conecta) {
-
+            
+            $resp = null;
             $nome = $funcionario->getNome();
             $perfil = $funcionario->getPerfil();
             $telefone = $funcionario->getTelefone();
@@ -28,8 +29,7 @@ class DaoFuncionario{
                 $st->execute([$email]);
                 $result = $st->rowCount();
                 if($result >0){
-                    $msg->setMsg("<p style='color: red;'>"
-                    . "Email já cadastrado!</p>");
+                    $resp = $funcionario;
                 }else{
                     $stmt = $conecta->prepare("insert into usuario values "
                     . "(null,?,?,?,?,md5(?),?)");
@@ -41,18 +41,18 @@ class DaoFuncionario{
                 $stmt->bindParam(5, $senha);
                 $stmt->bindParam(6, $sexo);
                 $stmt->execute();
-                $msg->setMsg("<p style='color: green;'>"
-                    . "Dados Cadastrados com sucesso</p>");
+                $resp = "<p style='color: green;'>"
+                    . "Dados Cadastrados com sucesso</p>";
                 }
                 
             } catch (Exception $ex) {
-                $msg->setMsg($ex);
+                $resp = $ex;
             }
         } else {
-            $msg->setMsg("<p style='color: red;'>"
-                . "Erro na conexão com o banco de dados.</p>");
+            $resp = "<p style='color: red;'>"
+                . "Erro na conexão com o banco de dados.</p>";
         }
         $conn = null;
-        return $msg;
+        return $resp;
     }
 }
