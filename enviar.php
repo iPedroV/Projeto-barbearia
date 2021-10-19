@@ -115,7 +115,7 @@ $arquivo = "
   ";
 
 
-$to_email = $_POST['recuperaremail'];
+$to_email = $email;
 $subject = "Teste simples de envio de email via PHP";
 $body = $arquivo;
 $headers = "From: sender\'s email";
