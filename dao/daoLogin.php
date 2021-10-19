@@ -1,7 +1,7 @@
 <?php
 
 include_once 'c:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
-include_once 'c:/xampp/htdocs/Projeto-barbearia/model/Clientes.php';
+include_once 'c:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 include_once 'c:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 
 class DaoLogin
@@ -10,7 +10,7 @@ class DaoLogin
     public function validarLoginDAO($email, $senha)
     {
         $conn = new Conecta();
-        $cliente = new Clientes();
+        $cliente = new Usuario();
 
         $conecta = $conn->conectadb();
         if ($conecta) {

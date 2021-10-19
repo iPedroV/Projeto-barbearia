@@ -2,7 +2,7 @@
 
 
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Clientes.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Mensagem.php';
 
 class daoIndex
@@ -23,7 +23,7 @@ class daoIndex
                 if ($rs->execute()) {
                     if ($rs->rowCount() > 0) {
                         while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
-                            $cliente = new Clientes();
+                            $cliente = new Usuario();
                             $cliente->setId($linha->id);
                             $cliente->setNome($linha->nome);
                             $cliente->setPerfil($linha->perfil);

@@ -2,13 +2,13 @@
 
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/DaoClientes.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoIndex.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Clientes.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 
 class ClientesController {
     
     public function inserirClientes( $nome, 
             $telefone, $email, $senha, $sexo){
-        $clientes = new Clientes();
+        $clientes = new Usuario();
         
         $clientes->setNome($nome);
         $clientes->setTelefone($telefone);

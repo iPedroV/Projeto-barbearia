@@ -1,9 +1,9 @@
 <?php
 include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/funcionarioController.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
-$ce = new Funcionario();
+$ce = new Usuario();
 $msg = new Mensagem();
 ?>
 <?php

@@ -16,10 +16,10 @@ if ((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 }
 
 include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/ClientesController.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Clientes.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
-$ce = new Clientes();
+$ce = new Usuario();
 $msg = new Mensagem();
 ?>
 <?php
