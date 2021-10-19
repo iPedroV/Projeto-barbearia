@@ -57,5 +57,28 @@ class DaoClientes
         return $resp;
     }
 
-   
+   //Atualização de senha Cliente
+   public function atualizarSenhaDAO(Clientes $clientes){
+    $conn = new Conecta();
+    $msg = new Mensagem();
+    $conecta = $conn->conectadb();
+    if($conecta){
+        $senha = $clientes->getSenha();
+        
+        try{
+            $stmt = $conecta->prepare("UPDATE `usuario` SET `senha`= md5('?') WHERE id = ?");
+            $stmt->bindParam(1, $senha);
+            $stmt->execute();
+            $msg->setMsg("<p style='color: blue;'>"
+                    . "Senha atualizada com sucesso</p>");
+        } catch (Exception $ex) {
+            $msg->setMsg($ex);
+        }
+    }else{
+        $msg->setMsg("<p style='color: red;'>"
+                    . "Erro na conexão com o banco de dados.</p>");
+    }
+    $conn = null;
+    return $msg;
+}
 }
