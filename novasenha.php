@@ -11,6 +11,18 @@
 
 <body>
     <div id="login">
+
+        <?php
+            //Valdiação de senha
+            if(isset($_POST['esenha'])){
+                if(($_POST['nsenha']) == ($_POST['csenha'])){
+                    echo "Senhas iguais";
+                }else{
+                    echo "senhas diferentes";
+                }
+            }
+        ?>
+
         <img src="img/barbearianeves.png" class="imagem">
         <form method="post">
             <label for="n_senha">Nova senha:</label>
@@ -19,7 +31,7 @@
             <label for="c_senha">Confirmar senha:</label>
             <input type="password" id="csenha" name="csenha" required>
 
-            <button type="submit" class="btn efeito-btn" name="e-senha">Confirmar</button>
+            <button type="submit" class="btn efeito-btn" name="esenha">Confirmar</button>
         </form>
     </div>
 </body>
