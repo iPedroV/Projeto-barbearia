@@ -61,7 +61,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
                 $telefone,
                 $email,
                 $senha,
-                $sexo,
+                $sexo
                 
             );
             if(getType($resp) == 'object'){
@@ -103,13 +103,13 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
                         <option hidden>Selecione</option>
                         <option
                         <?php
-                        if($ce->getPerfil() == "Admnistrador"){
+                        if($ce->getPerfil() == "Administrador"){
                             echo "selected = 'selected'";
-                        }?>>Admnistrador</option>
+                        }?>>Administrador</option>
 
                         <option
                         <?php
-                        if($ce->getPerfil() == "Funcionário"){
+                        if($ce->getPerfil() == "Funcionario"){
                             echo "selected = 'selected'";
                         }?>>Funcionário</option>
                     </select>

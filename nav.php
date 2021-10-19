@@ -15,7 +15,7 @@ function navBar()
 {
     $nav = "
             ";
-    if ($_SESSION['perfilc'] == "adm") {
+    if ($_SESSION['perfilc'] == "Administrador") {
         $nav .= "  <ul class=\"navigation\">
                             <li><a href=\"ListarFuncionario.php\"  onclick=\" toggleMenu();\">Funcionários</a></li>
                             <li><a href=\"dashboard.html\"  onclick=\" toggleMenu();\">Dashboard</a></li>
@@ -23,7 +23,7 @@ function navBar()
                             </ul> 
                             
                         ";
-    }elseif($_SESSION['perfilc'] == "cliente"){
+    }elseif($_SESSION['perfilc'] == "Cliente"){
         $nav .= "<ul class=\"navigation\">
             <li><a href=\"#banner\"  onclick=\" toggleMenu();\">Home</a></li>
             <li><a href=\"#about\" onclick=\" toggleMenu();\">Sobre</a></li>
