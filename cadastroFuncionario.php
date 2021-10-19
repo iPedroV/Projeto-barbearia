@@ -9,7 +9,7 @@ $msg = new Mensagem();
 <?php
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/DaoClientes.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoIndex.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 ?>
 
 
