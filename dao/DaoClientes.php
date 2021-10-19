@@ -2,13 +2,13 @@
 
 
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Clientes.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Mensagem.php';
 
 class DaoClientes
 {
 
-    public function inserir(Clientes $clientes)
+    public function inserir(Usuario $clientes)
     {
         $conn = new Conecta();
         $msg = new Mensagem();
@@ -22,7 +22,7 @@ class DaoClientes
             $sexo = $clientes->getSexo();
             $email = $clientes->getEmail();
             $telefone = $clientes->getTelefone();
-            $perfil = 'cliente';
+            $perfil = 'adm';
             try {
                 $st = $conecta->prepare("SELECT * FROM usuario where email = ?");
                 $st->execute([$email]);

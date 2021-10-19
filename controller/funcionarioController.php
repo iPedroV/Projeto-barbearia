@@ -2,7 +2,7 @@
 
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoFuncionario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoIndex.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 
 class FuncionarioController
 {
@@ -14,7 +14,7 @@ class FuncionarioController
         $email,
         $senha,
         $sexo) {
-        $funcionarios = new Funcionario();
+        $funcionarios = new Usuario();
 
         $funcionarios->setNome($nome);
         $funcionarios->setPerfil($perfil);
