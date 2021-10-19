@@ -8,27 +8,30 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Mensagem.php';
 class daoIndex
 {
 
-    public function pesquisarClienteDAO($id)
+    public function pesquisarClienteDAO()
     {
         $msg = new Mensagem();
         $conn = new Conecta();
         $conecta = $conn->conectadb();
-        $cliente = new Clientes();
+        //echo "<script>alert('Cheguei aqui')</script>";
+        $lista = array();
         if ($conecta) {
             try {
-                $rs = $conecta->prepare("select * from clientes where "
-                    . "id = ?");
-                $rs->bindParam(1, $id);
+               
+                $rs = $conecta->query("select * from usuario");               
+                $a = 0;
                 if ($rs->execute()) {
                     if ($rs->rowCount() > 0) {
                         while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+                            $cliente = new Clientes();
                             $cliente->setId($linha->id);
-                            $cliente->setSenha($linha->senha);
                             $cliente->setNome($linha->nome);
+                            $cliente->setPerfil($linha->perfil);
                             $cliente->setSexo($linha->sexo);
                             $cliente->setEmail($linha->email);
                             $cliente->setTelefone($linha->telefone);
-                           
+                            $lista[$a] = $cliente;
+                            $a++;
                         }
                     }
                 }
@@ -41,7 +44,7 @@ class daoIndex
             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
 			 URL='../Projeto-Barbearia/index.php'\">";
         }
-        return $cliente;
+        return $lista;
     }
 
    
