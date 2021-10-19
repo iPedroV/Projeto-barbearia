@@ -58,7 +58,7 @@ class DaoClientes
     }
 
    //Atualização de senha Cliente
-   public function atualizarSenhaDAO(Clientes $clientes){
+   public function atualizarSenhaDAO(Usuario $clientes){
     $conn = new Conecta();
     $msg = new Mensagem();
     $conecta = $conn->conectadb();

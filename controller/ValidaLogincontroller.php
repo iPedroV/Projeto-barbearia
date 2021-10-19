@@ -7,7 +7,7 @@ session_start();
 
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoLogin.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Clientes.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 
 if (isset($_POST)){
     $email = $_POST['email'];
@@ -19,7 +19,7 @@ if (isset($_POST)){
 $email = $_POST['email'];
 $senha = $_POST['senha'];
 $daoLogin = new DaoLogin();
-$valcliente = new Clientes();
+$valcliente = new Usuario();
 
 $valcliente = $daoLogin->validarLoginDAO($email, $senha);
 /*echo gettype($valcliente);*/

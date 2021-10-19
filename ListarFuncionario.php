@@ -1,8 +1,5 @@
 <?php
 
-//pedro a validação só esta nessa pagina.
-//Pedro tem um erro nas linhas 63, e 68 ... o login do cliente já está validando.
-
 
 ob_start();
 session_start();
@@ -19,6 +16,8 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/ClientesController.ph
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
+
+//usar isso--> require_once __DIR__ . "/../model/Usuario.php"
 $ce = new Usuario();
 $msg = new Mensagem();
 ?>
@@ -66,8 +65,8 @@ $resultado_funcionarios = mysqli_query($conn, $result_funcionarios);
         <div class="page-header">
             <h1>Listar Funcionários</h1>
         </div>
-
-
+        <button type="button" class="btn btn-success" href="cadastroFuncionario.php">Novo Funcionário</button>
+        
         <table class="table table-striped" style="border-radius: 3px; overflow:hidden;">
             <thead class="table-dark">
                 <tr>

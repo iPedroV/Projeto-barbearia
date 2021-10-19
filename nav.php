@@ -17,7 +17,8 @@ function navBar()
             ";
     if ($_SESSION['perfilc'] == "adm") {
         $nav .= "  <ul class=\"navigation\">
-                            <li><a href=\"funcionario.php\"  onclick=\" toggleMenu();\">Dashboard</a></li>
+                            <li><a href=\"ListarFuncionario.php\"  onclick=\" toggleMenu();\">Funcionários</a></li>
+                            <li><a href=\"dashboard.html\"  onclick=\" toggleMenu();\">Dashboard</a></li>
                             <li><a href=\"./sessionDestroy.php\" onclick=\" toggleMenu();\">sair</a></li>
                             </ul> 
                             
