@@ -13,96 +13,96 @@ $_SESSION['conferenr'] = "-2";
 
 <!DOCTYPE html>
 <html lang="pt-bt">
+
 <head>
-<meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <title>Login</title>
-    <link rel="sorcut icon" href="img/barber-shop.png" type="image/png" style="width: 16px; height: 16px;">
-    <Link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font/awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<title>Login</title>
+<link rel="sorcut icon" href="img/barber-shop.png" type="image/png" style="width: 16px; height: 16px;">
+<Link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font/awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
-    <body>
-        <div class="container">
+<body>
+    <div class="container">
 
-            <img src="img/barbearianeves.png" class="imagem">
- 
-            <form method="post" action="./controller/ValidaLogincontroller.php">
-                <?php
-                if ($_SESSION['msg'] != "") {
-                    echo $_SESSION['msg'];
-                    $_SESSION['msg'] = "";
-                }
-                ?>
-                <div class="detalhes-usuario">
+        <img src="img/barbearianeves.png" class="imagem">
 
-                    <div class="input-box">
-                        <span class="detalhes">Email:</span>
-                        <input id="usuario" type="email" placeholder="Digite seu email" name="email" required >
-                    </div>
+        <form method="post" action="./controller/ValidaLogincontroller.php">
+            <?php
+            if ($_SESSION['msg'] != "") {
+                echo $_SESSION['msg'];
+                $_SESSION['msg'] = "";
+            }
+            ?>
+            <div class="detalhes-usuario">
 
-                    <div class="input-box">
-                        <span class="detalhes">Senha:</span>
-                        <input type="password" placeholder="Digite sua senha" name="senha" id="senha" required>
-                    </div>
-
-                    <a class="esqueciminhasenha"  href="#" id="lembrar-senha">Esqueci minha senha</a>
-
-                    <span class="p-viewer2">
-                        <i class="fas fa-eye" aria-hidden="true" id="olho" style="color: #000000;" onclick="toggle()"></i>
-                        <i class="fas fa-eye-slash" id="risco" onclick="toggle()"></i>
-                    </span>
-    
+                <div class="input-box">
+                    <span class="detalhes">Email:</span>
+                    <input id="usuario" type="email" placeholder="Digite seu email" name="email" required>
                 </div>
 
-                <button type="submit" class="btn efeito-btn" name="Enviar" value="Enviar">Entrar</button>
+                <div class="input-box">
+                    <span class="detalhes">Senha:</span>
+                    <input type="password" placeholder="Digite sua senha" name="senha" id="senha" required>
+                </div>
 
-                 <div class="naopossuiconta">
-                <p>Não uma conta?</p><a href="cadastroClientes.php">Cadastrar</a>
-                 </div>
+                <a class="esqueciminhasenha" href="#" id="lembrar-senha">Esqueci minha senha</a>
 
-            </form>
+                <span class="p-viewer2">
+                    <i class="fas fa-eye" aria-hidden="true" id="olho" style="color: #000000;" onclick="toggle()"></i>
+                    <i class="fas fa-eye-slash" id="risco" onclick="toggle()"></i>
+                </span>
 
-        </div>
-
-        <div id="modal-esqueceu" class="modal-container">
-            <div class="modal">
-                <button class="fechar">X</button>
-                <form method="post" action="enviar.php">
-                    <div class="input-boxmodal">
-                        <span class="detalhes" name="recuperaremail">Email:</span>
-                        <input id="usuario" type="email" style="font-size: 20px; padding: 10px; " placeholder="Digite seu email" name="email" required >
-                    </div>
-                    <button class="btn efeito-btn">Enviar</button>
-                </form>
             </div>
+
+            <button type="submit" class="btn efeito-btn" name="Enviar" value="Enviar">Entrar</button>
+
+            <div class="naopossuiconta">
+                <p>Não uma conta?</p><a href="cadastroClientes.php">Cadastrar</a>
+            </div>
+
+        </form>
+
+    </div>
+
+    <div id="modal-esqueceu" class="modal-container">
+        <div class="modal">
+            <button class="fechar">X</button>
+            <form method="post" action="enviar.php">
+                <div class="input-boxmodal">
+                    <span class="detalhes" name="recuperaremail">Email:</span>
+                    <input id="usuario" type="email" style="font-size: 20px; padding: 10px; " 
+                        placeholder="Digite seu email" name="recuperaremail" required>
+                </div>
+                <button class="btn efeito-btn">Enviar</button>
+            </form>
         </div>
+    </div>
 
-        
-        <script>
-            function toggle() {
-                var x = document.getElementById("senha");
-                if (x.type === "password") {
-                    x.type = "text";
-                    document.getElementById("risco").style.display = "inline-block";
-                    document.getElementById("olho").style.display = 'none';
-                    document.getElementById("risco").style.color ='#000000';
-                    document.getElementById("olho").style.color ='#000000';
-                } else {
-                    x.type = "password";
-                    document.getElementById("risco").style.display = 'none';
-                    document.getElementById("olho").style.display = 'inline-block';
-                    document.getElementById("risco").style.color ='#000000';
-                    document.getElementById("olho").style.color ='#000000';
-                }
+
+    <script>
+        function toggle() {
+            var x = document.getElementById("senha");
+            if (x.type === "password") {
+                x.type = "text";
+                document.getElementById("risco").style.display = "inline-block";
+                document.getElementById("olho").style.display = 'none';
+                document.getElementById("risco").style.color = '#000000';
+                document.getElementById("olho").style.color = '#000000';
+            } else {
+                x.type = "password";
+                document.getElementById("risco").style.display = 'none';
+                document.getElementById("olho").style.display = 'inline-block';
+                document.getElementById("risco").style.color = '#000000';
+                document.getElementById("olho").style.color = '#000000';
             }
-        </script>
-    
-    
-    </body>
-    
-<script src="js/script-login.js"></script>
-    </html>
+        }
+    </script>
+</body>
 
+<script src="js/script-login.js"></script>
+
+</html>

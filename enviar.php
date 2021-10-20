@@ -12,110 +12,78 @@ date_default_timezone_set('America/Sao_Paulo');
 $data_envio = date('d/m/y');
 $hora_envio = date('H:i:s');
 
-/*$corpoemail = "
-<html lang="pt-br">
+$corpoemail = " 
+<!DOCTYPE html>
+<html lang=\"pt-br\">
+<head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+</head>
+    <style>
+    body {
+        background-color: black;
+        margin: 0;
+        color: white;
+        text-align: center;
+    }
+
+    h1 {
+        color: black;
+        padding-top: 25px;
+        text-align: center;
+    }
+
+    .imagem {
+        width: 200px;
+        padding-right: 5px;
+        padding-left: 6px;
+        padding-bottom: 5px;
+    }
+
+    div {
+        background-color: white;
+        width: 550px;
+        height: 550px;
+        text-align: center;
+        border-radius: 10%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .filhadiv {
+        padding-top: 10px;
+        background-color: white;
+        width: 400px;
+        height: auto;
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+        color: #8686;
+    }
+
+    p {
+        color: black;
+        font-family: 'Lobster', cursive;
+        font-size: x-large;
+        font-weight: auto;
+        padding-top: 20px;
+    }
+    </style>
     <body>
         <div>
-            <h1>Recuperação de senha</h1>
-            <img src='img/barbearianeves.png' class='imagem'>
-            <div class='filhadiv'>
-                <p>Por favor, <a href='cadastroCliente.php' target='_blank'>clique aqui</a> para resetar sua senha.</p>
-                <p>você não tenha solicitado este email de redefinição de senha, por favor, entre em contato para que
-                    possamos resolver o problema.</p>
+            <h1>Recuperar de senha</h1>
+            <div class=\"filhadiv\">
+                <p>Por favor, <a href=\"http://localhost/Projeto-barbearia/novasenha.php\" target=\"_blank\">clique aqui</a> para resetar sua senha.</p>
+                <p>Caso não tenha solicitado este email para resetar sua senha, por favor, entre em contato para resolver o problema.</p>
+                <p>Este Email foi enviado dia: $data_envio às: $hora_envio</p>
             </div>
         </div>
     </body>
+</html>";
 
-    <style>
-        body {
-            background-color: black;
-            margin: 0;
-            color: white;
-            text-align: center;
-        }
-
-        h1 {
-            color: black;
-            padding-top: 25px;
-            text-align: center;
-        }
-
-        .imagem {
-            width: 200px;
-            padding-right: 5px;
-            padding-left: 6px;
-            padding-bottom: 5px;
-        }
-
-        div {
-            background-color: white;
-            width: 550px;
-            height: 550px;
-            text-align: center;
-            border-radius: 10%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .filhadiv {
-            padding-top: 10px;
-            background-color: white;
-            width: 400px;
-            height: auto;
-            text-align: center;
-        }
-
-        a {
-            text-decoration: none;
-            color: #8686;
-        }
-
-        p {
-            color: black;
-            font-family: 'Lobster', cursive;
-            font-size: x-large;
-            font-weight: auto;
-            padding-top: 20px;
-        }
-    </style>
-</html>";*/
-
-// Compo E-mail
-$arquivo = "
-  <style type='text/css'>
-  body {
-  margin:0px;
-  font-family:Verdane;
-  font-size:12px;
-  color: #666666;
-  }
-  a{
-  color: #666666;
-  text-decoration: none;
-  }
-  a:hover {
-  color: #FF0000;
-  text-decoration: none;
-  }
-  .padLeft{
-    padding-left: 7px;
-  }
-  </style>
-    <html>
-        <h1>Teste de envio de email, olha só... deu certo!! salve Samuel</h1>
-        <table width='510' border='1' cellpadding='5' cellspacing='0' bgcolor='#dce7f1'>
-            <tr>
-                <td width='320' class='padLeft'>E-mail: <b>$email</b></td>
-            </tr>
-            <tr>
-                <td class='padLeft'>Este e-mail foi enviado em <b>$data_envio</b> às <b>$hora_envio</b></td>
-            </tr>
-        </table>
-    </html>
-  ";
-
-
-$to_email = $email;
+/*$to_email = $email;
 $subject = "Teste simples de envio de email via PHP";
 $body = $arquivo;
 $headers = "From: sender\'s email";
@@ -125,27 +93,28 @@ if (mail($to_email, $subject, $body, $headers)) {
 } else {
     echo "Falha no envio do email.";
     header("Location: login.php"); exit();
-}
+}*/
 
 
 
-/*//enviar
+//enviar
 // emails para quem será enviado o formulário
 $destino = $_POST['recuperaremail'];
-$assunto = "Teste de envio de e-mail pelo site.";
+$assunto = "Recuperação de senha.";
 
 // É necessário indicar que o formato do e-mail é html
 $headers = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$headers .= 'From: '.$nome.'<'.$email.'>';
+$headers .= 'From: <'.$email.'>';
 //$headers .= "Bcc: $EmailPadrao\r\n";
 
-$enviaremail = mail($destino, $assunto, $arquivo, $headers);
+$enviaremail = mail($destino, $assunto, $corpoemail, $headers);
 if ($enviaremail) {
-    $mgm = "<script>alert('E-MAIL ENVIADO COM SUCESSO! <br> O link será enviado para o "
-            . "e-mail fornecido no formulário')</script>";
+    $mgm = "<script>alert('E-MAIL ENVIADO COM SUCESSO! <br> O link para a redefinição será enviado para o "
+            . "e-mail fornecido no seu cadastro')</script>";
+    echo "$mgm";
 } else {
     $mgm = "ERRO AO ENVIAR E-MAIL!";
     echo "$mgm";
 }
-header("Location: login.php"); exit();*/
+header("Location: login.php"); exit();
