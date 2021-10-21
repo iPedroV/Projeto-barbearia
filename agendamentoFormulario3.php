@@ -18,15 +18,15 @@ $servico2 = null;
 $valor = $_SESSION['agendamentoServicoValor'];
 $horario = $_SESSION['horarioAgendamento'];
 
-include_once 'C:/xampp/htdocs/testProjeto/controller/agendamentoController.php';
-include_once 'C:/xampp/htdocs/testProjeto/dao/daoAgendamento.php';
-include_once 'C:/xampp/htdocs/testProjeto/model/agendamento_model.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/agendamentoController.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoAgendamento.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_model.php';
 
 $dt = new Agendamento();
 $dts = new AgendamentoController();
 
-include_once 'C:/xampp/htdocs/testProjeto/bd/banco.php';
-include_once 'C:/xampp/htdocs/testProjeto/model/mensagem.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 
 ?>
 <!DOCTYPE html>
@@ -114,7 +114,7 @@ include_once 'C:/xampp/htdocs/testProjeto/model/mensagem.php';
                 $msg = $dts->inserirAgendamento($horario, $dataA, $formaPagamento, $status, $dataA2, $confirmar, $valorTotal, $idUsuario);
 
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
-                        URL='http://localhost/testProjeto/agendamento_ClienteDados.php'\">";
+                        URL='http://localhost/Projeto-barbearia/agendamento_ClienteDados.php'\">";
     }
 
     ?>
@@ -178,7 +178,7 @@ include_once 'C:/xampp/htdocs/testProjeto/model/mensagem.php';
     <script type="text/javascript" charset="utf-8">
     </script>
     <script src="Js/Agendamento.js"></script>
-    <script src="Js/testProjeto.js"></script>
+    <script src="Js/Projeto-barbearia.js"></script>
 </body>
 </head>
 

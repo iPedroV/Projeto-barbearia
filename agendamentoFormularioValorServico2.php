@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 
-    include_once 'C:/xampp/htdocs/testProjeto/bd/banco.php';
+    include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 
 	//Arquivo responsável por lê o 'id"' do serviço escolhido no select e que atribui para o script do banco
 	//para depois retornar o valor desejado para o JavaScript, cujo a função é retornar o valor para o outro select

@@ -10,15 +10,15 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 }
 //header("Location: agendamento_ClientesDados.php");
 
-include_once 'C:/xampp/htdocs/testProjeto/controller/agendamentoController.php';
-include_once 'C:/xampp/htdocs/testProjeto/dao/daoAgendamento.php';
-include_once 'C:/xampp/htdocs/testProjeto/model/agendamento_model.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/agendamentoController.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoAgendamento.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_model.php';
 
 $dt = new Agendamento();
 $dts = new AgendamentoController();
 
-include_once 'C:/xampp/htdocs/testProjeto/bd/banco.php';
-include_once 'C:/xampp/htdocs/testProjeto/model/mensagem.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 
 ?>
 
@@ -148,7 +148,7 @@ include_once 'C:/xampp/htdocs/testProjeto/model/mensagem.php';
                             <td><?php print_r($la->getStatusAgendamento()); ?></td>
                             <td><?php print_r($la->getDateTime()); ?></td>
                             <td><?php print_r($la->getValor()); ?></td>
-                            <td><?php print_r($la->getUsuarioID()->getIdUsuario()); ?></td>
+                            <td><?php print_r($la->getUsuarioID()->getId()); ?></td>
                             <td><?php print_r($la->getUsuarioID()->getNome()); ?></td>
                         </tr>
 

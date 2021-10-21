@@ -1,7 +1,7 @@
 <?php
-include_once 'C:/xampp/htdocs/testProjeto/dao/daoAgendamento.php';
-include_once 'C:/xampp/htdocs/testProjeto/dao/daoDashboard.php';
-include_once 'C:/xampp/htdocs/testProjeto/model/agendamento_model.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoAgendamento.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoDashboard.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_model.php';
 
 class AgendamentoController {
     

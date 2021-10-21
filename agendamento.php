@@ -202,7 +202,7 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
                 $_SESSION['dataAgendamento'] = $_POST['data_agendamento'];
                 $_SESSION['dataAgendamentoFormatado'] = $_POST['data_agendamentoFormatado'];
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
-                   URL='http://localhost/testProjeto/agendamentoFormulario.php'\">";
+                   URL='http://localhost/Projeto-barbearia/agendamentoFormulario.php'\">";
 
                 /*
                 Teste já realizado nas dastas normal e formatada!

@@ -1,8 +1,8 @@
 <?php
-include_once 'C:/xampp/htdocs/testProjeto/bd/banco.php';
-include_once 'C:/xampp/htdocs/testProjeto/model/agendamento_model.php';
-include_once 'C:/xampp/htdocs/testProjeto/model/Usuario.php';
-include_once 'C:/xampp/htdocs/testProjeto/model/mensagem.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_model.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 
 class DaoAgendamento {
     
@@ -83,7 +83,7 @@ class DaoAgendamento {
                     if ($rs->rowCount() > 0) {
                         while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
                             $usuario = new Usuario();
-                            $usuario->setIdUSuario($linha->id);
+                            $usuario->setId($linha->id);
                             $usuario->setNome($linha->nome);
                             $usuario->setPerfil($linha->perfil);
                             $usuario->setTelefone($linha->telefone);

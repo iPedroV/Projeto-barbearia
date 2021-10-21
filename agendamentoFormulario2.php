@@ -18,14 +18,14 @@ $servico = null;
 $servico2 = null;
 
 
-include_once 'C:/xampp/htdocs/testProjeto/controller/agendamentoController.php';
-include_once 'C:/xampp/htdocs/testProjeto/dao/daoAgendamento.php';
-include_once 'C:/xampp/htdocs/testProjeto/model/agendamento_model.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/agendamentoController.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoAgendamento.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_model.php';
 
 $dt = new Agendamento();
 $dts = new AgendamentoController();
 
-include_once 'C:/xampp/htdocs/testProjeto/bd/banco.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 
 ?>
 <!DOCTYPE html>
@@ -209,7 +209,7 @@ include_once 'C:/xampp/htdocs/testProjeto/bd/banco.php';
     </script>
 
     <script src="Js/Agendamento.js"></script>
-    <script src="Js/testProjeto.js"></script>
+    <script src="Js/Projeto-barbearia.js"></script>
 </body>
 </head>
 
