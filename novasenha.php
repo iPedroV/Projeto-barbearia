@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-bt">
 
@@ -21,6 +22,7 @@
                     echo "senhas diferentes";
                 }
             }
+              
         ?>
 
         <img src="img/barbearianeves.png" class="imagem">

@@ -1,5 +1,8 @@
 <?php
 
+ob_start();
+session_start();
+
 include_once 'C:/xampp/htdocs/Projeto-barbearia/login.php';
 //Variáveis
 /*
@@ -118,3 +121,5 @@ if ($enviaremail) {
     echo "$mgm";
 }
 header("Location: login.php"); exit();
+
+ob_end_flush();

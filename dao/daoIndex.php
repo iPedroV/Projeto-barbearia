@@ -45,7 +45,5 @@ class daoIndex
 			 URL='../Projeto-Barbearia/index.php'\">";
         }
         return $lista;
-    }
-
-   
+    } 
 }
