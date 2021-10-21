@@ -2,7 +2,7 @@
 
 class Usuario
 {
-    private $id;
+    private $idUSuario;
     private $nome;
     private $perfil;
     private $telefone;
@@ -10,15 +10,14 @@ class Usuario
     private $senha;
     private $sexo;
   
-    public function getId()
+    public function getIdUSuario()
     {
-        return $this->id;
+        return $this->idUSuario;
     }
 
-  
-    public function setId($id)
+    public function setIdUSuario($idUSuario)
     {
-        $this->id = $id;
+        $this->idUSuario = $idUSuario;
 
         return $this;
     }
@@ -104,4 +103,6 @@ class Usuario
 
         return $this;
     }
+
+
 }

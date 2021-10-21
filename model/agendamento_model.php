@@ -2,10 +2,15 @@
 
 class Agendamento {
     private $id;
-    private $dataAgenda;
     private $horario;
+    private $dataAgenda;
+    private $forma_Pagamento;
+    private $statusAgendamento;
     private $dateTime;
+    private $dataPagemento;
+    private $confirma;
     private $valor;
+    private $usuarioID;
 
     /**
      * Get the value of idFornecedor
@@ -88,6 +93,86 @@ class Agendamento {
     }
 
     /**
+     * Get the value of forma_Pagamento
+     */ 
+    public function getForma_Pagamento()
+    {
+        return $this->forma_Pagamento;
+    }
+
+    /**
+     * Set the value of forma_Pagamento
+     *
+     * @return  self
+     */ 
+    public function setForma_Pagamento($forma_Pagamento)
+    {
+        $this->forma_Pagamento = $forma_Pagamento;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of statusAgendamento
+     */ 
+    public function getStatusAgendamento()
+    {
+        return $this->statusAgendamento;
+    }
+
+    /**
+     * Set the value of statusAgendamento
+     *
+     * @return  self
+     */ 
+    public function setStatusAgendamento($statusAgendamento)
+    {
+        $this->statusAgendamento = $statusAgendamento;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dataPagemento
+     */ 
+    public function getDataPagemento()
+    {
+        return $this->dataPagemento;
+    }
+
+    /**
+     * Set the value of dataPagemento
+     *
+     * @return  self
+     */ 
+    public function setDataPagemento($dataPagemento)
+    {
+        $this->dataPagemento = $dataPagemento;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of confirma
+     */ 
+    public function getConfirma()
+    {
+        return $this->confirma;
+    }
+
+    /**
+     * Set the value of confirma
+     *
+     * @return  self
+     */ 
+    public function setConfirma($confirma)
+    {
+        $this->confirma = $confirma;
+
+        return $this;
+    }
+
+    /**
      * Get the value of valor
      */ 
     public function getValor()
@@ -103,6 +188,26 @@ class Agendamento {
     public function setValor($valor)
     {
         $this->valor = $valor;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of usuarioID
+     */ 
+    public function getUsuarioID()
+    {
+        return $this->usuarioID;
+    }
+
+    /**
+     * Set the value of usuarioID
+     *
+     * @return  self
+     */ 
+    public function setUsuarioID($usuarioID)
+    {
+        $this->usuarioID = $usuarioID;
 
         return $this;
     }

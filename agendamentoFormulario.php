@@ -10,27 +10,25 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 }
 
 $data = $_SESSION['dataAgendamento'];
+$dataForm = $_SESSION['dataAgendamentoFormatado'];
 
 // Chamando o id da associativa de servicos para poder usar para inserir
 $servico = null;
 $servico2 = null;
 
 
-include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/agendamentoController.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoAgendamento.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_model.php';
+include_once 'C:/xampp/htdocs/testProjeto/controller/agendamentoController.php';
+include_once 'C:/xampp/htdocs/testProjeto/dao/daoAgendamento.php';
+include_once 'C:/xampp/htdocs/testProjeto/model/agendamento_model.php';
 
 $dt = new Agendamento();
 $dts = new AgendamentoController();
 
-include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
-
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/servicos_has_funcionarios.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/servicos_has_funcionariosController.php';
-$serv = new Servicos_has_funcionariosController();
+include_once 'C:/xampp/htdocs/testProjeto/bd/banco.php';
 
 ?>
-
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width. initial-scale=1.0">
@@ -73,43 +71,78 @@ $serv = new Servicos_has_funcionariosController();
 
 <body style="border: 2px solid #000000; background-color: #333;">
     <header>
-        <a href="./index.html" class="logo">Barbearia Neves<span>.</span></a>
-        <div class="menuToggle" onclick=" toggleMenu();"></div>
-        <ul class="navigation">
-            <li><a href="#banner" onclick=" toggleMenu();">Home</a></li>
-            <li><a href="#about" onclick=" toggleMenu();">Sobre</a></li>
-            <li><a href="#menu" onclick=" toggleMenu();">Cortes</a></li>
-            <li><a href="#salao" onclick=" toggleMenu();">Salão</a></li>
-            <li><a href="#feedbacks" onclick=" toggleMenu();">Feedbacks</a></li>
-            <li><a href="#contato" onclick=" toggleMenu();">Contato</a></li>
-        </ul>
+        <a href="./agendamento.php" class="logo">&#8656; Voltar<span>.</span></a>
     </header>
 
     <?php
 
-    if (isset($_POST['cancelar'])) {
-        header("Location: index.php");
+    if (isset($_POST['voltar'])) {
+        header("Location: agendamento.php");
     }
 
     if (isset($_POST['enviar'])) {
-        $dataA = $_POST['data_agendamento'];
-            $horario = $_POST['dataInicio'];
-            $dataA = $_POST['data_agendamento'];
-            $funcionario = $_POST['id_funcionarios'];
-            $funcionario2 = $_POST['id_funcionarios2'];
-
-            $servico = $_SESSION['agendamentoServico'];
-            $servico2 = $_SESSION['agendamentoServico2'];
-                
-                //$dts = new AgendamentoController();
-                //unset($_POST['enviar']);
-                //$msg = $dts->inserirDataAgendamento($dataA, $horario);
-
-            echo " <p style='color: white;'>-: $dataA, $horario, servico 01: $servico, $funcionario -- servico 02:  $servico2, $funcionario2 </p>";
-                //echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
-                        //URL='http://localhost/Projeto-barbearia/agendamentoFormulario.php'\">";
+        $servico = $_POST['id_servicos'];
+        $funcionario = $_POST['id_funcionarios'];
+        if($servico == null){
+            ?>
+                <script>
+                    Swal.fire({
+                        title: 'Por favor, escolha um serviço',
+                        text: 'para continuar o agendamento é nescessário escolher um serviço primeiro',
+                        icon: 'warning',
+                        confirmButtonText: 'Ok'
+                    })
+                </script>
+            <?php    
+        } else if($funcionario == null){
+            ?>
+            <script>
+                Swal.fire({
+                    title: 'Por favor, escolha um funcionario',
+                    text: 'para continuar o agendamento é nescessário escolher um funcionario',
+                    icon: 'warning',
+                    confirmButtonText: 'Ok'
+                })
+            </script>
+        <?php    
+        } else {
+            $data;
+            $idUsuario = $_SESSION['idc']; 
             
-        
+            //$servico = $_SESSION['agendamentoServico'];
+            $_SESSION['funcionario'] = $funcionario;
+            $servico = $_SESSION['servico'];
+
+            $valor1 = $_POST['valor01'];
+            $funcionarioN = $_POST['nomeFuncionario'];
+            $_SESSION['nomeFuncionarioFormulario'] = $_POST['nomeFuncionario'];
+               
+            echo " <p style='color: white;'>- idUsuário: $idUsuario, $funcionarioN </p>";
+            echo " <p style='color: white;'>- Data Escolhida: $data <br><br>-: servico 01 :==> $servico, $funcionario valor: R$$valor1 </p>";
+            
+
+            $valorTotal = $valor1;
+            echo " <p style='color: white;'>- valor Total a pagar: $valorTotal </p>";
+            $_SESSION['agendamentoServicoValor'] = $valorTotal;
+
+            $funcionarioN2 = $_POST['nomeFuncionario2'];
+            if($funcionarioN2 != null){
+                $_SESSION['nomeFuncionarioFormulario2'] = $_POST['nomeFuncionario2'];
+                $funcionario2 = $_POST['id_funcionarios2'];
+                $_SESSION['funcionario2'] = $_POST['id_funcionarios2'];
+                $servico2 = $_SESSION['servico2'];
+                $valor2 = $_POST['valor02'];
+                echo " <p style='color: white;'>-: servico 02 :==>  $servico2, $funcionario2 valor: R$$valor2 </p>";
+
+                $valorTotal = $valor1 + $valor2;
+                echo " <p style='color: white;'>- valor Total a pagar: $valorTotal </p>";
+                $_SESSION['agendamentoServicoValor'] = $valorTotal;
+            }
+
+            header("Location: agendamentoFormulario2.php");
+            
+        }
+                  
     }
 
     ?>
@@ -117,69 +150,63 @@ $serv = new Servicos_has_funcionariosController();
     <form method="POST" action="" class="agendamento" id="agendamento" style="background-color: #333;">
         <div class="card-body" style="background-color: #333;">
             <div class="card-header tituloAgend">
-                Escolha entre os serviços e preencha os campos disponíveis
+                Escolha entre os serviços
             </div><br>
             <div id="myList">
                 <li>
                     <div class="row" >
-                        <div class="col-md-3"></div>
-                        <div class="col-md-3 funcionario">
-                            <label style="padding: 5px; font-size: 18px; color: white "><strong>Serviços</strong></label>
+                    <label style="color: white; margin-bottom: 10px;">Obs: Pode ser selecionado apenas um serviço para realizar o agendamento.</label><br>
+                    <div class="col-md-2"></div>
+                        <div class="col-md-4 servico">
+                            <label style="padding: 5px; font-size: 18px; color: white; "><strong>Serviços</strong></label>
                             <select name="id_servicos" id="id_servicos" class="form-control">
                                 
                                     <option value="">Escolher serviço</option>
                                 <?php
-                                $result_post = "select * from servicos_do_funcionario "
-                                    . "left join servicos on servicos.id = servicos_do_funcionario.servicos_id "
+                                $result_post = "select DISTINCT nome, idServicos from servicos_do_funcionario "
+                                    . "left join servicos on servicos.idServicos = servicos_do_funcionario.servicos_id "
                                     . "order by nome";
                                 $resultado_post = mysqli_query($conn, $result_post);
                                 while ($row_post = mysqli_fetch_assoc($resultado_post)) {
-                                    echo '<option value="' . $row_post['id'] . '">' . $row_post['nome'] . '</option>';
+                                    echo '<option value="' . $row_post['idServicos'] . '">' . $row_post['nome'] . '</option>';
                                 }
                                 ?>
                             </select>
                         </div>
 
-                        <div class="col-md-3 funcionario">
-                            <label style="padding: 5px; font-size: 18px; color: White"><strong>Funcionarios
+                        <div class="col-md-1"></div>
+
+                        <div class="col-md-4 funcionario">
+                            <label style="padding: 5px; font-size: 18px; color: White; text-align: end;"><strong>Funcionarios
                                     </strong></label>
-                            <label class="cliqueAqui" style="color: White; position: relative; font-size: 14px; margin-left: 5px;">
-                                    Clique aqui.&#9660;</label>
                             <select name="id_funcionarios" id="id_funcionarios" class="form-control">
-                                <option value="">Escolher Funcionario</option>
+                                <option>Selecionar Serviço</option>
                             </select>
                         </div>
+
+                        <div class="col-md-1"></div>
                     </div>
                 </li>
                 <li>
                     <div class="row" >
-                        <div class="col-md-3"></div>
-                        <div class="col-md-3 funcionario">
-                            <label style="padding: 5px; font-size: 18px; color: white "><strong>Serviços</strong></label>
-                            <select name="id_servicos2" id="id_servicos2" class="form-control">
-                                
-                                    <option value="">Escolher serviço</option>
-                                <?php
-                                $result_post = "select * from servicos_do_funcionario "
-                                    . "left join servicos on servicos.id = servicos_do_funcionario.servicos_id "
-                                    . "order by nome";
-                                $resultado_post = mysqli_query($conn, $result_post);
-                                while ($row_post = mysqli_fetch_assoc($resultado_post)) {
-                                    echo '<option value="' . $row_post['id'] . '">' . $row_post['nome'] . '</option>';
-                                }
-                                ?>
+                    <div class="col-md-2"></div>
+                        <div class="col-md-4 servico2">
+                            <label style="padding: 5px; font-size: 18px; color: white "><strong>Serviços 2</strong></label>
+                            <select name="id_servicos2" id="id_servicos2" class="form-control" >
+                                <option value=""></option>
                             </select>
                         </div>
 
-                        <div class="col-md-3 funcionario">
+                        <div class="col-md-1"></div>
+
+                        <div class="col-md-4 funcionario2">
                             <label style="padding: 5px; font-size: 18px; color: White"><strong>Funcionarios
                                     </strong></label>
-                            <label class="cliqueAqui2" style="color: White; position: relative; font-size: 14px; margin-left: 5px;">
-                                    Clique aqui.&#9660;</label>
                             <select name="id_funcionarios2" id="id_funcionarios2" class="form-control">
-                                <option value="">Escolher Funcionario</option>
+                                <option>Selecionar Serviço 2</option>
                             </select>
                         </div>
+                        <div class="col-md-1"></div>
                     </div>
                 </li>
             </div>
@@ -193,44 +220,76 @@ $serv = new Servicos_has_funcionariosController();
                         <div class="col-md-2"></div>
                         <div class="row formulario">
                             <!-- Lado esquerdo do Formulário 2prt -->
-                            <div class="col-md-6 p-4">
-                                <div class="campoForm2">
-                                    <label for="nome">Nome/Usuário: </label><br>
-                                    <input type="text" id="nome" name="nome" value="<?php echo $_SESSION['nomec'];?>" disabled><br>
-                                </div>
-                                <div class="campoForm2">
-                                    <label for="telefone">Telefone: </label><br>
-                                    <input type="text" id="telefone" name="telefone" value="testTelefone" disabled><br>
-                                </div>
-                                <div class="campoForm2">
-                                    <label for="email">E-mail: </label><br>
-                                    <input type="text" id="email" name="email" value="<?php echo $_SESSION['emailc'];?>" disabled><br>
-                                </div>
-                            </div>
-
-                            <!-- Lado direito do Formulário 2prt -->
-
-                            <div class="col-md-6 p-4" style="margin-top: -35px;">
-                                <div class="campoForm2">
+                            <div class="col-md-12 offset-2">
+                                <div class="campoFormData">
                                     <div class="barreira"></div>
                                     <Label>Data de Agendamento:</Label><br>
-                                    <input type="date" name="data_agendamento" value="<?php echo $data ?>">
+                                    <!--<input type="date" name="data_agendamento" value="<?php echo $data ?>">-->
+                                    <input type="text" name="data_agendamentoFormatado" value="<?php echo $dataForm ?>">
                                 </div>
-
-                                <div class="campoForm2">
-                                    <Label>Início do Serviço:</Label><br>
-                                    <input type="time" name="dataInicio" value="<?php $timestamp = mktime(10,00); echo date('h:i', $timestamp);?>">
-                                </div>
-
-                                <div class="campoForm2">
-                                    <Label>Fim do Serviço:</Label><br>
-                                    <input type="time" name="dataFim" value="<?php $timestamp = mktime(10,30); echo date('h:i', $timestamp);?>" disabled>
-                                </div>
-
                             </div>
+
+                            <div class="col-md-12 offset-12" style="border-bottom: 3px solid white; margin-bottom: -17px;"></div>
+
+                            <div class="col-md-6 p-4">
+                                <div class="campoForm2" style="text-align: center;">
+                                    <input type="text" class="parte01" name="nome" value="Dados dos Serviços 01" style="color: white; font-size: 22px; width: 100%; 
+                                        padding-bottom: 10px; padding-top: 10px; margin-top: -9px;" disabled>
+                                    <select id="nomeServico" name="nomeServico" class="form-control" >
+                                        <option></option>
+                                    </select>
+                                    <br>
+                                
+                                    <select name="valor01" id="valorServico" class="form-control" >
+                                        <option style="text-align: center;">... Aguardando ...</option>
+                                    </select>
+
+                                    <select name="tempo01" id="tempoServicoForm" class="form-control" >
+                                        <option></option>
+                                    </select><br>
+                                   
+                                    <label class="nomeFunc">Funcionario: </label><br>
+                                    <select name="nomeFuncionario" id="nomeFuncionario" class="form-control" >
+                                        <option></option>
+                                    </select><br>
+
+                                    <div class="barreiraServico"></div>
+                                </div>
+                            </div>
+
+                            <!-- DIVISÃO DE SERVIÇOS -->
+
+                            <div class="col-md-6 p-4" style="margin-top: 0px;">
+                                <div class="campoForm2" style="text-align: center;">
+                                    <input type="text" class="parte01" name="nome" value="Dados dos Serviços 02" style="color: white; font-size: 22px; width: 100%; 
+                                        padding-bottom: 10px; padding-top: 10px; margin-top: -9px;" disabled>
+                                    <select id="nomeServico2" name="nomeServico2" class="form-control" >
+                                        <option></option>
+                                    </select><br>
+                                
+                                    <select name="valor02" id="valorServico2" class="form-control" >
+                                        <option style="text-align: center;">...</option>
+                                    </select>
+
+                                    <select name="tempo02" id="tempoServicoForm2" class="form-control" >
+                                        <option></option>
+                                    </select><br>
+                                    
+                                    <label class="nomeFunc">Funcionario: </label><br>
+                                    <select name="nomeFuncionario2" id="nomeFuncionario2" class="form-control" >
+                                        <option></option>
+                                    </select><br>
+
+                                    <div class="barreiraServico2"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 offset-12" style="border-bottom: 3px solid white; margin-bottom: 15px; margin-top: 20px;"></div>
+
                             <div class="footer" style="background-color: #fff;">
-                                <button type="submit" class="btn efeito-btn" name="enviar" id="enviar">Fazer agendamento</button>
-                                <button type="submit" class="btn btn-secondary" name="cancelar">Cancelar Agendamento</button>
+                                
+                                <button type="submit" class="btn btn-secondary" name="voltar">&#8666; Voltar</button>
+                                <button type="submit" class="btn efeito-btn" name="enviar" id="enviar">Avançar &#8667;</button>
                             </div>
                         </div>
                     </div>
@@ -240,7 +299,8 @@ $serv = new Servicos_has_funcionariosController();
     <link rel="stylesheet" href="./css/Style-Agend.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="Js/bootstrap.min.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" charset="utf-8">
+
 
     //Essa função chamas as variáveis do HTML do Form e logo trabalha para poder juntar os selects
     //o script manda para o outro arquivo que retorna um valor desejado para o front-end
@@ -254,12 +314,40 @@ $serv = new Servicos_has_funcionariosController();
 					$('.cliqueAqui').show(); 
 
 					$.getJSON('agendamentoFormularioSub.php?search=',{id_servicos: $(this).val(), ajax: 'true'}, function(j){
-						var options = '<option value="">Escolher Funcionario</option>';	
+						var options = "<option value=''>Escolher Funcionario</option>";	
+						var optionsV = "";	
 						for (var i = 0; i < j.length; i++) {
 							options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
+							optionsV += '<option value="' + j[i].nome + '">' + j[i].nome + '</option>';
 						}	
+
 						$('#id_funcionarios').html(options).show();
+						$('#id_funcionariosForm').html(optionsV).show();
 						$('.cliqueAqui').hide();
+                    
+					});
+
+                    $.getJSON('agendamentoFormularioValorServico.php?search=',{id_servicos: $(this).val(), ajax: 'true'}, function(j){
+                        var optionsV = '';
+                        var optionsV2 = '';
+                        var optionsV3 = '';
+						for (var i = 0; i < j.length; i++) {
+							optionsV += '<option value="' + j[i].valor + '">R$ ' + j[i].valor + ',00</option>';
+							optionsV2 += '<option value="' + j[i].nome + '">' + j[i].nome + '</option>';
+							optionsV3 += '<option value="' + j[i].tempo_estimado + '">Tempo: ' + j[i].tempo_estimado + '</option>';
+						}	
+						$('#valorServico').html(optionsV).show();
+						$('#tempoServicoForm').html(optionsV3);
+                        $('#nomeServico').html(optionsV2).show();
+					});
+
+                    $.getJSON('agendamentoFormularioServico2.php?search=',{id_servicos: $(this).val(), ajax: 'true'}, function(j){
+						var options = '<option value="">Escolher serviço</option>';	
+						for (var i = 0; i < j.length; i++) {
+							options += '<option value="' + j[i].idServicos + '">' + j[i].nome + '</option>';
+                            
+						}	
+						$('#id_servicos2').html(options).show();
                     
 					});
 				} else {
@@ -268,14 +356,16 @@ $serv = new Servicos_has_funcionariosController();
 			});
         });
 
+        //https://desarrolloweb.com/articulos/codificar-decodificar-cadenas-utf8-javascript.html
         $(function(){
             $('#id_servicos2').change(function(){
 				if( $(this).val() ) {
                     $('#id_funcionarios2').hide();
+                    $('#valorServico2').hide();
                     $('.cliqueAqui2').show();
 
 					$.getJSON('agendamentoFormularioSub2.php?search=',{id_servicos2: $(this).val(), ajax: 'true'}, function(j){
-						var options = '<option value="">Escolher Funcionario</option>';	
+						var options = "<option value=''>Escolher Funcionario</option>";	
 						for (var i = 0; i < j.length; i++) {
 							options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
 						}	
@@ -283,11 +373,73 @@ $serv = new Servicos_has_funcionariosController();
 						$('.cliqueAqui2').hide();
                     
 					});
+
+                    $.getJSON('agendamentoFormularioValorServico2.php?search=',{id_servicos2: $(this).val(), ajax: 'true'}, function(h){
+                        var optionsV = '';
+                        var optionsV2 = '';
+                        var optionsV3 = '';
+						for (var i = 0; i < h.length; i++) {
+							optionsV += '<option value="' + h[i].valor + '">R$ ' + h[i].valor + ',00</option>';
+							optionsV2 += '<option value="' + h[i].nome + '">' + h[i].nome + '</option>';
+							optionsV3 += '<option value="' + h[i].tempo_estimado + '">Tempo: ' + h[i].tempo_estimado + '</option>';
+						}	
+						$('#valorServico2').html(optionsV).show();
+						$('#tempoServicoForm2').html(optionsV3).show();
+                        $('#nomeServico2').html(optionsV2).show();
+                    
+					});
+
 				} else {
 					$('#id_funcionarios2').html('<option value="">– Escolher Funcionario –</option>');
 				}
 			});
 		});
+
+        $(function(){
+            $('#id_funcionarios').change(function(){
+				if( $(this).val() ) {
+                    $('#id_funcionarios').hide();
+
+					$.getJSON('agendamentoFormularioFuncionario.php?search=',{id_funcionarios: $(this).val(), ajax: 'true'}, function(j){
+						var options = "";	
+						var optionsV = '<option value="">Escolher Serviço</option>';	
+						for (var i = 0; i < j.length; i++) {
+							options += '<option value="' + j[i].nome + '">' + j[i].nome + '</option>';
+							optionsV += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
+						}	
+
+						$('#nomeFuncionario').html(options).show();
+                        //$('#id_funcionarios').html(optionsV).show();
+                        //location.reload();
+					});
+
+                    
+
+				} else {
+					$('#id_funcionarios').html('<option value="">– Escolher Funcionario –</option>');
+				}
+			});
+
+            $('#id_funcionarios2').change(function(){
+				if( $(this).val() ) {
+                    $('#id_funcionarios2').hide();
+
+					$.getJSON('agendamentoFormularioFuncionario.php?search=',{id_funcionarios: $(this).val(), ajax: 'true'}, function(j){
+						var options = "";	
+						for (var i = 0; i < j.length; i++) {
+							options += '<option value="' + j[i].nome + '">' + j[i].nome + '</option>';
+						}	
+
+						$('#nomeFuncionario2').html(options);
+						//$('#id_funcionarios2').html(options).show();
+					});
+
+				} else {
+					$('#id_funcionarios2').html('<option value="">– Escolher Funcionario –</option>');
+				}
+			});
+		});
+
 	</script>
 
     <script>
@@ -310,14 +462,15 @@ $serv = new Servicos_has_funcionariosController();
                 $('#showLess').show();
 
                 $('#id_funcionarios2').html('<option value="">– Escolher Funcionario –</option>');
+                $('#valorServico2').html('<option value="">0</option>');
                 if(x == 2){
-                    $('#showLess').hide();
+                    //$('#showLess').hide();
                 }
             });
         });
     </script>
     <script src="Js/Agendamento.js"></script>
-    <script src="Js/Projeto-barbearia.js"></script>
+    <script src="Js/testProjeto.js"></script>
 </body>
 </head>
 

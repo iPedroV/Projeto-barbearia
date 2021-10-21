@@ -199,6 +199,10 @@ span.account-position{
     font-weight: 600;
 }
 
+.SairLogin :checked {
+    background-color: #888;
+}
+
 
 
 
@@ -247,30 +251,6 @@ span.account-position{
     top: -25px;
     border-radius: 4px;
 
-}
-
-@media screen and (min-width: 1590px){
-    .PainelAG {
-        left: 290px;
-        width: 1000px;
-    }
-}
-
-@media screen and (max-width: 380px){
-
-    .agenda {
-        height: 1050px;
-    }
-
-    .titleText {
-        left: 30%;
-        margin-top: 0px;
-        padding-bottom: 50px;
-    }
-
-    .PainelAG {
-        left: 0%;
-    }
 }
 
 .copyrightText
@@ -475,6 +455,15 @@ select.form-control {
 /* Parte 02 do Formulário Style */
 #myList li{display: none; list-style: none;}
 
+#myList{
+    background-color: #222;
+    border: 2px solid black;
+    width: 900px;
+    padding: 15px;
+    margin-left: 200px;
+    margin-bottom: 20px;
+}
+
 #loadMore{
     color: #ffffff;
     cursor: pointer;
@@ -484,6 +473,9 @@ select.form-control {
     margin-bottom: 20px;
     padding: 5px;
     border-radius: 4px;
+
+    left: -20px;
+    position: relative;
 }
 
 #loadMore:hover{
@@ -500,6 +492,9 @@ select.form-control {
     margin-bottom: 20px;
     padding: 5px;
     border-radius: 4px;
+
+    left: -20px;
+    position: relative;
 }
 
 #showLess:hover{
@@ -515,9 +510,15 @@ select.form-control {
     
 }
 
+.campoForm2{
+    height: 270px;
+    margin-bottom: 20px;
+}
+
 .campoForm2 label{
     color: #fff;
     font-size: 22px;
+    margin-top: -45px;
 }
 
 .campoForm2 input{
@@ -528,21 +529,506 @@ select.form-control {
     padding: 0px 0px 0px 5px;
     width: 325px;
     margin-bottom: 10px;
+    margin-top: -45px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.parte01{
+    background-color: transparent;
+    border-bottom: 2px solid white; border-top: 2px solid white; 
+    border-left: transparent; border-right: transparent;
+    text-align: center;
+}
+
+select#nomeServico{
+    font-size: 20px;
+    width: 325px;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding-top: 15px;
+
+    background-color: transparent;
+    border: transparent;
+
+    margin-bottom: -18px;
+    font-weight: 500;
+    color: white;
+    margin-top: -10px;
+    padding-left: 15px;
+}
+
+select#valorServico{
+    position: relative;
+    color: white;
+    font-family: 'Calibri';
+    font-size: 20px;
+    padding: 5px;
+    width: 300px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: transparent;
+    border: transparent;
+
+    text-align: start;
+
+    position: relative;
+    top: -4px;
+    padding-left: 15px;
+}
+
+select#tempoServicoForm{
+    font-size: 18px;
+    width: 325px;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    padding-left: 15px;
+}
+
+/* PARTE 02 */
+select#nomeServico2{
+    font-size: 20px;
+    width: 325px;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding-top: 15px;
+
+    background-color: transparent;
+    border: transparent;
+
+    margin-bottom: -18px;
+    font-weight: 500;
+    color: white;
+    margin-top: -10px;
+    padding-left: 15px;
+}
+
+select#valorServico2{
+    position: relative;
+    color: white;
+    font-family: 'Calibri';
+    font-size: 20px;
+    padding: 5px;
+    width: 300px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: transparent;
+    border: transparent;
+
+    text-align: start;
+
+    position: relative;
+    top: -4px;
+    padding-left: 15px;
+}
+
+select#tempoServicoForm2{
+    font-size: 18px;
+    width: 325px;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    padding-left: 15px;
+}
+
+.barreiraServico{
+    position: relative;
+    background-color: transparent;
+    width: 100%;
+    height: 260px;
+    top: -280px;
+    margin-bottom: -260px;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+}
+
+.barreiraServico2{
+    position: relative;
+    background-color: transparent;
+    width: 100%;
+    height: 260px;
+    top: -280px;
+    margin-bottom: -260px;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+}
+
+#nomeFuncionario {
+    font-size: 18px;
+    width: 325px;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    margin-top: 15px;
+    text-align: end;
+
+    position: relative;
+    left: 50px;
+}
+
+#nomeFuncionario2 {
+    font-size: 18px;
+    width: 325px;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    margin-top: 15px;
+    text-align: end;
+
+    position: relative;
+    left: 50px;
+}
+
+label.nomeFunc {
+    text-align: start;
+    padding-top: 10px;
+    font-size: 22px;
+    border-top: 2px solid white;
+    width: 100%;
+    padding-left: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.campoFormData{
+    margin-top: -10px;
+    margin-bottom: 30px;
+    margin-left: 120px;
+}
+
+.campoFormData label{
+    color: #fff;
+    font-size: 22px;
+}
+
+.campoFormData input{
+    position: static;
+    color: black;
+    font-family: 'Calibri';
+    font-size: 22px;
+    padding: 0px -5px 0px 5px;
+    width: 325px;
+    margin-bottom: 0px;
+    text-align: center;
+    font-weight: 500;
 }
 
 .barreira {
     position: relative;
     background-color: rgb(0, 0, 0, 0.35);
     width: 325px;
+    height: 38px;
+    top: 70px;
+}
+
+.barreira2 {
+    position: relative;
+    background-color: rgb(0, 0, 0, 0.35);
+    width: 325px;
     height: 36px;
-    top: 68px;
+    top: 54px;
 }
 
 .funcionario {
-    margin-top: -25px;
+    margin-top: 0px;
     margin-bottom: 25px;
 
 }
+
+.servico{
+    margin-top: 0px;
+    margin-bottom: 25px;
+    margin-left: -25px;
+
+}
+
+.funcionario2 {
+    margin-top: 0px;
+    margin-bottom: 25px;
+
+}
+
+.servico2{
+    margin-top: 0px;
+    margin-bottom: 25px;
+    margin-left: -25px;
+
+}
+
+#formaPagamento{
+    font-size: 18px;
+    width: 325px;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #a2a2a2;
+    color: black;
+}
+
+#valorTotal {
+    font-size: 18px;
+    width: 325px;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #a2a2a2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Página de Horário */
+
+.campoFormHorario label{
+    color: #fff;
+    font-size: 22px;
+    margin-top: 0px;
+
+    position: relative;
+    top: 5px;
+}
+    
+.campoFormHorario input{
+    font-size: 20px;
+    width: 325px;
+    padding: 5px;
+    border-radius: 4px;
+
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    margin-top: 15px;
+    text-align: start;
+
+    position: relative;
+    left: 0px;
+    top: 5px;
+}
+
+.campoFormHorario2 label{
+    color: #fff;
+    font-size: 22px;
+    margin-top: 0px;
+
+    position: relative;
+    top: -22px;
+}
+    
+.campoFormHorario2 input{
+    font-size: 20px;
+    width: 100px;
+    padding: 5px;
+    border-radius: 4px;
+
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    margin-top: 15px;
+    text-align: start;
+
+    position: relative;
+    left: 0px;
+    top: -22px;
+}
+
+.almoco{
+    color: #888; font-size: 20px; margin-top: 10px; margin-bottom: -10px;
+}
+
+.almoco span{
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+div.botaoCancelar {
+    margin-top: -125px;
+    background-color: #333;
+    width: 100%;
+    height: 190px;
+    text-align: center;
+    
+}
+
+a.CancelarAgendamento {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    padding: 15px 15px 15px 15px;
+    top: 50px;
+
+
+    background-color: #fff;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: cursive;
+
+    border-radius: 8px;
+    border: 5px solid #333;
+}
+
+a.CancelarAgendamento:hover {
+    border-radius: 4px;
+    box-shadow: 0px 0px 0px 2px #ffffff;
+}
+
+.footer {
+    height: 80px;
+    padding: /*top*/15px /*left*/10px /*bottom*/15px /*rigth*/150px;
+    margin-bottom: 15px;
+}
+
+
+/*Codigo do botão*/
+.btn {
+line-height: 0px;
+height: 50px;
+text-align: center;
+width: 300px;
+cursor: pointer;
+font-size: 18px;
+}
+
+
+.efeito-btn {
+color: rgb(0, 0, 0);
+transition: all 0.5s;
+position: relative;
+margin-right: 15px;
+margin-left: 15px;
+
+}
+
+.efeito-btn::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1;
+background-color: rgba(0, 0, 0, 0.2);
+/*background-color: #ff0157;*/
+transition: all 0.3s;
+
+}
+
+.efeito-btn:hover::before {
+opacity: 0 ;
+transform: scale(0.5,0.5);
+
+}
+
+.efeito-btn::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1;
+opacity: 0;
+transition: all 0.3s;
+border: 1px solid #000;
+transform: scale(1.2,1.2);
+
+
+}
+
+.efeito-btn:hover::after {
+opacity: 1;
+transform: scale(1,1);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Responsivo Form.prt2 */
 @media screen and (max-width: 380px){
@@ -617,6 +1103,10 @@ select.form-control {
 
 
 
+
+
+
+
     section.season2-ryzen5 {
         margin-top: -30px;
     }    
@@ -625,6 +1115,27 @@ select.form-control {
         width: 320px;
         margin-left: 22px;
         margin-top: 20px;
+    }
+
+    #myList{
+        width: 340px;
+        padding: 15px;
+        margin-left: 0px;
+        margin-bottom: 20px;
+    }
+
+    #loadMore{
+        left: -90px;
+        position: relative;
+    }
+    
+    #loadMore:hover{
+        color: #888;
+    }
+    
+    #showLess{
+        left: -90px;
+        position: relative;
     }
 
     .campoForm2 label{
@@ -637,11 +1148,64 @@ select.form-control {
         margin-bottom: 10px;
     }
 
-    .barreira {
-        width: 245px;
-        height: 31.75px;
-        top: 58.75px!important;        
+    .campoFormData{
+        margin-left: -40px;
     }
+    
+    .campoFormData label{
+        color: #fff;
+        font-size: 22px;
+    }
+    
+    .campoFormData input{
+        width: 295px;
+        margin-left: -20px;
+    }
+
+    select#nomeServico{
+        width: 245px;
+    }
+
+    #formaPagamento{
+        font-size: 18px;
+        width: 245px;
+        padding: 5px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        background-color: #a2a2a2;
+    }
+
+    #valorTotal{
+        font-size: 18px;
+        width: 245px;
+        padding: 5px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        background-color: #a2a2a2;
+    }
+
+    .servico{
+        margin-left: 0px;
+    }
+
+
+
+
+
+
+    .barreira {
+        width: 295px;
+        height: 36px;
+        top: 70px!important;    
+        left: -20px;    
+    }
+
+    .barreira2 {
+        width: 245px;
+        height: 32px;
+        top: 54px!important;        
+    }
+
 
     .escolhaSexo {
         margin-left: 20px;
@@ -677,46 +1241,74 @@ select.form-control {
     .text-ryzen5 h2 {
         height: 165px;
     }
-}
 
-div.botaoCancelar {
-    margin-top: -125px;
-    background-color: #333;
-    width: 100%;
-    height: 190px;
-    text-align: center;
+
+
+
+
+
+
+
+
+    .campoFormHorario label{
+        color: #fff;
+        font-size: 22px;
+        margin-top: 0px;
     
-}
-
-a.CancelarAgendamento {
-    position: relative;
-    width: 200px;
-    height: 100px;
-    padding: 15px 15px 15px 15px;
-    top: 50px;
-
-
-    background-color: #fff;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
-    font-weight: 600;
-    font-family: cursive;
-
-    border-radius: 8px;
-    border: 5px solid #333;
-}
-
-a.CancelarAgendamento:hover {
-    border-radius: 4px;
-    box-shadow: 0px 0px 0px 2px #ffffff;
-}
-
-.footer {
-    height: 80px;
-    padding: /*top*/15px /*left*/10px /*bottom*/15px /*rigth*/150px;
-    margin-bottom: 15px;
+        position: relative;
+        top: 20px;
+    }
+        
+    .campoFormHorario input{
+        font-size: 20px;
+        width: 325px;
+        padding: 5px;
+        border-radius: 4px;
+    
+        background-color: transparent;
+        border: transparent;
+        color: white;
+        margin-top: 15px;
+        text-align: start;
+    
+        position: relative;
+        left: 0px;
+        top: 5px;
+    }
+    
+    .campoFormHorario2 label{
+        color: #fff;
+        font-size: 22px;
+        margin-top: 0px;
+    
+        position: relative;
+        top: -10px;
+    }
+        
+    .campoFormHorario2 input{
+        font-size: 20px;
+        width: 100px;
+        padding: 5px;
+        border-radius: 4px;
+    
+        background-color: transparent;
+        border: transparent;
+        color: white;
+        margin-top: 15px;
+        text-align: start;
+    
+        position: relative;
+        left: 0px;
+        top: -22px;
+    }
+    
+    .almoco{
+        color: #888; font-size: 20px; margin-top: 40px; margin-bottom: -10px;
+    }
+    
+    .almoco span{
+        color: #fff;
+    }
 }
 
 @media screen and (max-width: 380px){
@@ -734,29 +1326,7 @@ a.CancelarAgendamento:hover {
         height: 170px;
         padding: /*top*/25px /*left*/10px /*bottom*/25px /*rigth*/15px;
     }
-}
 
-/*Codigo do botão*/
-.btn {
-line-height: 0px;
-height: 50px;
-text-align: center;
-width: 250px;
-cursor: pointer;
-font-size: 18px;
-}
-
-
-.efeito-btn {
-color: rgb(0, 0, 0);
-transition: all 0.5s;
-position: relative;
-margin-right: 15px;
-margin-left: 35px;
-
-}
-
-@media screen and (max-width: 380px){
     .efeito-btn {
         margin-right: 0px;
         margin-left: 0px;     
@@ -765,48 +1335,59 @@ margin-left: 35px;
     .btn {
         margin-bottom: 20px;
         margin-left: 5px;
+        width: 250px;
     }
 }
 
-.efeito-btn::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-z-index: 1;
-background-color: rgba(0, 0, 0, 0.2);
-/*background-color: #ff0157;*/
-transition: all 0.3s;
+@media screen and (max-width: 380px){
 
+    .agenda {
+        height: 1050px;
+    }
+
+    .titleText {
+        left: 30%;
+        margin-top: 0px;
+        padding-bottom: 50px;
+    }
+
+    .PainelAG {
+        left: 0%;
+    }
 }
 
-.efeito-btn:hover::before {
-opacity: 0 ;
-transform: scale(0.5,0.5);
 
+
+
+
+
+@media screen and (min-width: 1590px){
+    .PainelAG {
+        left: 300px;
+        width: 1000px;
+    }
+
+    .formulario{
+        margin-left: 100px;
+        
+    }
+
+    #myList{
+        margin-left: 350px;
+    }
+
+    #loadMore{
+        left: 30px;
+        position: relative;
+    }
+    
+    #showLess{
+        left: 30px;
+        position: relative;
+    }
+    
 }
 
-.efeito-btn::after {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-z-index: 1;
-opacity: 0;
-transition: all 0.3s;
-border: 1px solid #000;
-transform: scale(1.2,1.2);
 
 
-}
-
-.efeito-btn:hover::after {
-opacity: 1;
-transform: scale(1,1);
-
-}
 

@@ -1,0 +1,318 @@
+@import url('https://font.giigkeapis.com/css?family=Poppins:200,300,400,500,700,800,900&display=swap');
+
+*
+{   
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+.whatsapp-link
+{
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 1px 1px 2px #888;
+    z-index: 1000000;
+}
+
+.fa-whatsapp
+{
+    margin-top: 10px;
+}
+
+p
+{
+    font-weight: 300;
+    color: #111;
+}
+
+header
+{
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 100px;
+    z-index: 10000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.5s;
+    background: #fff;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+
+header .logo
+{
+    color: #000;
+    font-weight: 700;
+    font-size: 2em;
+    text-decoration: none;
+    margin-top: 0px;
+}
+
+header .logo:hover
+{
+    color: #868686;
+}
+
+header.sticky .logo /* Não pode espaço em "header.stick"!!!*/
+{
+    color: #111;
+}
+
+header .logo span
+{
+    color: #868686;
+}
+
+header .navigation
+{
+    position: relative;
+    display: flex;
+    left: 70px;
+}
+
+header .navigation li
+{
+    position: relative;
+    top: 10px;
+    left: -10px;
+    list-style: none; /* Tira os pontinhos da lista ul */
+    margin-left: 30px; /* Separa os itens da lista */
+    margin-top: 12px;
+}
+
+header .navigation li a
+{
+    text-decoration: none;
+    color: #000;
+    font-weight: 300;
+    font-weight: bolder;
+}
+
+header.sticky .navigation li a
+{
+    color: #111;
+    font-weight: bolder;
+}
+
+header .navigation li a:hover{
+    color: #868686;
+}
+
+::-webkit-scrollbar-track
+{
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #ffffff;
+}
+
+::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #fffdfd;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #050505;
+}
+
+.dados{
+    position: relative;
+    top: -20px;
+
+}
+
+.notification-list{
+    display: flex;
+
+    background-color: #fff!important;
+    padding: 7px;
+
+    margin-right: 10px;
+    margin-top: 0px;
+    margin-bottom: -22.5px;
+
+    border: 2px solid #888!important;
+    border-bottom: 1px solid #000!important;
+    border-top: 1px solid #000!important;
+    color: #000!important;
+    
+}
+
+span.account-user-name{
+    color: #000;
+    margin-right: 4px;
+}
+
+span.account-position{
+    border: 1px solid transparent;
+    border-left: 2px solid #000;
+    padding-top: 2px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    color: #000!important;
+}
+
+.nav-link {
+    display: block;
+    padding: .5rem 1rem;
+    color: #888!important;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #000!important;
+}
+
+.SairDiv{
+    position: relative;
+    width: 100%;
+    height: 35px;
+    top: 0px;
+    background-color:#888 ;
+}
+
+.SairLogin{
+    position: relative;
+    top: 5px;
+    text-decoration: none; 
+    color: #fff!important; 
+    padding-left: 15px;
+
+}
+
+.SairLogin :hover{
+    color: black;
+    font-weight: 600;
+}
+
+.SairLogin :checked {
+    background-color: #888;
+}
+
+
+
+.copyrightText
+{
+    background-color: #333;
+    padding: 8px 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+
+.copyrightText p
+{
+    color:#fff;
+}
+
+.copyrightText a
+{
+    color:#000;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#agendamento{
+    background-color: transparent; 
+    width: 850px;
+    position: relative;
+    left: -60px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    line-height: 0px;
+    height: 50px;
+    text-align: center;
+    width: 300px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-bottom: 20px;
+    }
+    
+    
+    .efeito-btn {
+    color: rgb(0, 0, 0);
+    transition: all 0.5s;
+    position: relative;
+    margin-right: 15px;
+    margin-left: 15px;
+    
+    }
+    
+    .efeito-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.2);
+    /*background-color: #ff0157;*/
+    transition: all 0.3s;
+    
+    }
+    
+    .efeito-btn:hover::before {
+    opacity: 0 ;
+    transform: scale(0.5,0.5);
+    
+    }
+    
+    .efeito-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 1px solid #000;
+    transform: scale(1.2,1.2);
+    
+    
+    }
+    
+    .efeito-btn:hover::after {
+    opacity: 1;
+    transform: scale(1,1);
+    
+    }
+
+    .nenhumAgendamento{
+        position: relative;
+        padding: 10px;
+        background-color: transparent;
+        top: -8px;
+    }

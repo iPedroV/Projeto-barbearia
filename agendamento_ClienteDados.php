@@ -1,20 +1,24 @@
 <?php
-include_once 'C:/xampp/htdocs/Calendario/controller/agendamentoController.php';
-include_once 'C:/xampp/htdocs/Calendario/dao/daoAgendamento.php';
-include_once 'C:/xampp/htdocs/Calendario/model/agendamento_model.php';
+ob_start();
+session_start();
+
+if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec'])) 
+    || !isset($_SESSION['nr']) || 
+    ($_SESSION['nr'] != $_SESSION['conferenr'])) { 
+        header("Location: agendamento_ClienteDados.php");
+    exit;
+}
+//header("Location: agendamento_ClientesDados.php");
+
+include_once 'C:/xampp/htdocs/testProjeto/controller/agendamentoController.php';
+include_once 'C:/xampp/htdocs/testProjeto/dao/daoAgendamento.php';
+include_once 'C:/xampp/htdocs/testProjeto/model/agendamento_model.php';
 
 $dt = new Agendamento();
 $dts = new AgendamentoController();
 
-include_once 'C:/xampp/htdocs/Calendario/model/mensagem.php';
-$msg = new Mensagem();
-
-include_once 'C:/xampp/htdocs/Calendario/controller/servicos_has_funcionariosController.php';
-include_once 'C:/xampp/htdocs/Calendario/model/servicos_has_funcionarios.php';
-$sev = new Servicos_has_funcionarios();
-
-
-$s_has_f = new Servicos_has_funcionariosController();
+include_once 'C:/xampp/htdocs/testProjeto/bd/banco.php';
+include_once 'C:/xampp/htdocs/testProjeto/model/mensagem.php';
 
 ?>
 
@@ -59,19 +63,120 @@ $s_has_f = new Servicos_has_funcionariosController();
     </Style>
 
 <body>
-    <header>
-        <a href="./index.html" class="logo">Barbearia Neves<span>.</span></a>
+<header>
+        <a href="./index.php" class="logo">Barbearia Neves<span>.</span></a>
         <div class="menuToggle" onclick=" toggleMenu();"></div>
         <ul class="navigation">
-            <li><a href="#banner" onclick=" toggleMenu();">Home</a></li>
-            <li><a href="#about" onclick=" toggleMenu();">Sobre</a></li>
-            <li><a href="#menu" onclick=" toggleMenu();">Cortes</a></li>
-            <li><a href="#salao" onclick=" toggleMenu();">Salão</a></li>
-            <li><a href="#feedbacks" onclick=" toggleMenu();">Feedbacks</a></li>
-            <li><a href="#contato" onclick=" toggleMenu();">Contato</a></li>
+            <li><a href="index.php" onclick=" toggleMenu();">Home</a></li>
+            <li><a href="agendamento.php" onclick=" toggleMenu();">Agendamento</a></li>
+
+        <div class="dados">
+        <li class="dropdown notification-list">
+            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                aria-expanded="false" style="padding: 0px; margin: 0px;">
+                <span class="account-user-avatar"> 
+                    <img src="img/user.png" alt="user-image" class="rounded-circle" width="45px" height="45px" style="background-color: white; border: 1px solid #fff;">
+                </span>
+                <span>
+                    <span class="account-user-name"><?php echo $_SESSION['nomec']; ?></span>
+                    <span class="account-position"><?php echo $_SESSION['perfilc']; ?></span>
+                </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown" style="height: 135px;">
+                <!-- item-->
+                <div class=" dropdown-header noti-title">
+                    <h6 class="text-overflow m-0">Bem-Vindo !</h6>
+                </div>
+
+                <!-- item-->
+                <a href="index.php" class="dropdown-item notify-item">
+                    <i class="mdi mdi-account-circle me-1"></i>
+                    <span>Minha Página</span>
+                </a>
+
+                <div class="dropdown-divider"></div>
+
+                <!-- item-->
+                <div class="SairDiv">
+                  <a href="sessionDestroy.php" class="SairLogin">
+                    <i class="mdi mdi-lock-outline me-1"></i> 
+                    <span>Sair &#8608;</span>
+                  </a>
+                </div>
+
+            </div>
+        </li>
+        </div>
         </ul>
+          
     </header>
 
+
+    <div class="page-header">
+            <h1 style="margin-top: 15px; margin-bottom: 15px; margin-left: 15px;">Agendamento do <?php echo $_SESSION['nomec']; ?></h1>
+        </div>
+        
+        <table class="table table-striped" style="border-radius: 3px; overflow:hidden;">
+            <thead class="table-dark">
+                <tr>
+                    <th>Código</th>
+                    <th>Horário</th>
+                    <th>Data Agendada</th>
+                    <th>Forma de Pagamento</th>
+                    <th>Status</th>
+                    <th>Data de Realização</th>
+                    <th>Valor</th>
+                    <th>Usuario</th>
+                    <th>Nome Usuario</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $TabelaVisual = new AgendamentoController();
+                $listaAgendamento = $TabelaVisual->ListarClienteAgendamento();
+                $a = 0;
+                if ($listaAgendamento != null) {
+                    foreach ($listaAgendamento as $la) {
+                        $a++;
+                ?>
+                        <tr>
+                            <td><?php print_r($la->getId()); ?></td>
+                            <td><?php print_r($la->getHorario()); ?></td>
+                            <td><?php print_r($la->getDataAgenda()); ?></td>
+                            <td><?php print_r($la->getForma_Pagamento()); ?></td>
+                            <td><?php print_r($la->getStatusAgendamento()); ?></td>
+                            <td><?php print_r($la->getDateTime()); ?></td>
+                            <td><?php print_r($la->getValor()); ?></td>
+                            <td><?php print_r($la->getUsuarioID()->getIdUsuario()); ?></td>
+                            <td><?php print_r($la->getUsuarioID()->getNome()); ?></td>
+                        </tr>
+
+                    </tbody>
+                    </table>
+                    <div class="col-md-12 offset-12" style="background-color: #222; height: 30px;"></div>
+                <?php
+                    }
+                } else {
+                    ?> 
+                    </tbody>
+                    </table>
+                        <div class="row" style="width: 99%;">
+                            <div class="col-md-2 offset-2"></div>
+                            <form method="POST" action="" class="agendamento" id="agendamento">
+                                <label class="nenhumAgendamento">Nenhum agendamento foi realizado.</label>
+                                <button type="submit" class="btn efeito-btn" name="fazerAgendamento" id="fazerAgendamento">&#8652; Fazer Agendamento &#8651;</button>
+                            </form>
+                        </div>
+
+                        <div class="col-md-12 offset-12" style="background-color: #222; height: 30px;"></div>
+                    <?php
+                        if (isset($_POST['fazerAgendamento'])) {
+                            header("Location: agendamento.php");
+                        }
+                    
+                }
+            ?>
 </body>
 </head>
 

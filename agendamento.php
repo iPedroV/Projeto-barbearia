@@ -55,10 +55,10 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 
 <body>
     <header>
-        <a href="./index.html" class="logo">Barbearia Neves<span>.</span></a>
+        <a href="./index.php" class="logo">Barbearia Neves<span>.</span></a>
         <div class="menuToggle" onclick=" toggleMenu();"></div>
         <ul class="navigation">
-            <li><a href="#banner" onclick=" toggleMenu();">Home</a></li>
+            <li><a href="index.php" onclick=" toggleMenu();">Home</a></li>
             <li><a href="#about" onclick=" toggleMenu();">Sobre</a></li>
             <li><a href="#menu" onclick=" toggleMenu();">Cortes</a></li>
             <li><a href="#salao" onclick=" toggleMenu();">Salão</a></li>
@@ -84,7 +84,7 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
                 </div>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="index.php" class="dropdown-item notify-item">
                     <i class="mdi mdi-account-circle me-1"></i>
                     <span>Minha Página</span>
                 </a>
@@ -93,7 +93,7 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 
                 <!-- item-->
                 <div class="SairDiv">
-                  <a href="index.html" class="SairLogin">
+                  <a href="sessionDestroy.php" class="SairLogin">
                     <i class="mdi mdi-lock-outline me-1"></i> 
                     <span>Sair &#8608;</span>
                   </a>
@@ -106,7 +106,7 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
           
     </header>
 
-    <div class="pcs" style="background-color: #333; position: relative; width: 100%; height: 200px;"></div>
+    <div class="pcs" style="background-color: #333; position: relative; height: 200px;"></div>
     <section class="agenda" id="agenda">
         <h2 class="titleText"><span>A</span>gendamento</h2>
         <div class="PainelAG">
@@ -123,12 +123,13 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
                             <div class="current-day-events">
                                 <div>Pesquisar status do Clinte:</div>
                                 <ul class="current-day-events-list" style="color: transparent;"></ul>
-                                <a href="agendamento_ClienteDados.php"><input type="submit" class="agendamento" value="Agendamentos Realizados"></a>
+                                <a href="agendamento_ClienteDados.php"><input type="submit" class="agendamento" value="Verificar Agendamento"></a>
                             </div>
                             <div class="add-event-day">
                                 <span type="" class="add-event-day-field" placeholder=""></span>
                                 <form method="POST" action="">
                                     <input type="text" name="data_agendamento" id="dataAgendamento" class="campoData" value="">
+                                    <input type="text" name="data_agendamentoFormatado" id="dataAgendamentoFormatado" class="campoData" value="">
                                     <input type="submit" name="enviar" class="add-event-day-field-btn" id="Modalagenda" value="Agende Aqui!">
                                 </form>
                                 </div>
@@ -199,8 +200,19 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
                 <?php    
             }else{
                 $_SESSION['dataAgendamento'] = $_POST['data_agendamento'];
+                $_SESSION['dataAgendamentoFormatado'] = $_POST['data_agendamentoFormatado'];
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
-                    URL='http://localhost/Projeto-barbearia/agendamentoFormulario.php'\">";
+                   URL='http://localhost/testProjeto/agendamentoFormulario.php'\">";
+
+                /*
+                Teste já realizado nas dastas normal e formatada!
+
+                $data = $_SESSION['dataAgendamento'];
+                echo "".$data;
+
+                $dataF = $_SESSION['dataAgendamentoFormatado'];
+                echo "<br> Teste ".$dataF;
+                */
             }
         }
     ?>

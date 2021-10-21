@@ -1,19 +1,26 @@
 <?php
-include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoAgendamento.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoDashboard.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_model.php';
+include_once 'C:/xampp/htdocs/testProjeto/dao/daoAgendamento.php';
+include_once 'C:/xampp/htdocs/testProjeto/dao/daoDashboard.php';
+include_once 'C:/xampp/htdocs/testProjeto/model/agendamento_model.php';
 
 class AgendamentoController {
     
-    public function inserirDataAgendamento($data, $horario){
+    public function inserirAgendamento($horario, $data, $formaPagamento, $status,
+                                $Datapagamento, $confirmar, $valor, $usuario){
 
-        $forne = new Agendamento();
-        $forne->setDataAgenda($data);
-        $forne->setHorario($horario);
+        $agenda = new Agendamento();
+        $agenda->setHorario($horario);
+        $agenda->setDataAgenda($data);
+        $agenda->setForma_Pagamento($formaPagamento);
+        $agenda->setStatusAgendamento($status);
+        $agenda->setDataPagemento($Datapagamento);
+        $agenda->setConfirma($confirmar);
+        $agenda->setValor($valor);
+        $agenda->setUsuarioID($usuario);
        //$forne->setDateTime($dateTime);
         
-        $daofORNE = new DaoAgendamento();
-        return $daofORNE->inserirDataDAO($forne);
+        $daoagenda = new DaoAgendamento();
+        return $daoagenda->inserirAgendamentoDAO($agenda);
     }
 /*
     public function PesquisarValor(){
@@ -23,6 +30,11 @@ class AgendamentoController {
         return $daoAgendamento->pesquisarValorDAO();
     }
 */
+
+    public function ListarClienteAgendamento(){
+        $daoAgendamento = new DaoAgendamento();
+        return $daoAgendamento->ListarClienteAgendamentoDAO();
+    }
 
 
 }

@@ -47,7 +47,8 @@ class CALENDAR {
 
         /* Métodos para Chamar a Data no calendário */
         this.drawDateConfirm(); /* Primeiro ele puxa os dados para o Input */
-        this.drawYearAndCurrentDay(); /* Depois ele joga na tela para a visuaçização do Usuári */
+        this.drawYearAndCurrentDay(); /* Depois ele joga na tela para a visuaçização do Usuário */
+        this.drawDateFormate(); /* Chamando a data formatado do Script */
 
     }
 
@@ -99,10 +100,31 @@ class CALENDAR {
         let calendar = this.getCalendar();
         let eventListday = [this.elements.currentDay.innerHTML = calendar.active.day];
         let eventListYear = [this.elements.year.innerHTML = calendar.active.year];
-        let eventListMonth = [this.elements.currentMonth.innerHTML = AVAILABLE_MONTH_NUMBER[calendar.active.month]];
+        let eventListMonthNumber = [this.elements.currentMonth.innerHTML = AVAILABLE_MONTH_NUMBER[calendar.active.month]];
 
-        document.getElementById('dataAgendamento').value = eventListYear +"-"+ eventListMonth +"-"+ adicionaZero(eventListday);
+        // Data que será inserida no banco de dados do agendamento
+        document.getElementById('dataAgendamento').value = eventListYear +"-"+ eventListMonthNumber +"-"+ adicionaZero(eventListday);
+    }
 
+    drawDateFormate() {
+        // SUBClasse que chama o dia, a semana e o ano dentro do calendário. 
+        // Adicionando o Onjeto ao Input da data escolhida pelo usuário.
+        function adicionaZero(numero){
+            if (numero <= 9) 
+                return "0" + numero;
+            else
+                return numero; 
+        }
+
+        let calendar = this.getCalendar();
+        let eventListWeekday = [this.elements.currentWeekDay.innerHTML = AVAILABLE_WEEK_DAYS[calendar.active.week]];
+        let eventListday = [this.elements.currentDay.innerHTML = calendar.active.day];
+        let eventListYear = [this.elements.year.innerHTML = calendar.active.year];
+        let eventListMonth = [this.elements.currentMonth.innerHTML = AVAILABLE_MONTH[calendar.active.month]];
+
+        // Data formatada que será impressa para o usuário no front-end do agendamento
+        document.getElementById('dataAgendamentoFormatado').value = 
+            eventListWeekday+", " + adicionaZero(eventListday) +" de "+ eventListMonth + " de " + eventListYear;
     }
 
     drawDays() {

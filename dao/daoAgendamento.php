@@ -1,17 +1,25 @@
 <?php
-include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_model.php';
+include_once 'C:/xampp/htdocs/testProjeto/bd/banco.php';
+include_once 'C:/xampp/htdocs/testProjeto/model/agendamento_model.php';
+include_once 'C:/xampp/htdocs/testProjeto/model/Usuario.php';
+include_once 'C:/xampp/htdocs/testProjeto/model/mensagem.php';
 
 class DaoAgendamento {
     
-    public function inserirDataDAO(Agendamento $agend){
+    public function inserirAgendamentoDAO(Agendamento $agend){
         $conn = new Conecta();
         $msg = new Mensagem();
         $conecta = $conn->conectadb();
         if($conecta){
-            $data = $agend->getDataAgenda();
             $horario = $agend->getHorario();
+            $dataAgendamento = $agend->getDataAgenda();
+            $formaPagamento = $agend->getForma_Pagamento();
+            $status = $agend->getStatusAgendamento();
             $dateTime = $agend->getDateTime();
+            $pagamento = $agend->getDataPagemento();
+            $confirmar = $agend->getConfirma();
+            $valor = $agend->getValor();
+            $usuario = $agend->getUsuarioID();
 
             // Verificando se a data é UTC.
             $defaultTimeZone='UTC';
@@ -35,9 +43,15 @@ class DaoAgendamento {
                 // id, horario, data, forma_de_pagamento, status_agendamento, data_regs_agendamento,
                 // data_do_pagamento, confir_envio, cliente_id, despesas_id;
                 $stmt = $conecta->prepare("insert into agendamentos values "
-                        . "(null, ?, ?, '$dateTime')");
-                $stmt->bindParam(1, $data);
-                $stmt->bindParam(2, $horario);
+                        . "(null, ?, ?, ?, ?, '$dateTime', ?, ?, ?, ?)");
+                $stmt->bindParam(1, $horario);
+                $stmt->bindParam(2, $dataAgendamento);
+                $stmt->bindParam(3, $formaPagamento);
+                $stmt->bindParam(4, $status);
+                $stmt->bindParam(5, $pagamento);
+                $stmt->bindParam(6, $confirmar);
+                $stmt->bindParam(7, $valor);
+                $stmt->bindParam(8, $usuario);
                 $stmt->execute();
                 
                 $msg->setMsg("<p style='color: green;'>"
@@ -51,6 +65,55 @@ class DaoAgendamento {
         }
         $conn = null;
         return $msg;
+    }
+
+
+    public function ListarClienteAgendamentoDAO(){
+        $conn = new Conecta();
+        $msg = new Mensagem();
+        $conecta = $conn->conectadb();
+        if ($conecta) {
+            try {
+                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $rs = $conecta->query("select * from agendamentos"
+                    . " inner join usuario on agendamentos.usuario_id = usuario.id");
+                $lista = array();
+                $a = 0;
+                if ($rs->execute()) {
+                    if ($rs->rowCount() > 0) {
+                        while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+                            $usuario = new Usuario();
+                            $usuario->setIdUSuario($linha->id);
+                            $usuario->setNome($linha->nome);
+                            $usuario->setPerfil($linha->perfil);
+                            $usuario->setTelefone($linha->telefone);
+                            $usuario->setEmail($linha->email);
+                            $usuario->setSenha($linha->senha);
+                            $usuario->setSexo($linha->sexo);
+
+                            $agenda = new Agendamento();
+                            $agenda->setId($linha->idAgendamento);
+                            $agenda->setHorario($linha->horario);
+                            $agenda->setDataAgenda($linha->data);
+                            $agenda->setForma_Pagamento($linha->forma_de_pagamento);
+                            $agenda->setStatusAgendamento($linha->status_agendamento);
+                            $agenda->setDateTime($linha->data_regs_agendamento);
+                            $agenda->setDataPagemento($linha->data_do_pagamento);
+                            $agenda->setConfirma($linha->confir_envio);
+                            $agenda->setValor($linha->valortotal);
+
+                            $agenda->setUsuarioID($usuario);
+                            $lista[$a] = $agenda;
+                            $a++;
+                        }
+                    }
+                }
+            } catch (PDOException $ex) {
+                $msg->setMsg(var_dump($ex->errorInfo));
+            }
+            $conn = null;
+            return $lista;
+        }
     }
 
 }

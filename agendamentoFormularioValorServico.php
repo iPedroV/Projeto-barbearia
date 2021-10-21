@@ -8,18 +8,20 @@ session_start();
 	//para depois retornar o valor desejado para o JavaScript, cujo a função é retornar o valor para o outro select
 	//obtendo select dependente do outro.
 	$id_servicos = $_REQUEST['id_servicos'];
-	$_SESSION['servico'] = $id_servicos;
 	
-	$result_sub_cat = "select DISTINCT nome,id from servicos_do_funcionario "
-    ."inner join usuario on usuario.id = servicos_do_funcionario.funcionarios_id " 
-    ."WHERE servicos_id = $id_servicos ORDER BY nome";
+	$result_sub_cat = "select DISTINCT valor, idServicos, nome, tempo_estimado from servicos_do_funcionario "
+		."left join servicos on servicos.idServicos = servicos_do_funcionario.servicos_id "
+		."WHERE servicos_id = $id_servicos";
+	
 	$resultado_sub_cat = mysqli_query($conn, $result_sub_cat);
 	
 	while ($row_sub_cat = mysqli_fetch_assoc($resultado_sub_cat) ) {
-		$funcionario_post[] = array(
-			'id'	=> $row_sub_cat['id'],
-			'nome' => $row_sub_cat['nome'],
+		$servico_post[] = array(
+			'idServicos'	=> $row_sub_cat['idServicos'],
+			'nome'	=> $row_sub_cat['nome'],
+			'valor' => $row_sub_cat['valor'],
+			'tempo_estimado' => $row_sub_cat['tempo_estimado'],
 		);
 	}
 	
-	echo(json_encode($funcionario_post));
+	echo(json_encode($servico_post));
