@@ -72,10 +72,6 @@ $_SESSION['conferenr'] = "-2";
         <div class="modal">
             <button class="fechar">X</button>
             <form method="post" action="enviar.php">
-
-                <?php
-                   
-                ?>
                 <div class="input-boxmodal">
                     <span class="detalhes" name="recuperaremail">Email:</span>
                     <input id="usuario" type="email" style="font-size: 20px; padding: 10px; " 

@@ -1,3 +1,15 @@
+<?php
+
+
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/DaoClientes.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/ClientesController.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
+
+$email = $_GET['email'];
+$msg = new Mensagem();
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-bt">
@@ -14,15 +26,29 @@
     <div id="login">
 
         <?php
-            //Valdiação de senha
-            if(isset($_POST['esenha'])){
-                if(($_POST['nsenha']) == ($_POST['csenha'])){
-                    echo "Senhas iguais";
-                }else{
+
+        //Valdiação de senha
+        if (isset($_POST['esenha'])) {
+
+            $ns = new ClientesController();
+            $emailC = $ns->pesquisarEmailcliente($email);
+
+            /*(echo $emailC->getEmail();*/
+
+            if (gettype($emailC) == 'object') {
+                if (($_POST['nsenha']) == ($_POST['csenha'])) {
+                    $senha = $_POST['nsenha'];
+                    $ems = new ClientesController();
+                    $msg = $ems->editarSenhaClientes($senha, $email);
+                    echo $msg->getMsg();
+                } else {
                     echo "senhas diferentes";
                 }
+            }else{
+                echo "Usuario inexistente";
             }
-              
+        }
+
         ?>
 
         <img src="img/barbearianeves.png" class="imagem">

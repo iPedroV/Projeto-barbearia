@@ -19,7 +19,7 @@ function navBar()
         $nav .= "  <ul class=\"navigation\">
                             <li><a href=\"ListarFuncionario.php\"  onclick=\" toggleMenu();\">Funcionários</a></li>
                             <li><a href=\"dashboard.html\"  onclick=\" toggleMenu();\">Dashboard</a></li>
-                            <li><a href=\"./sessionDestroy.php\" onclick=\" toggleMenu();\">sair</a></li>
+                            <li><a href=\"./sessionDestroy.php\" onclick=\" toggleMenu();\">Sair</a></li>
                             </ul> 
                             
                         ";
@@ -31,8 +31,16 @@ function navBar()
             <li><a href=\"#salao\" onclick=\" toggleMenu();\">Salão</a></li>
             <li><a href=\"#feedbacks\" onclick=\" toggleMenu();\">Feedbacks</a></li>
             <li><a href=\"#contato\" onclick=\" toggleMenu();\">Contato</a></li>
-            <li><a href=\"./sessionDestroy.php\" onclick=\" toggleMenu();\">sair</a></li>
+            <li><a href=\"./sessionDestroy.php\" onclick=\" toggleMenu();\">Sair</a></li>
             </ul>"; 
+
+    }elseif($_SESSION['perfilc'] == "Funcionario"){
+        $nav .= "  <ul class=\"navigation\">
+                            <li><a href=\"agendamento_ClienteDados.php\"  onclick=\" toggleMenu();\">Agendamentos</a></li>
+                            <li><a href=\"./sessionDestroy.php\" onclick=\" toggleMenu();\">Sair</a></li>
+                            </ul> 
+                            
+                        ";
     }
 
     

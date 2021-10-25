@@ -59,26 +59,29 @@ class DaoClientes
 
     //Ainda não está pronto a alteração de senha do cliente.
     //Atualização de senha Cliente
-   /* public function atualizarSenhaDAO(Usuario $clientes)
+   public function atualizarSenhaDAO(Usuario $cliente)
     {
         $conn = new Conecta();
         $msg = new Mensagem();
-        $cliente = new Usuario();
         $conecta = $conn->conectadb();
         if ($conecta) {
 
-            $id = $clientes->getId();
-            $senha = $clientes->getSenha();
+            $senha = $cliente->getSenha();
+            $email = $cliente->getEmail();
+
+            /*$msg->setMsg("<p style='color: blue;'>"
+                    . "'$email', '$senha'</p>");*/
 
             try {
-                $stmt = $conecta->prepare("UPDATE `usuario` SET `senha`= md5('?') WHERE id = ?");
+                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stmt = $conecta->prepare("UPDATE `usuario` SET `senha`= md5('?') WHERE email = ?");
                 $stmt->bindParam(1, $senha);
-                $stmt->bindParam(1, $id);
+                $stmt->bindParam(2, $email);
                 $stmt->execute();
                 $msg->setMsg("<p style='color: blue;'>"
                     . "Senha atualizada com sucesso</p>");
-            } catch (Exception $ex) {
-                $msg->setMsg($ex);
+            } catch (PDOException $ex) {
+                $msg->setMsg(var_dump($ex->errorInfo));
             }
         } else {
             $msg->setMsg("<p style='color: red;'>"
@@ -89,24 +92,35 @@ class DaoClientes
     }
 
     //Select de id cliente
-    public function SelecionarClienteDAO($id)
+    public function pesquisarEmailClienteDAO($email)
     {
-        $conn = new Conecta();
         $msg = new Mensagem();
+        $conn = new Conecta();
         $conecta = $conn->conectadb();
-        if ($conecta) {            
+        $cliente = new Usuario();
+        //echo "<script>alert('Cheguei aqui')</script>";
+        if ($conecta) {
             try {
-                $st = $conecta->prepare("SELECT id FROM usuario where email = ?");
-                $st->bindParam(1, $id);
-                $result = $st->rowCount();
+               
+                $rs = $conecta->query("select * from usuario where email = '$email'");               
+                $a = 0;
+                if ($rs->execute()) {
+                    if ($rs->rowCount() > 0) {
+                        while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+                            
+                            $cliente->setEmail($linha->email);
+                        }
+                    }
+                }
             } catch (Exception $ex) {
                 $msg->setMsg($ex);
             }
+            $conn = null;
         } else {
-            $msg->setMsg("<p style='color: red;'>"
-                . "Erro na conexão com o banco de dados.</p>");
+            echo "<script>alert('Banco inoperante!')</script>";
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
+			 URL='../Projeto-Barbearia/index.php'\">";
         }
-        $conn = null;
-        return $msg;
-    } */
+        return $cliente;
+    } 
 }

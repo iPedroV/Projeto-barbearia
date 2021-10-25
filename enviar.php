@@ -1,7 +1,6 @@
 <?php
 
-ob_start();
-session_start();
+
 
 include_once 'C:/xampp/htdocs/Projeto-barbearia/login.php';
 //Variáveis
@@ -78,7 +77,7 @@ $corpoemail = "
         <div>
             <h1>Recuperar de senha</h1>
             <div class=\"filhadiv\">
-                <p>Por favor, <a href=\"http://localhost/Projeto-barbearia/novasenha.php\" target=\"_blank\">clique aqui</a> para resetar sua senha.</p>
+                <p>Por favor, <a href=\"http://localhost/Projeto-barbearia/novasenha.php?email=$email\" target=\"_blank\">clique aqui</a> para resetar sua senha.</p>
                 <p>Caso não tenha solicitado este email para resetar sua senha, por favor, entre em contato para resolver o problema.</p>
                 <p>Este Email foi enviado dia: $data_envio às: $hora_envio</p>
             </div>
@@ -121,5 +120,3 @@ if ($enviaremail) {
     echo "$mgm";
 }
 header("Location: login.php"); exit();
-
-ob_end_flush();

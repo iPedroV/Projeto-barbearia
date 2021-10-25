@@ -24,4 +24,20 @@ class ClientesController {
         $daoClientes = new daoIndex();
         return $daoClientes->pesquisarClienteDAO();
     }
+
+    public function pesquisarEmailcliente($email){
+        $daoClientes2 = new DaoClientes();
+        return $daoClientes2->pesquisarEmailClienteDAO($email);
+    }
+
+    public function editarSenhaClientes($senha, $email){
+
+        $cliente = new Usuario();
+        $cliente->setSenha($senha);
+        $cliente->setEmail($email);
+
+        $daoClientes3 = new DaoClientes();
+        return $daoClientes3->atualizarSenhaDAO($cliente);
+
+    }
 }
