@@ -43,7 +43,7 @@ $msg = new Mensagem();
                     $msg = $ems->editarSenhaClientes($senha, $id);
                     echo $msg->getMsg();
                 } else {
-                    echo "senhas diferentes";
+                    echo $id;
                 }
             }else{
                 echo "Usuario inexistente";

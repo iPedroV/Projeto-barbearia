@@ -129,7 +129,6 @@ class DaoClientes
         $msg = new Mensagem();
         $conn = new Conecta();
         $conecta = $conn->conectadb();
-        $cliente = new Usuario();
         //echo "<script>alert('Cheguei aqui')</script>";
         $lista = array();
         if ($conecta) {
@@ -140,7 +139,7 @@ class DaoClientes
                 if ($rs->execute()) {
                     if ($rs->rowCount() > 0) {
                         while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
-                            //$cliente = new Usuario();
+                            $cliente = new Usuario();
                             $cliente->setId($linha->id);
                             $lista = $cliente;
                         }
@@ -155,8 +154,8 @@ class DaoClientes
             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
 			 URL='../Projeto-Barbearia/index.php'\">";
         }
-        return serialize($lista);
-        //return $lista;
+        //return serialize($lista);
+        return $lista;
     } 
 }
 
