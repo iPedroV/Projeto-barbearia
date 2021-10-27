@@ -22,7 +22,7 @@ class DaoClientes
             $sexo = $clientes->getSexo();
             $email = $clientes->getEmail();
             $telefone = $clientes->getTelefone();
-            $perfil = 'Administrador';
+            $perfil = 'Cliente';
             try {
                 $st = $conecta->prepare("SELECT * FROM usuario where email = ?");
                 $st->execute([$email]);
@@ -67,16 +67,16 @@ class DaoClientes
         if ($conecta) {
 
             $senha = $cliente->getSenha();
-            $id = $cliente->getId();
+            $email = $cliente->getEmail();
 
             /*$msg->setMsg("<p style='color: blue;'>"
                     . "'$email', '$senha'</p>");*/
 
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stmt = $conecta->prepare("UPDATE usuario SET senha = md5(?) WHERE id = ?");
+                $stmt = $conecta->prepare("UPDATE `usuario` SET `senha`= md5('?') WHERE email = ?");
                 $stmt->bindParam(1, $senha);
-                $stmt->bindParam(2, $id);
+                $stmt->bindParam(2, $email);
                 $stmt->execute();
                 $msg->setMsg("<p style='color: blue;'>"
                     . "Senha atualizada com sucesso</p>");
@@ -122,6 +122,7 @@ class DaoClientes
 			 URL='../Projeto-Barbearia/index.php'\">";
         }
         return $cliente;
+<<<<<<< HEAD
     }
 
     public function pesquisarIdClienteoDAO($email)
@@ -156,6 +157,7 @@ class DaoClientes
         }
         //return serialize($lista);
         return $lista;
+=======
+>>>>>>> bdec5ea8ab29c7b4152b7d98749ad40ab96c634e
     } 
 }
-
