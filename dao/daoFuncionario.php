@@ -56,7 +56,7 @@ class DaoFuncionario{
         return $resp;
     }
 
-    public function pesquisarFuncionarioDAO()
+    public function pesquisarFuncionarioDAO()  // Para listar os funcionários em ListarFuncionario.php
     {
         $msg = new Mensagem();
         $conn = new Conecta();
