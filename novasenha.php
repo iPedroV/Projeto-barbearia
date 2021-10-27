@@ -32,6 +32,7 @@ $msg = new Mensagem();
 
             $ns = new ClientesController();
             $emailC = $ns->pesquisarEmailcliente($email);
+            $id = $ns->PesquisarIdCLiente($email);
 
             /*(echo $emailC->getEmail();*/
 
@@ -39,7 +40,7 @@ $msg = new Mensagem();
                 if (($_POST['nsenha']) == ($_POST['csenha'])) {
                     $senha = $_POST['nsenha'];
                     $ems = new ClientesController();
-                    $msg = $ems->editarSenhaClientes($senha, $email);
+                    $msg = $ems->editarSenhaClientes($senha, $id);
                     echo $msg->getMsg();
                 } else {
                     echo "senhas diferentes";

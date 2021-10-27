@@ -66,7 +66,7 @@ class DaoFuncionario{
         if ($conecta) {
             try {
                
-                $rs = $conecta->query("select * from usuario where perfil = 'funcionario'");               
+                $rs = $conecta->query("select * from usuario where perfil = 'Funcionario'");               
                 $a = 0;
                 if ($rs->execute()) {
                     if ($rs->rowCount() > 0) {

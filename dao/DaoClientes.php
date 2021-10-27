@@ -67,16 +67,16 @@ class DaoClientes
         if ($conecta) {
 
             $senha = $cliente->getSenha();
-            $email = $cliente->getEmail();
+            $id = $cliente->getId();
 
             /*$msg->setMsg("<p style='color: blue;'>"
                     . "'$email', '$senha'</p>");*/
 
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stmt = $conecta->prepare("UPDATE `usuario` SET `senha`= md5('?') WHERE email = ?");
+                $stmt = $conecta->prepare("UPDATE usuario SET senha = md5(?) WHERE id = ?");
                 $stmt->bindParam(1, $senha);
-                $stmt->bindParam(2, $email);
+                $stmt->bindParam(2, $id);
                 $stmt->execute();
                 $msg->setMsg("<p style='color: blue;'>"
                     . "Senha atualizada com sucesso</p>");
@@ -122,5 +122,41 @@ class DaoClientes
 			 URL='../Projeto-Barbearia/index.php'\">";
         }
         return $cliente;
+    }
+
+    public function pesquisarIdClienteoDAO($email)
+    {
+        $msg = new Mensagem();
+        $conn = new Conecta();
+        $conecta = $conn->conectadb();
+        $cliente = new Usuario();
+        //echo "<script>alert('Cheguei aqui')</script>";
+        $lista = array();
+        if ($conecta) {
+            try {
+               
+                $rs = $conecta->query("select id from usuario where email = '$email'");               
+                $a = 0;
+                if ($rs->execute()) {
+                    if ($rs->rowCount() > 0) {
+                        while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+                            //$cliente = new Usuario();
+                            $cliente->setId($linha->id);
+                            $lista = $cliente;
+                        }
+                    }
+                }
+            } catch (Exception $ex) {
+                $msg->setMsg($ex);
+            }
+            $conn = null;
+        } else {
+            echo "<script>alert('Banco inoperante!')</script>";
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
+			 URL='../Projeto-Barbearia/index.php'\">";
+        }
+        return serialize($lista);
+        //return $lista;
     } 
 }
+

@@ -26,11 +26,16 @@ class ClientesController {
         return $daoClientes2->pesquisarEmailClienteDAO($email);
     }
 
-    public function editarSenhaClientes($senha, $email){
+    public function PesquisarIdCLiente($email){
+        $daoClientes = new DaoClientes();
+        return $daoClientes->pesquisarIdClienteoDAO($email);
+    }
+
+    public function editarSenhaClientes($senha, $id){
 
         $cliente = new Usuario();
         $cliente->setSenha($senha);
-        $cliente->setEmail($email);
+        $cliente->setId($id);
 
         $daoClientes3 = new DaoClientes();
         return $daoClientes3->atualizarSenhaDAO($cliente);
