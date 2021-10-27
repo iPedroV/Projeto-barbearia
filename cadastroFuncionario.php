@@ -20,7 +20,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 <head>
     <meta charset="UTF-8">
     <title>Cadastro Salão & Barbearia Neves</title>
-    <link rel="stylesheet" href="./css/style-Funcioario.css">
+    <link rel="stylesheet" href="./css/style-Funcionario.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font/awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">

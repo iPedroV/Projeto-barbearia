@@ -12,7 +12,7 @@ if ((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
     exit;
 }
 
-include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/ClientesController.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/funcionarioController.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
@@ -23,8 +23,8 @@ $msg = new Mensagem();
 ?>
 <?php
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
-$result_funcionarios = "SELECT * FROM usuario";
-$resultado_funcionarios = mysqli_query($conn, $result_funcionarios);
+//$result_funcionarios = "SELECT * FROM usuario";
+//$resultado_funcionarios = mysqli_query($conn, $result_funcionarios);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -35,6 +35,7 @@ $resultado_funcionarios = mysqli_query($conn, $result_funcionarios);
     <title>💈 Barbearia Neves 💈</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style-lista-funcionario.css" rel="stylesheet">
 
 
 <body>
@@ -52,19 +53,17 @@ $resultado_funcionarios = mysqli_query($conn, $result_funcionarios);
 
     ?>
 
-    <header>
-        <a href="#" class="logo">Barbearia Neves<span>.</span></a>
-        <?php
-        include_once 'C:/xampp/htdocs/Projeto-barbearia/nav.php';
-        echo navBar();
-        ?>
-
-    </header>
+        <header>
+            <a href="#" class="logo">Barbearia Neves<span>.</span></a>
+            <?php
+            include_once 'C:/xampp/htdocs/Projeto-barbearia/nav.php';
+            echo navBar();
+            ?>
+                
+        </header>
 
     
-        <div class="page-header">
-            <h1>Listar Funcionários</h1>
-        </div>
+        <section>
         <button type="button" class="btn btn-success" href="cadastroFuncionario.php">Novo Funcionário</button>
         
         <table class="table table-striped" style="border-radius: 3px; overflow:hidden;">
@@ -82,8 +81,8 @@ $resultado_funcionarios = mysqli_query($conn, $result_funcionarios);
             </thead>
             <tbody>
                 <?php
-                $fcTable = new ClientesController();
-                $listaClientes = $fcTable->listarCliente();
+                $fcTable = new funcionarioController();
+                $listaClientes = $fcTable->listarFuncionario();
                 $a = 0;
                 if ($listaClientes != null) {
                     foreach ($listaClientes as $lc) {
@@ -134,7 +133,7 @@ $resultado_funcionarios = mysqli_query($conn, $result_funcionarios);
                 ?>
             </tbody>
         </table>
-
+        </section>
  
 
 

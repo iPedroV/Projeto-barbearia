@@ -20,10 +20,6 @@ class ClientesController {
         return $daoClientes->inserir($clientes);
     }
 
-    public function listarCliente(){
-        $daoClientes = new daoIndex();
-        return $daoClientes->pesquisarClienteDAO();
-    }
 
     public function pesquisarEmailcliente($email){
         $daoClientes2 = new DaoClientes();

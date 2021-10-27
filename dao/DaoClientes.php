@@ -22,7 +22,7 @@ class DaoClientes
             $sexo = $clientes->getSexo();
             $email = $clientes->getEmail();
             $telefone = $clientes->getTelefone();
-            $perfil = 'Cliente';
+            $perfil = 'Administrador';
             try {
                 $st = $conecta->prepare("SELECT * FROM usuario where email = ?");
                 $st->execute([$email]);
