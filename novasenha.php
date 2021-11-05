@@ -31,23 +31,21 @@ $msg = new Mensagem();
         if (isset($_POST['esenha'])) {
 
             $ns = new ClientesController();
-            $emailC = $ns->pesquisarEmailcliente($email);
-            $id = $ns->PesquisarIdCLiente($email);
+            //$emailC = $ns->pesquisarEmailcliente($email);
+            //$id = $ns->PesquisarIdCLiente($email);
 
             /*(echo $emailC->getEmail();*/
 
-            if (gettype($emailC) == 'object') {
+            
                 if (($_POST['nsenha']) == ($_POST['csenha'])) {
                     $senha = $_POST['nsenha'];
                     $ems = new ClientesController();
-                    $msg = $ems->editarSenhaClientes($senha, $id);
+                    $msg = $ems->editarSenhaClientes($senha, $email);
                     echo $msg->getMsg();
-                } else {
+                }else {
                     echo $id;
                 }
-            }else{
-                echo "Usuario inexistente";
-            }
+            
         }
 
         ?>

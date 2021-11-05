@@ -74,7 +74,7 @@ class DaoClientes
 
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stmt = $conecta->prepare("UPDATE `usuario` SET `senha`= md5('?') WHERE email = ?");
+                $stmt = $conecta->prepare("UPDATE usuario SET senha= md5(?) WHERE email = ?");
                 $stmt->bindParam(1, $senha);
                 $stmt->bindParam(2, $email);
                 $stmt->execute();
@@ -102,7 +102,7 @@ class DaoClientes
         if ($conecta) {
             try {
                
-                $rs = $conecta->query("select * from usuario where email = '$email'");               
+                $rs = $conecta->query("select email from usuario where email = '$email'");               
                 $a = 0;
                 if ($rs->execute()) {
                     if ($rs->rowCount() > 0) {
@@ -122,7 +122,7 @@ class DaoClientes
 			 URL='../Projeto-Barbearia/index.php'\">";
         }
         return $cliente;
-<<<<<<< HEAD
+
     }
 
     public function pesquisarIdClienteoDAO($email)
@@ -157,7 +157,6 @@ class DaoClientes
         }
         //return serialize($lista);
         return $lista;
-=======
->>>>>>> bdec5ea8ab29c7b4152b7d98749ad40ab96c634e
+
     } 
 }
