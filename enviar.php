@@ -21,58 +21,7 @@ $corpoemail = "
     <meta charset=\"UTF-8\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 </head>
-    <style>
-    body {
-        background-color: black;
-        margin: 0;
-        color: white;
-        text-align: center;
-    }
-
-    h1 {
-        color: black;
-        padding-top: 25px;
-        text-align: center;
-    }
-
-    .imagem {
-        width: 200px;
-        padding-right: 5px;
-        padding-left: 6px;
-        padding-bottom: 5px;
-    }
-
-    div {
-        background-color: white;
-        width: 550px;
-        height: 550px;
-        text-align: center;
-        border-radius: 10%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .filhadiv {
-        padding-top: 10px;
-        background-color: white;
-        width: 400px;
-        height: auto;
-        text-align: center;
-    }
-
-    a {
-        text-decoration: none;
-        color: #8686;
-    }
-
-    p {
-        color: black;
-        font-family: 'Lobster', cursive;
-        font-size: x-large;
-        font-weight: auto;
-        padding-top: 20px;
-    }
-    </style>
+    
     <body>
         <div>
             <h1>Recuperar de senha</h1>

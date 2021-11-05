@@ -31,11 +31,11 @@ class ClientesController {
         return $daoClientes->pesquisarIdClienteoDAO($email);
     }
 
-    public function editarSenhaClientes($senha, $id){
+    public function editarSenhaClientes($senha, $email){
 
         $cliente = new Usuario();
         $cliente->setSenha($senha);
-        $cliente->setId($id);
+        $cliente->setEmail($email);
 
         $daoClientes3 = new DaoClientes();
         return $daoClientes3->atualizarSenhaDAO($cliente);
