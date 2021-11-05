@@ -42,8 +42,11 @@ $msg = new Mensagem();
                     $ems = new ClientesController();
                     $msg = $ems->editarSenhaClientes($senha, $email);
                     echo $msg->getMsg();
+                    //header("Location: login.php");
                 }else {
-                    echo $id;
+                    $msg->setMsg("<p style='color: blue;'>"
+                    . "As senhas não são iguais</p>");
+                    echo $msg->getMsg();
                 }
             
         }

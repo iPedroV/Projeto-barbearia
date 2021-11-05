@@ -3,11 +3,13 @@
 
 
 include_once 'C:/xampp/htdocs/Projeto-barbearia/login.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 //Variáveis
 /*
  * Como enviar emails do localhost com o Sendmail no Xampp usando o Gmail
  * https://www.carloshdebrito.com.br/como-enviar-emails-do-localhost-com-o-sendmail-no-xampp-usando-o-gmail/
  */
+$msg = new Mensagem();
 $email = $_POST['recuperaremail'];
 
 date_default_timezone_set('America/Sao_Paulo');
@@ -62,11 +64,15 @@ $headers .= 'From: <'.$email.'>';
 
 $enviaremail = mail($destino, $assunto, $corpoemail, $headers);
 if ($enviaremail) {
-    $mgm = "<script>alert('E-MAIL ENVIADO COM SUCESSO! <br> O link para a redefinição será enviado para o "
-            . "e-mail fornecido no seu cadastro')</script>";
-    echo "$mgm";
+    $msg->setMsg("<p style='color: blue;'>"
+                    . "<script>alert('E-MAIL ENVIADO COM SUCESSO! <br> O link para a redefinição será enviado para o "
+                    . "e-mail fornecido no seu cadastro')</script>");
+                    echo $msg->getMsg();
+    
 } else {
-    $mgm = "ERRO AO ENVIAR E-MAIL!";
+    $msg->setMsg("<p style='color: blue;'>"
+                    . "<script>alert('ERRO AO ENVIAR E-MAIL!')</script>");
+                    echo $msg->getMsg();
     echo "$mgm";
 }
 header("Location: login.php"); exit();
