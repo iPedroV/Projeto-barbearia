@@ -13,7 +13,7 @@ $email = $_POST['recuperaremail'];
 date_default_timezone_set('America/Sao_Paulo');
 $data_envio = date('d/m/y');
 $hora_envio = date('H:i:s');
-$data_expirar = date('Y-m-d H:i:s', strtotime('+1 day'));
+$data_expirar = date('H:i:s', strtotime('4 hours'));
 
 $corpoemail = " 
 <!DOCTYPE html>
@@ -21,8 +21,7 @@ $corpoemail = "
 <head>
     <meta charset=\"UTF-8\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-</head>
-    
+</head> 
     <body>
         <div>
             <h1>Recuperar de senha</h1>
@@ -30,7 +29,7 @@ $corpoemail = "
                 <p>Por favor, <a href=\"http://localhost/Projeto-barbearia/novasenha.php?email=$email\" target=\"_blank\">clique aqui</a> para resetar sua senha.</p>
                 <p>Caso não tenha solicitado este email para resetar sua senha, por favor, entre em contato para resolver o problema.</p>
                 <p>Este Email foi enviado dia: $data_envio às: $hora_envio</p>
-                <p>O link irá expirar em: $data_expirar </p>
+                <p>O link irá expirar em: 4 (quatro) horas</p>
             </div>
         </div>
     </body>
