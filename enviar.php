@@ -13,6 +13,7 @@ $email = $_POST['recuperaremail'];
 date_default_timezone_set('America/Sao_Paulo');
 $data_envio = date('d/m/y');
 $hora_envio = date('H:i:s');
+$data_expirar = date('Y-m-d H:i:s', strtotime('+1 day'));
 
 $corpoemail = " 
 <!DOCTYPE html>
@@ -29,6 +30,7 @@ $corpoemail = "
                 <p>Por favor, <a href=\"http://localhost/Projeto-barbearia/novasenha.php?email=$email\" target=\"_blank\">clique aqui</a> para resetar sua senha.</p>
                 <p>Caso não tenha solicitado este email para resetar sua senha, por favor, entre em contato para resolver o problema.</p>
                 <p>Este Email foi enviado dia: $data_envio às: $hora_envio</p>
+                <p>O link irá expirar em: $data_expirar </p>
             </div>
         </div>
     </body>
@@ -55,7 +57,7 @@ $assunto = "Recuperação de senha.";
 
 // É necessário indicar que o formato do e-mail é html
 $headers = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $headers .= 'From: <'.$email.'>';
 //$headers .= "Bcc: $EmailPadrao\r\n";
 
