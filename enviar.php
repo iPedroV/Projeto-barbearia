@@ -1,7 +1,7 @@
 <?php
 include_once 'C:/xampp/htdocs/Projeto-barbearia/login.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
+__DIR__ ."/./Js/sweetalert2.all.min.js";
 //Variáveis
 /*
  * Como enviar emails do localhost com o Sendmail no Xampp usando o Gmail
@@ -61,15 +61,20 @@ $headers .= 'From: <'.$email.'>';
 
 $enviaremail = mail($destino, $assunto, $corpoemail, $headers);
 if ($enviaremail) {
-    $msg->setMsg ( "<p style='color: blue;'>"
-    . "<script>alert('Enviado!')</script>");
+    $msg->setMsg ( "<script>Swal.fire({
+        icon: 'success',
+        title: 'Email enviado',
+        text: 'Link para redefinição enviado para email cadastrado',
+        timer: 3000
+      })</script>");
     echo $msg->getMsg();
-    
 } else {
-    $msg->setMsg("<p style='color: blue;'>"
-                    . "<script>alert('ERRO AO ENVIAR E-MAIL!')</script>");
-                    echo $msg->getMsg();
-    echo "$mgm";
+    $msg->setMsg("<script>Swal.fire({
+        icon: 'error',
+        title: 'Erro ao enviar',
+        text: 'Emeil não encontrado',
+        timer: 3000
+        })</script>");
+        echo $msg->getMsg();
 }
 header("Location: login.php"); exit();
-?>
