@@ -1,8 +1,6 @@
 <?php
-
-
-
 include_once 'C:/xampp/htdocs/Projeto-barbearia/login.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 //Variáveis
 /*
@@ -50,7 +48,6 @@ if (mail($to_email, $subject, $body, $headers)) {
 }*/
 
 
-
 //enviar
 // emails para quem será enviado o formulário
 $destino = $_POST['recuperaremail'];
@@ -76,3 +73,4 @@ if ($enviaremail) {
     echo "$mgm";
 }
 header("Location: login.php"); exit();
+?>

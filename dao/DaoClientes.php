@@ -59,7 +59,7 @@ class DaoClientes
 
     //Ainda não está pronto a alteração de senha do cliente.
     //Atualização de senha Cliente
-   public function atualizarSenhaDAO(Usuario $cliente)
+    public function atualizarSenhaDAO(Usuario $cliente)
     {
         $conn = new Conecta();
         $msg = new Mensagem();
@@ -70,7 +70,7 @@ class DaoClientes
             $email = $cliente->getEmail();
 
             /*$msg->setMsg("<p style='color: blue;'>"
-                    . "'$email', '$senha'</p>");*/
+                    . "'$email', '$senha'</p>"); */
 
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -78,14 +78,21 @@ class DaoClientes
                 $stmt->bindParam(1, $senha);
                 $stmt->bindParam(2, $email);
                 $stmt->execute();
-                $msg->setMsg("<p style='color: blue;'>"
-                    . "Senha atualizada com sucesso</p>");
+                $msg->setMsg("<script>Swal.fire({
+                    icon: 'success',
+                    title: 'Senha alterada com sucesso',
+                    timer: 2000
+                  })</script>");
             } catch (PDOException $ex) {
                 $msg->setMsg(var_dump($ex->errorInfo));
             }
         } else {
-            $msg->setMsg("<p style='color: red;'>"
-                . "Erro na conexão com o banco de dados.</p>");
+            $msg->setMsg("<script>Swal.fire({
+                icon: 'error',
+                title: 'Erro de conexão',
+                text: 'Banco de dados pode estar inoperante',
+                timer: 1900
+              })</script>");
         }
         $conn = null;
         return $msg;
@@ -101,13 +108,13 @@ class DaoClientes
         //echo "<script>alert('Cheguei aqui')</script>";
         if ($conecta) {
             try {
-               
-                $rs = $conecta->query("select email from usuario where email = '$email'");               
+
+                $rs = $conecta->query("select email from usuario where email = '$email'");
                 $a = 0;
                 if ($rs->execute()) {
                     if ($rs->rowCount() > 0) {
                         while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
-                            
+
                             $cliente->setEmail($linha->email);
                         }
                     }
@@ -122,7 +129,6 @@ class DaoClientes
 			 URL='../Projeto-Barbearia/index.php'\">";
         }
         return $cliente;
-
     }
 
     public function pesquisarIdClienteoDAO($email)
@@ -134,8 +140,8 @@ class DaoClientes
         $lista = array();
         if ($conecta) {
             try {
-               
-                $rs = $conecta->query("select id from usuario where email = '$email'");               
+
+                $rs = $conecta->query("select id from usuario where email = '$email'");
                 $a = 0;
                 if ($rs->execute()) {
                     if ($rs->rowCount() > 0) {
@@ -157,6 +163,5 @@ class DaoClientes
         }
         //return serialize($lista);
         return $lista;
-
-    } 
+    }
 }

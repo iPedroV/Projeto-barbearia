@@ -24,6 +24,7 @@ $msg = new Mensagem();
 
 <body>
     <div id="login">
+    <script src="Js/sweetalert2.all.min.js"></script>
 
         <?php
 
@@ -44,8 +45,12 @@ $msg = new Mensagem();
                     echo $msg->getMsg();
                     //header("Location: login.php");
                 }else {
-                    $msg->setMsg("<p style='color: blue;'>"
-                    . "As senhas não são iguais</p>");
+                    $msg->setMsg("<script>Swal.fire({
+                        icon: 'error',
+                        title: 'Senhas diferentes',
+                        text: 'Favor, escreva senhas iguais!',
+                        timer: 1900
+                      })</script>");
                     echo $msg->getMsg();
                 }
             
