@@ -61,10 +61,9 @@ $headers .= 'From: <'.$email.'>';
 
 $enviaremail = mail($destino, $assunto, $corpoemail, $headers);
 if ($enviaremail) {
-    $msg->setMsg("<p style='color: blue;'>"
-                    . "<script>alert('E-MAIL ENVIADO COM SUCESSO! <br> O link para a redefinição será enviado para o "
-                    . "e-mail fornecido no seu cadastro')</script>");
-                    echo $msg->getMsg();
+    $msg->setMsg ( "<p style='color: blue;'>"
+    . "<script>alert('Enviado!')</script>");
+    echo $msg->getMsg();
     
 } else {
     $msg->setMsg("<p style='color: blue;'>"
