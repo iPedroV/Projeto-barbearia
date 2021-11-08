@@ -1,5 +1,5 @@
 <?php
-
+$directory = 'C:/xampp/htdocs/Projeto-barbearia/cadastroFuncionario.php';
 
 ob_start();
 session_start();
@@ -53,19 +53,20 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 
     ?>
 
-        <header>
-            <a href="#" class="logo">Barbearia Neves<span>.</span></a>
-            <?php
-            include_once 'C:/xampp/htdocs/Projeto-barbearia/nav.php';
-            echo navBar();
-            ?>
-                
-        </header>
+    <header>
+        <a href="#" class="logo">Barbearia Neves<span>.</span></a>
+        <?php
+        include_once 'C:/xampp/htdocs/Projeto-barbearia/nav.php';
+        echo navBar();
+        ?>
+
+    </header>
 
     
-        <section>
-        <button type="button" class="btn btn-success" href="cadastroFuncionario.php">Novo Funcionário</button>
-        
+    <section>
+    
+    <a href="cadastroFuncionario.php" class="btn btn-success p-6">
+                                    Novo funcionario</a>               
         <table class="table table-striped" style="border-radius: 3px; overflow:hidden;">
             <thead class="table-dark">
                 <tr>
@@ -75,7 +76,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
                     <th>E-Mail</th>
                     <th>Sexo</th>
                     <th>Telefone</th>
-                    
+
                     <th colspan="2" class="text-center">Ações</th>
                 </tr>
             </thead>
@@ -95,8 +96,8 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
                             <td><?php print_r($lc->getEmail()); ?></td>
                             <td><?php print_r($lc->getSexo()); ?></td>
                             <td><?php print_r($lc->getTelefone()); ?></td>
-                            
-                            <td><a href="cadastro.php?id=<?php echo $lc->getId(); ?>" class="btn btn-warning">
+
+                            <td><a href="cadastroFuncionario.php?id=<?php echo $lc->getId(); ?>" class="btn btn-warning">
                                     Editar</a>
                                 </form>
                             </td>
@@ -115,7 +116,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
                                     </div>
                                     <div class="modal-body">
                                         <form method="post" action="">
-                                            <label><strong>Deseja excluir o fornecedor
+                                            <label><strong>Deseja excluir o funcionário?
                                                     <?php echo $lc->getNome(); ?>?</strong></label>
                                             <input type="hidden" name="ide" value="<?php echo $lc->getId(); ?>">
                                     </div>
@@ -133,8 +134,8 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
                 ?>
             </tbody>
         </table>
-        </section>
- 
+    </section>
+
 
 
 

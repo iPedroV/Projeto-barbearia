@@ -76,11 +76,11 @@ p
 
 header
 {
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     left: 0;
     width: 100%;
-    padding: 40px 100px;
+    padding: 0px 100px;
     z-index: 10000;
     display: flex;
     justify-content: space-between;
@@ -134,6 +134,14 @@ header .navigation li a
     font-weight: bolder;
 }
 
+
+
+dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
 header.sticky .navigation li a
 {
     color: #111;
@@ -172,7 +180,7 @@ header .navigation li a:hover{
 
 section
 {
-    padding: 100px;
+    padding: 50px;
 }
 
 .row
@@ -506,9 +514,14 @@ section
 
 .copyrightText
 {
+    position: absolute;
+    bottom: 0;
     padding: 8px 40px;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 100%;
+    
+    
 }
 
 .copyrightText p
