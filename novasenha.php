@@ -43,14 +43,15 @@ $msg = new Mensagem();
                     $ems = new ClientesController();
                     $msg = $ems->editarSenhaClientes($senha, $email);
                     echo $msg->getMsg();
-                    //header("Location: login.php");
+                    //sleep(1);
+                    header("refresh:2;url=login.php");
                 }else {
-                    $msg->setMsg("<script>Swal.fire({
+                    $msg->setMsg("<script>setTimeout(Swal.fire({
                         icon: 'error',
                         title: 'Senhas diferentes',
                         text: 'Favor, escreva senhas iguais!',
-                        timer: 1900
-                      })</script>");
+                        timer: 2000
+                      }))</script>");
                     echo $msg->getMsg();
                 }
             

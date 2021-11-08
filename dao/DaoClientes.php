@@ -82,7 +82,12 @@ class DaoClientes
                     icon: 'success',
                     title: 'Senha alterada com sucesso',
                     timer: 2000
-                  })</script>");
+                  })
+                  </script>");
+                  
+                
+                
+                
             } catch (PDOException $ex) {
                 $msg->setMsg(var_dump($ex->errorInfo));
             }
@@ -91,7 +96,7 @@ class DaoClientes
                 icon: 'error',
                 title: 'Erro de conexão',
                 text: 'Banco de dados pode estar inoperante',
-                timer: 1900
+                timer: 2000
               })</script>");
         }
         $conn = null;
