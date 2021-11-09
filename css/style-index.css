@@ -111,7 +111,7 @@ header.sticky /* Não pode espaço!!!*/
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
 
-header 
+header .logo
 {
     color: #fff;
     font-weight: 700;

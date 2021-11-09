@@ -3,7 +3,7 @@
 //Banco Utilizado para poder chamar de forma estruturada a chamada dos Selects com interação
 $servidor = "localhost";
 $usuario = "root";
-$senha = "root";
+$senha = "senac";
 $dbname = "dbbarbearia";
 
 //Criar a conexão
