@@ -111,7 +111,7 @@ header.sticky /* Não pode espaço!!!*/
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
 
-header .logo
+header 
 {
     color: #fff;
     font-weight: 700;
@@ -377,7 +377,7 @@ section
 
 .feedbacks
 {
-    background: url(/img/feedback.jpg);
+    background: url(../img/feedback.jpg);
     background-size: cover;
 }
 
@@ -583,7 +583,7 @@ section
         position: relative;
         width: 40px;
         height: 40px;
-        background: url(img/menu.jpg);
+        background: url(../img/menu.jpg);
         background-size: 30px;
         background-repeat: no-repeat;
         background-position: center;
@@ -591,7 +591,7 @@ section
     }
     .menuToggle.active
     {
-        background: url(/img/menu-close.png);
+        background: url(../img/menu-close.png);
         background-size: 25px;
         background-repeat: no-repeat;
         background-position: center;
