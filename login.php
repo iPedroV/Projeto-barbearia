@@ -77,7 +77,7 @@ $_SESSION['conferenr'] = "-2";
                     <input id="usuario" type="email" style="font-size: 20px; padding: 10px; " 
                         placeholder="Digite seu email" name="recuperaremail" required>
                 </div>
-                <button class="btn efeito-btn">Enviar</button>
+                <button id="enviar" data-dismiss="modal" class="btn efeito-btn" name="enviar">Enviar</button>
             </form>
         </div>
     </div>

@@ -59,8 +59,8 @@ $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 $headers .= 'From: <'.$email.'>';
 //$headers .= "Bcc: $EmailPadrao\r\n";
 
-$enviaremail = mail($destino, $assunto, $corpoemail, $headers);
-if ($enviaremail) {
+//$enviaremail = mail($destino, $assunto, $corpoemail, $headers);
+if (mail($destino, $assunto, $corpoemail, $headers)) {
     $msg->setMsg ( "<script>Swal.fire({
         icon: 'success',
         title: 'Email enviado',

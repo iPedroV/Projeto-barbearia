@@ -5,7 +5,7 @@ function iniciaModal(modalID) {
     if (modal) {
         modal.classList.add('mostrar');
         modal.addEventListener('click', (e) => {
-            if (e.target.id == modalID || e.target.className == 'fechar') {
+            if (e.target.id == modalID || e.target.className == 'fechar' || e.target.id== 'enviar') {
                 modal.classList.remove('mostrar');
             }
         });
