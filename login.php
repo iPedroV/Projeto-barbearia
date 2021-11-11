@@ -1,4 +1,10 @@
 <?php
+include_once 'C:/xampp/htdocs/Projeto-barbearia/enviar.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/ClientesController.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
+
+
+
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -69,13 +75,21 @@ $_SESSION['conferenr'] = "-2";
     </div>
 
     <div id="modal-esqueceu" class="modal-container">
+        <script src="Js/sweetalert2.all.min.js"></script>
+        <?php
+        if (isset($_POST['enviar'])) {
+            $msg = new Mensagem();
+            $EmailEnviado = new ClientesController();
+            $msg = $EmailEnviado->EnviarEmailController();
+            echo $msg->getMsg();
+        }
+        ?>
         <div class="modal">
             <button class="fechar">X</button>
-            <form method="post" action="enviar.php">
+            <form method="post">
                 <div class="input-boxmodal">
                     <span class="detalhes" name="recuperaremail">Email:</span>
-                    <input id="usuario" type="email" style="font-size: 20px; padding: 10px; " 
-                        placeholder="Digite seu email" name="recuperaremail" required>
+                    <input id="usuario" type="email" style="font-size: 20px; padding: 10px; " placeholder="Digite seu email" name="recuperaremail" required>
                 </div>
                 <button id="enviar" data-dismiss="modal" class="btn efeito-btn" name="enviar">Enviar</button>
             </form>

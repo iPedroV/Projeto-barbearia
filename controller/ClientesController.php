@@ -3,6 +3,7 @@
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/DaoClientes.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoIndex.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/enviar.php';
 
 class ClientesController {
     
@@ -40,5 +41,10 @@ class ClientesController {
         $daoClientes3 = new DaoClientes();
         return $daoClientes3->atualizarSenhaDAO($cliente);
 
+    }
+
+    public function EnviarEmailController(){
+        $email = new Enviar();
+        return $email->EnviarEmail();
     }
 }
