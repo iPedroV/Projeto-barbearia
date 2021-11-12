@@ -51,20 +51,20 @@ class Enviar
         //$enviaremail = mail($destino, $assunto, $corpoemail, $headers);
         if (mail($destino, $assunto, $corpoemail, $headers)) {
             //echo "<script>alert('Email enviado com sucesso')</script>";
-            $msg->setMsg("<script>Swal.fire({
+            $mensagem = "<script>Swal.fire({
                 icon: 'success',
                 title: 'Email enviado',
                 text: 'Link para redefinição enviado para email cadastrado',
-                })</script>");
-            echo $msg->getMsg();
+                })</script>";
+            echo $msg->setMsg($mensagem);
         } else {
-            $msg->setMsg("<script>Swal.fire({
+            $mensagem2 = "<script>Swal.fire({
             icon: 'error',
             title: 'Erro ao enviar',
             text: 'Emeil não encontrado',
             timer: 3000
-            })</script>");
-            echo $msg->getMsg();
+            })</script>";
+            echo $msg->setMsg($mensagem2);
             //echo "<script>alert('Email não encontrado')</script>";
         }
         return $msg;

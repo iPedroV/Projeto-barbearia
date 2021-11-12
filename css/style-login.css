@@ -10,12 +10,11 @@
 
 body{
     display: flex;
-    height: 100vh;
+    height: 100%;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(to right, rgb(34, 34, 34) , rgb(0, 0, 0));
-    background-repeat: no-repeat;
-    background-size: cover;
+    /*background-color: linear-gradient(to right, rgb(34, 34, 34) , rgb(0, 0, 0));*/
+    background: linear-gradient(90deg, rgb(34, 34, 34) 40%, rgb(0, 0, 0) 80%)!important;
 }
 
 .container{ 
@@ -25,7 +24,7 @@ body{
     padding: 25px 30px;
     border-radius: 10px;
     box-shadow: 1px 1px 2px 6px #8888;
-   
+    margin-top: 75px; 
 }
 
 .container .imagem{
@@ -43,6 +42,16 @@ input{
     size: 100%;
     margin-bottom: 20px;
     outline: none;
+}
+
+.container {
+    max-width: 300px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 6px #8888;
+    margin-top: 75px;
 }
 
 .container form .detalhes-usuario{
@@ -235,10 +244,23 @@ form .esqueciminhasenha{
 }
 
 @media (max-width: 584px){
+
+    body{background: linear-gradient(90deg, rgb(34, 34, 34) 40%, rgb(0, 0, 0) 80%)!important; margin-top: 400px;}
+
 .container{ 
     width: 100%;
     position: fixed;
      
+}
+
+.container{ 
+    max-width: 300px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 6px #8888;
+    margin-top: -20px; 
 }
 
 form .detalhes-usuario .input-box{
@@ -322,6 +344,24 @@ form .esqueciminhasenha{
 }
 
 @media (max-width: 280px){
+    body{background: linear-gradient(90deg, rgb(34, 34, 34) 40%, rgb(0, 0, 0) 80%)!important; margin-top: 400px;}
+
+.container{ 
+    width: 100%;
+    position: fixed;
+     
+}
+
+.container{ 
+    max-width: 300px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 6px #8888;
+    margin-top: -20px; 
+}
+
 .container .imagem{
     width: 330px;
     padding-right: 110px;
