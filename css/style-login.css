@@ -8,6 +8,42 @@
     border: none;
 }
 
+
+            /*SWEETALERT*/
+
+      .swal2-styled.swal2-default-outline:focus {
+        box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
+      }
+  
+    .swal2-styled.swal2-confirm:focus {
+        box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
+    }
+  
+    .swal2-styled:focus {
+        outline: 0;
+    }
+  
+      .swal2-styled.swal2-confirm {
+        border: 2px solid #000!important;
+        border-radius: .25em;
+        background: initial;
+        background-color: #444!important;
+        color: #fff!important;
+        font-size: 1em;
+        padding: 10px 20px;
+        font-weight: 600!important;
+      }
+  
+      .swal2-styled.swal2-confirm:hover{
+        border: 2px solid #444!important;
+        background-color: #000!important;
+        color: white!important;
+      }
+  
+            /*SWEETALERT*/
+
+
+
 body{
     display: flex;
     height: 100%;
