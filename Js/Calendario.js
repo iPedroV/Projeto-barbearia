@@ -49,7 +49,7 @@ class CALENDAR {
         this.drawDateConfirm(); /* Primeiro ele puxa os dados para o Input */
         this.drawYearAndCurrentDay(); /* Depois ele joga na tela para a visuaçização do Usuário */
         this.drawDateFormate(); /* Chamando a data formatado do Script */
-
+        this.drawDateFormateFinal_Semana(); /* Chamando a data final de semana */
     }
 
     // Evento para Comentário se há ou não agendamento
@@ -104,6 +104,17 @@ class CALENDAR {
 
         // Data que será inserida no banco de dados do agendamento
         document.getElementById('dataAgendamento').value = eventListYear +"-"+ eventListMonthNumber +"-"+ adicionaZero(eventListday);
+    }
+
+    drawDateFormateFinal_Semana() {
+        // SUBClasse que chama o dia, a semana e o ano dentro do calendário. 
+        // Adicionando o Onjeto ao Input da data escolhida pelo usuário.
+
+        let calendar = this.getCalendar();
+        let eventListWeekday = [this.elements.currentWeekDay.innerHTML = AVAILABLE_WEEK_DAYS[calendar.active.week]];
+
+        // Data para verificação do Final de Semana
+        document.getElementById('final_semana').value = eventListWeekday;
     }
 
     drawDateFormate() {

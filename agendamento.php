@@ -135,6 +135,7 @@ $nomeUser = $_SESSION['nomec'];
                                 <form method="POST" action="">
                                     <input type="text" name="data_agendamento" id="dataAgendamento" class="campoData" value="">
                                     <input type="text" name="data_agendamentoFormatado" id="dataAgendamentoFormatado" class="campoData" value="">
+                                    <input type="text" name="final_semana" id="final_semana" class="campoData" value="">
                                     <input type="submit" name="enviar" class="add-event-day-field-btn" id="Modalagenda" value="Agende Aqui!">
                                 </form>
                                 </div>
@@ -194,6 +195,7 @@ $nomeUser = $_SESSION['nomec'];
 
         if(isset($_POST['enviar'])) {
             $data = $_POST['data_agendamento'];
+            $dataFinalSemana = $_POST['final_semana'];
 
             $result_usuario = "select * from agendamentos inner join usuario "
                 . "on agendamentos.usuario_id = usuario.id where usuario.id = ". $id;
@@ -204,24 +206,6 @@ $nomeUser = $_SESSION['nomec'];
                 $row_usuario['usuario_id'];
 
                 $user = 0;
-
-                /*if ($row_usuario['idAgendamento'] != null) {
-                    ?>
-                        <script>
-                            Swal.fire({
-                                title: 'Agendamento não pode ser realizado!',
-                                text: 'O usuário já possui um agendamento agendado, para visualizar clique no botão "Verificar Agendamento".',
-                                icon: 'error',
-                                confirmButtonText: 'Ok'
-                            })
-                        </script>
-                    <?php   
-                    echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                        URL='http://localhost/Projeto-barbearia/agendamento.php'\">";
-                } else {
-                    $user = $row_usuario['idAgendamento'];
-                }*/
-
                 $user = $row_usuario['idAgendamento'];
 
             }    
@@ -252,6 +236,17 @@ $nomeUser = $_SESSION['nomec'];
                 <?php
                 $data = null;
 
+            } else if ($dataFinalSemana == "Domingo") {
+                ?>
+                    <script>
+                        Swal.fire({
+                            title: 'Não efetuamos serviços em dia de Domingo!',
+                            text: 'Por favor, escolha outro dia para agendar.',
+                            icon: 'error',
+                            confirmButtonText: '<a href="">Voltar_Calendário</a>'
+                        })
+                    </script>
+                <?php 
             } else if($data != null && $user == 0) {
                 $_SESSION['dataAgendamento'] = $_POST['data_agendamento'];
                 $_SESSION['dataAgendamentoFormatado'] = $_POST['data_agendamentoFormatado'];
