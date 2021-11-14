@@ -8,6 +8,9 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
         header("Location: agendamento.php");
     exit;
 }
+
+$id = $_SESSION['idc'];
+$nomeUser = $_SESSION['nomec'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -31,6 +34,7 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 
     <!-- SweetAlert -->
     <script src="Js/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
 
     <!-- JavaScript Para Funções da Página -->
 
@@ -111,6 +115,7 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
         <h2 class="titleText"><span>A</span>gendamento</h2>
         <div class="PainelAG">
             <div class="conteudo">
+                <label>Por favor, escolha o dia que deseja realizar o agendamento &#9660;</label>
                 <div class="calendario">
                     <div>
                     <div class="calendar disable-selection" id="calendar">
@@ -144,6 +149,7 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
                                         class="fa fa-caret-right cursor-pointer calendar-change-year-slider-next"></span>
                                 </div>
                             </div>
+                            <h4>Meses</h4>
                             <div class="calendar-month-list">
                                 <ul class="calendar-month"></ul>
                             </div>
@@ -171,6 +177,7 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
     </div>
     
     <?php
+    require_once __DIR__ . "/bd/banco.php";
 
     $defaultTimeZone = 'UTC';
     if (date_default_timezone_get() != $defaultTimeZone) date_default_timezone_set($defaultTimeZone);
@@ -187,18 +194,65 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 
         if(isset($_POST['enviar'])) {
             $data = $_POST['data_agendamento'];
+
+            $result_usuario = "select * from agendamentos inner join usuario "
+                . "on agendamentos.usuario_id = usuario.id where usuario.id = ". $id;
+            $resultado_usuario = mysqli_query($conn, $result_usuario);
+
+            while($row_usuario = mysqli_fetch_assoc($resultado_usuario)){
+                $row_usuario['idAgendamento'];
+                $row_usuario['usuario_id'];
+
+                $user = 0;
+
+                /*if ($row_usuario['idAgendamento'] != null) {
+                    ?>
+                        <script>
+                            Swal.fire({
+                                title: 'Agendamento não pode ser realizado!',
+                                text: 'O usuário já possui um agendamento agendado, para visualizar clique no botão "Verificar Agendamento".',
+                                icon: 'error',
+                                confirmButtonText: 'Ok'
+                            })
+                        </script>
+                    <?php   
+                    echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                        URL='http://localhost/Projeto-barbearia/agendamento.php'\">";
+                } else {
+                    $user = $row_usuario['idAgendamento'];
+                }*/
+
+                $user = $row_usuario['idAgendamento'];
+
+            }    
+        
             if ($data < $dateEscolhida) {
                 ?>
                     <script>
                         Swal.fire({
-                            title: 'Agendamento não pode ser realizado!',
-                            text: 'O dia escolhido não pode ser agendado antes do dia atual (<?php echo $dateEscolhida ?>)!',
+                            title: 'Agendamento não pode ser efetuado!',
+                            text: 'O dia escolhido não pode ser agendado antes do dia atual (<?php echo $dateEscolhida ?>)! Agende o serviço a partir de hoje.',
                             icon: 'error',
-                            confirmButtonText: 'Ok'
+                            confirmButtonText: '<a href="">Voltar_Calendário</a>'
                         })
                     </script>
                 <?php    
-            }else{
+            } else if($user != 0) {
+                ?>
+                    <script>
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'O cliente já possui um agendamento em andamento!',
+                            text: 'Para saber mais detalhes clique no botão "Verificar Agendamento".',
+                            showCancelButton: true,
+                            confirmButtonText: '<a href="./agendamento_ClienteDados.php">Verificar Agendamento</a>'  
+                        })
+                    </script>
+                    <a href="./"></a>
+                <?php
+                $data = null;
+
+            } else if($data != null && $user == 0) {
                 $_SESSION['dataAgendamento'] = $_POST['data_agendamento'];
                 $_SESSION['dataAgendamentoFormatado'] = $_POST['data_agendamentoFormatado'];
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;

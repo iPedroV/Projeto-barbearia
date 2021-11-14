@@ -24,7 +24,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_model.php';
 $dt = new Agendamento();
 $dts = new AgendamentoController();
 
-include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
+require_once __DIR__ . "/bd/banco.php";
 
 ?>
 <!DOCTYPE html>
@@ -69,7 +69,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
         }
     </Style>
 
-<body style="border: 2px solid #000000; background-color: #333;">
+<body style="border-top: 2px solid #000000; background-color: #333;">
     <header>
         <a href="./agendamento.php" class="logo">&#8656; Voltar<span>.</span></a>
     </header>
@@ -114,35 +114,85 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
             $servico = $_SESSION['servico'];
 
             $valor1 = $_POST['valor01'];
-            $funcionarioN = $_POST['nomeFuncionario'];
-            $_SESSION['nomeFuncionarioFormulario'] = $_POST['nomeFuncionario'];
+            $tempoServ1 = $_POST['tempoServico01'];
+            
+            $servicoN = $_POST['nomeServico01'];
+            $_SESSION['nome_Servico'] = $servicoN;
+            //$_SESSION['nomeFuncionarioFormulario'] = $_POST['nomeFuncionario'];
                
-            echo " <p style='color: white;'>- idUsuário: $idUsuario, $funcionarioN </p>";
-            echo " <p style='color: white;'>- Data Escolhida: $data <br><br>-: servico 01 :==> $servico, $funcionario valor: R$$valor1 </p>";
+            //echo " <p style='color: white;'>- idUsuário: $idUsuario, </p>";
+            echo " <p style='color: white;'>- Data Escolhida: $data <br><br>-: servico 01 :==> $servico, $servicoN, $funcionario valor: R$$valor1 </p>";
             
 
             $valorTotal = $valor1;
-            echo " <p style='color: white;'>- valor Total a pagar: $valorTotal </p>";
+            $tempoTotal = $tempoServ1;
+            //echo " <p style='color: white;'>- valor Total a pagar: $valorTotal </p>";
+            //echo " <p style='color: white;'>- tempo Total: $tempoTotal </p><br>";
             $_SESSION['agendamentoServicoValor'] = $valorTotal;
+            $_SESSION['agendamentoServicoTempo'] = $tempoTotal;
 
-            $funcionarioN2 = $_POST['nomeFuncionario2'];
-            if($funcionarioN2 != null){
-                $_SESSION['nomeFuncionarioFormulario2'] = $_POST['nomeFuncionario2'];
+            $funcionarioN2 = $_POST['id_funcionarios2'];
+            if($funcionarioN2 == null){
+                //$_SESSION['nomeFuncionarioFormulario2'] = $_POST['id_funcionarios2'];
                 $funcionario2 = $_POST['id_funcionarios2'];
                 $_SESSION['funcionario2'] = $_POST['id_funcionarios2'];
                 $servico2 = $_SESSION['servico2'];
                 $valor2 = $_POST['valor02'];
-                echo " <p style='color: white;'>-: servico 02 :==>  $servico2, $funcionario2 valor: R$$valor2 </p>";
+                $tempoServ2 = $_POST['tempoServico02'];
+
+                //echo " <p style='color: white;'>-: servico 02 :==>  $servico2, $funcionario2 valor: R$$valor2 </p>";
 
                 $valorTotal = $valor1 + $valor2;
-                echo " <p style='color: white;'>- valor Total a pagar: $valorTotal </p>";
+                //echo " <p style='color: white;'>- valor Total a pagar: $valorTotal </p>";
+                //echo " <p style='color: white;'>- tempo Total: $tempoServ2 </p>";
                 $_SESSION['agendamentoServicoValor'] = $valorTotal;
+                $_SESSION['agendamentoServicoTempo2'] = $tempoServ2;
             }
 
-            header("Location: agendamentoFormulario2.php");
-            
-        }
-                  
+            $horario = $_POST['horario_agendamento'];
+            if ($horario == null) {
+                ?>
+                        <script>
+                            Swal.fire({
+                                title: 'Escolha um horário para continuar',
+                                text: 'O horário não foi selecionado.',
+                                icon: 'warning',
+                                confirmButtonText: 'Ok'
+                            })
+                        </script>
+                    <?php    
+            } else {
+                $_SESSION['horarioAgendamento'] = $horario;
+
+                // Metodo apra verfificar a Data e horário que estão sendo escolhidas pelo usuário
+                $result_usuario = "SELECT * FROM agendamentos WHERE data = '$data' AND horario = '$horario'";
+                $resultado_usuario = mysqli_query($conn, $result_usuario);
+                while($row_usuario = mysqli_fetch_assoc($resultado_usuario)){
+                    $row_usuario['idAgendamento'];
+                    $row_usuario['data'];
+                    $row_usuario['horario'];
+
+                    $dataBC = $row_usuario['data'];
+                    $horarioBC = $row_usuario['horario'];
+
+                    if ($row_usuario['horario'] != null) {
+                        ?>
+                        <script>
+                            Swal.fire({
+                                title: 'Vaga Indisponível neste horário.',
+                                text: 'Por favor escolha outro horário ou mude a data do agendamento.',
+                                icon: 'error',
+                                confirmButtonText: 'Ok'
+                            })
+                        </script>
+                    <?php    
+                    }   
+                }
+                if ($dataBC == null && $horarioBC == null) {
+                    header("Location: agendamentoFormulario2.php");
+                }
+            }
+        }     
     }
 
     ?>
@@ -159,7 +209,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
                     <div class="col-md-2"></div>
                         <div class="col-md-4 servico">
                             <label style="padding: 5px; font-size: 18px; color: white; "><strong>Serviços</strong></label>
-                            <select name="id_servicos" id="id_servicos" class="form-control">
+                            <select name="id_servicos" id="id_servicos" class="form-control" >
                                 
                                     <option value="">Escolher serviço</option>
                                 <?php
@@ -179,7 +229,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
                         <div class="col-md-4 funcionario">
                             <label style="padding: 5px; font-size: 18px; color: White; text-align: end;"><strong>Funcionarios
                                     </strong></label>
-                            <select name="id_funcionarios" id="id_funcionarios" class="form-control">
+                            <select name="id_funcionarios" id="id_funcionarios" class="form-control" onclick="mascaraVal()">
                                 <option>Selecionar Serviço</option>
                             </select>
                         </div>
@@ -229,62 +279,51 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
                                 </div>
                             </div>
 
-                            <div class="col-md-12 offset-12" style="border-bottom: 3px solid white; margin-bottom: -17px;"></div>
-
-                            <div class="col-md-6 p-4">
-                                <div class="campoForm2" style="text-align: center;">
-                                    <input type="text" class="parte01" name="nome" value="Dados dos Serviços 01" style="color: white; font-size: 22px; width: 100%; 
-                                        padding-bottom: 10px; padding-top: 10px; margin-top: -9px;" disabled>
-                                    <select id="nomeServico" name="nomeServico" class="form-control" >
-                                        <option></option>
-                                    </select>
-                                    <br>
-                                
-                                    <select name="valor01" id="valorServico" class="form-control" >
-                                        <option style="text-align: center;">... Aguardando ...</option>
-                                    </select>
-
-                                    <select name="tempo01" id="tempoServicoForm" class="form-control" >
-                                        <option></option>
-                                    </select><br>
-                                   
-                                    <label class="nomeFunc">Funcionario: </label><br>
-                                    <select name="nomeFuncionario" id="nomeFuncionario" class="form-control" >
-                                        <option></option>
-                                    </select><br>
-
-                                    <div class="barreiraServico"></div>
-                                </div>
-                            </div>
-
                             <!-- DIVISÃO DE SERVIÇOS -->
 
-                            <div class="col-md-6 p-4" style="margin-top: 0px;">
-                                <div class="campoForm2" style="text-align: center;">
-                                    <input type="text" class="parte01" name="nome" value="Dados dos Serviços 02" style="color: white; font-size: 22px; width: 100%; 
-                                        padding-bottom: 10px; padding-top: 10px; margin-top: -9px;" disabled>
-                                    <select id="nomeServico2" name="nomeServico2" class="form-control" >
-                                        <option></option>
-                                    </select><br>
-                                
-                                    <select name="valor02" id="valorServico2" class="form-control" >
-                                        <option style="text-align: center;">...</option>
-                                    </select>
-
-                                    <select name="tempo02" id="tempoServicoForm2" class="form-control" >
-                                        <option></option>
-                                    </select><br>
-                                    
-                                    <label class="nomeFunc">Funcionario: </label><br>
-                                    <select name="nomeFuncionario2" id="nomeFuncionario2" class="form-control" >
-                                        <option></option>
-                                    </select><br>
-
-                                    <div class="barreiraServico2"></div>
+                            <div class="col-md-12 offset-12" style="border-bottom: 2px solid white; margin-bottom: -15px;"></div>
+                            <div class="col-md-12 offset-12">
+                                <div class="campoFormHorario">
+                                    <label>Escolha o Horário &nbsp;</label>
                                 </div>
                             </div>
+                            <div class="col-md-12 offset-12" style="border-bottom: 2px solid white; margin-bottom: -15px;"></div>
 
-                            <div class="col-md-12 offset-12" style="border-bottom: 3px solid white; margin-bottom: 15px; margin-top: 20px;"></div>
+                            <div class="col-md-6 p-4" style="align-items: center; text-align: center;">
+                                <button name="horarioAgend" id="btnHorario" onclick="horario()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px; margin-top: 20px;"><span style="color: white;">08:00</span></button>
+                                <button name="horarioAgend" id="btnHorario2" onclick="horario2()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">08:45</span></button>
+                                <button name="horarioAgend" id="btnHorario3" onclick="horario3()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">09:30</span></button>
+                                <button name="horarioAgend" id="btnHorario4" onclick="horario4()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">10:15</span></button>
+                                <button name="horarioAgend" id="btnHorario5" onclick="horario5()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">11:00</span></button>
+                                <label class="almoco">Horário de Almoço: <br><span>12h ás 14h</span></label> 
+                            </div>
+
+                            <!-- DIVISÃO DE SERVIÇOS --> 
+                            
+                            <div class="col-md-6 p-4" style="align-items: center; text-align: center;">
+                                <button name="horarioAgend" id="btnHorario6" onclick="horario6()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px; margin-top: 20px;"><span style="color: white;">14:00</span></button>
+                                <button name="horarioAgend" id="btnHorario7" onclick="horario7()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">14:45</span></button>
+                                <button name="horarioAgend" id="btnHorario8" onclick="horario8()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">15:30</span></button>
+                                <button name="horarioAgend" id="btnHorario9" onclick="horario9()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">16:15</span></button>
+                                <button name="horarioAgend" id="btnHorario10" onclick="horario10()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">17:00</span></button>
+                                <button name="horarioAgend" id="btnHorario11" onclick="horario11()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">17:45</span></button>
+                            </div>
+
+                            <div class="col-md-12 offset-12" style="border-bottom: 2px solid white; margin-bottom: 15px; margin-top: 0px;"></div>
+                            <div class="col-md-12 offset-12">
+                                <div class="campoFormHorario2">
+                                    <label>Horário Escolhido &nbsp;&#8658;</label>
+                                    <input type="time" name="horario_agendamento" id="horarioEscolhido" value="" >
+                                </div>
+                            </div>
+                            <div class="col-md-12 offset-12" style="border-bottom: 2px solid white; margin-bottom: 30px; margin-top: -15px;"></div>
+
+                            <select name="valor01" id="valorServico" class="form-control" ></select>
+                            <select name="tempoServico01" id="tempoServicoForm" class="form-control" ></select>
+                            <select name="nomeServico01" id="nomeServico" class="form-control" ></select>
+
+                            <select name="valor02" id="valorServico2" class="form-control" ></select>
+                            <select name="tempoServico02" id="tempoServicoForm2" class="form-control" ></select>
 
                             <div class="footer" style="background-color: #fff;">
                                 
@@ -334,7 +373,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 						for (var i = 0; i < j.length; i++) {
 							optionsV += '<option value="' + j[i].valor + '">R$ ' + j[i].valor + ',00</option>';
 							optionsV2 += '<option value="' + j[i].nome + '">' + j[i].nome + '</option>';
-							optionsV3 += '<option value="' + j[i].tempo_estimado + '">Tempo: ' + j[i].tempo_estimado + '</option>';
+							optionsV3 += '<option value="' + j[i].tempo_estimado + '">' + j[i].tempo_estimado + '</option>';
 						}	
 						$('#valorServico').html(optionsV).show();
 						$('#tempoServicoForm').html(optionsV3);
@@ -384,55 +423,13 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 							optionsV3 += '<option value="' + h[i].tempo_estimado + '">Tempo: ' + h[i].tempo_estimado + '</option>';
 						}	
 						$('#valorServico2').html(optionsV).show();
-						$('#tempoServicoForm2').html(optionsV3).show();
+						let dao2 = $('#tempoServicoForm2').html(optionsV3).show();
                         $('#nomeServico2').html(optionsV2).show();
                     
 					});
 
-				} else {
-					$('#id_funcionarios2').html('<option value="">– Escolher Funcionario –</option>');
-				}
-			});
-		});
-
-        $(function(){
-            $('#id_funcionarios').change(function(){
-				if( $(this).val() ) {
-                    $('#id_funcionarios').hide();
-
-					$.getJSON('agendamentoFormularioFuncionario.php?search=',{id_funcionarios: $(this).val(), ajax: 'true'}, function(j){
-						var options = "";	
-						var optionsV = '<option value="">Escolher Serviço</option>';	
-						for (var i = 0; i < j.length; i++) {
-							options += '<option value="' + j[i].nome + '">' + j[i].nome + '</option>';
-							optionsV += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
-						}	
-
-						$('#nomeFuncionario').html(options).show();
-                        //$('#id_funcionarios').html(optionsV).show();
-                        //location.reload();
-					});
-
-                    
-
-				} else {
-					$('#id_funcionarios').html('<option value="">– Escolher Funcionario –</option>');
-				}
-			});
-
-            $('#id_funcionarios2').change(function(){
-				if( $(this).val() ) {
-                    $('#id_funcionarios2').hide();
-
-					$.getJSON('agendamentoFormularioFuncionario.php?search=',{id_funcionarios: $(this).val(), ajax: 'true'}, function(j){
-						var options = "";	
-						for (var i = 0; i < j.length; i++) {
-							options += '<option value="' + j[i].nome + '">' + j[i].nome + '</option>';
-						}	
-
-						$('#nomeFuncionario2').html(options);
-						//$('#id_funcionarios2').html(options).show();
-					});
+                    let dao1 = document.getElementById('valorServico');
+                    alert(dao1 + " famoso " + dao2);
 
 				} else {
 					$('#id_funcionarios2').html('<option value="">– Escolher Funcionario –</option>');
@@ -441,6 +438,53 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 		});
 
 	</script>
+
+<script>
+        function horario(){
+            var horario = '08:00';
+            document.getElementById('horarioEscolhido').value = horario;
+        }
+        function horario2(){
+            var horario = '08:45';
+            document.getElementById('horarioEscolhido').value = horario;
+        }
+        function horario3(){
+            var horario = '09:30';
+            document.getElementById('horarioEscolhido').value = horario;
+        }
+        function horario4(){
+            var horario = '10:15';
+            document.getElementById('horarioEscolhido').value = horario;
+        }
+        function horario5(){
+            var horario = '11:00';
+            document.getElementById('horarioEscolhido').value = horario;
+        }
+        function horario6(){
+            var horario = '14:00';
+            document.getElementById('horarioEscolhido').value = horario;
+        }
+        function horario7(){
+            var horario = '14:45';
+            document.getElementById('horarioEscolhido').value = horario;
+        }
+        function horario8(){
+            var horario = '15:30';
+            document.getElementById('horarioEscolhido').value = horario;
+        }
+        function horario9(){
+            var horario = '16:15';
+            document.getElementById('horarioEscolhido').value = horario;
+        }
+        function horario10(){
+            var horario = '17:00';
+            document.getElementById('horarioEscolhido').value = horario;
+        }
+        function horario11(){
+            var horario = '17:45';
+            document.getElementById('horarioEscolhido').value = horario;
+        }
+    </script>
 
     <script>
         $(document).ready(function () {

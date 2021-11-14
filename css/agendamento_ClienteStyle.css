@@ -243,7 +243,7 @@ span.account-position{
     background-color: transparent; 
     width: 850px;
     position: relative;
-    left: -60px;
+    left: -80px;
     margin-top: 30px;
     margin-bottom: 30px;
 }
@@ -316,3 +316,51 @@ span.account-position{
         background-color: transparent;
         top: -8px;
     }
+
+
+    .btnDetalhes {
+        border: 1px solid #888;
+        background-color: #888;
+        color: white;
+        width: 100px;
+        height: 30px;
+        border-radius: 2px;
+    }
+
+    .btnDetalhes:hover {
+        border: 1px solid #333;
+        background-color: #333;
+    }
+
+    .btnReagendar{
+        border: 1px solid #333;
+        background-color: #333;
+        color: white;
+        width: 110px;
+        height: 30px;
+        border-radius: 2px;
+        text-decoration: none;
+
+    }
+
+    .btnReagendar:hover {
+        border: 1px solid #000;
+        background-color: #000;
+        color: #fff;
+    }
+
+    .modalSair{
+        color: #fff;
+        background-color: #888;
+        width: 60px;
+        height: 30px;
+        border: none;
+        border-radius: 2px;
+    }
+
+
+
+
+
+
+    

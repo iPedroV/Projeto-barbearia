@@ -456,7 +456,7 @@ select.form-control {
 #myList li{display: none; list-style: none;}
 
 #myList{
-    background-color: #222;
+    background-color: rgba(0, 0, 0, 0.5);
     border: 2px solid black;
     width: 900px;
     padding: 15px;
@@ -510,6 +510,14 @@ select.form-control {
     
 }
 
+.formulario2{
+    border: 2px solid black; 
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 900px;
+    height: 515px;
+    margin-bottom: 30px;
+}
+
 .campoForm2{
     height: 270px;
     margin-bottom: 20px;
@@ -523,14 +531,77 @@ select.form-control {
 
 .campoForm2 input{
     position: static;
-    color: black;
+    color: white;
+    font-family: 'Calibri';
+    font-size: 22px;
+    padding: 0px 0px 0px 5px;
+    width: 325px;
+    margin-bottom: 10px;
+    margin-top: -45px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+}
+
+.campoForm2 select {
+    background-color: transparent;
+}
+
+.campoForm4{
+    height: 270px;
+    margin-bottom: 20px;
+}
+
+.campoForm4 label{
+    color: #fff;
+    font-size: 22px;
+    margin-top: -45px;
+}
+
+.campoForm4 input{
+    position: static;
+    color: white;
     font-family: 'Calibri';
     font-size: 20px;
     padding: 0px 0px 0px 5px;
     width: 325px;
     margin-bottom: 10px;
     margin-top: -45px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
 }
+
+.campoForm3{
+    height: 270px;
+    margin-bottom: 20px;
+    margin-top: -110px;
+    margin-left: 15px;
+}
+
+.campoForm3 label{
+    color: #fff;
+    font-size: 22px;
+    margin-top: -45px;
+}
+
+.campoForm3 input{
+    position: static;
+    color: white;
+    font-family: 'Calibri';
+    font-size: 22px;
+    padding: 0px 0px 0px 5px;
+    width: 325px;
+    margin-bottom: 10px;
+    margin-top: -45px;
+    background-color: transparent;
+    border: none;
+}
+
+.campoForm3 select {
+    background-color: transparent;
+}
+
 
 
 
@@ -552,29 +623,30 @@ select.form-control {
 select#nomeServico{
     font-size: 20px;
     width: 325px;
-    padding: 5px;
+    padding: 0px;
     border-radius: 4px;
-    margin-bottom: 10px;
-    padding-top: 15px;
+    margin-bottom: 00px;
+    padding-top: 0px;
+    height: 0px;
 
     background-color: transparent;
     border: transparent;
 
     margin-bottom: -18px;
     font-weight: 500;
-    color: white;
-    margin-top: -10px;
+    color: transparent!important;
+    margin-top: -50px;
     padding-left: 15px;
 }
 
 select#valorServico{
     position: relative;
-    color: white;
+    color: transparent;
     font-family: 'Calibri';
-    font-size: 20px;
-    padding: 5px;
+    font-size: 0px;
+    padding: 0px;
     width: 300px;
-    height: 40px;
+    height: 0px;
     border-radius: 4px;
     background-color: transparent;
     border: transparent;
@@ -582,7 +654,7 @@ select#valorServico{
     text-align: start;
 
     position: relative;
-    top: -4px;
+    top: -19px;
     padding-left: 15px;
 }
 
@@ -591,11 +663,14 @@ select#tempoServicoForm{
     width: 325px;
     padding: 5px;
     border-radius: 4px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
+    margin-top: -15px;
+
     background-color: transparent;
     border: transparent;
-    color: white;
+    color: transparent;
     padding-left: 15px;
+    height: 0px;
 }
 
 /* PARTE 02 */
@@ -619,12 +694,12 @@ select#nomeServico2{
 
 select#valorServico2{
     position: relative;
-    color: white;
+    color: transparent;
     font-family: 'Calibri';
     font-size: 20px;
     padding: 5px;
     width: 300px;
-    height: 40px;
+    height: 0px;
     border-radius: 4px;
     background-color: transparent;
     border: transparent;
@@ -646,6 +721,7 @@ select#tempoServicoForm2{
     border: transparent;
     color: white;
     padding-left: 15px;
+    height: 0px;
 }
 
 .barreiraServico{
@@ -764,7 +840,7 @@ label.nomeFunc {
 
 .barreira2 {
     position: relative;
-    background-color: rgb(0, 0, 0, 0.35);
+    background-color: transparent;
     width: 325px;
     height: 36px;
     top: 54px;
@@ -833,30 +909,16 @@ label.nomeFunc {
 
 .campoFormHorario label{
     color: #fff;
-    font-size: 22px;
-    margin-top: 0px;
+    font-size: 26px;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    width: 100%;
 
     position: relative;
-    top: 5px;
+    top: 15px;
+    text-align: center;
 }
     
-.campoFormHorario input{
-    font-size: 20px;
-    width: 325px;
-    padding: 5px;
-    border-radius: 4px;
-
-    background-color: transparent;
-    border: transparent;
-    color: white;
-    margin-top: 15px;
-    text-align: start;
-
-    position: relative;
-    left: 0px;
-    top: 5px;
-}
-
 .campoFormHorario2 label{
     color: #fff;
     font-size: 22px;
@@ -909,10 +971,10 @@ label.nomeFunc {
 
 
 div.botaoCancelar {
-    margin-top: -125px;
+    margin-top: -100px;
     background-color: #333;
     width: 100%;
-    height: 190px;
+    height: 180px;
     text-align: center;
     
 }
@@ -1111,10 +1173,11 @@ transform: scale(1,1);
         margin-top: -30px;
     }    
 
-    .formulario{
+    .formulario2{
         width: 320px;
         margin-left: 22px;
         margin-top: 20px;
+        height: 900px;
     }
 
     #myList{
@@ -1143,6 +1206,35 @@ transform: scale(1,1);
     }
 
     .campoForm2 input{
+        font-size: 18px;
+        width: 245px;
+        margin-bottom: 10px;
+    }
+
+    .campoForm4 {
+        margin-top: -140px;
+    }
+
+    .campoForm4 label{
+        font-size: 18px;
+    }
+
+    .campoForm4 input{
+        font-size: 22px;
+        width: 245px;
+        margin-bottom: 10px;
+    }
+
+    .campoForm3 {
+        margin-left: 10px;
+        margin-top: -80px;
+    }
+
+    .campoForm3 label{
+        font-size: 18px;
+    }
+
+    .campoForm3 input{
         font-size: 18px;
         width: 245px;
         margin-bottom: 10px;
@@ -1314,8 +1406,8 @@ transform: scale(1,1);
 @media screen and (max-width: 380px){
 
     div.botaoCancelar {
-        margin-top: -225px;    
-        height: 150px; 
+        margin-top: -130px;    
+        height: 175px; 
     }
     
     a.CancelarAgendamento {
@@ -1369,7 +1461,10 @@ transform: scale(1,1);
 
     .formulario{
         margin-left: 100px;
-        
+    }
+
+    .formulario2 {
+        margin-left: 100px;
     }
 
     #myList{

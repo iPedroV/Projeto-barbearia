@@ -1,4 +1,4 @@
-<?php
+<?php 
 ob_start();
 session_start();
 
@@ -10,13 +10,15 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 }
 
 $data = $_SESSION['dataAgendamento'];
-$dataForm = $_SESSION['dataAgendamentoFormatado'];
-$nomeFuncionario = $_SESSION['nomeFuncionarioFormulario'];
 
 // Chamando o id da associativa de servicos para poder usar para inserir
 $servico = null;
 $servico2 = null;
 
+$valor = $_SESSION['agendamentoServicoValor'];
+$horario = $_SESSION['horarioAgendamento'];
+$tempo01 = $_SESSION['agendamentoServicoTempo'];
+$nome01 = $_SESSION['nome_Servico'];
 
 include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/agendamentoController.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoAgendamento.php';
@@ -26,6 +28,7 @@ $dt = new Agendamento();
 $dts = new AgendamentoController();
 
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 
 ?>
 <!DOCTYPE html>
@@ -70,144 +73,197 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
         }
     </Style>
 
-<body style="border: 2px solid #000000; background-color: #333;">
+<body style="border-top: 2px solid #000000; background-color: #333;">
     <header>
         <a href="./agendamentoFormulario.php" class="logo">&#8656; Voltar<span>.</span></a>
     </header>
 
-    <?php
-
-    if (isset($_POST['voltar'])) {
-        header("Location: agendamentoFormulario.php");
-    }
-
-    if (isset($_POST['enviar'])) {
-        
-        $horario = $_POST['horario_agendamento'];
-        $_SESSION['horarioAgendamento'] = $horario;
-
-        echo "<p style='color: #fff;'>--> Horário: " . $horario . "</p>";
-        
-        header("Location: agendamentoFormulario3.php");
-                  
-    }
-
-    ?>
-
-    <form method="POST" action="" class="agendamento" id="agendamento" style="background-color: #333;">
+    <form method="POST" action="" class="agendamento2" id="agendamento2" style="background-color: #333;">
         <div class="card-body" style="background-color: #333;">
             <div class="card-header tituloAgend">
-                Escolher horário para Realizar o serviço
+                Dados Gerais para confirmação do agendamento
             </div><br>
                 <div id="modar3">
                     <div class="row">
                         <div class="col-md-2"></div>
-                        <div class="row formulario">
+                        <div class="row formulario2">
                             <!-- Lado esquerdo do Formulário 2prt -->
-                            <div class="col-md-12 offset-2">
-                                <div class="campoFormData">
-                                    <div class="barreira"></div>
+                            <div class="col-md-6 p-4">
+                                <div class="campoForm2">
+                                    <label for="nome">Nome/Usuário: </label><br>
+                                    <input type="text" id="nome" name="nome" value="<?php echo $_SESSION['nomec'];?>" disabled><br>
+                                
+                                    <br><label for="email">E-mail: </label><br>
+                                    <input type="text" id="email" name="email" value="<?php echo $_SESSION['emailc'];?>" disabled><br>
+                                    <br>
+                                </div>
+                            </div>
+
+                            <!-- Lado direito do Formulário 2prt -->
+
+                            <div class="col-md-6 p-4" style="margin-top: -35px;">
+                                <div class="campoForm4">
+                                    <div class="barreira2"></div>
                                     <Label>Data de Agendamento:</Label><br>
-                                    <input type="text" name="data_agendamento" value="<?php echo $dataForm ?>"><br>
+                                    <input type="date" name="data_agendamento" value="<?php echo $data ?>">
+                                
+                                    <br><br><Label>Horário do Serviço:</Label><br>
+                                    <input type="time" name="" value="<?php echo $horario;?>" disabled>
+                                    <br>
                                 </div>
                             </div>
 
-                            <div class="col-md-12 offset-12" style="border-bottom: 2px solid white; margin-bottom: -15px;"></div>
-                            <div class="col-md-12 offset-12">
-                                <div class="campoFormHorario">
-                                    <label>Realizador do Serviço &nbsp;&#8658;</label>
-                                    <input type="text" name="data_agendamento" value="<?php echo $nomeFuncionario ?>" disabled>
+                            <div class="col-md-6">
+                                <div class="campoForm3">
+                                    <Label style="margin-bottom: 10px;">Dados do Serviço:</Label><br>
+                                    <div class="col-10" style="background-color: white; height: 2px; margin-top: -8px; margin-bottom: 8px;"></div>
+                                    
+                                    <input type="text" name="nomeServico" value="<?php echo $nome01;?>" disabled><br>
+
+                                    <input type="text" value="<?php $tempo01; 
+                                        if($tempo01 == "00:05:00"){
+                                            echo "05 min";
+                                        } elseif ($tempo01 == "00:10:00"){
+                                            echo "10 min";
+                                        } elseif ($tempo01 == "00:15:00"){
+                                            echo "15 min";
+                                        } elseif ($tempo01 == "00:20:00"){
+                                            echo "20 min";
+                                        } elseif ($tempo01 == "00:25:00"){
+                                            echo "25 min";
+                                        } elseif ($tempo01 == "00:30:00"){
+                                            echo "30 min";
+                                        } elseif ($tempo01 == "00:35:00"){
+                                            echo "35 min";
+                                        } elseif ($tempo01 == "00:40:00"){
+                                            echo "40 min";
+                                        } elseif ($tempo01 == "00:45:00"){
+                                            echo "45 min";
+                                        } elseif ($tempo01 == "00:50:00"){
+                                            echo "50 min";
+                                        } elseif ($tempo01 == "00:55:00"){
+                                            echo "55 min";
+                                        } elseif ($tempo01 == "01:00:00"){
+                                            echo "1h (uma) hora";
+                                        } elseif ($tempo01 == "01:05:00"){
+                                            echo "1h 05min";
+                                        } elseif ($tempo01 == "01:10:00"){
+                                            echo "1h 10min";
+                                        } elseif ($tempo01 == "01:15:00"){
+                                            echo "1h 15min";
+                                        } elseif ($tempo01 == "01:20:00"){
+                                            echo "1h 20min";
+                                        } elseif ($tempo01 == "01:25:00"){
+                                            echo "1h 25min";
+                                        } elseif ($tempo01 == "01:30:00"){
+                                            echo "1h 30min";
+                                        } elseif ($tempo01 == "01:35:00"){
+                                            echo "1h 35min";
+                                        } elseif ($tempo01 == "01:40:00"){
+                                            echo "1h 40min";
+                                        } elseif ($tempo01 == "01:45:00"){
+                                            echo "1h 45min";
+                                        } elseif ($tempo01 == "01:50:00"){
+                                            echo "1h 50min";
+                                        } elseif ($tempo01 == "01:55:00"){
+                                            echo "1h 55min";
+                                        } elseif ($tempo01 == "02:00:00"){
+                                            echo "2h (duas) horas";
+                                        }
+                                        ?>" disabled><br>
+                                        
+                                    <input type="text" name="valorTotal" value="<?php echo "R$ ".$valor.",00";?>" disabled>
+                                    <!--<select id="valorTotal" name="valorTotal" disabled style="color: black;">
+                                        <option></option>
+                                    </select>--><br>
+
+                                    <div class="col-10" style="background-color: white; height: 2px; margin-top: -5px;"></div>
                                 </div>
                             </div>
-                            <div class="col-md-12 offset-12" style="border-bottom: 2px solid white; margin-bottom: -15px;"></div>
 
-                            <div class="col-md-6 p-4" style="align-items: center; text-align: center;">
-                                <button name="horarioAgend" id="btnHorario" onclick="horario()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px; margin-top: 20px;"><span style="color: white;">08:00</span></button>
-                                <button name="horarioAgend" id="btnHorario2" onclick="horario2()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">08:45</span></button>
-                                <button name="horarioAgend" id="btnHorario3" onclick="horario3()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">09:30</span></button>
-                                <button name="horarioAgend" id="btnHorario4" onclick="horario4()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">10:15</span></button>
-                                <button name="horarioAgend" id="btnHorario5" onclick="horario5()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">11:00</span></button>
-                                <label class="almoco">Horário de Almoço: <br><span>12h ás 14h</span></label> 
-                            </div>
-
-                            <!-- DIVISÃO DE SERVIÇOS --> 
-                            
-                            <div class="col-md-6 p-4" style="align-items: center; text-align: center;">
-                                <button name="horarioAgend" id="btnHorario6" onclick="horario6()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px; margin-top: 20px;"><span style="color: white;">14:00</span></button>
-                                <button name="horarioAgend" id="btnHorario7" onclick="horario7()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">14:45</span></button>
-                                <button name="horarioAgend" id="btnHorario8" onclick="horario8()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">15:30</span></button>
-                                <button name="horarioAgend" id="btnHorario9" onclick="horario9()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">16:15</span></button>
-                                <button name="horarioAgend" id="btnHorario10" onclick="horario10()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">17:00</span></button>
-                                <button name="horarioAgend" id="btnHorario11" onclick="horario11()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">17:45</span></button>
-                            </div>
-
-                            <div class="col-md-12 offset-12" style="border-bottom: 2px solid white; margin-bottom: 15px; margin-top: 0px;"></div>
-                            <div class="col-md-12 offset-12">
-                                <div class="campoFormHorario2">
-                                    <label>Horáio Escolhido &nbsp;&#8658;</label>
-                                    <input type="time" name="horario_agendamento" id="horarioEscolhido" value="" >
+                            <div class="col-md-6">
+                                <div class="campoForm3">
+                                    <label for="email">Forma de Pagamento </label><br>
+                                        <select id="formaPagamento" name="formaPagamento" >
+                                            <option>Dinheiro</option>
+                                        </select><br>
                                 </div>
                             </div>
-                            <div class="col-md-12 offset-12" style="border-bottom: 2px solid white; margin-bottom: 30px; margin-top: -15px;"></div>
-                            <div class="footer" style="background-color: #fff;">
-                                <button type="submit" class="btn btn-secondary" name="voltar">&#8666; Voltar</button>
-                                <button type="submit" class="btn efeito-btn" name="enviar" id="enviar">Avançar &#8667;</button>
+
+                            <div class="footer" style="background-color: #fff; margin-top: -100px;">
+                                <button type="submit" class="btn efeito-btn" name="enviar" id="enviar"> Confirmar agendamento</button>
+                                <button type="submit" class="btn btn-secondary" name="cancelar">Cancelar agendamento</button>
                             </div>
                         </div>
                     </div>
                 </div>
     </form>
+    <?php
 
+    if (isset($_POST['cancelar'])) {
+        header("Location: index.php");
+    }
+
+    if (isset($_POST['enviar'])) {
+        if($_SESSION['dataAgendamento'] != ""){
+        $dataA = $_POST['data_agendamento'];
+            $dataA = $_POST['data_agendamento'];
+            $dataA2 = $_POST['data_agendamento'];
+            $idUsuario = $_SESSION['idc'];
+            $formaPagamento = $_POST['formaPagamento'];
+
+            $servico = $_SESSION['servico'];
+            $funcionario = $_SESSION['funcionario'];
+            
+            //echo " <p style='color: white;'>- idUsuário: $idUsuario </p>";
+            // echo " <p style='color: white;'>- forma de pagamento: $formaPagamento </p>";
+            //echo " <p style='color: white;'>-: $dataA, $horario <br><br>-: servico 01 :==> $servico, $nome01, $funcionario </p>";
+            
+			$valorTotal = $_SESSION['agendamentoServicoValor'];
+            //echo " <p style='color: white;'>- valor Total a pagar: $valorTotal </p>";
+            $funcionario2 = "";
+            $funcionario2 = $_SESSION['funcionario2'];
+            if($funcionario2 != ""){
+                $funcionario2 = $_SESSION['funcionario2'];
+                $servico2 = $_SESSION['servico2'];
+                //echo " <p style='color: white;'>-: servico 02 :==> $servico2, $funcionario2 </p>";
+            }
+            $status = "agendado";
+            $confirmar = "confirmado";
+
+                $dts = new AgendamentoController();
+                unset($_POST['enviar']);
+                $msg = $dts->inserirAgendamento($horario, $dataA, $formaPagamento, $status, $dataA2, $confirmar, 
+                        $valorTotal, $idUsuario, $funcionario, $servico);
+
+                $_SESSION['dataAgendamento'] = "";
+                ?>
+                    <script>
+                        Swal.fire({
+                            title: 'Agendamento realizado!',
+                            text: '',
+                            icon: 'success',
+                            confirmButtonColor: '#000',
+                            confirmButtonText: 'Agendamento Realizado'
+                        })
+                    </script>
+                <?php
+
+                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                        URL='http://localhost/Projeto-barbearia/agendamento_ClienteDados.php'\">";
+        } else {
+
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
+                        URL='http://localhost/Projeto-barbearia/agendamento_ClienteDados.php'\">";
+        }
+    }
+
+    ?>
     <link rel="stylesheet" href="./css/Style-Agend.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="Js/bootstrap.min.js"></script>
-
-	<script>
-        function horario(){
-            var horario = '08:00';
-            document.getElementById('horarioEscolhido').value = horario;
-        }
-        function horario2(){
-            var horario = '08:45';
-            document.getElementById('horarioEscolhido').value = horario;
-        }
-        function horario3(){
-            var horario = '09:30';
-            document.getElementById('horarioEscolhido').value = horario;
-        }
-        function horario4(){
-            var horario = '10:15';
-            document.getElementById('horarioEscolhido').value = horario;
-        }
-        function horario5(){
-            var horario = '11:00';
-            document.getElementById('horarioEscolhido').value = horario;
-        }
-        function horario6(){
-            var horario = '14:00';
-            document.getElementById('horarioEscolhido').value = horario;
-        }
-        function horario7(){
-            var horario = '14:45';
-            document.getElementById('horarioEscolhido').value = horario;
-        }
-        function horario8(){
-            var horario = '15:30';
-            document.getElementById('horarioEscolhido').value = horario;
-        }
-        function horario9(){
-            var horario = '16:15';
-            document.getElementById('horarioEscolhido').value = horario;
-        }
-        function horario10(){
-            var horario = '17:00';
-            document.getElementById('horarioEscolhido').value = horario;
-        }
-        function horario11(){
-            var horario = '17:45';
-            document.getElementById('horarioEscolhido').value = horario;
-        }
+    <script type="text/javascript" charset="utf-8">
     </script>
-
     <script src="Js/Agendamento.js"></script>
     <script src="Js/Projeto-barbearia.js"></script>
 </body>

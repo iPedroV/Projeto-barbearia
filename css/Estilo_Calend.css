@@ -26,9 +26,101 @@
     -webkit-touch-callout: none;
     /* Disable Android and iOS callouts*/ }
 
+
+
+              /*SWEETALERT*/
+    .swal2-styled.swal2-default-outline:focus {
+      box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
+    }
+
+  .swal2-styled.swal2-confirm:focus {
+      box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
+  }
+
+  .swal2-styled:focus {
+      outline: 0;
+  }
+
+    .swal2-styled.swal2-confirm {
+      border: 0px solid white;
+      border-radius: .25em;
+      background: initial;
+      background-color: #ffffff!important;
+      color: #fff;
+      font-size: 1em;
+      font-weight: 600;
+      padding: 7px 0px;
+    }
+
+    .swal2-styled.swal2-confirm:hover{
+      background-color: #333!important;
+      color: #fff;
+    }
+
+    .swal2-styled.swal2-confirm a {
+      text-decoration: none; 
+      color: black; 
+      border: 2px solid black; 
+      padding: 10px 14px; 
+      border-radius: .25em;
+      font-weight: 600;
+    }
+
+    .swal2-styled.swal2-confirm a:hover{
+      color: white!important;
+    }
+
+    .swal2-styled.swal2-cancel {
+      border: 0;
+      border-radius: .25em;
+      background: initial;
+      background-color: #555!important;
+      color: #fff;
+      font-size: 1em;
+      padding: 8px 14px;
+  }
+
+  .swal2-actions {
+    display: flex;
+    z-index: 1;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 90%!important;
+    margin: 2.25em auto 0!important;
+    padding: 15px!important;
+
+    border-top: 3px solid black!important; border-bottom: 3px solid black!important;
+    border-left: 2px solid #888!important; border-right: 2px solid #888!important;
+}
+
+              /*SWEETALERT*/
+
+
+
+
+
     .calendario {
         position: relative;
         top: 265px;
+    }
+
+    .conteudo label{
+      color: #fff;
+      font-size: 24px;
+      width: 800px;
+      padding: 5px;
+    }
+
+    h4 {
+      color: black;
+      position: absolute;
+      top: 30px;
+      left: 415px;
+      font-weight: 600!important;
+      font-family: Calibri ;
+      font-size: 30px!important;
     }
   
   .calendar, .calendar .add-event-day .add-event-day-field-btn, .calendar .calendar-days li:after {
@@ -67,7 +159,7 @@
       padding: 30px;
       height: 100%; 
       width: 320px;
-      background: #000;
+      background: linear-gradient(180deg, #000 70%, #888 120%)!important;
       float: left; 
     }
 
@@ -320,14 +412,25 @@
       background-color: #000000;
     }
 
+    .conteudo label{
+      color: #fff;
+      font-size: 24px;
+      width: 375px;
+      padding: 5px;
+      position: relative;
+      bottom: 65px;
+    }
+
     /* LADO ESQUERDO */
     .calendar .left-side {
       padding: 30px;
       height: 12%; 
       width: 100%;
-      background: #000;
+      background: #000!important;
       float: none; 
     }
+      /*background: linear-gradient(180deg, #000 70%, #888 120%)!important;*/
+
 
     /* DIA do Calendário */
     .calendar h1.calendar-left-side-day {
