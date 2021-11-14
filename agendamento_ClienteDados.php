@@ -250,7 +250,7 @@ if (isset($_POST['excluir'])) {
                                         </div>
                                         <div class="modal-body">
                                             <form method="post" action="">
-                                                <label><strong>Deseja reagendar o serviço? __ <?php echo $la->getId();?></strong></label><br><br>
+                                                <label><strong>Deseja reagendar o serviço?</strong></label><br><br>
                                                 <label>Obs: Você será redirecionado para página do calendário onde continuará o processo.</label>
                                                 <input type="hidden" name="ide" 
                                                     value="<?php echo $la->getId(); ?>">
