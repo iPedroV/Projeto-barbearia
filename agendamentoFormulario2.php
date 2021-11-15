@@ -187,6 +187,21 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                         <select id="formaPagamento" name="formaPagamento" >
                                             <option>Dinheiro</option>
                                         </select><br>
+                                    
+                                    <br>
+                                    <ul name="id_servicos" id="MostarDados" class="form-control" style="height: 40px; background-color: transparent;" >
+                                
+                                        <?php
+                                        $funcionario = $_SESSION['funcionario'];
+                                        $result_post = "SELECT * FROM `usuario` " 
+                                            ."WHERE id = " . $funcionario . " LIMIT 1";
+                                        $resultado_post = mysqli_query($conn, $result_post);
+                                        while ($row_post = mysqli_fetch_assoc($resultado_post)) {
+                                            echo '<li style="list-style: none; color: white; font-size: 18px;" 
+                                                value="' . $row_post['id'] . '"><strong>Funcionario: </strong>' . $row_post['nome'] . '</li>';
+                                        }
+                                        ?>
+                                    </ul>
                                 </div>
                             </div>
 
