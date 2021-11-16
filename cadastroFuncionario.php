@@ -2,7 +2,7 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-if(!isset($_SESSION['msg'])){
+if (!isset($_SESSION['msg'])) {
     $_SESSION['msg'] = "";
 }
 include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/funcionarioController.php';
@@ -47,12 +47,9 @@ $msg = new Mensagem();
 
                 $nome = $_POST['nome'];
                 $perfil = $_POST['cargo'];
-                $telefone = $_POST['telefone']; 
+                $telefone = $_POST['telefone'];
                 $email = $_POST['email'];
                 $sexo = $_POST['sexo'];
-               
-                
-                
             }
 
             $cc = new FuncionarioController();
@@ -65,17 +62,17 @@ $msg = new Mensagem();
                 $email,
                 $senha,
                 $sexo
-                
+
             );
-            if(getType($resp) == 'object'){
+            if (getType($resp) == 'object') {
                 $ce = $resp;
-                echo "<p style='color: red;'>Email já cadastrado!</p>"; 
-            }else{
-            echo $resp;
-            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                                URL='cadastroFuncionario.php'\">";
+                echo "<p style='color: red;'>Email já cadastrado!</p>";
+            } else {
+                echo $resp;
+                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+			 URL='../Projeto-Barbearia/index.php'\">";
+            }
         }
-    }
 
         ?>
 
@@ -97,24 +94,22 @@ $msg = new Mensagem();
 
                 <div class="input-box">
                     <span class="detalhes">Telefone Celular:</span>
-                    <input type="text" placeholder="Digite o telefone celular" name="telefone" required value="<?php echo $ce->getTelefone(); ?>">
+                    <input id="tel" type="tel" placeholder="(xx)9xxxx-xxxx" name="telefone" required value="<?php echo $ce->getTelefone(); ?>">
                 </div>
 
                 <div class="input-box">
                     <span class="detalhes">Cargo:</span>
                     <select name="cargo" class="select">
                         <option hidden>Selecione</option>
-                        <option
-                        <?php
-                        if($ce->getPerfil() == "Administrador"){
-                            echo "selected = 'selected'";
-                        }?>>Administrador</option>
+                        <option <?php
+                                if ($ce->getPerfil() == "Administrador") {
+                                    echo "selected = 'selected'";
+                                } ?>>Administrador</option>
 
-                        <option
-                        <?php
-                        if($ce->getPerfil() == "Funcionario"){
-                            echo "selected = 'selected'";
-                        }?>>Funcionário</option>
+                        <option <?php
+                                if ($ce->getPerfil() == "Funcionario") {
+                                    echo "selected = 'selected'";
+                                } ?>>Funcionario</option>
                     </select>
                 </div>
 
@@ -124,7 +119,7 @@ $msg = new Mensagem();
                     <span class="detalhes">Email:</span>
                     <input type="email" placeholder="Digite seu email" name="email" required value="<?php echo $ce->getEmail(); ?>">
                 </div>
-                
+
                 <div class="input-box">
                     <span class="detalhes">Senha:</span>
                     <input type="password" placeholder="Digite a senha" name="senha" id="senha" required value="<?php echo $ce->getSenha(); ?>">
@@ -135,15 +130,11 @@ $msg = new Mensagem();
                 </div>
             </div>
             <div class="genero">
-                
-                <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>"
-                    <?php if($ce->getSexo()!=null) { 
-                        if($ce->getSexo() == "Masculino") echo "checked = checked";
-                    }?> checked = 'checked' required>
+
+                <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>" 
+                <?php if ($ce->getSexo() != null) {if ($ce->getSexo() == "Masculino") echo "checked = checked"; } ?> checked='checked' required>
                 <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>" 
-                    <?php if($ce->getSexo()!=null) { 
-                        if($ce->getSexo() == "Feminino") echo "checked = checked";
-                    }?>required>
+                <?php if ($ce->getSexo() != null) {if ($ce->getSexo() == "Feminino") echo "checked = checked";} ?>required>
                 <span class="seu-genero">Gênero</span>
                 <div class="categoria">
                     <label for="ponto-1">
@@ -161,22 +152,73 @@ $msg = new Mensagem();
             </div>
         </form>
     </div>
+    <script>
+        var senha = document.querySelector('#senha');
+
+        senha.addEventListener('blur', (eventoLegal) => {
+            verificaSenha(eventoLegal.target);
+        })
+
+        function verificaSenha(input) {
+            var expSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/g;
+            var senhaValida = expSenha.exec(input.value);
+            var msgSenha = '';
+
+            if (!senhaValida) {
+                msgSenha = 'Precisa ter pelo menos 1 letra minúscula, maiúscula, número e caracter especial e ao menos 8 caracteres (!@#$&?*).';
+            }
+
+            input.setCustomValidity(msgSenha);
+
+        }
+    </script>
 
     <script>
-       function toggle() {
+        var telefone = document.querySelector('#tel');
+
+        telefone.addEventListener('blur', (evento) => {
+            verificaTelefone(evento.target);
+        })
+
+        var expTel = /(^\(?[0]?[1-9]{2}\)?)[.-\s]?([9]?[\s]?[1-9]\d{3})[.-\s]?(\d{4})$/g;
+
+        function verificaTelefone(elemento) {
+            var telValido = expTel.exec(elemento.value);
+            var msgTel = '';
+
+            if (!telValido) {
+                msgTel = 'Insira um número de telefone válido com DDD e o 9';
+            }
+
+            elemento.setCustomValidity(msgTel);
+            elemento.value = unificaTel(elemento.value);
+        }
+
+        function unificaTel(numero) {
+            var telNum = numero.replace(/[().-\s]/g, ''); //limpa
+            var telFormatado = telNum.replace(expTel,
+                function(valorTel, ddd, prefixo, numero) {
+                    var numeroFinal = '(' + ddd + ') ' + prefixo + '-' + numero;
+                    return numeroFinal;
+                })
+            return telFormatado;
+        }
+    </script>
+    <script>
+        function toggle() {
             var x = document.getElementById("senha");
             if (x.type === "password") {
                 x.type = "text";
                 document.getElementById("risco").style.display = "inline-block";
                 document.getElementById("olho").style.display = 'none';
-                document.getElementById("risco").style.color ='#000000';
-                document.getElementById("olho").style.color ='#000000';
+                document.getElementById("risco").style.color = '#000000';
+                document.getElementById("olho").style.color = '#000000';
             } else {
                 x.type = "password";
                 document.getElementById("risco").style.display = 'none';
                 document.getElementById("olho").style.display = 'inline-block';
-                document.getElementById("risco").style.color ='#000000';
-                document.getElementById("olho").style.color ='#000000';
+                document.getElementById("risco").style.color = '#000000';
+                document.getElementById("olho").style.color = '#000000';
             }
         }
     </script>

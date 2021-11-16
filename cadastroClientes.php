@@ -28,7 +28,6 @@ $ce = new Usuario();
 
         <div class="title"><span><b>C</b></span>adastro</div>
 
-
         <?php
         $conn = new Conecta();
         $msg = new Mensagem();
@@ -41,9 +40,6 @@ $ce = new Usuario();
                 $sexo = $_POST['sexo'];
                 $email = $_POST['email'];
                 $telefone = $_POST['telefone'];
-
-
-             
             }
 
 
@@ -57,21 +53,16 @@ $ce = new Usuario();
                 $senha,
                 $sexo
             );
-            if(getType($resp) == 'object'){
+            if (getType($resp) == 'object') {
                 $ce = $resp;
                 echo "<p style='color: red;'>Email já cadastrado!</p>";
-            }else{
+            } else {
                 echo $resp;
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                 URL='cadastroClientes.php'\">";
             }
         }
-
-
         ?>
-
-
-
 
         <form method="post" action="">
             <div class="detalhes-usuario">
@@ -92,7 +83,7 @@ $ce = new Usuario();
 
                 <div class="input-box">
                     <span class="detalhes">Telefone Celular </span>
-                    <input type="text" placeholder="Digite seu telefone celular" name="telefone" required value="<?php echo $ce->getTelefone(); ?>">
+                    <input id="tel" type="tel" placeholder="(xx)9xxxx-xxxx" name="telefone" required value="<?php echo $ce->getTelefone(); ?>">
                 </div>
 
                 <div class="input-box">
@@ -103,25 +94,22 @@ $ce = new Usuario();
                 <div class="input-box">
                     <span class="detalhes">Senha</span>
                     <input type="password" placeholder="Digite sua senha" name="senha" id="senha" required value="<?php echo $ce->getSenha(); ?>">
-                   
-                </div>
-               
-                 <span class="p-viewer2">
-                 <i class="fas fa-eye" aria-hidden="true" id="olho" style="color: #000000;" onclick="toggle()"></i>
-                    <i class="fas fa-eye-slash" id="risco" onclick="toggle()"></i>
-                    </span>
 
-            </div> 
-            
+                </div>
+
+                <span class="p-viewer2">
+                    <i class="fas fa-eye" aria-hidden="true" id="olho" style="color: #000000;" onclick="toggle()"></i>
+                    <i class="fas fa-eye-slash" id="risco" onclick="toggle()"></i>
+                </span>
+
+            </div>
+
             <div class="genero">
-                <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>"
-                    <?php if($ce->getSexo()!=null) { 
-                        if($ce->getSexo() == "Masculino") echo "checked = checked";
-                    }?> checked = 'checked' required>
+                <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>" 
+                <?php if ($ce->getSexo() != null) { if ($ce->getSexo() == "Masculino") echo "checked = checked";}?> checked='checked' required>
+
                 <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>" 
-                    <?php if($ce->getSexo()!=null) { 
-                        if($ce->getSexo() == "Feminino") echo "checked = checked";
-                    }?>required>
+                <?php if ($ce->getSexo() != null) {if ($ce->getSexo() == "Feminino") echo "checked = checked";} ?>required>
 
                 <span class="seu-genero">Gênero</span>
                 <div class="categoria">
@@ -138,11 +126,64 @@ $ce = new Usuario();
 
             <button type="submit" class="btn efeito-btn" name="cadastrar">Cadastrar</button>
             <div class="input-boxlogar">
-            <p>Já possui login?</p><a href="index.php">Logar</a>
+                <p>Já possui login?</p><a href="index.php">Logar</a>
 
-                </div>
+            </div>
         </form>
     </div>
+
+    <script>
+        var senha = document.querySelector('#senha');
+
+        senha.addEventListener('blur', (eventoLegal) => {
+            verificaSenha(eventoLegal.target);
+        })
+
+        function verificaSenha(input) {
+            var expSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/g;
+            var senhaValida = expSenha.exec(input.value);
+            var msgSenha = '';
+
+            if (!senhaValida) {
+                msgSenha = 'Precisa ter pelo menos 1 letra minúscula, maiúscula, número e caracter especial e ao menos 8 caracteres (!@#$&?*).';
+            }
+
+            input.setCustomValidity(msgSenha);
+
+        }
+    </script>
+
+    <script>
+        var telefone = document.querySelector('#tel');
+
+        telefone.addEventListener('blur', (evento) => {
+            verificaTelefone(evento.target);
+        })
+
+        var expTel = /(^\(?[0]?[1-9]{2}\)?)[.-\s]?([9]?[\s]?[1-9]\d{3})[.-\s]?(\d{4})$/g;
+
+        function verificaTelefone(elemento) {
+            var telValido = expTel.exec(elemento.value);
+            var msgTel = '';
+
+            if (!telValido) {
+                msgTel = 'Insira um número de telefone válido com DDD e o 9';
+            }
+
+            elemento.setCustomValidity(msgTel);
+            elemento.value = unificaTel(elemento.value);
+        }
+
+        function unificaTel(numero) {
+            var telNum = numero.replace(/[().-\s]/g, ''); //limpa
+            var telFormatado = telNum.replace(expTel,
+                function(valorTel, ddd, prefixo, numero) {
+                    var numeroFinal = '(' + ddd + ') ' + prefixo + '-' + numero;
+                    return numeroFinal;
+                })
+            return telFormatado;
+        }
+    </script>
 
     <script>
         function toggle() {
@@ -151,14 +192,14 @@ $ce = new Usuario();
                 x.type = "text";
                 document.getElementById("risco").style.display = "inline-block";
                 document.getElementById("olho").style.display = 'none';
-                document.getElementById("risco").style.color ='#000000';
-                document.getElementById("olho").style.color ='#000000';
+                document.getElementById("risco").style.color = '#000000';
+                document.getElementById("olho").style.color = '#000000';
             } else {
                 x.type = "password";
                 document.getElementById("risco").style.display = 'none';
                 document.getElementById("olho").style.display = 'inline-block';
-                document.getElementById("risco").style.color ='#000000';
-                document.getElementById("olho").style.color ='#000000';
+                document.getElementById("risco").style.color = '#000000';
+                document.getElementById("olho").style.color = '#000000';
             }
         }
     </script>
