@@ -1,7 +1,7 @@
 <?php
 
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoFuncionario.php';
-
+include_once 'C:/xampp/htdocs/Projeto-barbearia/enviar.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 
 class FuncionarioController
@@ -31,5 +31,10 @@ class FuncionarioController
     public function listarFuncionario(){
         $daoClientes = new DaoFuncionario();
         return $daoClientes->pesquisarFuncionarioDAO();
+    }
+
+    public function EnviarSenhaController(){
+        $email = new Enviar();
+        return $email->EnviarEmailSenha();
     }
 }
