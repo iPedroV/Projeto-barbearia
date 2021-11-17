@@ -83,7 +83,7 @@ $ce = new Usuario();
 
                 <div class="input-box">
                     <span class="detalhes">Telefone Celular </span>
-                    <input id="tel" type="tel" placeholder="(xx)9xxxx-xxxx" name="telefone" required value="<?php echo $ce->getTelefone(); ?>">
+                    <input id="tel" type="tel" placeholder="(xx)9xxxx-xxxx" name="telefone" maxlength="13" required value="<?php echo $ce->getTelefone(); ?>">
                 </div>
 
                 <div class="input-box">
@@ -93,7 +93,7 @@ $ce = new Usuario();
 
                 <div class="input-box">
                     <span class="detalhes">Senha</span>
-                    <input type="password" placeholder="Digite sua senha" name="senha" id="senha" required value="<?php echo $ce->getSenha(); ?>">
+                    <input type="password" placeholder="Digite sua senha" name="senha" id="senha" maxlength="11" required value="<?php echo $ce->getSenha(); ?>">
 
                 </div>
 
@@ -140,7 +140,7 @@ $ce = new Usuario();
         })
 
         function verificaSenha(input) {
-            var expSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/g;
+            var expSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#!"'%¨¬()+=§])[0-9a-zA-Z$*&@#!"'%¨¬()+=§]{8,}$/g;
             var senhaValida = expSenha.exec(input.value);
             var msgSenha = '';
 
