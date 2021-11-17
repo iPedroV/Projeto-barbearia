@@ -46,6 +46,24 @@
 *::after {
   box-sizing: border-box;
 }
+.copyrightText
+{
+    padding: 8px 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1)!important;
+    text-align: center;
+}
+
+.copyrightText p
+{
+    color:#333!important;
+}
+
+.copyrightText a
+{
+    color:rgb(63, 58, 58)!important;
+    font-weight: 500;
+    text-decoration: none;
+}
 
 html {
   font-family: sans-serif;
