@@ -11,6 +11,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/DaoClientes.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoIndex.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/enviar.php';
 $ce = new Usuario();
 $msg = new Mensagem();
 ?>
@@ -68,9 +69,15 @@ $msg = new Mensagem();
                 $ce = $resp;
                 echo "<p style='color: red;'>Email já cadastrado!</p>";
             } else {
+                
+                $msg = new Mensagem();
+                $EmailEnviado = new FuncionarioController();
+                $msg = $EmailEnviado->EnviarSenhaController();
+                
                 echo $resp;
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-			 URL='../Projeto-Barbearia/index.php'\">";
+			    URL='../Projeto-Barbearia/ListarFuncionario.php'\">";
+                
             }
         }
 
@@ -122,7 +129,7 @@ $msg = new Mensagem();
 
                 <div class="input-box">
                     <span class="detalhes">Senha:</span>
-                    <input type="password" placeholder="Digite a senha" name="senha" id="senha" required value="<?php echo $ce->getSenha(); ?>">
+                    <input type="password" placeholder="Digite a senha" name="senha" id="senha" maxlength="11" required value="<?php echo $ce->getSenha(); ?>">
                     <span class="p-viewer2">
                         <i class="fa fa-eye" aria-hidden="true" id="olho" style="color: #000000;" onclick="toggle()"></i>
                         <i class="fas fa-eye-slash" id="risco" onclick="toggle()"></i>
@@ -132,7 +139,7 @@ $msg = new Mensagem();
             <div class="genero">
 
                 <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>" 
-                <?php if ($ce->getSexo() != null) {if ($ce->getSexo() == "Masculino") echo "checked = checked"; } ?> checked='checked' required>
+                <?php if ($ce->getSexo() != null) {if ($ce->getSexo() == "Masculino") echo "checked = checked";} ?> checked='checked' required>
                 <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>" 
                 <?php if ($ce->getSexo() != null) {if ($ce->getSexo() == "Feminino") echo "checked = checked";} ?>required>
                 <span class="seu-genero">Gênero</span>
@@ -160,7 +167,7 @@ $msg = new Mensagem();
         })
 
         function verificaSenha(input) {
-            var expSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/g;
+            var expSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#!"'%¨¬()+=§])[0-9a-zA-Z$*&@#!"'%¨¬()+=§]{8,}$/g;
             var senhaValida = expSenha.exec(input.value);
             var msgSenha = '';
 

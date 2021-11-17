@@ -70,6 +70,26 @@ $msg = new Mensagem();
             <button type="submit" class="btn efeito-btn" name="esenha">Confirmar</button>
         </form>
     </div>
+    <script>
+        var senha = document.querySelector('#nsenha');
+
+        senha.addEventListener('blur', (eventoLegal) => {
+            verificaSenha(eventoLegal.target);
+        })
+
+        function verificaSenha(input) {
+            var expSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#!"'%¨¬()+=§])[0-9a-zA-Z$*&@#!"'%¨¬()+=§]{8,}$/g;
+            var senhaValida = expSenha.exec(input.value);
+            var msgSenha = '';
+
+            if (!senhaValida) {
+                msgSenha = 'Precisa ter pelo menos 1 letra minúscula, maiúscula, número e caracter especial e ao menos 8 caracteres (!@#$&?*).';
+            }
+
+            input.setCustomValidity(msgSenha);
+
+        }
+    </script>
 </body>
 
 </html>
