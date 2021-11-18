@@ -95,16 +95,16 @@ class DaoFuncionario{
         return $lista;
     }
 
-    public function atualizarSenhaFuncioanrioDAO(Usuario $cliente)
+    public function atualizarSenhaFuncioanrioDAO(Usuario $funcioanrio)
     {
         $conn = new Conecta();
         $msg = new Mensagem();
         $conecta = $conn->conectadb();
         if ($conecta) {
 
-            $senha = $cliente->getSenha();
+            $senha = $funcioanrio->getSenha();
             $verifica = 'S';
-            $email = $cliente->getEmail();
+            $email = $funcioanrio->getEmail();
 
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
