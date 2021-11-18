@@ -21,6 +21,7 @@ class DaoFuncionario{
             $email = $funcionario->getEmail();
             $senha = $funcionario->getSenha();
             $sexo = $funcionario->getSexo();
+            $verifica = "F";
            
             
             
@@ -32,7 +33,7 @@ class DaoFuncionario{
                     $resp = $funcionario;
                 }else{
                     $stmt = $conecta->prepare("insert into usuario values "
-                    . "(null,?,?,?,?,md5(?),?)");
+                    . "(null,?,?,?,?,md5(?),?, ?)");
 
                 $stmt->bindParam(1, $nome);
                 $stmt->bindParam(2, $perfil);
@@ -40,6 +41,7 @@ class DaoFuncionario{
                 $stmt->bindParam(4, $email);
                 $stmt->bindParam(5, $senha);
                 $stmt->bindParam(6, $sexo);
+                $stmt->bindParam(7, $verifica);
                 $stmt->execute();
                 $resp = "<p style='color: green;'>"
                     . "Dados Cadastrados com sucesso</p>";
