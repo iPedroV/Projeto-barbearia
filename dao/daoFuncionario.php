@@ -21,9 +21,8 @@ class DaoFuncionario{
             $email = $funcionario->getEmail();
             $senha = $funcionario->getSenha();
             $sexo = $funcionario->getSexo();
-           
-            
-            
+            $verifica = "F";
+
             try {
                 $st = $conecta->prepare("SELECT * FROM usuario where email = ?");
                 $st->execute([$email]);
@@ -32,7 +31,7 @@ class DaoFuncionario{
                     $resp = $funcionario;
                 }else{
                     $stmt = $conecta->prepare("insert into usuario values "
-                    . "(null,?,?,?,?,md5(?),?)");
+                    . "(null,?,?,?,?,md5(?),?, ?)");
 
                 $stmt->bindParam(1, $nome);
                 $stmt->bindParam(2, $perfil);
@@ -40,6 +39,7 @@ class DaoFuncionario{
                 $stmt->bindParam(4, $email);
                 $stmt->bindParam(5, $senha);
                 $stmt->bindParam(6, $sexo);
+                $stmt->bindParam(7, $verifica);
                 $stmt->execute();
                 $resp = "<p style='color: green;'>"
                     . "Dados Cadastrados com sucesso</p>";
@@ -93,5 +93,45 @@ class DaoFuncionario{
 			 URL='../Projeto-Barbearia/index.php'\">";
         }
         return $lista;
-    } 
+    }
+
+    public function atualizarSenhaFuncioanrioDAO(Usuario $funcioanrio)
+    {
+        $conn = new Conecta();
+        $msg = new Mensagem();
+        $conecta = $conn->conectadb();
+        if ($conecta) {
+
+            $senha = $funcioanrio->getSenha();
+            $verifica = 'S';
+            $email = $funcioanrio->getEmail();
+
+            try {
+                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stmt = $conecta->prepare("UPDATE usuario SET senha= md5(?), verifica = ? WHERE email = ?");
+                $stmt->bindParam(1, $senha);
+                $stmt->bindParam(2, $verifica);
+                $stmt->bindParam(3, $email);
+                $stmt->execute();
+                $msg->setMsg("<script>Swal.fire({
+                    icon: 'success',
+                    title: 'Senha alterada com sucesso',
+                    timer: 2000
+                  })
+                  </script>");
+
+            } catch (PDOException $ex) {
+                $msg->setMsg(var_dump($ex->errorInfo));
+            }
+        } else {
+            $msg->setMsg("<script>Swal.fire({
+                icon: 'error',
+                title: 'Erro de conexão',
+                text: 'Banco de dados pode estar inoperante',
+                timer: 2000
+              })</script>");
+        }
+        $conn = null;
+        return $msg;
+    }
 }

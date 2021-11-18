@@ -23,6 +23,7 @@ class DaoClientes
             $email = $clientes->getEmail();
             $telefone = $clientes->getTelefone();
             $perfil = 'Cliente';
+            $verifica = 'C';
             try {
                 $st = $conecta->prepare("SELECT * FROM usuario where email = ?");
                 $st->execute([$email]);
@@ -33,7 +34,7 @@ class DaoClientes
                     //. "Email já cadastrado!</p>");
                 } else {
                     $stmt = $conecta->prepare("insert into usuario values "
-                        . "(null,?,?,?,?,md5(?),?)");
+                        . "(null,?,?,?,?,md5(?),?,?)");
 
                     $stmt->bindParam(1, $nome);
                     $stmt->bindParam(2, $perfil);
@@ -41,6 +42,7 @@ class DaoClientes
                     $stmt->bindParam(4, $email);
                     $stmt->bindParam(5, $senha);
                     $stmt->bindParam(6, $sexo);
+                    $stmt->bindParam(7, $verifica);
                     $stmt->execute();
                     $resp = "<p style='color: green;'>"
                         . "Dados Cadastrados com sucesso</p>";
