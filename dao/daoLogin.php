@@ -30,6 +30,7 @@ class DaoLogin
                             $cliente->setNome($valida->nome);
                             $cliente->setEmail($valida->email);
                             $cliente->setPerfil($valida->perfil);
+                            $cliente->setVerifica($valida->verifica);
                             //$teste = $cliente->getEmail();
                             //echo "<script>alert('$teste')</script>";
                         }
