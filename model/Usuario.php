@@ -9,6 +9,7 @@ class Usuario
     private $email;
     private $senha;
     private $sexo;
+    private $verifica;
   
     public function getId()
     {
@@ -104,7 +105,15 @@ class Usuario
         return $this;
     }
 
+    public function getVerifica()
+    {
+        return $this->verifica;
+    }
 
+    public function setVerifica($verifica): self
+    {
+        $this->verifica = $verifica;
 
-
+        return $this;
+    }
 }
