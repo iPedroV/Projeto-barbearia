@@ -78,7 +78,11 @@ class Enviar
         $tel = $_POST['telefone'];
         $cargo = $_POST['cargo'];
         $email = $_POST['email'];
-        $senha = $_POST['telefone'];
+        $telefone = str_replace("(","", $_POST['telefone']);
+                $telefone = str_replace(")","", $telefone);
+                $telefone = str_replace(" ","", $telefone);
+                $telefone = str_replace("-","", $telefone);
+        $senha = $telefone;
 
         date_default_timezone_set('America/Sao_Paulo');
         $data_envio = date('d/m/y');

@@ -43,15 +43,15 @@ $msg = new Mensagem();
         $msg = new Mensagem();
         $conecta = $conn->conectadb();
         if (isset($_POST['cadastrar'])) {
-            $senha = trim($_POST['senha']);
+            $telefone = str_replace("(","", $_POST['telefone']);
+                $telefone = str_replace(")","", $telefone);
+                $telefone = str_replace(" ","", $telefone);
+                $telefone = str_replace("-","", $telefone);
+            $senha = $telefone;
             if ($senha != "") {
 
                 $nome = $_POST['nome'];
                 $perfil = $_POST['cargo'];
-                $telefone = str_replace("(","", $_POST['telefone']);
-                $telefone = str_replace(")","", $_POST['telefone']);
-                $telefone = str_replace(" ","", $_POST['telefone']);
-                $telefone = str_replace("-","", $_POST['telefone']);
                 $email = $_POST['email'];
                 $sexo = $_POST['sexo'];
             }
