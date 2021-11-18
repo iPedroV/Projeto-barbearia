@@ -37,4 +37,14 @@ class FuncionarioController
         $email = new Enviar();
         return $email->EnviarEmailSenha();
     }
+    public function editarSenhaFuncionarios($senha, $email){
+
+        $funcionario = new Usuario();
+        $funcionario->setSenha($senha);
+        $funcionario->setEmail($email);
+
+        $daoClientes3 = new DaoFuncionario();
+        return $daoClientes3->atualizarSenhaFuncioanrioDAO($funcionario);
+
+    }
 }
