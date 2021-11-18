@@ -3,7 +3,20 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/ClientesController.ph
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
+//require_once 'VerifyEmail.class.php'; 
 $ce = new Usuario();
+/*// Initialize library class
+$mail = new VerifyEmail();
+
+// Set the timeout value on stream
+$mail->setStreamTimeoutWait(2);
+
+// Set debug output mode
+$mail->Debug= FALSE; 
+$mail->Debugoutput= 'html'; 
+
+// Set email address for SMTP request
+$mail->setEmailFrom('from@email.com');*/
 
 ?>
 <!DOCTYPE html>
@@ -56,10 +69,12 @@ $ce = new Usuario();
             if (getType($resp) == 'object') {
                 $ce = $resp;
                 echo "<p style='color: red;'>Email já cadastrado!</p>";
-            } else {
+            } 
+            else {
                 echo $resp;
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                URL='cadastroClientes.php'\">";
+                URL='login.php'\">";
+                
             }
         }
         ?>
@@ -83,7 +98,7 @@ $ce = new Usuario();
 
                 <div class="input-box">
                     <span class="detalhes">Telefone Celular </span>
-                    <input id="tel" type="tel" placeholder="(xx)9xxxx-xxxx" name="telefone" maxlength="13" required value="<?php echo $ce->getTelefone(); ?>">
+                    <input id="tel" type="tel" placeholder="(xx)9xxxx-xxxx" name="telefone" maxlength="11" required value="<?php echo $ce->getTelefone(); ?>">
                 </div>
 
                 <div class="input-box">
