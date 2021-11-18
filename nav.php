@@ -13,14 +13,19 @@ if ((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 }
 function navBar()
 {
+    $nome_usuario = $_SESSION['nomec'];
+    $perfil_usuario = $_SESSION['perfilc'];
+    //$teste = "(61) 98494-1352";
+    
     $nav = "
             ";
     if ($_SESSION['perfilc'] == "Administrador") {
         $nav .= "<ul class=\"navigation\">
                             <li><a href=\"./ListarFuncionario.php\"  onclick=\" toggleMenu();\">Funcionários</a></li>
-                            <li><a href=\"dashboard.html\"  onclick=\" toggleMenu();\">Dashboard</a></li>
+                            <li><a href=\"dashboard.php\"  onclick=\" toggleMenu();\">Dashboard</a></li>
                             <li><a href=\"./sessionDestroy.php\" onclick=\" toggleMenu();\">Sair</a></li>
-                            </ul>";
+                            
+        </ul>";
     } elseif ($_SESSION['perfilc'] == "Cliente") {
         $nav .= "<ul class=\"navigation\">
                             <li><a href=\"#banner\"  onclick=\" toggleMenu();\">Home</a></li>
