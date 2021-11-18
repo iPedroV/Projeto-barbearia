@@ -22,9 +22,7 @@ class DaoFuncionario{
             $senha = $funcionario->getSenha();
             $sexo = $funcionario->getSexo();
             $verifica = "F";
-           
-            
-            
+
             try {
                 $st = $conecta->prepare("SELECT * FROM usuario where email = ?");
                 $st->execute([$email]);
@@ -95,5 +93,45 @@ class DaoFuncionario{
 			 URL='../Projeto-Barbearia/index.php'\">";
         }
         return $lista;
-    } 
+    }
+
+    public function atualizarSenhaFuncioanrioDAO(Usuario $cliente)
+    {
+        $conn = new Conecta();
+        $msg = new Mensagem();
+        $conecta = $conn->conectadb();
+        if ($conecta) {
+
+            $senha = $cliente->getSenha();
+            $verifica = 'S';
+            $email = $cliente->getEmail();
+
+            try {
+                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stmt = $conecta->prepare("UPDATE usuario SET senha= md5(?), verifica = ? WHERE email = ?");
+                $stmt->bindParam(1, $senha);
+                $stmt->bindParam(2, $verifica);
+                $stmt->bindParam(3, $email);
+                $stmt->execute();
+                $msg->setMsg("<script>Swal.fire({
+                    icon: 'success',
+                    title: 'Senha alterada com sucesso',
+                    timer: 2000
+                  })
+                  </script>");
+
+            } catch (PDOException $ex) {
+                $msg->setMsg(var_dump($ex->errorInfo));
+            }
+        } else {
+            $msg->setMsg("<script>Swal.fire({
+                icon: 'error',
+                title: 'Erro de conexão',
+                text: 'Banco de dados pode estar inoperante',
+                timer: 2000
+              })</script>");
+        }
+        $conn = null;
+        return $msg;
+    }
 }
