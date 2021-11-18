@@ -48,7 +48,10 @@ $msg = new Mensagem();
 
                 $nome = $_POST['nome'];
                 $perfil = $_POST['cargo'];
-                $telefone = $_POST['telefone'];
+                $telefone = str_replace("(","", $_POST['telefone']);
+                $telefone = str_replace(")","", $_POST['telefone']);
+                $telefone = str_replace(" ","", $_POST['telefone']);
+                $telefone = str_replace("-","", $_POST['telefone']);
                 $email = $_POST['email'];
                 $sexo = $_POST['sexo'];
             }
