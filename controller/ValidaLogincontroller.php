@@ -32,6 +32,7 @@ if (gettype($valcliente) == "object") {
         $_SESSION['idc'] = $valcliente->getId();
         $_SESSION['nomec'] = $valcliente->getNome();
         $_SESSION['perfilc'] = $valcliente->getPerfil();
+        $_SESSION['verificac'] = $valcliente->getVerifica();
 
         $_SESSION['nr'] = rand(1, 1000000);
         $_SESSION['conferenr'] = $_SESSION['nr'];
@@ -43,11 +44,13 @@ if (gettype($valcliente) == "object") {
         $_SESSION['idc'] = null;
         $_SESSION['nomec'] = null;
         $_SESSION['perfilc'] = null;
+        $_SESSION['verificac'] = null;
 
         $_SESSION['emailc'] = $valcliente->getEmail();
         $_SESSION['idc'] = $valcliente->getId();
         $_SESSION['nomec'] = $valcliente->getNome();
         $_SESSION['perfilc'] = $valcliente->getPerfil();
+        $_SESSION['verificac'] = $valcliente->getVerifica();
 
         $_SESSION['nr'] = rand(1, 1000000);
         $_SESSION['conferenr'] = $_SESSION['nr'];
@@ -62,6 +65,7 @@ if (gettype($valcliente) == "object") {
         $_SESSION['idc'] = null;
         $_SESSION['nomec'] = null;
         $_SESSION['perfilc'] = null;
+        $_SESSION['verificac'] = null;
     }
     header("Location: ../login.php");
     exit;
