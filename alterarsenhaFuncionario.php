@@ -27,7 +27,7 @@ $msg = new Mensagem();
 
     <?php 
     
-    if (isset($_POST['esenha'])) {
+    if (isset($_POST['alterarsenha'])) {
         if (($_POST['nsenha']) == ($_POST['csenha'])) {
                 $senha = $_POST['nsenha'];
                 $email = $_POST['email'];
