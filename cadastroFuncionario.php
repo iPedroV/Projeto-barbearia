@@ -130,14 +130,7 @@ $msg = new Mensagem();
                     <input type="email" placeholder="Digite seu email" name="email" required value="<?php echo $ce->getEmail(); ?>">
                 </div>
 
-                <div class="input-box">
-                    <span class="detalhes">Senha:</span>
-                    <input type="password" placeholder="Digite a senha" name="senha" id="senha" maxlength="11" required value="<?php echo $ce->getSenha(); ?>">
-                    <span class="p-viewer2">
-                        <i class="fa fa-eye" aria-hidden="true" id="olho" style="color: #000000;" onclick="toggle()"></i>
-                        <i class="fas fa-eye-slash" id="risco" onclick="toggle()"></i>
-                    </span>
-                </div>
+                
             </div>
             <div class="genero">
 
@@ -162,26 +155,7 @@ $msg = new Mensagem();
             </div>
         </form>
     </div>
-    <script>
-        var senha = document.querySelector('#senha');
-
-        senha.addEventListener('blur', (eventoLegal) => {
-            verificaSenha(eventoLegal.target);
-        })
-
-        function verificaSenha(input) {
-            var expSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#!"'%¨¬()+=§_-])[0-9a-zA-Z$*&@#!"'%¨¬()+=§_-]{8,}$/g;
-            var senhaValida = expSenha.exec(input.value);
-            var msgSenha = '';
-
-            if (!senhaValida) {
-                msgSenha = 'Precisa ter pelo menos 1 letra minúscula, maiúscula, número e caracter especial e ao menos 8 caracteres (!@#$&?*).';
-            }
-
-            input.setCustomValidity(msgSenha);
-
-        }
-    </script>
+   
 
     <script>
         var telefone = document.querySelector('#tel');
@@ -232,9 +206,7 @@ $msg = new Mensagem();
             }
         }
     </script>
-    <a class="whatsapp-link" href="https://web.whatsapp.com/send?phone=559891355162" target="_blank">
-        <i class="fa fa-whatsapp"></i>
-    </a>
+    
 
 </body>
 
