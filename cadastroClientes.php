@@ -68,7 +68,7 @@ $mail->setEmailFrom('from@email.com');*/
             );
             if (getType($resp) == 'object') {
                 $ce = $resp;
-                //alterei essa parte de baixo
+                //alterei essa parte de baixo 
                 echo "<p style='color: red;'>Email já cadastrado ou inexistente!</p>";
             } 
             else {
