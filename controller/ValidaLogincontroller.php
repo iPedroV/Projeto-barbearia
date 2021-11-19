@@ -9,12 +9,13 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoLogin.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 
-if (isset($_POST)){
+if (isset($_POST)) {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     echo "<script>alert($email)</script>";
-}else{
-    header("Location: ../sessionDestroy.php"); exit;
+} else {
+    header("Location: ../sessionDestroy.php");
+    exit;
 }
 $email = $_POST['email'];
 $senha = $_POST['senha'];
@@ -24,10 +25,12 @@ $valcliente = new Usuario();
 $valcliente = $daoLogin->validarLoginDAO($email, $senha);
 /*echo gettype($valcliente);*/
 if (gettype($valcliente) == "object") {
-    if (!isset($_SESSION['emailc'])) {
+    if ($valcliente->getVerifica() == "F") {
+        header("Location: ../alterarsenhaFuncionario.php");
+    } else if (!isset($_SESSION['emailc'])) {
         //$em = $valcliente->getEmail();
         //echo "<script>alert('$em')</script>";
-        
+
         $_SESSION['emailc'] = $valcliente->getEmail();
         $_SESSION['idc'] = $valcliente->getId();
         $_SESSION['nomec'] = $valcliente->getNome();
@@ -39,7 +42,7 @@ if (gettype($valcliente) == "object") {
 
         header("Location: ../index.php");
         exit;
-    }else{
+    } else {
         $_SESSION['emailc'] = null;
         $_SESSION['idc'] = null;
         $_SESSION['nomec'] = null;
