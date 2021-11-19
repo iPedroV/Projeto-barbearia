@@ -4,12 +4,24 @@
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Mensagem.php';
-
+include_once 'C:/xampp/htdocs/Projeto-barbearia/VerifyEmail.class.php';
 class DaoClientes
 {
 
     public function inserir(Usuario $clientes)
     {
+        // Initialize library class
+        $mail = new VerifyEmail();
+
+        // Set the timeout value on stream
+        $mail->setStreamTimeoutWait(2);
+
+        // Set debug output mode
+        $mail->Debug = FALSE;
+        $mail->Debugoutput = 'html';
+
+        // Set email address for SMTP request
+        $mail->setEmailFrom('from@email.com');
         $conn = new Conecta();
         $msg = new Mensagem();
         $conecta = $conn->conectadb();
@@ -28,24 +40,32 @@ class DaoClientes
                 $st = $conecta->prepare("SELECT * FROM usuario where email = ?");
                 $st->execute([$email]);
                 $result = $st->rowCount();
+
                 if ($result > 0) {
                     $resp = $clientes;
                     //$msg->setMsg("<p style='color: red;'>"
                     //. "Email já cadastrado!</p>");
-                } else {
-                    $stmt = $conecta->prepare("insert into usuario values "
-                        . "(null,?,?,?,?,md5(?),?,?)");
+                } else {// alterei todo esse else pra fazer a verificação
+                    if ($mail->check($email)) {
+                        $stmt = $conecta->prepare("insert into usuario values "
+                            . "(null,?,?,?,?,md5(?),?,?)");
 
-                    $stmt->bindParam(1, $nome);
-                    $stmt->bindParam(2, $perfil);
-                    $stmt->bindParam(3, $telefone);
-                    $stmt->bindParam(4, $email);
-                    $stmt->bindParam(5, $senha);
-                    $stmt->bindParam(6, $sexo);
-                    $stmt->bindParam(7, $verifica);
-                    $stmt->execute();
-                    $resp = "<p style='color: green;'>"
-                        . "Dados Cadastrados com sucesso</p>";
+                        $stmt->bindParam(1, $nome);
+                        $stmt->bindParam(2, $perfil);
+                        $stmt->bindParam(3, $telefone);
+                        $stmt->bindParam(4, $email);
+                        $stmt->bindParam(5, $senha);
+                        $stmt->bindParam(6, $sexo);
+                        $stmt->bindParam(7, $verifica);
+                        $stmt->execute();
+                        $resp = "<p style='color: green;'>"
+                            . "Dados Cadastrados com sucesso</p>";
+                    } else {
+                        $resp = "<p style='color: Red;'>"
+                            . "E-mail não existe</p>";
+                        $resp = $clientes;
+                        
+                    }
                 }
             } catch (Exception $ex) {
                 $resp = $ex;
@@ -86,10 +106,6 @@ class DaoClientes
                     timer: 2000
                   })
                   </script>");
-                  
-                
-                
-                
             } catch (PDOException $ex) {
                 $msg->setMsg(var_dump($ex->errorInfo));
             }
