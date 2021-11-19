@@ -151,6 +151,97 @@ class DaoAgendamento {
         }
     }
 
+    public function ListarClienteAgendamentoDAO02(){
+        $id = $_SESSION['idc'];
+        $conn = new Conecta();
+        $msg = new Mensagem();
+        $conecta = $conn->conectadb();
+        if ($conecta) {
+            try {
+                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $rs = $conecta->query("SELECT * FROM `agendamentos_dos_servicos` "
+                    ."inner JOIN agendamentos on agendamentos.idAgendamento = agendamentos_dos_servicos.agendamentos_id "
+                    ."WHERE agendamentos_dos_servicos.sf_funcionario = ".$id);
+                $lista = array();
+                $a = 0;
+                if ($rs->execute()) {
+                    if ($rs->rowCount() > 0) {
+                        while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+
+                            $agenda = new Agendamento();
+                            $agenda->setId($linha->idAgendamento);
+                            $agenda->setHorario($linha->horario);
+                            $agenda->setDataAgenda($linha->data);
+                            $agenda->setForma_Pagamento($linha->forma_de_pagamento);
+                            $agenda->setStatusAgendamento($linha->status_agendamento);
+                            $agenda->setDateTime($linha->data_regs_agendamento);
+                            $agenda->setDataPagemento($linha->data_do_pagamento);
+                            $agenda->setConfirma($linha->confir_envio);
+                            $agenda->setValor($linha->valortotal);
+                            $agenda->setUsuarioID($linha->usuario_id);
+
+                            $ageServ = new Agendamentos_dos_servicos();
+                            $ageServ->setIdAgendamento($agenda);
+                            $ageServ->setIdFuncionario($linha->sf_funcionario);
+                            $ageServ->setIdServicos($linha->sf_servicos);
+
+                            $lista[$a] = $agenda;
+                            $a++;
+                        }
+                    }
+                }
+            } catch (PDOException $ex) {
+                $msg->setMsg(var_dump($ex->errorInfo));
+            }
+            $conn = null;
+            return $lista;
+        }
+    }
+
+    public function ListarClienteAgendamentoDAO03(){
+        $conn = new Conecta();
+        $msg = new Mensagem();
+        $conecta = $conn->conectadb();
+        if ($conecta) {
+            try {
+                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $rs = $conecta->query("SELECT * FROM `agendamentos_dos_servicos` inner JOIN agendamentos on agendamentos.idAgendamento = agendamentos_dos_servicos.agendamentos_id;");
+                $lista = array();
+                $a = 0;
+                if ($rs->execute()) {
+                    if ($rs->rowCount() > 0) {
+                        while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+                            $agenda = new Agendamento();
+                            $agenda->setId($linha->idAgendamento);
+                            $agenda->setHorario($linha->horario);
+                            $agenda->setDataAgenda($linha->data);
+                            $agenda->setForma_Pagamento($linha->forma_de_pagamento);
+                            $agenda->setStatusAgendamento($linha->status_agendamento);
+                            $agenda->setDateTime($linha->data_regs_agendamento);
+                            $agenda->setDataPagemento($linha->data_do_pagamento);
+                            $agenda->setConfirma($linha->confir_envio);
+                            $agenda->setValor($linha->valortotal);
+                            $agenda->setUsuarioID($linha->usuario_id);
+
+                            $ageServ = new Agendamentos_dos_servicos();
+                            $ageServ->setIdAgendamento($agenda);
+                            $ageServ->setIdFuncionario($linha->sf_funcionario);
+                            $ageServ->setIdServicos($linha->sf_servicos);
+
+                            $lista[$a] = $agenda;
+                            $a++;
+                        }
+                    }
+                }
+            } catch (PDOException $ex) {
+                $msg->setMsg(var_dump($ex->errorInfo));
+            }
+            $conn = null;
+            return $lista;
+        }
+    }
+
+
     //método para excluir produto na tabela produto
     public function excluirAgendamentoDAO($id){
         $conn = new Conecta();

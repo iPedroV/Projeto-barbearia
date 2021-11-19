@@ -50,6 +50,7 @@ class CALENDAR {
         this.drawYearAndCurrentDay(); /* Depois ele joga na tela para a visuaçização do Usuário */
         this.drawDateFormate(); /* Chamando a data formatado do Script */
         this.drawDateFormateFinal_Semana(); /* Chamando a data final de semana */
+
     }
 
     // Evento para Comentário se há ou não agendamento
@@ -135,7 +136,7 @@ class CALENDAR {
 
         // Data formatada que será impressa para o usuário no front-end do agendamento
         document.getElementById('dataAgendamentoFormatado').value = 
-            eventListWeekday+", " + adicionaZero(eventListday) +" de "+ eventListMonth + " de " + eventListYear;
+            eventListWeekday + ", " + adicionaZero(eventListday) +" de "+ eventListMonth + " de " + eventListYear;
     }
 
     drawDays() {

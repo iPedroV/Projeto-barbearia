@@ -63,12 +63,6 @@ $nomeUser = $_SESSION['nomec'];
         <div class="menuToggle" onclick=" toggleMenu();"></div>
         <ul class="navigation">
             <li><a href="index.php" onclick=" toggleMenu();">Home</a></li>
-            <li><a href="#about" onclick=" toggleMenu();">Sobre</a></li>
-            <li><a href="#menu" onclick=" toggleMenu();">Cortes</a></li>
-            <li><a href="#salao" onclick=" toggleMenu();">Salão</a></li>
-            <li><a href="#feedbacks" onclick=" toggleMenu();">Feedbacks</a></li>
-            <li><a href="#contato" onclick=" toggleMenu();">Contato</a></li>
-
         <div class="dados">
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
@@ -126,7 +120,7 @@ $nomeUser = $_SESSION['nomec'];
                                 <div class="calendar-left-side-day-of-week"></div>
                             </div>
                             <div class="current-day-events">
-                                <div>Pesquisar status do Clinte:</div>
+                                <div>Pesquisar agendamento:</div>
                                 <ul class="current-day-events-list" style="color: transparent;"></ul>
                                 <a href="agendamento_ClienteDados.php"><input type="submit" class="agendamento" value="Verificar Agendamento"></a>
                             </div>
@@ -235,7 +229,6 @@ $nomeUser = $_SESSION['nomec'];
                     <a href="./"></a>
                 <?php
                 $data = null;
-
             } else if ($dataFinalSemana == "Domingo") {
                 ?>
                     <script>
@@ -246,7 +239,7 @@ $nomeUser = $_SESSION['nomec'];
                             confirmButtonText: '<a href="">Voltar_Calendário</a>'
                         })
                     </script>
-                <?php 
+                <?php   
             } else if($data != null && $user == 0) {
                 $_SESSION['dataAgendamento'] = $_POST['data_agendamento'];
                 $_SESSION['dataAgendamentoFormatado'] = $_POST['data_agendamentoFormatado'];

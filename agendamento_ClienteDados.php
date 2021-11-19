@@ -164,10 +164,17 @@ if (isset($_POST['excluir'])) {
             <tbody class="text-center" style="border-left: 4px solid black; border-right: 4px solid black;">
                 <?php
                 $TabelaVisual = new AgendamentoController();
-                $listaAgendamento = $TabelaVisual->ListarClienteAgendamento();
+                if ($_SESSION['perfilc'] == 'Cliente') {
+                    $listaAgendamento = $TabelaVisual->ListarClienteAgendamento();
+                } else if ($_SESSION['perfilc'] == 'Funcionario') {
+                    $listaAgendamento = $TabelaVisual->ListarClienteAgendamento02();
+                } else if ($_SESSION['perfilc'] == 'Administrador') {
+                    $listaAgendamento = $TabelaVisual->ListarClienteAgendamento03();
+                }
                 $a = 0;
                 if ($listaAgendamento != null) {
                     foreach ($listaAgendamento as $la) {
+                
                         $a++;
                 ?>
                         <tr>
@@ -176,6 +183,9 @@ if (isset($_POST['excluir'])) {
                             <td><?php print_r($la->getForma_Pagamento()); ?></td>
                             <td>R$ <?php print_r($la->getValor()); ?></td>
                             <td style="border-right: 8px solid #fff;"><?php print_r($la->getStatusAgendamento()); ?></td>
+                            <?php
+                                if ($_SESSION['perfilc'] == 'Cliente') {
+                            ?>
                             <td>
                                 <button type="submit" class="btnDetalhes" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $a; ?>">
                                     Detalhes</button>
@@ -230,6 +240,50 @@ if (isset($_POST['excluir'])) {
                                                     }
                                                     ?>
                                                 </ul>
+                                                <?php
+                                                } else if ($_SESSION['perfilc'] == 'Funcionario' || $_SESSION['perfilc'] == 'Administrador') {
+                                                
+                                                ?>
+                            <td>
+                                <button type="submit" class="btnDetalhes" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $a; ?>">
+                                    Cliente</button>
+                            </td>
+
+                            <td><button type="submit" class="btnReagendar" data-bs-toggle="modal" data-bs-target="#exampleModal2<?php echo $a; ?>">
+                                    Reagendar</button>
+                            </td>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal<?php echo $a; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header" style="background: linear-gradient(90deg, #666 30%, #111 80%)!important;">
+                                            <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Detalhes</h5>
+                                            <button type="button" class="" data-bs-dismiss="modal" aria-label="Close" 
+                                                style="color: white; background-color: transparent; font-size: 22px; border: none;">X</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="post" action="">
+                                                <label style="border-bottom: 1px solid black; padding-bottom: 10px; width: 100%;"><strong>Agendamento efetuado em nome de
+                                                        <?php echo $la->getDataAgenda();?></strong></label>
+                                                <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
+
+                                                <br><br><label>Dados do cliente: </label>
+                                                <ul name="id_servicos" id="MostarDados" class="form-control" >
+                                
+                                                    <?php
+                                                    $result_post = "SELECT * FROM `agendamentos` "
+                                                        ."INNER JOIN usuario on agendamentos.usuario_id = usuario.id WHERE agendamentos.idAgendamento = ". $la->getId();
+                                                    $resultado_post = mysqli_query($conn, $result_post);
+                                                    while ($row_post = mysqli_fetch_assoc($resultado_post)) {
+                                                        echo '<li style="list-style: none;" >' . $row_post['nome'] . '</li>';
+                                                        echo '<li style="list-style: none;" >' . $row_post['telefone'] . '</li>';
+                                                        echo '<li style="list-style: none;" >' . $row_post['email'] . '</li>';
+                                                    }
+                                                    
+                                                    ?>
+                                                </ul>
+                                            <?php } ?>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="modalSair" data-bs-dismiss="modal">Sair</button>

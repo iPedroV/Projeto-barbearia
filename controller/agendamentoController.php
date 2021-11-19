@@ -33,6 +33,16 @@ class AgendamentoController {
         return $daoAgendamento->ListarClienteAgendamentoDAO();
     }
 
+    public function ListarClienteAgendamento02(){
+        $daoAgendamento = new DaoAgendamento();
+        return $daoAgendamento->ListarClienteAgendamentoDAO02();
+    }
+
+    public function ListarClienteAgendamento03(){
+        $daoAgendamento = new DaoAgendamento();
+        return $daoAgendamento->ListarClienteAgendamentoDAO03();
+    }
+
     public function excluirAgendamento($id){
         $daoAgendamento = new DaoAgendamento();
         return $daoAgendamento->excluirAgendamentoDAO($id);
