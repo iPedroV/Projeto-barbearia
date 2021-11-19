@@ -144,7 +144,13 @@ if (isset($_POST['excluir'])) {
     <div class="page-header">
             <h3 style="padding-top: 25px; padding-bottom: 25px; padding-left: 40px; margin-top: 10px;
                 border-top: 2px solid black; border-bottom: 2px solid black; color: white; background: linear-gradient(90deg, #666 35%, #111 80%)!important;">
-                Agendamento do(a) <?php echo $_SESSION['nomec']; ?></h3>
+                <?php
+                                if ($_SESSION['perfilc'] == 'Cliente') {
+                ?>Agendamento do(a) <?php echo $_SESSION['nomec']; ?></h3>
+                <?php
+                    } else if ($_SESSION['perfilc'] == 'Funcionario' || $_SESSION['perfilc'] == 'Administrador') {
+                ?>Agendamento em nome do(a) <?php echo $_SESSION['nomec']; ?></h3>
+                <?php } ?>
         </div>
 
         <div class="row" style="width: 100.5%;">
@@ -264,7 +270,7 @@ if (isset($_POST['excluir'])) {
                                         </div>
                                         <div class="modal-body">
                                             <form method="post" action="">
-                                                <label style="border-bottom: 1px solid black; padding-bottom: 10px; width: 100%;"><strong>Agendamento efetuado em nome de
+                                                <label style="border-bottom: 1px solid black; padding-bottom: 10px; width: 100%;"><strong>Agendamento efetuado em 
                                                         <?php echo $la->getDataAgenda();?></strong></label>
                                                 <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
 
