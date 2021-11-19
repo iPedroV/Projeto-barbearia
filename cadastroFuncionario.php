@@ -170,7 +170,7 @@ $msg = new Mensagem();
         })
 
         function verificaSenha(input) {
-            var expSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#!"'%¨¬()+=§])[0-9a-zA-Z$*&@#!"'%¨¬()+=§]{8,}$/g;
+            var expSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#!"'%¨¬()+=§_-])[0-9a-zA-Z$*&@#!"'%¨¬()+=§_-]{8,}$/g;
             var senhaValida = expSenha.exec(input.value);
             var msgSenha = '';
 
