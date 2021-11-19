@@ -64,7 +64,7 @@ class DaoClientes
                     } else {
                         $resp = "<p style='color: Red;'>"
                             . "E-mail não existe</p>";
-                        $resp = $clientes;
+                        //$resp = $clientes;
                         
                     }
                 }

@@ -58,6 +58,13 @@ $mail->setEmailFrom('from@email.com');*/
 
             $cc = new ClientesController();
             unset($_POST['cadastrar']);
+            
+            $ce->setNome($nome);
+            $ce->setSexo($sexo);
+            $ce->setEmail($email);
+            $ce->setTelefone($telefone);
+            $ce->setSenha($senha);
+
             $resp = $cc->inserirClientes(
 
                 $nome,
@@ -67,10 +74,13 @@ $mail->setEmailFrom('from@email.com');*/
                 $sexo
             );
             if (getType($resp) == 'object') {
-                $ce = $resp;
+                
                 //alterei essa parte de baixo 
-                echo "<p style='color: red;'>Email já cadastrado ou inexistente!</p>";
-            } 
+                echo "<p style='color: red;'>Email já cadastrado!</p>";
+            } else if($resp == "<p style='color: Red;'>"
+            . "E-mail não existe</p>"){
+                echo "<p style='color: red;'>Email inexistente!</p>";
+            }
             else {
                 echo $resp;
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
