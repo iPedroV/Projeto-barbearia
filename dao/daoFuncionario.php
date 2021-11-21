@@ -134,4 +134,69 @@ class DaoFuncionario{
         $conn = null;
         return $msg;
     }
+    //método para os dados de produto por id
+    public function pesquisarFuncionarioIdDAO($id)
+    {
+        $conn = new Conecta();
+        $conecta = $conn->conectadb();
+        $funcionario = new Usuario();
+        $msg = new Mensagem();
+        if ($conecta) {
+            try {
+                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $rs = $conecta->prepare("select * from usuario where id = ?");
+                $rs->bindParam(1, $id);
+                if ($rs->execute()) {
+                    if ($rs->rowCount() > 0) {
+                        while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+
+                            $funcionario = new Usuario();
+                            $funcionario->setId($linha->id);
+                            $funcionario->setNome($linha->nome);
+                            $funcionario->setPerfil($linha->perfil);
+                            $funcionario->setSexo($linha->sexo);
+                            $funcionario->setEmail($linha->email);
+                            $funcionario->setTelefone($linha->telefone);
+                        }
+                    }
+                }
+            } catch (PDOException $ex) {
+                $msg->setMsg(var_dump($ex->errorInfo));
+            }
+            $conn = null;
+        } else {
+            $msg->setMsg("<script>Swal.fire({
+                icon: 'error',
+                title: 'Erro de conexão',
+                text: 'Banco de dados pode estar inoperante',
+                timer: 2000
+              })</script>");
+        }
+        return $funcionario;
+    }
+
+
+    public function excluirFuncionarioDAO($id)
+    {
+        $conn = new Conecta();
+        $conecta = $conn->conectadb();
+        $msg = new Mensagem();
+        if ($conecta) {
+            try {
+                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stmt = $conecta->prepare("delete from usuario "
+                    . "where id = ?");
+                $stmt->bindParam(1, $id);
+                $stmt->execute();
+                $msg->setMsg("<p style='color: green;'>" // colocar aqui o sweet alert dps
+                    . "Funcionário excluído com sucesso.</p>");
+            } catch (PDOException $ex) {
+                $msg->setMsg(var_dump($ex->errorInfo));
+            }
+        } else {
+            $msg->setMsg("<p style='color: red;'>'Banco inoperante!'</p>");
+        }
+        $conn = null;
+        return $msg;
+    }
 }

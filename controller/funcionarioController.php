@@ -47,4 +47,14 @@ class FuncionarioController
         return $daoClientes3->atualizarSenhaFuncioanrioDAO($funcionario);
 
     }
+
+    public function excluirFuncionario($id){
+        $daoPessoa = new DaoFuncionario();
+        return $daoPessoa->excluirFuncionarioDAO($id);
+    }
+    
+    public function pesquisarFuncionarioId($id){
+        $daoPessoa = new DaoFuncionario();
+        return $daoPessoa->pesquisarFuncionarioIdDAO($id);
+    }
 }
