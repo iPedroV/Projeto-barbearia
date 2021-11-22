@@ -94,8 +94,8 @@
                         <th>
                             <div class="d-flex justify-content-center">
 
-                                <a href="cadastroFuncionario.php" class="btn btn-success  mb-1 mt-1  " style=" line-height: 0.5;  font-size: 1.2em">
-                                    Novo</a>
+                                <a href="cadastroFuncionario.php" class="btn btn-success  mb-1 mt-1  " style=" line-height: 0.5;  font-size: 1.2em; font-family: Arial, sans-serif;">
+                                    Adicionar &#10012;</a>
 
                             </div>
                         </th>
@@ -110,11 +110,18 @@
                 </thead>
                 <tbody>
                     <?php
-                    function horaMin($qqdata){
-                        $tempdata=substr($qqdata,0,2).'h'.
-                                    substr($qqdata,3,2).'min';
+                    function horaMin02($qqdata){
+                        if ($tempdata=substr($qqdata,0,2) == 00) {
+                            $tempdata=substr($qqdata,0,0).''.
+                                substr($qqdata,3,2).' Minutos';
                             return($tempdata);
+                        } else {
+                            $tempdata=substr($qqdata,1,1).'h '.
+                            substr($qqdata,3,2).'min';
+                            return($tempdata);
+                        }
                     }
+
                     $fcTable = new servicosController();
                     $listaServicos = $fcTable->listarServicos();
                     $a = 0;
@@ -125,18 +132,18 @@
                             
                     ?>      
                             <tr class=" align-middle" >
-                                <td></td>
+                                <td class="text-center">#</td>
                                 <!--<td class="text-center " ></td> -->
                                 <td style="width: 25%"><?php print_r($ls->getNomeServico()); ?></td>
                                 <td class="text-center "><?php print_r($ls->getValorServico()); ?></td>
-                                <td class="text-center"><?php print_r(horaMin(($ls->getTempoServico()))); ?></td>
+                                <td class="text-center"><?php print_r(horaMin02(($ls->getTempoServico()))); ?></td>
 
 
-                                <td class=" d-flex justify-content-center"> <button type="button" class="btn btn-warning" data-modal-title="<?php $sm->getIdServicos() ?>" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $a; ?>" data-whatever="<?php echo $ls->getIdServicos(); ?>" data-whatevernome="<?php echo $ls->getNomeServico() ?>" data-whateveremail="<?php echo $ls->getValorServico() ?>" data-whateversexo="<?php echo $ls->getTempoServico(); ?>">
+                                <td class=" d-flex justify-content-center"> <button type="button" class="btn btn-outline-warning" data-modal-title="<?php $sm->getIdServicos() ?>" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $a; ?>" data-whatever="<?php echo $ls->getIdServicos(); ?>" data-whatevernome="<?php echo $ls->getNomeServico() ?>" data-whateveremail="<?php echo $ls->getValorServico() ?>" data-whateversexo="<?php echo $ls->getTempoServico(); ?>" style="color: black;">
                                         Editar</button>
                                     </form>
 
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $a; ?>">
+                                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $a; ?>" style="color: black; margin-left: 20px;">
                                         Excluir</button>
                                 </td>
                             </tr>
