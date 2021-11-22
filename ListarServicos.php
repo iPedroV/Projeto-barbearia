@@ -30,6 +30,14 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style-lista-funcionario.css" rel="stylesheet">
 
+    <style>
+        
+        @media screen and (max-width: 380px){
+            .table-striped{
+                margin-left: 170px!important;
+            }
+        }
+    </style>
 
     <body>
 
@@ -84,9 +92,9 @@
 
         <div class="table-responsive d-flex justify-content-center mt-3">
 
-        
+        <div class="col-md-10 offset-0">
 
-            <table class="table table-striped" style="width: 70%;border-radius: 3px; overflow:hidden;">
+            <table class="table table-striped" style="width: 80%;border-radius: 3px; overflow:hidden; margin-left: 125px;">
 
                 <thead class="table-dark">
 
@@ -94,8 +102,8 @@
                         <th>
                             <div class="d-flex justify-content-center">
 
-                                <a href="cadastroFuncionario.php" class="btn btn-success  mb-1 mt-1  " style=" line-height: 0.5;  font-size: 1.2em; font-family: Arial, sans-serif;">
-                                    Adicionar &#10012;</a>
+                                <a href="cadastroFuncionario.php" class="btn btn-success  mb-1 mt-1  " style=" line-height: 0.75;  font-size: 1.2em; font-family: Arial, sans-serif;">
+                                    Adicionar</a>
 
                             </div>
                         </th>
@@ -178,6 +186,7 @@
                     ?>
                 </tbody>
             </table>
+            </div>
         </div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
