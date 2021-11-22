@@ -31,6 +31,39 @@
         <link href="css/style-lista-funcionario.css" rel="stylesheet">
 
     <style>
+    .btnDetalhes {
+        border: 1px solid #888;
+        background-color: #888;
+        color: white;
+        width: 80px;
+        height: 40px;
+        border-radius: 4px;
+        font-size: 18px;
+    }
+
+    .btnDetalhes:hover {
+        border: 1px solid #333;
+        background-color: #333;
+    }
+
+    .btnReagendar{
+        border: 1px solid #333;
+        background-color: #333;
+        color: white;
+        width: 80px;
+        height: 40px;
+        border-radius: 2px;
+        text-decoration: none;
+        font-size: 18px;
+
+    }
+
+    .btnReagendar:hover {
+        border: 1px solid #000;
+        background-color: #000;
+        color: #fff;
+    }
+
         
         @media screen and (max-width: 380px){
             .table-striped{
@@ -147,11 +180,11 @@
                                 <td class="text-center"><?php print_r(horaMin02(($ls->getTempoServico()))); ?></td>
 
 
-                                <td class=" d-flex justify-content-center"> <button type="button" class="btn btn-outline-warning" data-modal-title="<?php $sm->getIdServicos() ?>" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $a; ?>" data-whatever="<?php echo $ls->getIdServicos(); ?>" data-whatevernome="<?php echo $ls->getNomeServico() ?>" data-whateveremail="<?php echo $ls->getValorServico() ?>" data-whateversexo="<?php echo $ls->getTempoServico(); ?>" style="color: black;">
+                                <td class=" d-flex justify-content-center"> <button type="button" class="btnDetalhes" data-modal-title="<?php $sm->getIdServicos() ?>" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $a; ?>" data-whatever="<?php echo $ls->getIdServicos(); ?>" data-whatevernome="<?php echo $ls->getNomeServico() ?>" data-whateveremail="<?php echo $ls->getValorServico() ?>" data-whateversexo="<?php echo $ls->getTempoServico(); ?>">
                                         Editar</button>
                                     </form>
 
-                                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $a; ?>" style="color: black; margin-left: 20px;">
+                                    <button type="button" class="btnReagendar" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $a; ?>" style="margin-left: 20px;">
                                         Excluir</button>
                                 </td>
                             </tr>
