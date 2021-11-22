@@ -82,13 +82,12 @@
 
         </header>
 
-
         <div class="table-responsive">
 
             <a href="cadastroFuncionario.php" class="btn btn-success mb-1 mt-1 ms-1">
                 Novo funcionario</a>
             <br>
-            <table class="table table-striped" style="border-radius: 3px; overflow:hidden;">
+            <table class="table table-striped"   style=" border-radius: 3px; overflow:hidden;">
                 <thead class="table-dark">
                     <tr>
                         <th>Código</th>
@@ -118,14 +117,14 @@
                                 <td><?php print_r($lf->getSexo()); ?></td>
                                 <td><?php print_r($lf->getTelefone()); ?></td>
                                 
-                                <td> <button type="button" class="btn btn-warning" data-modal-title="<?php $ce->getId() ?>" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $a; ?>" data-whatever="<?php echo $lf->getId(); ?>" data-whatevernome="<?php echo $lf->getNome() ?>" data-whateveremail="<?php echo $lf->getEmail() ?>" data-whateverperfil="<?php echo $lf->getPerfil() ?>" data-whateversexo="<?php echo $lf->getSexo() ?>" data-whatevertelefone="<?php echo $lf->getTelefone() ?>">
-                                        <?php echo $lf->getId(); ?></button>
+                                <td class="d-flex justify-content-center"> <button type="button" class="btn btn-warning " data-modal-title="<?php $ce->getId() ?>" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $a; ?>" data-whatever="<?php echo $lf->getId(); ?>" data-whatevernome="<?php echo $lf->getNome() ?>" data-whateveremail="<?php echo $lf->getEmail() ?>" data-whateverperfil="<?php echo $lf->getPerfil() ?>" data-whateversexo="<?php echo $lf->getSexo() ?>" data-whatevertelefone="<?php echo $lf->getTelefone() ?>">
+                                        Editar</button>
                                     </form>
-                                </td>
-                                <td>
+                                
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $a; ?>">
                                         Excluir</button>
                                 </td>
+                                
                             </tr>
                             <!-- INICIO Modal Excluir -->
                             <div class="modal fade" id="exampleModal<?php echo $a; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

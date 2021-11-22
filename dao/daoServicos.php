@@ -17,7 +17,7 @@ class DaoServicos {
                     if($serag->rowCount() > 0){
                         while($linha = $serag->fetch(PDO::FETCH_OBJ)){
                             $servicos = new Servicos_model();
-                            $servicos->setIdServicos($linha->id);
+                            $servicos->setIdServicos($linha->idServicos);
                             $servicos->setNomeServico($linha->nome);
                             $servicos->setValorServico($linha->valor);
                             $servicos->setTempoServico($linha->tempo_estimado);

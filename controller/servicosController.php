@@ -1,5 +1,5 @@
 <?php
-include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoAgendamento.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoServicos.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/servicos_model.php';
 
 class ServicosController {
