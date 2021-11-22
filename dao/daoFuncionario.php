@@ -199,4 +199,34 @@ class DaoFuncionario{
         $conn = null;
         return $msg;
     }
+
+    //Método para buscar o email do adm para fins de verificação de alteração de senha
+    public function pesquisarFuncionarioEmailDAO()
+    {
+        $msg = new Mensagem();
+        $conn = new Conecta();
+        $conecta = $conn->conectadb();
+        //echo "<script>alert('Cheguei aqui')</script>";
+        if ($conecta) {
+            try {             
+                $rs = $conecta->query("select email from usuario where perfil = 'Administrador'");               
+                if ($rs->execute()) {
+                    if ($rs->rowCount() > 0) {
+                        while ($adm = $rs->fetch(PDO::FETCH_OBJ)) {
+                            $adm = new Usuario();
+                            $adm->setEmail($adm->email);
+                        }
+                    }
+                }
+            } catch (Exception $ex) {
+                $msg->setMsg($ex);
+            }
+            $conn = null;
+        } else {
+            echo "<script>alert('Banco inoperante!')</script>";
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
+			 URL='../Projeto-Barbearia/index.php'\">";
+        }
+        return $adm;
+    }
 }

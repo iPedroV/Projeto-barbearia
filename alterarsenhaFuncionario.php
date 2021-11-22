@@ -23,32 +23,42 @@ $msg = new Mensagem();
 
 <body>
     <div id="senhafuncionario">
-    <script src="Js/sweetalert2.all.min.js"></script>
+        <script src="Js/sweetalert2.all.min.js"></script>
 
-    <?php 
-    
-    if (isset($_POST['alterarsenha'])) {
-        if (($_POST['nsenha']) == ($_POST['csenha'])) {
+        <?php
+        if (isset($_POST['alterarsenha'])) {
+            if (($_POST['nsenha']) == ($_POST['csenha'])) {
+                $emailADM = new FuncionarioController();
+                $ADMemail = $emailADM->pesquisarAdministradorEmail();
+                if ($ADMemail == $_POST['email']) {
+                    $msg = new Mensagem();
+                    $msg->setMsg("<script>Swal.fire({
+                        icon: 'error',
+                        title: 'Erro de alteração',
+                        text: 'O email não pode ser alterado, favor digitar o seu email',
+                        timer: 3000
+                      })</script>");
+                    echo $msg->getMsg();
+                }
                 $senha = $_POST['nsenha'];
                 $email = $_POST['email'];
                 $ems = new FuncionarioController();
                 $msg = $ems->editarSenhaFuncionarios($senha, $email);
                 echo $msg->getMsg();
-                header("refresh:2;url=login.php");
-        }else {
-            $msg->setMsg("<script>setTimeout(Swal.fire({
+                //header("refresh:2;url=login.php");
+            } else {
+                $msg->setMsg("<script>setTimeout(Swal.fire({
                 icon: 'error',
                 title: 'Senhas diferentes',
                 text: 'Favor, escreva senhas iguais!',
                 timer: 2000
                 }))</script>");
-            echo $msg->getMsg();
+                echo $msg->getMsg();
+            }
         }
-        
-    }
 
-    
-    ?>
+
+        ?>
         <img src="img/barbearianeves.png" class="imagem">
         <form method="post">
             <label for="n_senha">Email:</label>

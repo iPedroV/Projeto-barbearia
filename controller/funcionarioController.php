@@ -57,4 +57,9 @@ class FuncionarioController
         $daoPessoa = new DaoFuncionario();
         return $daoPessoa->pesquisarFuncionarioIdDAO($id);
     }
+
+    public function pesquisarAdministradorEmail(){
+        $daoPessoa = new DaoFuncionario();
+        return $daoPessoa->pesquisarFuncionarioEmailDAO();
+    }
 }
