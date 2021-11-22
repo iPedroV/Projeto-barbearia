@@ -12,6 +12,12 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 $data = $_SESSION['dataAgendamento'];
 $dataForm = $_SESSION['dataAgendamentoFormatado'];
 
+$_SESSION['funcionario2'] = "";
+$_SESSION['servico2'] = "";
+$_SESSION['nome_Servico2'] = "";
+$_SESSION['agendamentoServicoTempo2'] = "";
+$_SESSION['agendamentoServicoValor'] = "";
+
 // Chamando o id da associativa de servicos para poder usar para inserir
 $servico = null;
 $servico2 = null;
@@ -73,129 +79,6 @@ require_once __DIR__ . "/bd/banco.php";
     <header>
         <a href="./agendamento.php" class="logo">&#8656; Voltar<span>.</span></a>
     </header>
-
-    <?php
-
-    if (isset($_POST['voltar'])) {
-        header("Location: agendamento.php");
-    }
-
-    if (isset($_POST['enviar'])) {
-        $servico = $_POST['id_servicos'];
-        $funcionario = $_POST['id_funcionarios'];
-        if($servico == null){
-            ?>
-                <script>
-                    Swal.fire({
-                        title: 'Por favor, escolha um serviço',
-                        text: 'para continuar o agendamento é nescessário escolher um serviço primeiro',
-                        icon: 'warning',
-                        confirmButtonText: 'Ok'
-                    })
-                </script>
-            <?php    
-        } else if($funcionario == null){
-            ?>
-            <script>
-                Swal.fire({
-                    title: 'Por favor, escolha um funcionario',
-                    text: 'para continuar o agendamento é nescessário escolher um funcionario',
-                    icon: 'warning',
-                    confirmButtonText: 'Ok'
-                })
-            </script>
-        <?php    
-        } else {
-            $data;
-            $idUsuario = $_SESSION['idc']; 
-            
-            //$servico = $_SESSION['agendamentoServico'];
-            $_SESSION['funcionario'] = $funcionario;
-            $servico = $_SESSION['servico'];
-
-            $valor1 = $_POST['valor01'];
-            $tempoServ1 = $_POST['tempoServico01'];
-            
-            $servicoN = $_POST['nomeServico01'];
-            $_SESSION['nome_Servico'] = $servicoN;
-            //$_SESSION['nomeFuncionarioFormulario'] = $_POST['nomeFuncionario'];
-               
-            //echo " <p style='color: white;'>- idUsuário: $idUsuario, </p>";
-            echo " <p style='color: white;'>- Data Escolhida: $data <br><br>-: servico 01 :==> $servico, $servicoN, $funcionario valor: R$$valor1 </p>";
-            
-
-            $valorTotal = $valor1;
-            $tempoTotal = $tempoServ1;
-            //echo " <p style='color: white;'>- valor Total a pagar: $valorTotal </p>";
-            //echo " <p style='color: white;'>- tempo Total: $tempoTotal </p><br>";
-            $_SESSION['agendamentoServicoValor'] = $valorTotal;
-            $_SESSION['agendamentoServicoTempo'] = $tempoTotal;
-
-            $funcionarioN2 = $_POST['id_funcionarios2'];
-            if($funcionarioN2 == null){
-                //$_SESSION['nomeFuncionarioFormulario2'] = $_POST['id_funcionarios2'];
-                $funcionario2 = $_POST['id_funcionarios2'];
-                $_SESSION['funcionario2'] = $_POST['id_funcionarios2'];
-                $servico2 = $_SESSION['servico2'];
-                $valor2 = $_POST['valor02'];
-                $tempoServ2 = $_POST['tempoServico02'];
-
-                //echo " <p style='color: white;'>-: servico 02 :==>  $servico2, $funcionario2 valor: R$$valor2 </p>";
-
-                $valorTotal = $valor1 + $valor2;
-                //echo " <p style='color: white;'>- valor Total a pagar: $valorTotal </p>";
-                //echo " <p style='color: white;'>- tempo Total: $tempoServ2 </p>";
-                $_SESSION['agendamentoServicoValor'] = $valorTotal;
-                $_SESSION['agendamentoServicoTempo2'] = $tempoServ2;
-            }
-
-            $horario = $_POST['horario_agendamento'];
-            if ($horario == null) {
-                ?>
-                        <script>
-                            Swal.fire({
-                                title: 'Escolha um horário para continuar',
-                                text: 'O horário não foi selecionado.',
-                                icon: 'warning',
-                                confirmButtonText: 'Ok'
-                            })
-                        </script>
-                    <?php    
-            } else {
-                $_SESSION['horarioAgendamento'] = $horario;
-
-                // Metodo apra verfificar a Data e horário que estão sendo escolhidas pelo usuário
-                $result_usuario = "SELECT * FROM agendamentos WHERE data = '$data' AND horario = '$horario'";
-                $resultado_usuario = mysqli_query($conn, $result_usuario);
-                while($row_usuario = mysqli_fetch_assoc($resultado_usuario)){
-                    $row_usuario['idAgendamento'];
-                    $row_usuario['data'];
-                    $row_usuario['horario'];
-
-                    $dataBC = $row_usuario['data'];
-                    $horarioBC = $row_usuario['horario'];
-
-                    if ($row_usuario['horario'] != null) {
-                        ?>
-                        <script>
-                            Swal.fire({
-                                title: 'Vaga Indisponível neste horário.',
-                                text: 'Por favor escolha outro horário ou mude a data do agendamento.',
-                                icon: 'error',
-                                confirmButtonText: 'Ok'
-                            })
-                        </script>
-                    <?php    
-                    }   
-                }
-                if ($dataBC == null && $horarioBC == null) {
-                    header("Location: agendamentoFormulario2.php");
-                }
-            }
-        }     
-    }
-
-    ?>
 
     <form method="POST" action="" class="agendamento" id="agendamento" style="background-color: #333;">
         <div class="card-body" style="background-color: #333;">
@@ -316,7 +199,7 @@ require_once __DIR__ . "/bd/banco.php";
                                     <input type="time" name="horario_agendamento" id="horarioEscolhido" value="" >
                                 </div>
                             </div>
-                            <div class="col-md-12 offset-12" style="border-bottom: 2px solid white; margin-bottom: 30px; margin-top: -15px;"></div>
+                            <div class="col-md-12 offset-12" style="border-bottom: 2px solid white; margin-bottom: 30px; margin-top: -15px; position: relative;"></div>
 
                             <select name="valor01" id="valorServico" class="form-control" ></select>
                             <select name="tempoServico01" id="tempoServicoForm" class="form-control" ></select>
@@ -324,6 +207,7 @@ require_once __DIR__ . "/bd/banco.php";
 
                             <select name="valor02" id="valorServico2" class="form-control" ></select>
                             <select name="tempoServico02" id="tempoServicoForm2" class="form-control" ></select>
+                            <select name="nomeServico02" id="nomeServico2" class="form-control" style="color: transparent;"></select>
 
                             <div class="footer" style="background-color: #fff;">
                                 
@@ -334,6 +218,149 @@ require_once __DIR__ . "/bd/banco.php";
                     </div>
                 </div>
     </form>
+
+    <?php
+
+    if (isset($_POST['voltar'])) {
+        header("Location: agendamento.php");
+    }
+
+    if (isset($_POST['enviar'])) {
+        $servico = $_POST['id_servicos'];
+        $funcionario = $_POST['id_funcionarios'];
+        if($servico == null){
+            ?>
+                <script>
+                    Swal.fire({
+                        title: 'Por favor, escolha um serviço',
+                        text: 'para continuar o agendamento é nescessário escolher um serviço primeiro',
+                        icon: 'warning',
+                        confirmButtonText: 'Ok'
+                    })
+                </script>
+            <?php    
+        } else if($funcionario == null){
+            ?>
+            <script>
+                Swal.fire({
+                    title: 'Por favor, escolha um funcionario',
+                    text: 'para continuar o agendamento é nescessário escolher um funcionario',
+                    icon: 'warning',
+                    confirmButtonText: 'Ok'
+                })
+            </script>
+        <?php    
+        } else {
+            $data;
+            $idUsuario = $_SESSION['idc']; 
+            
+            //$servico = $_SESSION['agendamentoServico'];
+            $_SESSION['funcionario'] = $funcionario;
+            $servico = $_SESSION['servico'];
+
+            $valor1 = $_POST['valor01'];
+            $tempoServ1 = $_POST['tempoServico01'];
+            
+            $servicoN = $_POST['nomeServico01'];
+            $_SESSION['nome_Servico'] = $servicoN;
+            //$_SESSION['nomeFuncionarioFormulario'] = $_POST['nomeFuncionario'];
+               
+            //echo " <p style='color: white;'>- idUsuário: $idUsuario, </p>";
+            //echo " <p style='color: white;'>- Data Escolhida: $data <br><br>-: servico 01 :==> $servico, $servicoN, $funcionario valor: R$$valor1 </p>";
+            
+
+            $valorTotal = $valor1;
+            $tempoTotal = $tempoServ1;
+            //echo " <p style='color: white;'>- valor Total a pagar: $valorTotal </p>";
+            //echo " <p style='color: white;'>- tempo Total: $tempoTotal </p><br>";
+            $_SESSION['agendamentoServicoValor'] = $valorTotal;
+            $_SESSION['agendamentoServicoTempo'] = $tempoTotal;
+
+            $valor2 = "";
+            $tempoServ2 = "";
+            $servicoN2 = "";
+            $funcionario2 = $_POST['id_funcionarios2'];
+            if($funcionario2 != "Selecionar Serviço 2"){
+                //$_SESSION['nomeFuncionarioFormulario2'] = $_POST['id_funcionarios2'];
+                $funcionario2 = $_POST['id_funcionarios2'];
+                $_SESSION['funcionario2'] = $_POST['id_funcionarios2'];
+                $servico2 = $_SESSION['servico2'];
+                $valor2 = $_POST['valor02'];
+                $tempoServ2 = $_POST['tempoServico02'];
+
+                $servicoN2 = $_POST['nomeServico02'];
+                $_SESSION['nome_Servico2'] = $servicoN2;
+
+                //echo " <p style='color: white;'>-: servico 02 :==>  $servico2, $servicoN2, $funcionario2 valor: R$$valor2 </p>";
+
+                $valorTotal = $valor1 + $valor2;
+                //echo " <p style='color: white;'>- valor Total a pagar: $valorTotal </p>";
+                //echo " <p style='color: white;'>- tempo Total: $tempoServ2 </p>";
+                $_SESSION['agendamentoServicoValor'] = $valorTotal;
+                $_SESSION['agendamentoServicoTempo2'] = $tempoServ2;
+            } else {
+                $_POST['valor02'] = "";
+                $_POST['tempoServico02'] = "";
+            }
+
+            $horario = $_POST['horario_agendamento'];
+            if ($horario == null) {
+                ?>
+                        <script>
+                            Swal.fire({
+                                title: 'Escolha um horário para continuar',
+                                text: 'O horário não foi selecionado.',
+                                icon: 'warning',
+                                confirmButtonText: 'Ok'
+                            })
+                        </script>
+                    <?php    
+            } else {
+                $_SESSION['horarioAgendamento'] = $horario;
+
+                // Metodo apra verfificar a Data e horário que estão sendo escolhidas pelo usuário
+                $result_usuario = "SELECT * FROM agendamentos WHERE data = '$data' AND horario = '$horario'";
+                $resultado_usuario = mysqli_query($conn, $result_usuario);
+                while($row_usuario = mysqli_fetch_assoc($resultado_usuario)){
+                    $row_usuario['idAgendamento'];
+                    $row_usuario['data'];
+                    $row_usuario['horario'];
+
+                    $dataBC = $row_usuario['data'];
+                    $horarioBC = $row_usuario['horario'];
+
+                    if ($row_usuario['horario'] != null) {
+                        ?>
+                        <script>
+                            Swal.fire({
+                                title: 'Vaga Indisponível neste horário.',
+                                text: 'Por favor escolha outro horário ou mude a data do agendamento.',
+                                icon: 'error',
+                                confirmButtonText: 'Ok'
+                            })
+                        </script>
+                    <?php    
+                    }   
+                }
+
+                $funcionario = $_POST['id_funcionarios'];
+                $funcionarioN2 = $_POST['id_funcionarios2'];
+
+                if ($dataBC == null && $horarioBC == null) {
+                    if ($funcionario != "")  {
+                        header("Location: agendamentoFormulario2.php");
+                    } else if ($funcionario != "" && $funcionarioN2 != "") {
+                        header("Location: agendamentoFormulario2.php");
+                    } 
+                } else {
+
+                }
+            }
+        }     
+    }
+
+    ?>
+
 
     <link rel="stylesheet" href="./css/Style-Agend.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -414,9 +441,9 @@ require_once __DIR__ . "/bd/banco.php";
 					});
 
                     $.getJSON('agendamentoFormularioValorServico2.php?search=',{id_servicos2: $(this).val(), ajax: 'true'}, function(h){
-                        var optionsV = '';
-                        var optionsV2 = '';
-                        var optionsV3 = '';
+                        var optionsV = '0';
+                        var optionsV2 = '0';
+                        var optionsV3 = '0';
 						for (var i = 0; i < h.length; i++) {
 							optionsV += '<option value="' + h[i].valor + '">R$ ' + h[i].valor + ',00</option>';
 							optionsV2 += '<option value="' + h[i].nome + '">' + h[i].nome + '</option>';

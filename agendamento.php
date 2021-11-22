@@ -11,6 +11,12 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 
 $id = $_SESSION['idc'];
 $nomeUser = $_SESSION['nomec'];
+
+$_SESSION['funcionario2'] = "";
+$_SESSION['servico2'] = "";
+$_SESSION['nome_Servico2'] = "";
+$_SESSION['agendamentoServicoTempo2'] = "";
+$_SESSION['agendamentoServicoValor'] = "";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

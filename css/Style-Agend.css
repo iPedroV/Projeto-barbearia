@@ -514,7 +514,6 @@ select.form-control {
     border: 2px solid black; 
     background-color: rgba(0, 0, 0, 0.5);
     width: 900px;
-    height: 515px;
     margin-bottom: 30px;
 }
 
@@ -1006,7 +1005,7 @@ a.CancelarAgendamento:hover {
 
 .footer {
     height: 80px;
-    padding: /*top*/15px /*left*/10px /*bottom*/15px /*rigth*/150px;
+    padding: /*top*/15px /*left*/10px /*bottom*/15px /*rigth*/130px;
     margin-bottom: 15px;
 }
 
@@ -1073,7 +1072,10 @@ transform: scale(1,1);
 
 }
 
-
+.mostarDados{
+    background-color: white; height: 2px; margin-top: -5px;
+    width: 100%;
+}
 
 
 
@@ -1173,11 +1175,17 @@ transform: scale(1,1);
         margin-top: -30px;
     }    
 
+    .formulario{
+        width: 370px;
+        margin-left: 0.2px;
+        margin-top: 20px;
+        height: 1370px;
+    }
+
     .formulario2{
         width: 320px;
         margin-left: 22px;
         margin-top: 20px;
-        height: 900px;
     }
 
     #myList{
@@ -1250,7 +1258,7 @@ transform: scale(1,1);
     }
     
     .campoFormData input{
-        width: 295px;
+        width: 320px;
         margin-left: -20px;
     }
 
@@ -1286,7 +1294,7 @@ transform: scale(1,1);
 
 
     .barreira {
-        width: 295px;
+        width: 320px;
         height: 36px;
         top: 70px!important;    
         left: -20px;    
@@ -1346,7 +1354,6 @@ transform: scale(1,1);
         color: #fff;
         font-size: 22px;
         margin-top: 0px;
-    
         position: relative;
         top: 20px;
     }
@@ -1374,7 +1381,7 @@ transform: scale(1,1);
         margin-top: 0px;
     
         position: relative;
-        top: -10px;
+        top: -20px;
     }
         
     .campoFormHorario2 input{
@@ -1401,6 +1408,12 @@ transform: scale(1,1);
     .almoco span{
         color: #fff;
     }
+
+    .mostarDados{
+        background-color: white; height: 2px;
+        width: 100%;
+        margin-top: 25px!important;
+    }
 }
 
 @media screen and (max-width: 380px){
@@ -1417,6 +1430,7 @@ transform: scale(1,1);
     .footer {
         height: 170px;
         padding: /*top*/25px /*left*/10px /*bottom*/25px /*rigth*/15px;
+        position: relative; top: -10px;
     }
 
     .efeito-btn {

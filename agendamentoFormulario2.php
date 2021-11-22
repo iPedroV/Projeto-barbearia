@@ -108,7 +108,12 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                     <input type="date" name="data_agendamento" value="<?php echo $data ?>">
                                 
                                     <br><br><Label>Horário do Serviço:</Label><br>
-                                    <input type="time" name="" value="<?php echo $horario;?>" disabled>
+                                    <input type="text" name="" value="<?php function horaMin($qqdata){
+                                                                                $tempdata=substr($qqdata,0,2).'h '.
+                                                                                            substr($qqdata,3,2).'min';
+                                                                                    return($tempdata);
+                                                                            }
+                                                                            echo horaMin($horario);?>" disabled>
                                     <br>
                                 </div>
                             </div>
@@ -120,88 +125,113 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                     
                                     <input type="text" name="nomeServico" value="<?php echo $nome01;?>" disabled><br>
 
-                                    <input type="text" value="<?php $tempo01; 
-                                        if($tempo01 == "00:05:00"){
-                                            echo "05 min";
-                                        } elseif ($tempo01 == "00:10:00"){
-                                            echo "10 min";
-                                        } elseif ($tempo01 == "00:15:00"){
-                                            echo "15 min";
-                                        } elseif ($tempo01 == "00:20:00"){
-                                            echo "20 min";
-                                        } elseif ($tempo01 == "00:25:00"){
-                                            echo "25 min";
-                                        } elseif ($tempo01 == "00:30:00"){
-                                            echo "30 min";
-                                        } elseif ($tempo01 == "00:35:00"){
-                                            echo "35 min";
-                                        } elseif ($tempo01 == "00:40:00"){
-                                            echo "40 min";
-                                        } elseif ($tempo01 == "00:45:00"){
-                                            echo "45 min";
-                                        } elseif ($tempo01 == "00:50:00"){
-                                            echo "50 min";
-                                        } elseif ($tempo01 == "00:55:00"){
-                                            echo "55 min";
-                                        } elseif ($tempo01 == "01:00:00"){
-                                            echo "1h (uma) hora";
-                                        } elseif ($tempo01 == "01:05:00"){
-                                            echo "1h 05min";
-                                        } elseif ($tempo01 == "01:10:00"){
-                                            echo "1h 10min";
-                                        } elseif ($tempo01 == "01:15:00"){
-                                            echo "1h 15min";
-                                        } elseif ($tempo01 == "01:20:00"){
-                                            echo "1h 20min";
-                                        } elseif ($tempo01 == "01:25:00"){
-                                            echo "1h 25min";
-                                        } elseif ($tempo01 == "01:30:00"){
-                                            echo "1h 30min";
-                                        } elseif ($tempo01 == "01:35:00"){
-                                            echo "1h 35min";
-                                        } elseif ($tempo01 == "01:40:00"){
-                                            echo "1h 40min";
-                                        } elseif ($tempo01 == "01:45:00"){
-                                            echo "1h 45min";
-                                        } elseif ($tempo01 == "01:50:00"){
-                                            echo "1h 50min";
-                                        } elseif ($tempo01 == "01:55:00"){
-                                            echo "1h 55min";
-                                        } elseif ($tempo01 == "02:00:00"){
-                                            echo "2h (duas) horas";
-                                        }
+                                    <input type="text" value="<?php $tempo01;                                   
+                                        function horaMin02($qqdata){
+                                                if ($tempdata=substr($qqdata,0,2) == 00) {
+                                                    $tempdata=substr($qqdata,0,0).''.
+                                                        substr($qqdata,3,2).'min';
+                                                    return($tempdata);
+                                                } else {
+                                                    $tempdata=substr($qqdata,0,2).'h '.
+                                                    substr($qqdata,3,2).'min';
+                                                    return($tempdata);
+                                                }
+                                        } echo horaMin02($tempo01);
                                         ?>" disabled><br>
-                                        
-                                    <input type="text" name="valorTotal" value="<?php echo "R$ ".$valor.",00";?>" disabled>
+
+                                        <ul name="id_servicos" class="form-control" style="height: 40px; background-color: transparent; border: transparent;" >
+                                
+                                            <?php
+                                            $funcionario = $_SESSION['funcionario'];
+                                            $result_post = "SELECT * FROM `usuario` " 
+                                                ."WHERE id = " . $funcionario . " LIMIT 1";
+                                            $resultado_post = mysqli_query($conn, $result_post);
+                                            while ($row_post = mysqli_fetch_assoc($resultado_post)) {
+                                                echo '<li style="list-style: none; color: white; font-size: 18px;" 
+                                                    value="' . $row_post['id'] . '"><strong>Funcionario: </strong>' . $row_post['nome'] . '</li>';
+                                            }
+
+                                            
+                                            ?>
+                                        </ul>  
+
                                     <!--<select id="valorTotal" name="valorTotal" disabled style="color: black;">
                                         <option></option>
-                                    </select>--><br>
+                                    </select>-->
 
-                                    <div class="col-10" style="background-color: white; height: 2px; margin-top: -5px;"></div>
+                                    <div class="col-10" id="mostarDados"></div>
                                 </div>
+                                <?php
+                                        if ($_SESSION['funcionario2'] == "") {
+                                            $funcionario2 = "";
+                                        } else {
+                                            $funcionario2 = $_SESSION['funcionario2'];
+                                        }
+                                        
+                                        echo '<div style="color: transparent;">0'.$funcionario2.'</div>';
+                                        
+                                            if ($funcionario2 != "") {
+                                                $nome02 = $_SESSION['nome_Servico2'];
+                                                $tempo02 = $_SESSION['agendamentoServicoTempo2'];
+                                                ?>
+                                                <div class="campoForm3">
+                                                <Label style="margin-bottom: 10px;">Dados do Serviço 2:</Label><br>
+                                                <div class="col-10" style="background-color: white; height: 2px; margin-top: -8px; margin-bottom: 8px;"></div>
+                                                
+                                                <input type="text" name="nomeServico2" value="<?php echo $nome02;?>" disabled><br>
+
+                                                <input type="text" value="<?php $tempo02; 
+                                                if ($tempo02 != null) {
+                                                    function horaMin03($qqdata){
+                                                        if ($tempdata=substr($qqdata,0,2) == 00) {
+                                                            $tempdata=substr($qqdata,0,0).''.
+                                                                substr($qqdata,3,2).'min';
+                                                            return($tempdata);
+                                                        } else {
+                                                            $tempdata=substr($qqdata,1,1).'h '.
+                                                            substr($qqdata,3,2).'min';
+                                                            return($tempdata);
+                                                        }
+                                                } echo horaMin03($tempo02);
+                                                   
+                                                }
+                                                    ?>" disabled><br>
+
+                                                    <ul name="id_servicos2" class="form-control" style="height: 40px; background-color: transparent; border: transparent;" >
+                                            
+                                                        <?php
+                                                        $funcionario2 = $_SESSION['funcionario2'];
+                                                        if ($funcionario2 != "") {
+                                                            $funcionario2 = $_SESSION['funcionario2'];
+                                                            $result_post2 = "SELECT * FROM `usuario` " 
+                                                                ."WHERE id = " . $funcionario2 . " LIMIT 1";
+                                                            $resultado_post2 = mysqli_query($conn, $result_post2);
+                                                            while ($row_post2 = mysqli_fetch_assoc($resultado_post2)) {
+                                                                echo '<li style="list-style: none; color: white; font-size: 18px;" 
+                                                                    value="' . $row_post2['id'] . '"><strong>Funcionario: </strong>' . $row_post2['nome'] . '</li>';
+                                                            }
+                                                        }
+
+                                                        
+                                                        ?>
+                                                    </ul> 
+                                                    </div>
+                                                    
+                                                <?php 
+                                            }
+                                        ?>
                             </div>
 
                             <div class="col-md-6">
-                                <div class="campoForm3">
+                                <div class="campoForm3"><br>
+
                                     <label for="email">Forma de Pagamento </label><br>
                                         <select id="formaPagamento" name="formaPagamento" >
                                             <option>Dinheiro</option>
-                                        </select><br>
+                                        </select><br><br>
+                                    <input type="text" name="valorTotal" value="<?php echo "Total a pagar: R$ ".$valor.",00";?>" disabled><br>
                                     
-                                    <br>
-                                    <ul name="id_servicos" id="MostarDados" class="form-control" style="height: 40px; background-color: transparent;" >
-                                
-                                        <?php
-                                        $funcionario = $_SESSION['funcionario'];
-                                        $result_post = "SELECT * FROM `usuario` " 
-                                            ."WHERE id = " . $funcionario . " LIMIT 1";
-                                        $resultado_post = mysqli_query($conn, $result_post);
-                                        while ($row_post = mysqli_fetch_assoc($resultado_post)) {
-                                            echo '<li style="list-style: none; color: white; font-size: 18px;" 
-                                                value="' . $row_post['id'] . '"><strong>Funcionario: </strong>' . $row_post['nome'] . '</li>';
-                                        }
-                                        ?>
-                                    </ul>
+                                    <!--<input type="text" name="nomeServico" value="<?php echo $funcionario;?>" disabled><br>-->
                                 </div>
                             </div>
 
@@ -236,13 +266,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
             
 			$valorTotal = $_SESSION['agendamentoServicoValor'];
             //echo " <p style='color: white;'>- valor Total a pagar: $valorTotal </p>";
-            $funcionario2 = "";
-            $funcionario2 = $_SESSION['funcionario2'];
-            if($funcionario2 != ""){
-                $funcionario2 = $_SESSION['funcionario2'];
-                $servico2 = $_SESSION['servico2'];
-                //echo " <p style='color: white;'>-: servico 02 :==> $servico2, $funcionario2 </p>";
-            }
+
             $status = "agendado";
             $confirmar = "confirmado";
 
@@ -250,6 +274,22 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                 unset($_POST['enviar']);
                 $msg = $dts->inserirAgendamento($horario, $dataA, $formaPagamento, $status, $dataA2, $confirmar, 
                         $valorTotal, $idUsuario, $funcionario, $servico);
+
+                $_SESSION['funcionario2'];
+                $funcionario2 = $_SESSION['funcionario2'];
+                if($funcionario2 != ""){
+                    
+                    $funcionario2 = $_SESSION['funcionario2'];
+                    $servico2 = $_SESSION['servico2'];
+                    $envio2 = "select idAgendamento from agendamentos where data = '$dataA' and horario = '$horario' and usuario_id = $idUsuario limit 1";
+                    $resultado_post = mysqli_query($conn, $envio2);
+                    while ($row_post = mysqli_fetch_assoc($resultado_post)) {
+                        $teste = $row_post['idAgendamento'];
+                        
+                    }
+                    $envio2 = "INSERT into agendamentos_dos_servicos values ($teste, $funcionario2, $servico2);";
+                    $resultado_post = mysqli_query($conn, $envio2);
+                }
 
                 $_SESSION['dataAgendamento'] = "";
                 ?>
@@ -272,7 +312,6 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                         URL='http://localhost/Projeto-barbearia/agendamento_ClienteDados.php'\">";
         }
     }
-
     ?>
     <link rel="stylesheet" href="./css/Style-Agend.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

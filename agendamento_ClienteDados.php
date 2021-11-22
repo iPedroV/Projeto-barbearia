@@ -135,6 +135,11 @@ if (isset($_POST['excluir'])) {
                 })
             </script>
         <?php
+        $_SESSION['funcionario2'] = "";
+        $_SESSION['servico2'] = "";
+        $_SESSION['nome_Servico2'] = "";
+        $_SESSION['agendamentoServicoTempo2'] = "";
+        $_SESSION['agendamentoServicoValor'] = "";
         echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
             URL='agendamento.php'\">";
     }
@@ -144,16 +149,11 @@ if (isset($_POST['excluir'])) {
     <div class="page-header">
             <h3 style="padding-top: 25px; padding-bottom: 25px; padding-left: 40px; margin-top: 10px;
                 border-top: 2px solid black; border-bottom: 2px solid black; color: white; background: linear-gradient(90deg, #666 35%, #111 80%)!important;">
-                <?php
-                                if ($_SESSION['perfilc'] == 'Cliente') {
-                ?>Agendamento do(a) <?php echo $_SESSION['nomec']; ?></h3>
-                <?php
-                    } else if ($_SESSION['perfilc'] == 'Funcionario' || $_SESSION['perfilc'] == 'Administrador') {
-                ?>Agendamento em nome do(a) <?php echo $_SESSION['nomec']; ?></h3>
-                <?php } ?>
+                Agendamento do(a) <?php echo $_SESSION['nomec']; ?></h3>
         </div>
 
-        <div class="row" style="width: 100.5%;">
+    <div class="table-responsive">
+
         <div class="col-md-10 offset-1">
         <table class="table table-striped" style="border-radius: 3px; overflow:hidden; margin-top: 25px;">
             <thead class="table-dark text-center">
@@ -167,8 +167,23 @@ if (isset($_POST['excluir'])) {
                     <th></th>
                 </tr>
             </thead>
-            <tbody class="text-center" style="border-left: 4px solid black; border-right: 4px solid black;">
+            <tbody class="text-center align-middle" style="border-left: 4px solid black; border-right: 4px solid black;">
                 <?php
+                //FUNÇÃO QUE FORMATA A DATA QUE VEM DO MYSQL
+                function vemData($qqdata){
+                    $tempdata=substr($qqdata,8,2).'/'.
+                          substr($qqdata,5,2).'/'.
+                          substr($qqdata,0,4);
+                    return($tempdata);
+                }
+
+                //FUNÇÃO QUE FORMATA A HORA QUE VEM DO MYSQL
+                function horaMin($qqdata){
+                    $tempdata=substr($qqdata,0,2).'h'.
+                                substr($qqdata,3,2).'min';
+                        return($tempdata);
+                }
+
                 $TabelaVisual = new AgendamentoController();
                 if ($_SESSION['perfilc'] == 'Cliente') {
                     $listaAgendamento = $TabelaVisual->ListarClienteAgendamento();
@@ -184,8 +199,8 @@ if (isset($_POST['excluir'])) {
                         $a++;
                 ?>
                         <tr>
-                            <td><input type="date" value="<?php print_r($la->getDataAgenda()); ?>" style="background-color: transparent; border: transparent; width: 130px;"></td>
-                            <td><input type="time" value="<?php print_r($la->getHorario()); ?>" style="background-color: transparent; border: transparent;"></td>
+                            <td><?php print_r(vemData($la->getDataAgenda())); ?></td>
+                            <td><?php print_r(horaMin($la->getHorario())); ?></td>
                             <td><?php print_r($la->getForma_Pagamento()); ?></td>
                             <td>R$ <?php print_r($la->getValor()); ?></td>
                             <td style="border-right: 8px solid #fff;"><?php print_r($la->getStatusAgendamento()); ?></td>
@@ -213,36 +228,45 @@ if (isset($_POST['excluir'])) {
                                         <div class="modal-body">
                                             <form method="post" action="">
                                                 <label style="border-bottom: 1px solid black; padding-bottom: 10px; width: 100%;"><strong>Agendamento efetuado em 
-                                                        <?php echo $la->getDataAgenda();?></strong></label>
+                                                        <?php echo vemData($la->getDataAgenda());?></strong></label>
                                                 <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
 
-                                                <br><br><label>Serviço: </label>
+                                                <br><br><label>Serviço(s): </label>
                                                 <ul name="id_servicos" id="MostarDados" class="form-control" >
                                 
                                                     <?php
-                                                    $result_post = "SELECT * FROM `agendamentos_dos_servicos` " 
-                                                        ."inner JOIN servicos_do_funcionario on servicos_do_funcionario.servicos_id = agendamentos_dos_servicos.sf_servicos "
-                                                        ."inner JOIN servicos on servicos.idServicos = servicos_do_funcionario.servicos_id "
-                                                        ."WHERE agendamentos_id = " . $la->getId() . " LIMIT 1";
+                                                    $result_post = "SELECT * FROM `agendamentos_dos_servicos` "
+                                                        ."WHERE agendamentos_id = " . $la->getId() . "";
                                                     $resultado_post = mysqli_query($conn, $result_post);
                                                     while ($row_post = mysqli_fetch_assoc($resultado_post)) {
-                                                        echo '<li style="list-style: none;" value="' . $row_post['idServicos'] . '">' . $row_post['nome'] . '</li>';
-                                                        echo '<li style="list-style: none;" value="' . $row_post['idServicos'] . '">R$ ' . $row_post['valor'] . ',00</li>';
+                                                        $serv = $row_post['sf_servicos'];
+
+                                                        $result_post02 = "Select * from `servicos` WHERE idServicos = $serv";
+                                                        $resultado_post02 = mysqli_query($conn, $result_post02);
+                                                        while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
+                                                            echo '<li style="list-style: none;">' . $row_post02['nome'] . '</li>';
+                                                        }
                                                     }
+                                                    
                                                     ?>
+                                                    <li style="list-style: none;"><br>Valor total do serviço: R$ <?php print_r($la->getValor()); ?></li>
                                                 </ul>
 
-                                                <label>Funcionario: </label>
+                                                <label>Funcionario(s): </label>
                                                 <ul name="id_servicos" id="MostarDados" class="form-control" >
                                 
                                                     <?php
                                                     $result_post = "SELECT * FROM `agendamentos_dos_servicos` " 
-                                                        ."inner JOIN servicos_do_funcionario on servicos_do_funcionario.servicos_id = agendamentos_dos_servicos.sf_servicos "
-                                                        ."inner JOIN usuario on usuario.id = servicos_do_funcionario.funcionarios_id "
-                                                        ."WHERE agendamentos_id = " . $la->getId() . " LIMIT 1";
+                                                        ."WHERE agendamentos_id = " . $la->getId();
                                                     $resultado_post = mysqli_query($conn, $result_post);
                                                     while ($row_post = mysqli_fetch_assoc($resultado_post)) {
-                                                        echo '<li style="list-style: none;" value="' . $row_post['id'] . '">' . $row_post['nome'] . '</li>';
+                                                        $func = $row_post['sf_funcionario'];
+
+                                                        $result_post02 = "Select * from `usuario` WHERE id = $func";
+                                                        $resultado_post02 = mysqli_query($conn, $result_post02);
+                                                        while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
+                                                            echo '<li style="list-style: none;">' . $row_post02['nome'] . '</li>';
+                                                        }
                                                     }
                                                     ?>
                                                 </ul>
@@ -270,7 +294,7 @@ if (isset($_POST['excluir'])) {
                                         </div>
                                         <div class="modal-body">
                                             <form method="post" action="">
-                                                <label style="border-bottom: 1px solid black; padding-bottom: 10px; width: 100%;"><strong>Agendamento efetuado em 
+                                                <label style="border-bottom: 1px solid black; padding-bottom: 10px; width: 100%;"><strong>Agendamento efetuado em nome de
                                                         <?php echo $la->getDataAgenda();?></strong></label>
                                                 <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
 
@@ -332,8 +356,9 @@ if (isset($_POST['excluir'])) {
                     ?> 
                     </tbody>
                     </table>
-                    </div>
-                    </div>
+                    
+                </div>
+            </div>
                         <div class="row" style="width: 99%;">
                             <div class="col-md-2 offset-2"></div>
                             <form method="POST" action="" class="agendamento" id="agendamento">
