@@ -1,6 +1,7 @@
 <?php
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 
+
 /*
  * Como enviar emails do localhost com o Sendmail no Xampp usando o Gmail
  * https://www.carloshdebrito.com.br/como-enviar-emails-do-localhost-com-o-sendmail-no-xampp-usando-o-gmail/
@@ -75,15 +76,22 @@ class Enviar
     {
         $msg = new Mensagem();
         $nome = $_POST['nome'];
-        $tel = $_POST['telefone'];
+        $telefone = str_replace("(","", $_POST['telefone']);
+        $telefone = str_replace(")","", $telefone);
+        $telefone = str_replace(" ","", $telefone);
+        $telefone = str_replace("-","", $telefone);
         $cargo = $_POST['cargo'];
         $email = $_POST['email'];
-        $telefone = str_replace("(","", $_POST['telefone']);
-                $telefone = str_replace(")","", $telefone);
-                $telefone = str_replace(" ","", $telefone);
-                $telefone = str_replace("-","", $telefone);
-        $senha = $telefone;
+       
+        $token = $_POST['token'];
+        
+        $senha = $token;
+        
+        
 
+        date_default_timezone_set('America/Sao_Paulo');
+        $data_envio = date('d/m/y');
+        $hora_envio = date('H:i:s');
         date_default_timezone_set('America/Sao_Paulo');
         $data_envio = date('d/m/y');
         $hora_envio = date('H:i:s');
@@ -102,7 +110,7 @@ class Enviar
                         <p>Cadastrado com sucesso no Salão e barbearia neves</p>
                         <p>Seus dados casdastrais são:</p>
                         <p>Nome completo: $nome</p>
-                        <p>Telefone celular: $tel</p>
+                        <p>Telefone celular: $telefone</p>
                         <p>Cargo de: $cargo</p>
                         <p>Senha de acesso ao sistema: $senha</p>
                         <p>Lembrando que é sugerido que altere sua senha de acesso.</p>

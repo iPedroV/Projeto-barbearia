@@ -22,6 +22,9 @@ class DaoFuncionario{
             $senha = $funcionario->getSenha();
             $sexo = $funcionario->getSexo();
             $verifica = "F";
+            
+            $token = substr((time()), 0, 20 );
+
 
             try {
                 $st = $conecta->prepare("SELECT * FROM usuario where email = ?");
@@ -31,7 +34,7 @@ class DaoFuncionario{
                     $resp = $funcionario;
                 }else{
                     $stmt = $conecta->prepare("insert into usuario values "
-                    . "(null,?,?,?,?,md5(?),?, ?)");
+                    . "(null,?,?,?,?,md5(?),?, ?,?)");
 
                 $stmt->bindParam(1, $nome);
                 $stmt->bindParam(2, $perfil);
@@ -40,6 +43,7 @@ class DaoFuncionario{
                 $stmt->bindParam(5, $senha);
                 $stmt->bindParam(6, $sexo);
                 $stmt->bindParam(7, $verifica);
+                $stmt->bindParam(8, $token);
                 $stmt->execute();
                 $resp = "<p style='color: green;'>"
                     . "Dados Cadastrados com sucesso</p>";
@@ -104,14 +108,16 @@ class DaoFuncionario{
 
             $senha = $funcioanrio->getSenha();
             $verifica = 'S';
-            $email = $funcioanrio->getEmail();
+            $token = $funcioanrio->getToken();
+           
+            
 
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stmt = $conecta->prepare("UPDATE usuario SET senha= md5(?), verifica = ? WHERE email = ?");
+                $stmt = $conecta->prepare("UPDATE usuario SET senha= md5(?), verifica = ? WHERE token = ?");
                 $stmt->bindParam(1, $senha);
                 $stmt->bindParam(2, $verifica);
-                $stmt->bindParam(3, $email);
+                $stmt->bindParam(3, $token);
                 $stmt->execute();
                 $msg->setMsg("<script>Swal.fire({
                     icon: 'success',
@@ -174,8 +180,6 @@ class DaoFuncionario{
         }
         return $funcionario;
     }
-
-
     public function excluirFuncionarioDAO($id)
     {
         $conn = new Conecta();
@@ -198,35 +202,5 @@ class DaoFuncionario{
         }
         $conn = null;
         return $msg;
-    }
-
-    //Método para buscar o email do adm para fins de verificação de alteração de senha
-    public function pesquisarFuncionarioEmailDAO()
-    {
-        $msg = new Mensagem();
-        $conn = new Conecta();
-        $conecta = $conn->conectadb();
-        //echo "<script>alert('Cheguei aqui')</script>";
-        if ($conecta) {
-            try {             
-                $rs = $conecta->query("select email from usuario where perfil = 'Administrador'");               
-                if ($rs->execute()) {
-                    if ($rs->rowCount() > 0) {
-                        while ($adm = $rs->fetch(PDO::FETCH_OBJ)) {
-                            $adm = new Usuario();
-                            $adm->setEmail($adm->email);
-                        }
-                    }
-                }
-            } catch (Exception $ex) {
-                $msg->setMsg($ex);
-            }
-            $conn = null;
-        } else {
-            echo "<script>alert('Banco inoperante!')</script>";
-            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
-			 URL='../Projeto-Barbearia/index.php'\">";
-        }
-        return $adm;
     }
 }

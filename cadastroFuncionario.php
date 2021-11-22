@@ -43,18 +43,19 @@ $msg = new Mensagem();
         $msg = new Mensagem();
         $conecta = $conn->conectadb();
         if (isset($_POST['cadastrar'])) {
-            $telefone = str_replace("(","", $_POST['telefone']);
-                $telefone = str_replace(")","", $telefone);
-                $telefone = str_replace(" ","", $telefone);
-                $telefone = str_replace("-","", $telefone);
-            $senha = $telefone;
-            if ($senha != "") {
-
-                $nome = $_POST['nome'];
-                $perfil = $_POST['cargo'];
-                $email = $_POST['email'];
-                $sexo = $_POST['sexo'];
-            }
+           
+                $telefone = str_replace("(","", $_POST['telefone']);
+                    $telefone = str_replace(")","", $telefone);
+                    $telefone = str_replace(" ","", $telefone);
+                    $telefone = str_replace("-","", $telefone);
+                $senha = $telefone;
+                if ($senha != "") {
+    
+                    $nome = $_POST['nome'];
+                    $perfil = $_POST['cargo'];
+                    $email = $_POST['email'];
+                    $sexo = $_POST['sexo'];
+                }
 
             $cc = new FuncionarioController();
             unset($_POST['cadastrar']);
@@ -66,6 +67,7 @@ $msg = new Mensagem();
                 $email,
                 $senha,
                 $sexo
+             
 
             );
             if (getType($resp) == 'object') {
@@ -129,6 +131,7 @@ $msg = new Mensagem();
                     <span class="detalhes">Email:</span>
                     <input type="email" placeholder="Digite seu email" name="email" required value="<?php echo $ce->getEmail(); ?>">
                 </div>
+                
 
                 
             </div>

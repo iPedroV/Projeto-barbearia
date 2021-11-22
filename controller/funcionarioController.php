@@ -37,17 +37,16 @@ class FuncionarioController
         $email = new Enviar();
         return $email->EnviarEmailSenha();
     }
-    public function editarSenhaFuncionarios($senha, $email){
+    public function editarSenhaFuncionarios($senha, $token){
 
         $funcionario = new Usuario();
         $funcionario->setSenha($senha);
-        $funcionario->setEmail($email);
+        $funcionario->setToken($token);
 
         $daoClientes3 = new DaoFuncionario();
         return $daoClientes3->atualizarSenhaFuncioanrioDAO($funcionario);
 
     }
-
     public function excluirFuncionario($id){
         $daoPessoa = new DaoFuncionario();
         return $daoPessoa->excluirFuncionarioDAO($id);
@@ -57,7 +56,6 @@ class FuncionarioController
         $daoPessoa = new DaoFuncionario();
         return $daoPessoa->pesquisarFuncionarioIdDAO($id);
     }
-
     public function pesquisarAdministradorEmail(){
         $daoPessoa = new DaoFuncionario();
         return $daoPessoa->pesquisarFuncionarioEmailDAO();

@@ -10,6 +10,7 @@ class Usuario
     private $senha;
     private $sexo;
     private $verifica;
+    private $token;
   
     public function getId()
     {
@@ -113,6 +114,18 @@ class Usuario
     public function setVerifica($verifica): self
     {
         $this->verifica = $verifica;
+
+        return $this;
+    }
+
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    public function setToken($token)
+    {
+        $this->token = $token;
 
         return $this;
     }
