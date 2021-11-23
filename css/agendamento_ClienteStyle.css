@@ -261,6 +261,7 @@ span.account-position{
     font-weight: 500!important;
     color: black!important;
     border-radius: 2px!important;
+    transition-duration: 0.5s!important;
 
 }
 
