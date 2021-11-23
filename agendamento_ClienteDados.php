@@ -356,15 +356,15 @@ if (isset($_POST['excluir'])) {
                     ?> 
                     </tbody>
                     </table>
+                        </div>
                     <div>
-                    
                 </div>
-            </div>
+                
                         <div class="row" id="some" style="width: 99%;">
                             <div class="col-md-2 offset-2"></div>
-                            <form method="POST" action="" class="agendamento" id="agendamento">
+                            <form method="POST" action="" >
                                 <label class="nenhumAgendamento">Nenhum agendamento foi realizado.</label>
-                                <button type="submit" class="btn efeito-btn" name="fazerAgendamento" id="fazerAgendamento">&#8652; Fazer Agendamento &#8651;</button>
+                                <button type="submit" class="btn" name="fazerAgendamento" id="fazerAgendamento">&#8652; Fazer Agendamento &#8651;</button>
                             </form>
                         </div>
 
