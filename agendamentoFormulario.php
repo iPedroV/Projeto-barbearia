@@ -172,7 +172,7 @@ require_once __DIR__ . "/bd/banco.php";
                                 <button name="horarioAgend" id="btnHorario3" onclick="horario3()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">09:30</span></button>
                                 <button name="horarioAgend" id="btnHorario4" onclick="horario4()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">10:15</span></button>
                                 <button name="horarioAgend" id="btnHorario5" onclick="horario5()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">11:00</span></button>
-                                <label class="almoco">Horário de Almoço: <br><span>12h ás 14h</span></label> 
+                                <label class="almoco">Agendamento Fechado das <br><span>12h ás 14h</span></label> 
                             </div>
 
                             <!-- DIVISÃO DE SERVIÇOS --> 
