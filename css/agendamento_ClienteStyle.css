@@ -374,6 +374,7 @@ span.account-position{
         header.sticky
         {
             padding: 10px 20px;
+            margin-bottom: 15px;
         }
         header .navigation
         {
@@ -394,7 +395,9 @@ span.account-position{
         }
         header .navigation li
         {
-            margin-left: 0
+            margin-left: 0;
+            position: relative;
+            top: -60px;
         }
         header .navigation li a
         {
@@ -485,7 +488,7 @@ span.account-position{
         }
 
         .dados{
-            margin-top: 25;
+            margin-top: 25px;
         }
     }
     
