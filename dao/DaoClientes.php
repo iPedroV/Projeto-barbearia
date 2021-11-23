@@ -10,7 +10,7 @@ class DaoClientes
 
     public function inserir(Usuario $clientes)
     {
-        $conn = new Conecta();
+    $conn = new Conecta();
         $msg = new Mensagem();
         $conecta = $conn->conectadb();
 
