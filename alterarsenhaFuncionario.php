@@ -51,8 +51,8 @@ $msg = new Mensagem();
     ?>
         <img src="img/barbearianeves.png" class="imagem">
         <form method="post">
-            <label for="n_senha">senha atual:</label>
-            <input type="text" id="token1" name="token1" required>
+            <label for="n_senha">Código verificador:</label>
+            <input type="text" id="token" name="token" required>
 
             <label for="n_senha">Nova senha:</label>
             <input type="password" id="nsenha" name="nsenha" required>

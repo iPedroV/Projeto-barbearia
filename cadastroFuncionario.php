@@ -37,8 +37,10 @@ $msg = new Mensagem();
 <body>
     <div class="container">
         <div class="title"><span><b>C</b></span>adastro Funcionario</div>
-
+         
         <?php
+//substr((time()), 0, 20 )
+
         $conn = new Conecta();
         $msg = new Mensagem();
         $conecta = $conn->conectadb();
@@ -55,6 +57,7 @@ $msg = new Mensagem();
                     $perfil = $_POST['cargo'];
                     $email = $_POST['email'];
                     $sexo = $_POST['sexo'];
+                    $token = $_POST['token'];
                 }
 
             $cc = new FuncionarioController();
@@ -66,9 +69,8 @@ $msg = new Mensagem();
                 $telefone,
                 $email,
                 $senha,
-                $sexo
-             
-
+                $sexo,
+                $token
             );
             if (getType($resp) == 'object') {
                 $ce = $resp;
@@ -108,7 +110,7 @@ $msg = new Mensagem();
                     <span class="detalhes">Telefone Celular:</span>
                     <input id="tel" type="tel" placeholder="(xx)9xxxx-xxxx" name="telefone" required value="<?php echo $ce->getTelefone(); ?>">
                 </div>
-
+            
                 <div class="input-box">
                     <span class="detalhes">Cargo:</span>
                     <select name="cargo" class="select">
@@ -130,6 +132,10 @@ $msg = new Mensagem();
                 <div class="input-box">
                     <span class="detalhes">Email:</span>
                     <input type="email" placeholder="Digite seu email" name="email" required value="<?php echo $ce->getEmail(); ?>">
+                </div>
+
+                <div class="input-box">
+                    <input type="hidden" name="token" required value="<?php echo substr((time()), 0, 20 )?> <?php echo $ce->getToken(); ?>">
                 </div>
                 
 

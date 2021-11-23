@@ -13,7 +13,8 @@ class FuncionarioController
         $telefone,
         $email,
         $senha,
-        $sexo) {
+        $sexo,
+        $token) {
         $funcionarios = new Usuario();
 
         $funcionarios->setNome($nome);
@@ -22,6 +23,7 @@ class FuncionarioController
         $funcionarios->setEmail($email);
         $funcionarios->setSenha($senha);
         $funcionarios->setSexo($sexo);
+        $funcionarios->setToken($token);
         
 
         $daofuncionarios = new DaoFuncionario();
@@ -56,8 +58,9 @@ class FuncionarioController
         $daoPessoa = new DaoFuncionario();
         return $daoPessoa->pesquisarFuncionarioIdDAO($id);
     }
-    public function pesquisarAdministradorEmail(){
+
+    /*public function tokenenviar(){
         $daoPessoa = new DaoFuncionario();
-        return $daoPessoa->pesquisarFuncionarioEmailDAO();
-    }
+        return $daoPessoa->token();
+    }*/
 }

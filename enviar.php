@@ -1,5 +1,7 @@
 <?php
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/funcionarioController.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 
 
 /*
@@ -74,6 +76,10 @@ class Enviar
 
     public function EnviarEmailSenha()
     {
+        /*$ems = new FuncionarioController();
+        $token = $ems->tokenenviar();
+        $token->getToken();*/
+        
         $msg = new Mensagem();
         $nome = $_POST['nome'];
         $telefone = str_replace("(","", $_POST['telefone']);
@@ -82,10 +88,9 @@ class Enviar
         $telefone = str_replace("-","", $telefone);
         $cargo = $_POST['cargo'];
         $email = $_POST['email'];
-       
         $token = $_POST['token'];
-        
-        $senha = $token;
+    
+        $senha = $telefone;
         
         
 
@@ -113,6 +118,7 @@ class Enviar
                         <p>Telefone celular: $telefone</p>
                         <p>Cargo de: $cargo</p>
                         <p>Senha de acesso ao sistema: $senha</p>
+                        <p>Código verificador primeiro acesso: $token</p>.
                         <p>Lembrando que é sugerido que altere sua senha de acesso.</p>
                         <p>Este Email foi enviado dia: $data_envio às: $hora_envio</p>
                     </div>

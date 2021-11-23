@@ -22,8 +22,7 @@ class DaoFuncionario{
             $senha = $funcionario->getSenha();
             $sexo = $funcionario->getSexo();
             $verifica = "F";
-            
-            $token = substr((time()), 0, 20 );
+            $token = $funcionario->getToken();
 
 
             try {
@@ -203,4 +202,30 @@ class DaoFuncionario{
         $conn = null;
         return $msg;
     }
+
+
+    /*public function token(){
+        $msg = new Mensagem();
+        $conn = new Conecta();
+        $conecta = $conn->conectadb();
+        if ($conecta) {
+            try {
+                $rs = $conecta->query("select token from usuario where perfil = 'Funcionario'");
+                if ($rs->execute()) {
+                    if ($rs->rowCount() > 0) {
+                        while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+                            $token = new Usuario();
+                            $token->setToken($linha->token);
+                        }
+                    }
+                }
+            } catch (Exception $ex) {
+                $msg->setMsg($ex);
+            }
+            $conn = null;
+        } else {
+            echo "<script>alert('Banco inoperante!')</script>";
+        }
+        return $token;
+    }*/
 }
