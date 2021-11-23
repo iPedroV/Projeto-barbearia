@@ -100,9 +100,15 @@
         }
 
         if (isset($_POST['alterar'])) {
-            echo $msg->getMsg();
-                    //sleep(1);
-                 
+            if ($ce != null) {
+                $id = $_POST['id'];
+                unset($_POST['alterar']);
+                $fc = new FuncionarioController();
+                $msg = $fc->editarFuncionario($id);
+                echo $msg->getMsg();
+                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                URL='ListarFuncionario.php'\">";
+            }   
         }
         ?>
 
@@ -142,6 +148,16 @@
                 </thead>
                 <tbody>
                     <?php
+                    function telefone($qqdata)
+                    {
+                        //ajustando a mascara para telefone (problema se for tel fixo)
+                        $tempdata ='('. substr($qqdata, 0, 2) .') '.
+                         substr($qqdata, 2, 5) .'-' .  
+                         substr($qqdata, 7, 8);
+                                
+                            return ($tempdata);
+                        
+                    }
                     $fcTable = new funcionarioController();
                     $listaFuncionarios = $fcTable->listarFuncionario();
                     $a = 0;
@@ -155,7 +171,7 @@
                                 <td class="text-center "><?php print_r($lf->getPerfil()); ?></td>
                                 <td class="text-center "><?php print_r($lf->getEmail()); ?></td>
                                 <td class="text-center "><?php print_r($lf->getSexo()); ?></td>
-                                <td><?php print_r($lf->getTelefone()); ?></td>
+                                <td><?php print_r(telefone($lf->getTelefone())); ?></td>
                                 
                                 <td class="d-flex justify-content-center"> <button type="button" class="btnDetalhes" data-modal-title="<?php $ce->getId() ?>" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $a; ?>" data-whatever="<?php echo $lf->getId(); ?>" data-whatevernome="<?php echo $lf->getNome() ?>" data-whateveremail="<?php echo $lf->getEmail() ?>" data-whateverperfil="<?php echo $lf->getPerfil() ?>" data-whateversexo="<?php echo $lf->getSexo() ?>" data-whatevertelefone="<?php echo $lf->getTelefone() ?>">
                                         Editar</button>
@@ -204,7 +220,7 @@
                                                     </label></strong></h4>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="POST" action="http://localhost/Projeto-barbearia/editaFuncionario.php" enctype="multipart/form-data">
+                                            <form method="POST" action="" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label class="control-label">Nome:</label>
                                                     <input name="nome" type="text" class="form-control" id="nome" value="<?php echo $lf->getNome() ?>">

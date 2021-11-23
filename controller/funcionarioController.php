@@ -61,6 +61,11 @@ class FuncionarioController
         return $daoPessoa->pesquisarFuncionarioIdDAO($id);
     }
 
+    public function editarFuncionario($id){
+        $daoPessoa = new DaoFuncionario();
+        return $daoPessoa->editarFuncionarioDAO($id);
+    }
+    
     /*public function tokenenviar(){
         $daoPessoa = new DaoFuncionario();
         return $daoPessoa->token();

@@ -4,16 +4,18 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Mensagem.php';
 
-class DaoFuncionario{
+class DaoFuncionario
+{
 
-    public function inserirFuncionarioDAO(Usuario $funcionario){
-    
+    public function inserirFuncionarioDAO(Usuario $funcionario)
+    {
+
         $conn = new Conecta();
         $msg = new Mensagem();
         $conecta = $conn->conectadb();
 
         if ($conecta) {
-            
+
             $resp = null;
             $nome = $funcionario->getNome();
             $perfil = $funcionario->getPerfil();
@@ -29,25 +31,24 @@ class DaoFuncionario{
                 $st = $conecta->prepare("SELECT * FROM usuario where email = ?");
                 $st->execute([$email]);
                 $result = $st->rowCount();
-                if($result >0){
+                if ($result > 0) {
                     $resp = $funcionario;
-                }else{
+                } else {
                     $stmt = $conecta->prepare("insert into usuario values "
-                    . "(null,?,?,?,?,md5(?),?, ?,?)");
+                        . "(null,?,?,?,?,md5(?),?, ?,?)");
 
-                $stmt->bindParam(1, $nome);
-                $stmt->bindParam(2, $perfil);
-                $stmt->bindParam(3, $telefone);
-                $stmt->bindParam(4, $email);
-                $stmt->bindParam(5, $senha);
-                $stmt->bindParam(6, $sexo);
-                $stmt->bindParam(7, $verifica);
-                $stmt->bindParam(8, $token);
-                $stmt->execute();
-                $resp = "<p style='color: green;'>"
-                    . "Dados Cadastrados com sucesso</p>";
+                    $stmt->bindParam(1, $nome);
+                    $stmt->bindParam(2, $perfil);
+                    $stmt->bindParam(3, $telefone);
+                    $stmt->bindParam(4, $email);
+                    $stmt->bindParam(5, $senha);
+                    $stmt->bindParam(6, $sexo);
+                    $stmt->bindParam(7, $verifica);
+                    $stmt->bindParam(8, $token);
+                    $stmt->execute();
+                    $resp = "<p style='color: green;'>"
+                        . "Dados Cadastrados com sucesso</p>";
                 }
-                
             } catch (Exception $ex) {
                 $resp = $ex;
             }
@@ -68,8 +69,8 @@ class DaoFuncionario{
         $lista = array();
         if ($conecta) {
             try {
-               
-                $rs = $conecta->query("select * from usuario where perfil = 'Funcionario'");               
+
+                $rs = $conecta->query("select * from usuario where perfil = 'Funcionario'");
                 $a = 0;
                 if ($rs->execute()) {
                     if ($rs->rowCount() > 0) {
@@ -108,8 +109,8 @@ class DaoFuncionario{
             $senha = $funcioanrio->getSenha();
             $verifica = 'S';
             $token = $funcioanrio->getToken();
-           
-            
+
+
 
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -124,7 +125,6 @@ class DaoFuncionario{
                     timer: 2000
                   })
                   </script>");
-
             } catch (PDOException $ex) {
                 $msg->setMsg(var_dump($ex->errorInfo));
             }
@@ -139,7 +139,7 @@ class DaoFuncionario{
         $conn = null;
         return $msg;
     }
-    //método para os dados de produto por id
+    //método para buscar os dados de funcionario por id*
     public function pesquisarFuncionarioIdDAO($id)
     {
         $conn = new Conecta();
@@ -179,6 +179,7 @@ class DaoFuncionario{
         }
         return $funcionario;
     }
+
     public function excluirFuncionarioDAO($id)
     {
         $conn = new Conecta();
@@ -198,6 +199,56 @@ class DaoFuncionario{
             }
         } else {
             $msg->setMsg("<p style='color: red;'>'Banco inoperante!'</p>");
+        }
+        $conn = null;
+        return $msg;
+    }
+
+    public function editarFuncionarioDAO($id)
+    {
+        $conn = new Conecta();
+        $msg = new Mensagem();
+        $conecta = $conn->conectadb();
+        if ($conecta) {
+
+            $id = $_POST['id'];
+            $nome = $_POST['nome'];
+            $email = $_POST['email'];
+            $perfil = $_POST['perfil'];
+            $sexo = $_POST['sexo'];
+            $telefone = $_POST['telefone'];
+
+            /*$msg->setMsg("<p style='color: blue;'>"
+				. "'$email', '$senha'</p>"); */
+
+            try {
+                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stmt = $conecta->prepare("UPDATE usuario SET nome = ?, email = ?, perfil = ?, sexo = ?, telefone = ? WHERE id = ?");
+                $stmt->bindParam(1, $nome);
+                $stmt->bindParam(2, $email);
+                $stmt->bindParam(3, $perfil);
+                $stmt->bindParam(4, $sexo);
+                $stmt->bindParam(5, $telefone);
+                $stmt->bindParam(6, $id);
+                $stmt->execute();
+                $msg->setMsg("<script>Swal.fire({
+				icon: 'success',
+				title: 'Dados alterados com sucesso',
+				timer: 2000
+			  })
+			  </script>");
+                
+            } catch (PDOException $ex) {
+                $msg->setMsg(var_dump($ex->errorInfo));
+            }
+        } else {
+            $msg->setMsg("<script>Swal.fire({
+			icon: 'error',
+			title: 'Erro de conexão',
+			text: 'Banco de dados pode estar inoperante',
+			timer: 2000
+		  })</script>");
+            
         }
         $conn = null;
         return $msg;

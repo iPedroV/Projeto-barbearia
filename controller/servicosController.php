@@ -9,21 +9,29 @@ class ServicosController {
         return $daoServico->listarServicosDAO();
     }
 
-    public function inserirServicos(
-        $nome,
-        $valor,
-        $tempo
-        ) {
+    public function inserirServicos($nome, $valor, $tempo){
         $servicos = new Servicos_model();
-
         $servicos->setNomeServico($nome);
         $servicos->setValorServico($valor);
         $servicos->setTempoServico($tempo);
         
-        
-
         $daoservicos = new DaoServicos();
         return $daoservicos->inserirServicoDAO($servicos);
+    }
+
+    public function excluirServico($id){
+        $daoservicos = new DaoServicos();
+        return $daoservicos->excluirServicoDAO($id);
+    }
+
+    public function pesquisarServicoId($id){
+        $daoservicos = new DaoServicos();
+        return $daoservicos->pesquisarServicoIdDAO($id);
+    }
+
+    public function editarServico($id){
+        $daoservicos = new DaoServicos();
+        return $daoservicos->editaServicoDAO($id);
     }
 
 }
