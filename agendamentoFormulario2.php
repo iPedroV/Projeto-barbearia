@@ -229,7 +229,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                         <select id="formaPagamento" name="formaPagamento" >
                                             <option>Dinheiro</option>
                                         </select><br><br>
-                                    <input type="text" name="valorTotal" value="<?php echo "Total a pagar: R$ ".$valor.",00";?>" disabled><br>
+                                    <input type="text" name="valorTotal" value="<?php echo "Total a pagar: R$ ".$valor;?>" disabled><br>
                                     
                                     <!--<input type="text" name="nomeServico" value="<?php echo $funcionario;?>" disabled><br>-->
                                 </div>
