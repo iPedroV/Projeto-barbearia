@@ -296,6 +296,7 @@ require_once __DIR__ . "/bd/banco.php";
                 $_POST['valor02'] = "";
                 $_POST['tempoServico02'] = "";
             }
+            
 
             $horario = $_POST['horario_agendamento'];
             if ($horario == null) {
