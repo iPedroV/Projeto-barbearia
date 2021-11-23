@@ -180,7 +180,12 @@ header .navigation li a:hover{
 
 section
 {
-    padding: 50px;
+    width: 100%;
+    bottom: 0;
+    padding: 0px;
+    
+    justify-content: center;
+    align-items: center;
 }
 
 .row
@@ -514,7 +519,7 @@ section
 
 .copyrightText
 {
-    position: absolute;
+    
     bottom: 0;
     padding: 8px 40px;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -600,7 +605,10 @@ section
     }
     section
     {
-        padding: 20px;
+        padding: 2px;
+        width: 100%;
+        bottom: 0;
+        
     }
     .banner .content h2
     {
@@ -656,6 +664,17 @@ section
         margin-top: 24px;
         margin-bottom: 48px;
     }
+    .copyrightText
+{
+    
+    
+    padding: 8px 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    
+    
+}
 }
 
 @media (max-width: 480px)

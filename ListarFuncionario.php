@@ -30,6 +30,40 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style-lista-funcionario.css" rel="stylesheet">
 
+        <style>
+    .btnDetalhes {
+        border: 1px solid #888;
+        background-color: #888;
+        color: white;
+        width: 80px;
+        height: 40px;
+        border-radius: 4px;
+        font-size: 18px;
+    }
+
+    .btnDetalhes:hover {
+        border: 1px solid #333;
+        background-color: #333;
+    }
+
+    .btnReagendar{
+        border: 1px solid #333;
+        background-color: #333;
+        color: white;
+        width: 80px;
+        height: 40px;
+        border-radius: 2px;
+        text-decoration: none;
+        font-size: 18px;
+
+    }
+
+    .btnReagendar:hover {
+        border: 1px solid #000;
+        background-color: #000;
+        color: #fff;
+    }
+</style>
 
     <body>
 
@@ -65,11 +99,11 @@
             }
         }
 
-        /*if (isset($_POST['alterar'])) {
+        if (isset($_POST['alterar'])) {
             echo $msg->getMsg();
                     //sleep(1);
-                    
-        }*/
+                 
+        }
         ?>
 
         <header>
@@ -82,19 +116,25 @@
 
         </header>
 
-        <div class="table-responsive">
+        <div class="table-responsive d-flex justify-content-center mt-3 mb-5">
 
-            <a href="cadastroFuncionario.php" class="btn btn-success mb-1 mt-1 ms-1">
-                Novo funcionario</a>
+           
             <br>
             <table class="table table-striped"   style=" border-radius: 3px; overflow:hidden;">
                 <thead class="table-dark">
                     <tr>
-                        <th>Código</th>
+                        <th>
+                            <div class="d-flex justify-content-center">
+
+                                <a href="cadastroFuncionario.php" class="btn btn-success  mb-1 mt-1  " style=" line-height: 0.75;  font-size: 1.2em; font-family: Arial, sans-serif;">
+                                    Adicionar</a>
+
+                            </div>
+                        </th>
                         <th>Nome</th>
-                        <th>Perfil</th>
-                        <th>E-Mail</th>
-                        <th>Sexo</th>
+                        <th class="text-center ">Perfil</th>
+                        <th class="text-center ">E-Mail</th>
+                        <th class="text-center ">Sexo</th>
                         <th>Telefone</th>
 
                         <th colspan="2" class="text-center">Ações</th>
@@ -110,18 +150,18 @@
                             $a++;
                     ?>
                             <tr>
-                                <td><?php print_r($lf->getId()); ?></td>
+                                <td class="text-center">#</td>
                                 <td><?php print_r($lf->getNome()); ?></td>
-                                <td><?php print_r($lf->getPerfil()); ?></td>
-                                <td><?php print_r($lf->getEmail()); ?></td>
-                                <td><?php print_r($lf->getSexo()); ?></td>
+                                <td class="text-center "><?php print_r($lf->getPerfil()); ?></td>
+                                <td class="text-center "><?php print_r($lf->getEmail()); ?></td>
+                                <td class="text-center "><?php print_r($lf->getSexo()); ?></td>
                                 <td><?php print_r($lf->getTelefone()); ?></td>
                                 
-                                <td class="d-flex justify-content-center"> <button type="button" class="btn btn-warning " data-modal-title="<?php $ce->getId() ?>" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $a; ?>" data-whatever="<?php echo $lf->getId(); ?>" data-whatevernome="<?php echo $lf->getNome() ?>" data-whateveremail="<?php echo $lf->getEmail() ?>" data-whateverperfil="<?php echo $lf->getPerfil() ?>" data-whateversexo="<?php echo $lf->getSexo() ?>" data-whatevertelefone="<?php echo $lf->getTelefone() ?>">
+                                <td class="d-flex justify-content-center"> <button type="button" class="btnDetalhes" data-modal-title="<?php $ce->getId() ?>" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $a; ?>" data-whatever="<?php echo $lf->getId(); ?>" data-whatevernome="<?php echo $lf->getNome() ?>" data-whateveremail="<?php echo $lf->getEmail() ?>" data-whateverperfil="<?php echo $lf->getPerfil() ?>" data-whateversexo="<?php echo $lf->getSexo() ?>" data-whatevertelefone="<?php echo $lf->getTelefone() ?>">
                                         Editar</button>
                                     </form>
                                 
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $a; ?>">
+                                    <button type="button" class="btnReagendar" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $a; ?>" style="margin-left: 20px;">
                                         Excluir</button>
                                 </td>
                                 
@@ -247,11 +287,7 @@
 
             })
         </script>
-
-        <div class="copyrightText">
-            <p>Copyright 2021 <a href="#">Senac</a>. Todos os Direitos Reservados</p>
-        </div>
-
+        
         <script type="text/javascript">
             window.addEventListener('scroll', function() {
                 const header = document.querySelector('header');

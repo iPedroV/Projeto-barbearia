@@ -179,7 +179,8 @@
     }
 
     .current-day{
-      margin-left: 70px;
+      width: 26%;
+      
     }
       .calendar .current-day-events div{
         font-weight: 600; 

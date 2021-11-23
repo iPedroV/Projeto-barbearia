@@ -123,7 +123,7 @@
 
         </header>
 
-        <div class="table-responsive d-flex justify-content-center mt-3">
+        <div class="table-responsive d-flex justify-content-center mt-3 mb-5">
 
         <div class="col-md-10 offset-0">
 
@@ -135,7 +135,7 @@
                         <th>
                             <div class="d-flex justify-content-center">
 
-                                <a href="cadastroFuncionario.php" class="btn btn-success  mb-1 mt-1  " style=" line-height: 0.75;  font-size: 1.2em; font-family: Arial, sans-serif;">
+                                <a href="cadastroServicos.php" class="btn btn-success  mb-1 mt-1  " style=" line-height: 0.75;  font-size: 1.2em; font-family: Arial, sans-serif;">
                                     Adicionar</a>
 
                             </div>
@@ -162,6 +162,16 @@
                             return($tempdata);
                         }
                     }
+                    function virgula($qqdata){
+                        if(substr($qqdata,3,2) == NULL){
+                            $tempdata=substr($qqdata,0,2).','. '00';
+                            return($tempdata);
+                        }else{
+                            $tempdata=substr($qqdata,0,2).','.
+                            substr($qqdata,3,2);
+                            return($tempdata);
+                        }
+                    }
 
                     $fcTable = new servicosController();
                     $listaServicos = $fcTable->listarServicos();
@@ -176,7 +186,7 @@
                                 <td class="text-center">#</td>
                                 <!--<td class="text-center " ></td> -->
                                 <td style="width: 25%"><?php print_r($ls->getNomeServico()); ?></td>
-                                <td class="text-center "><?php print_r($ls->getValorServico()); ?></td>
+                                <td class="text-center "><?php print_r(virgula(($ls->getValorServico()))); ?></td>
                                 <td class="text-center"><?php print_r(horaMin02(($ls->getTempoServico()))); ?></td>
 
 
@@ -249,11 +259,7 @@
 
             })
         </script>
-
-        <div class="copyrightText">
-            <p>Copyright 2021 <a href="#">Senac</a>. Todos os Direitos Reservados</p>
-        </div>
-
+       
         <script type="text/javascript">
             window.addEventListener('scroll', function() {
                 const header = document.querySelector('header');

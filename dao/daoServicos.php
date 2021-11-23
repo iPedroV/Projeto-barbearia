@@ -36,4 +36,53 @@ class DaoServicos {
     
     }
 
+    public function inserirServicoDAO(Servicos_model $servicos){
+    
+        $conn = new Conecta();
+        $msg = new Mensagem();
+        $conecta = $conn->conectadb();
+
+        if ($conecta) {
+            
+            $resp = null;
+            
+            $nome = $servicos->getNomeServico();
+            $valor = $servicos->getValorServico();
+            $tempo = $servicos->getTempoServico();
+            
+            
+            
+            
+
+
+            try {
+                $st = $conecta->prepare("SELECT * FROM servicos where nome = ?");
+                $st->execute([$nome]);
+                $result = $st->rowCount();
+                if($result >0){
+                    $resp = $servicos;
+                }else{
+                    $stmt = $conecta->prepare("insert into servicos values "
+                    . "(null,?,?,?)");
+
+                $stmt->bindParam(1, $nome);
+                $stmt->bindParam(2, $valor);
+                $stmt->bindParam(3, $tempo);
+                
+                $stmt->execute();
+                $resp = "<p style='color: green;'>"
+                    . "Dados Cadastrados com sucesso</p>";
+                }
+                
+            } catch (Exception $ex) {
+                $resp = $ex;
+            }
+        } else {
+            $resp = "<p style='color: red;'>"
+                . "Erro na conexão com o banco de dados.</p>";
+        }
+        $conn = null;
+        return $resp;
+    }
+
 }
