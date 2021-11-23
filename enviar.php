@@ -150,4 +150,69 @@ class Enviar
         return $msg;
         header("Location: ListarFuncionario.php");
     }
+
+
+    public function EnviarEmailContato()
+    {
+        $msg = new Mensagem();
+        $email = $_POST['contatoEmail'];
+        $textoContato = $_POST['contatoTexto'];
+        $remetente = $_POST['contaoNome'];
+
+        date_default_timezone_set('America/Sao_Paulo');
+        $data_envio = date('d/m/y');
+        $hora_envio = date('H:i:s');
+
+        $corpoemail = " 
+        <!DOCTYPE html>
+        <html lang=\"pt-br\">
+        <head>
+            <meta charset=\"UTF-8\">
+            <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+        </head> 
+            <body>
+                <div>
+                    <h1>Email de contato</h1>
+                    <div class=\"filhadiv\">
+                        <p>$remetente</p>
+                        <p>$textoContato</p>
+                        <p>Agradecemos seu contato, orbigrado por ter entrado em comtato conosco.</p>
+                        <p>Este Email foi enviado dia: $data_envio às: $hora_envio</p>
+                    </div>
+                </div>
+            </body>
+        </html>";
+        //enviar
+        // emails para quem será enviado o formulário
+        $destino = $_POST['contatoEmail'];
+        $assunto = "Email de contato.";
+
+        // É necessário indicar que o formato do e-mail é html
+        $headers = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+        $headers .= 'From: <' . $email . '>';
+        
+        //$headers .= "Bcc: $EmailPadrao\r\n";
+
+        //$enviaremail = mail($destino, $assunto, $corpoemail, $headers);
+        if (mail($destino, $assunto, $corpoemail, $headers)) {
+            //echo "<script>alert('Email enviado com sucesso')</script>";
+            $mensagem = "<script>Swal.fire({
+                icon: 'success',
+                title: 'Email enviado',
+                text: 'Obrigrado por entrar em contato conosco!!',
+                })</script>";
+            echo $msg->setMsg($mensagem);
+        } else {
+            $mensagem2 = "<script>Swal.fire({
+            icon: 'error',
+            title: 'Erro ao enviar',
+            text: 'Emeil não encontrado',
+            timer: 3000
+            })</script>";
+            echo $msg->setMsg($mensagem2);
+        }
+        return $msg;
+        header("Location: login.php");
+    }
 }
