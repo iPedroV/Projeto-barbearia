@@ -211,11 +211,17 @@ $_SESSION['agendamentoServicoValor'] = "";
             }    
         
             if ($data < $dateEscolhida) {
+                function vemData($qqdata){
+                    $tempdata=substr($qqdata,8,2).'/'.
+                        substr($qqdata,5,2).'/'.
+                        substr($qqdata,0,4);
+                    return($tempdata);
+                }
                 ?>
                     <script>
                         Swal.fire({
-                            title: 'Agendamento não pode ser efetuado!',
-                            text: 'O dia escolhido não pode ser agendado antes do dia atual (<?php echo $dateEscolhida ?>)! Agende o serviço a partir de hoje.',
+                            title: 'Agende o seu serviço apartir de hoje!',
+                            text: 'O dia escolhido não pode ser agendado antes do dia atual (<?php echo vemData($dateEscolhida) ?>)! Agende o serviço a partir de hoje.',
                             icon: 'error',
                             confirmButtonText: '<a href="">Voltar_Calendário</a>'
                         })
