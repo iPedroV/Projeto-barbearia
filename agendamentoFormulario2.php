@@ -168,7 +168,6 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                             $funcionario2 = $_SESSION['funcionario2'];
                                         }
                                         
-                                        echo '<div style="color: transparent;">0'.$funcionario2.'</div>';
                                         
                                             if ($funcionario2 != "") {
                                                 $nome02 = $_SESSION['nome_Servico2'];
@@ -219,6 +218,18 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                                     
                                                 <?php 
                                             }
+
+                                            function virgula($qqdata)
+                                            {
+                                                if (substr($qqdata, 3, 2) == NULL) {
+                                                    $tempdata = substr($qqdata, 0, 2) . ',' . '00';
+                                                    return ($tempdata);
+                                                } else {
+                                                    $tempdata = substr($qqdata, 0, 2) . ',' .
+                                                        substr($qqdata, 3, 2);
+                                                    return ($tempdata);
+                                                }
+                                            }
                                         ?>
                             </div>
 
@@ -229,9 +240,8 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                         <select id="formaPagamento" name="formaPagamento" >
                                             <option>Dinheiro</option>
                                         </select><br><br>
-                                    <input type="text" name="valorTotal" value="<?php echo "Total a pagar: R$ ".$valor;?>" disabled><br>
+                                    <input type="text" name="valorTotal" value="<?php echo "Total a pagar: R$ ". virgula($valor);?>" disabled><br>
                                     
-                                    <!--<input type="text" name="nomeServico" value="<?php echo $funcionario;?>" disabled><br>-->
                                 </div>
                             </div>
 
