@@ -37,4 +37,7 @@ horario time not null,
 data_registro dateTime not null;
 
 https://www.php.net/manual/pt_BR/function.date.php
+
+Visualizar o Site Versão mobile.
+https://www.responsinator.com/
 */
