@@ -47,4 +47,9 @@ class ClientesController {
         $email = new Enviar();
         return $email->EnviarEmail();
     }
+
+    public function EnviarEmailControllerContato(){
+        $email = new Enviar();
+        return $email->EnviarEmailContato();
+    }
 }

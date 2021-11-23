@@ -19,6 +19,8 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/ClientesController.ph
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/enviar.php';
+
 $ce = new Usuario();
 $msg = new Mensagem();
 ?>
@@ -236,20 +238,33 @@ $msg = new Mensagem();
         <div class="title">
             <h2 class="titleText"><span>C</span>ontato</h2>
             <p>Entre em contato com a gente!</p>
+            <script src="Js/sweetalert2.all.min.js"></script>
             <div class="contactForm">
-                <!-- <h3>Nos envie uma mensagem</h3> -->
-                <div class="inputBox">
-                    <input type="text" placeholder="Nome">
-                </div>
-                <div class="inputBox">
-                    <input type="email" placeholder="Email">
-                </div>
-                <div class="inputBox">
-                    <textarea placeholder="Digite aqui o que deseja"></textarea>
-                </div>
-                <div class="inputBox">
-                    <input type="submit" value="Enviar">
-                </div>
+                <?php
+                if (isset($_POST['contatoEnviar'])) {
+                    $msg = new Mensagem();
+                    $EmailEnviado = new ClientesController();
+                    $msg = $EmailEnviado->EnviarEmailControllerContato();
+                    echo $msg->getMsg();
+                    echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                    URL='index.php'\">";
+                }
+                ?>
+                <form method="post">
+                    <!-- <h3>Nos envie uma mensagem</h3> -->
+                    <div class="inputBox">
+                        <input type="text" placeholder="Nome" name="contatoNome">
+                    </div>
+                    <div class="inputBox">
+                        <input type="email" placeholder="Email" name="contatoEmail">
+                    </div>
+                    <div class="inputBox">
+                        <textarea placeholder="Digite aqui o que deseja" name="contatoTexto"></textarea>
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" value="Enviar" name="contatoEnviar" id="contatoEnviar">
+                    </div>
+                </form>
             </div>
         </div>
     </section>

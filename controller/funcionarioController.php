@@ -35,10 +35,12 @@ class FuncionarioController
         return $daoClientes->pesquisarFuncionarioDAO();
     }
 
+    //Envio de email para o funcionario com todas as infomações de cadstro
     public function EnviarSenhaController(){
         $email = new Enviar();
         return $email->EnviarEmailSenha();
     }
+
     public function editarSenhaFuncionarios($senha, $token){
 
         $funcionario = new Usuario();
