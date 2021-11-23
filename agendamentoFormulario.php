@@ -12,12 +12,6 @@ if((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 $data = $_SESSION['dataAgendamento'];
 $dataForm = $_SESSION['dataAgendamentoFormatado'];
 
-$_SESSION['funcionario2'] = "";
-$_SESSION['servico2'] = "";
-$_SESSION['nome_Servico2'] = "";
-$_SESSION['agendamentoServicoTempo2'] = "";
-$_SESSION['agendamentoServicoValor'] = "";
-
 // Chamando o id da associativa de servicos para poder usar para inserir
 $servico = null;
 $servico2 = null;
