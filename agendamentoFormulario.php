@@ -293,10 +293,8 @@ require_once __DIR__ . "/bd/banco.php";
                 $_SESSION['agendamentoServicoValor'] = $valorTotal;
                 $_SESSION['agendamentoServicoTempo2'] = $tempoServ2;
             } else {
-                $_SESSION['funcionario2'] = "";
-                $_SESSION['servico2'] = "";
-                $_SESSION['nome_Servico2'] = "";
-                $_SESSION['agendamentoServicoTempo2'] = "";
+                $_POST['valor02'] = "";
+                $_POST['tempoServico02'] = "";
             }
 
             $horario = $_POST['horario_agendamento'];
