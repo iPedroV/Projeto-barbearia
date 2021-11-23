@@ -74,7 +74,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
             <li><a href="agendamento.php" onclick=" toggleMenu();">Agendamento</a></li>
 
         <div class="dados">
-        <li class="dropdown notification-list">
+        <li class="dropdown notification-list" >
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                 aria-expanded="false" style="padding: 0px; margin: 0px;">
                 <span class="account-user-avatar"> 
@@ -375,7 +375,20 @@ if (isset($_POST['excluir'])) {
                     
                 }
             ?>
-    
+
+    <script type="text/javascript">
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle("sticky", window.scrollY > 0);
+        });
+
+        function toggleMenu() {
+            const menuToggle = document.querySelector('.menuToggle');
+            const navigation = document.querySelector('.navigation');
+            menuToggle.classList.toggle('active');
+            navigation.classList.toggle('active');
+        }
+    </script>
 </body>
 </head>
 

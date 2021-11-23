@@ -90,6 +90,12 @@ input{
     margin-top: 75px;
 }
 
+@media (min-width: 1590px){
+    .container{
+        margin-top: 175px;
+    }
+}
+
 .container form .detalhes-usuario{
     display: flex;
     flex-wrap: wrap;
