@@ -103,6 +103,7 @@ class DaoFuncionario
     {
         $conn = new Conecta();
         $msg = new Mensagem();
+        $resp = null;
         $conecta = $conn->conectadb();
         if ($conecta) {
 
@@ -111,23 +112,31 @@ class DaoFuncionario
             $token = $funcioanrio->getToken();
 
 
+                $st = $conecta->prepare("SELECT * FROM usuario where token = ?");
+                $st->execute([$token]);
+                $result = $st->rowCount();
+                if ($result > 0) {
+                    try {
+                        
+                        $stmt = $conecta->prepare("UPDATE usuario SET senha= md5(?), verifica = ? WHERE token = ?");
+                        $stmt->bindParam(1, $senha);
+                        $stmt->bindParam(2, $verifica);
+                        $stmt->bindParam(3, $token);
+                        $stmt->execute();
+                        $msg->setMsg("<script>Swal.fire({
+                            icon: 'success',
+                            title: 'Senha alterada com sucesso',
+                            timer: 2000
+                          })
+                          </script>");
+                    } catch (PDOException $ex) {
+                        $msg->setMsg(var_dump($ex->errorInfo));
+                    }
+                }else{
+                    $resp = $funcioanrio;
+                }
 
-            try {
-                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stmt = $conecta->prepare("UPDATE usuario SET senha= md5(?), verifica = ? WHERE token = ?");
-                $stmt->bindParam(1, $senha);
-                $stmt->bindParam(2, $verifica);
-                $stmt->bindParam(3, $token);
-                $stmt->execute();
-                $msg->setMsg("<script>Swal.fire({
-                    icon: 'success',
-                    title: 'Senha alterada com sucesso',
-                    timer: 2000
-                  })
-                  </script>");
-            } catch (PDOException $ex) {
-                $msg->setMsg(var_dump($ex->errorInfo));
-            }
+            
         } else {
             $msg->setMsg("<script>Swal.fire({
                 icon: 'error',
@@ -137,7 +146,7 @@ class DaoFuncionario
               })</script>");
         }
         $conn = null;
-        return $msg;
+        return $resp;
     }
     //método para buscar os dados de funcionario por id*
     public function pesquisarFuncionarioIdDAO($id)

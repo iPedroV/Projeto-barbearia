@@ -19,6 +19,8 @@ class DaoServicos_agendamentos {
                     ."left join servicos on servicos.id = servicos_has_funcionarios.servicos_id "
                     ."left join funcionarios on funcionarios.id = "
                     ."servicos_has_funcionarios.funcionarios_id");
+                    //comando de delete
+                    //DELETE f,s FROM servicos_do_funcionario AS f JOIN servicos AS s ON f.servicos_id = s.idServicos WHERE s.idServicos = 16 AND f.servicos_id = 16
                     //comando correto abaixo
                     /* select * from servicos_do_funcionario left join servicos on servicos.idServicos = servicos_do_funcionario.servicos_id left join usuario on usuario.id = servicos_do_funcionario.funcionarios_id*/
                 $lista = array();

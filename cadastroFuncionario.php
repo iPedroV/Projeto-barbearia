@@ -108,7 +108,7 @@ $msg = new Mensagem();
 
                 <div class="input-box">
                     <span class="detalhes">Telefone Celular:</span>
-                    <input id="tel" type="tel" placeholder="(xx)9xxxx-xxxx" name="telefone" required value="<?php echo $ce->getTelefone(); ?>">
+                    <input id="tel" type="tel" placeholder="(xx)9xxxx-xxxx" name="telefone"  maxlength="11" required value="<?php echo $ce->getTelefone(); ?>">
                 </div>
             
                 <div class="input-box">

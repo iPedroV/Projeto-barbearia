@@ -19,6 +19,7 @@
     $sm = new Servicos_model();
     $msg = new Mensagem();
     ?>
+    <script src="Js/sweetalert2.all.min.js"></script>
     <!DOCTYPE html>
     <html lang="pt-br">
 
@@ -112,10 +113,19 @@
                 $id = $_POST['id'];
                 unset($_POST['alterar']);
                 $sc = new servicosController();
-                $msg = $sc->editarServico($id);
-                echo $msg->getMsg();
-                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                $resp = $sc->editarServico($id);
+                
+                
+                   echo "<script>Swal.fire({
+                    icon: 'success',
+                    title: 'Dados alterados com sucesso',
+                    text: 'Banco de dados pode estar inoperante',
+                    timer: 2000
+                  })</script>";
+                  echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                 URL='ListarServicos.php'\">";
+                
+                
             }       
         }
         ?>
@@ -247,16 +257,16 @@
                                                 <form method="POST" action="" enctype="multipart/form-data">
                                                     <div class="form-group">
                                                         <label class="control-label">Nome:</label>
-                                                        <input name="nome" type="text" class="form-control" id="nome" value="<?php echo $ls->getNomeServico() ?>">
+                                                        <input name="nome" type="text" class="form-control" id="nome" value="<?php echo $ls->getNomeServico() ?>" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Tempo estimado:</label>
-                                                        <input name="tempo" type="time" class="form-control" id="tempo" value="<?php echo $ls->getTempoServico() ?>">
+                                                        <input name="tempo" type="time" class="form-control" id="tempo" value="<?php echo $ls->getTempoServico() ?>" required>
                                                     </div>
                                                     
                                                     <div class="form-group">
                                                         <label for="message-text" class="control-label">Valor do serviço:</label>
-                                                        <input name="valor" type="number" class="form-control" id="valor" value="<?php echo $ls->getValorServico() ?>">
+                                                        <input name="valor" type="number" class="form-control" id="valor" value="<?php echo $ls->getValorServico() ?>" required>
                                                     </div>
                                                     
                                                     <input name="id" type="hidden" class="form-control" id="id" value="<?php echo $ls->getIdServicos() ?>">
@@ -323,7 +333,7 @@
             }
         </script>
         
-        <script src="Js/sweetalert2.all.min.js"></script>
+        
     </body>
     </head>
 

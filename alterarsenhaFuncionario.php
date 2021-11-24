@@ -7,6 +7,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 
 $msg = new Mensagem();
+$ce = new Usuario();
 
 ?>
 
@@ -30,11 +31,37 @@ $msg = new Mensagem();
     if (isset($_POST['alterarsenha'])) {
         if (($_POST['nsenha']) == ($_POST['csenha'])) {
                 $senha = $_POST['nsenha'];
+                //$senha2 = $_POST['csenha'];
                 $token = $_POST['token'];
+
+                $ce->setToken($token);
+                $ce->setSenha($senha);
+                //$ce->setSenha($senha2);
+
                 $ems = new FuncionarioController();
-                $msg = $ems->editarSenhaFuncionarios($senha, $token);
-                echo $msg->getMsg();
-                header("refresh:2;url=login.php");
+                $resp = $ems->editarSenhaFuncionarios($senha, $token);
+                if(getType($resp) == 'object'){
+                    $msg = new Mensagem();
+                    $ce = $resp;
+                    $msg->setMsg("<script>setTimeout(Swal.fire({
+                        icon: 'error',
+                        title: 'Código incorreto',
+                        text: 'Favor, insira o código corretamente!',
+                        timer: 3000
+                        }))</script>");
+                    echo $msg->getMsg();
+                }else{
+                    $msg->setMsg("<script>setTimeout(Swal.fire({
+                        icon: 'success',
+                        title: 'Senha atualizada com sucesso!',
+                        
+                        timer: 2000
+                        }))</script>");
+                    echo $msg->getMsg();
+                    header("refresh:2;url=login.php");
+                }
+                //echo $msg;
+                
         }else {
             $msg->setMsg("<script>setTimeout(Swal.fire({
                 icon: 'error',
@@ -52,13 +79,13 @@ $msg = new Mensagem();
         <img src="img/barbearianeves.png" class="imagem">
         <form method="post">
             <label for="n_senha">Código verificador:</label>
-            <input type="text" id="token" name="token" required>
+            <input type="text" id="token" name="token" value="<?php echo $ce->getToken(); ?>" required>
 
             <label for="n_senha">Nova senha:</label>
-            <input type="password" id="nsenha" name="nsenha" required>
+            <input type="password" id="nsenha" name="nsenha" value="<?php echo $ce->getSenha(); ?>" required>
 
             <label for="c_senha">Confirmar senha:</label>
-            <input type="password" id="csenha" name="csenha" required>
+            <input type="password" id="csenha" name="csenha" required value="<?php echo $ce->getSenha(); ?>">
 
             <button type="submit" class="btn efeito-btn" name="alterarsenha">Confirmar</button>
         </form>
