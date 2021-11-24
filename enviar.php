@@ -178,19 +178,20 @@ class Enviar
                         <p>$textoContato</p>
                         <p>Agradecemos seu contato, orbigrado por ter entrado em comtato conosco.</p>
                         <p>Este Email foi enviado dia: $data_envio às: $hora_envio</p>
+                        <p>O email do responsavel $email</p>
                     </div>
                 </div>
             </body>
         </html>";
         //enviar
         // emails para quem será enviado o formulário
-        $destino = $_POST['contatoEmail'];
+        $destino = "testetestadotestando51@gmail.com";
         $assunto = "Email de contato.";
 
         // É necessário indicar que o formato do e-mail é html
         $headers = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-        $headers .= 'From: <' . $email . '>';
+        $headers .= 'From: <' . $destino . '>';
         
         //$headers .= "Bcc: $EmailPadrao\r\n";
 
