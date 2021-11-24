@@ -41,10 +41,11 @@ class FuncionarioController
         return $email->EnviarEmailSenha();
     }
 
-    public function editarSenhaFuncionarios($senha, $token){
+    public function editarSenhaFuncionarios($senha, $email, $token){
 
         $funcionario = new Usuario();
         $funcionario->setSenha($senha);
+        $funcionario->setEmail($email);
         $funcionario->setToken($token);
 
         $daoClientes3 = new DaoFuncionario();

@@ -33,13 +33,15 @@ $ce = new Usuario();
                 $senha = $_POST['nsenha'];
                 //$senha2 = $_POST['csenha'];
                 $token = $_POST['token'];
-
+                $email = $_POST['email'];
+                
                 $ce->setToken($token);
                 $ce->setSenha($senha);
+                $ce->setEmail($email);
                 //$ce->setSenha($senha2);
 
                 $ems = new FuncionarioController();
-                $resp = $ems->editarSenhaFuncionarios($senha, $token);
+                $resp = $ems->editarSenhaFuncionarios($senha, $email, $token);
                 if(getType($resp) == 'object'){
                     $msg = new Mensagem();
                     $ce = $resp;
@@ -80,6 +82,9 @@ $ce = new Usuario();
         <form method="post">
             <label for="n_senha">Código verificador:</label>
             <input type="text" id="token" name="token" value="<?php echo $ce->getToken(); ?>" required>
+
+            <label for="c_senha">Email:</label>
+            <input type="text" id="email" name="email" required value="<?php echo $ce->getEmail(); ?>">
 
             <label for="n_senha">Nova senha:</label>
             <input type="password" id="nsenha" name="nsenha" value="<?php echo $ce->getSenha(); ?>" required>

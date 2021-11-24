@@ -108,18 +108,23 @@ class DaoFuncionario
         if ($conecta) {
 
             $senha = $funcioanrio->getSenha();
+            $email = $funcioanrio->getEmail();
             $verifica = 'S';
             $token = $funcioanrio->getToken();
 
 
-                $st = $conecta->prepare("SELECT * FROM usuario where token = ?");
-                $st->execute([$token]);
+                $st = $conecta->prepare("SELECT * FROM usuario where token = ? and email = ?");
+                $st->execute([$token, $email]);
+                
                 $result = $st->rowCount();
                 if ($result > 0) {
                     try {
                         
                         $stmt = $conecta->prepare("UPDATE usuario SET senha= md5(?), verifica = ? WHERE token = ?");
+                       
+                    
                         $stmt->bindParam(1, $senha);
+                      
                         $stmt->bindParam(2, $verifica);
                         $stmt->bindParam(3, $token);
                         $stmt->execute();
