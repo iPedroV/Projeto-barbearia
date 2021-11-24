@@ -377,7 +377,7 @@ require_once __DIR__ . "/bd/banco.php";
 					$('.cliqueAqui').show(); 
 
 					$.getJSON('agendamentoFormularioSub.php?search=',{id_servicos: $(this).val(), ajax: 'true'}, function(j){
-						var options = "<option value=''>Escolher Funcionario</option>";	
+						var options = "";	
 						var optionsV = "";	
 						for (var i = 0; i < j.length; i++) {
 							options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
@@ -428,7 +428,7 @@ require_once __DIR__ . "/bd/banco.php";
                     $('.cliqueAqui2').show();
 
 					$.getJSON('agendamentoFormularioSub2.php?search=',{id_servicos2: $(this).val(), ajax: 'true'}, function(j){
-						var options = "<option value=''>Escolher Funcionario</option>";	
+						var options = "";	
 						for (var i = 0; i < j.length; i++) {
 							options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
 						}	
