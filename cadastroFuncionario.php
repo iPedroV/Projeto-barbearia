@@ -28,18 +28,30 @@ $msg = new Mensagem();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font/awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-
+    
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
 <body>
+
+    <header>
+        <a href="#" class="logo">Barbearia Neves<span>.</span></a>
+        <div class="menuToggle" onclick=" toggleMenu();"></div>
+        <?php
+        include_once 'C:/xampp/htdocs/Projeto-barbearia/nav.php';
+        echo navBar();
+        ?>
+    </header>
+
     <div class="container">
         <div class="title"><span><b>C</b></span>adastro Funcionario</div>
          
         <?php
-//substr((time()), 0, 20 )
+        
+        //Fução do Token*
+        //substr((time()), 0, 20 )
 
         $conn = new Conecta();
         $msg = new Mensagem();
