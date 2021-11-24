@@ -68,13 +68,13 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 <body>
 <header>
         <a href="./index.php" class="logo">Barbearia Neves<span>.</span></a>
-        <div class="menuToggle" onclick=" toggleMenu();"></div>
+        <div class="menuToggle" onclick=" toggleMenu();">
         <ul class="navigation">
             <li><a href="index.php" onclick=" toggleMenu();">Home</a></li>
             <li><a href="agendamento.php" onclick=" toggleMenu();">Agendamento</a></li>
 
-        <div class="dados">
-        <li class="dropdown notification-list" >
+        <div class="dados" onclick=" toggleMenu();">
+        <li class="dropdown notification-list" onclick=" toggleMenu();">
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                 aria-expanded="false" style="padding: 0px; margin: 0px;">
                 <span class="account-user-avatar"> 
@@ -356,14 +356,15 @@ if (isset($_POST['excluir'])) {
                     ?> 
                     </tbody>
                     </table>
-                    
+                        </div>
+                    <div>
                 </div>
-            </div>
-                        <div class="row" style="width: 99%;">
+                
+                        <div class="row" id="some" style="width: 99%;">
                             <div class="col-md-2 offset-2"></div>
-                            <form method="POST" action="" class="agendamento" id="agendamento">
+                            <form method="POST" action="" >
                                 <label class="nenhumAgendamento">Nenhum agendamento foi realizado.</label>
-                                <button type="submit" class="btn efeito-btn" name="fazerAgendamento" id="fazerAgendamento">&#8652; Fazer Agendamento &#8651;</button>
+                                <button type="submit" class="btn" name="fazerAgendamento" id="fazerAgendamento">&#8652; Fazer Agendamento &#8651;</button>
                             </form>
                         </div>
 
@@ -376,6 +377,8 @@ if (isset($_POST['excluir'])) {
                 }
             ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="Js/bootstrap.min.js"></script>
     <script type="text/javascript">
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
@@ -385,8 +388,10 @@ if (isset($_POST['excluir'])) {
         function toggleMenu() {
             const menuToggle = document.querySelector('.menuToggle');
             const navigation = document.querySelector('.navigation');
+            const some = document.querySelector('#some');
             menuToggle.classList.toggle('active');
             navigation.classList.toggle('active');
+            some.classList.toggle('disabled');
         }
     </script>
 </body>

@@ -248,74 +248,48 @@ span.account-position{
     margin-bottom: 30px;
 }
 
+
 .btn {
     line-height: 0px;
-    height: 50px;
+    height: 45px;
     text-align: center;
     width: 300px;
     cursor: pointer;
-    font-size: 18px;
-    margin-bottom: 20px;
-    }
-    
-    
-    .efeito-btn {
-    color: rgb(0, 0, 0);
-    transition: all 0.5s;
-    position: relative;
-    margin-right: 15px;
-    margin-left: 15px;
-    
-    }
-    
-    .efeito-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.2);
-    /*background-color: #ff0157;*/
-    transition: all 0.3s;
-    
-    }
-    
-    .efeito-btn:hover::before {
-    opacity: 0 ;
-    transform: scale(0.5,0.5);
-    
-    }
-    
-    .efeito-btn::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0;
-    transition: all 0.3s;
-    border: 1px solid #000;
-    transform: scale(1.2,1.2);
-    
-    
-    }
-    
-    .efeito-btn:hover::after {
-    opacity: 1;
-    transform: scale(1,1);
-    
+    font-size: 17px!important;
+    margin-bottom: 5px;
+    background-color: #c4c4c4!important;
+    font-weight: 500!important;
+    color: black!important;
+    border-radius: 2px!important;
+    transition-duration: 0.5s!important;
+
+}
+
+.btn:hover{
+    background-color: #fff!important;
+    color: black!important;
+    border: 2px solid black;
+}
+
+.nenhumAgendamento{
+    padding-left: 380px;
+    padding-top: 40px;
+    padding-bottom: 50px;
+    padding-right: 20px;
+}
+
+@media (max-width: 420px)
+{
+    .nenhumAgendamento {
+        padding-left: 100px;
+        padding-bottom: 15px;
     }
 
-    .nenhumAgendamento{
-        position: relative;
-        padding: 10px;
-        background-color: transparent;
-        top: -8px;
+    .btn{
+        margin-bottom: 40px;
+        margin-left: 100px;
     }
+}
 
 
     .btnDetalhes {
