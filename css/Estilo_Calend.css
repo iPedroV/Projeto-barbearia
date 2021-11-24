@@ -552,7 +552,7 @@
   }
 
   .calendar .calendar-month li {
-    width: calc(170px / 12);
+    width: calc(240px / 12);
     font-size: 22px; 
   }
 
@@ -744,4 +744,35 @@
       height: 200px;
     }
 
+}
+
+
+@media screen and (max-width: 361px){
+  .calendar {
+    width: 355px;
+    height: 870px;
+    background-color: #000000;
+  }
+
+  .calendar h1.calendar-left-side-day {
+    position: absolute;
+    top: -10px;
+    left: 115px;
+    font-size: 52px; 
+  }
+
+  .conteudo label{
+    color: #fff;
+    font-size: 24px;
+    width: 355px;
+    padding: 5px;
+    position: relative;
+    bottom: 65px;
+  }
+
+  
+  .calendar .calendar-days{
+    position: relative;
+    left: -15px;
+  }
 }
