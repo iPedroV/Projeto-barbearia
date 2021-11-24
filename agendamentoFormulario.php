@@ -314,12 +314,14 @@ require_once __DIR__ . "/bd/banco.php";
                 $_SESSION['horarioAgendamento'] = $horario;
 
                 // Metodo apra verfificar a Data e horário que estão sendo escolhidas pelo usuário
-                $result_usuario = "SELECT * FROM agendamentos WHERE data = '$data' AND horario = '$horario'";
+                //$result_usuario = "SELECT * FROM agendamentos WHERE data = '$data' AND horario = '$horario'";
+                $result_usuario = "SELECT * FROM `agendamentos_dos_servicos` INNER JOIN agendamentos on agendamentos.idAgendamento = agendamentos_dos_servicos.agendamentos_id WHERE agendamentos.data = '$data' and agendamentos.horario = '$horario' and agendamentos_dos_servicos.sf_funcionario = '$funcionario'";
                 $resultado_usuario = mysqli_query($conn, $result_usuario);
                 while($row_usuario = mysqli_fetch_assoc($resultado_usuario)){
                     $row_usuario['idAgendamento'];
                     $row_usuario['data'];
                     $row_usuario['horario'];
+                    $row_usuario['sf_funcionario'];
 
                     $dataBC = $row_usuario['data'];
                     $horarioBC = $row_usuario['horario'];
