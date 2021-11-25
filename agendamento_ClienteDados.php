@@ -147,9 +147,22 @@ if (isset($_POST['excluir'])) {
 
 ?>
     <div class="page-header">
+        <?php
+            if ($_SESSION['perfilc'] == 'Cliente') {
+        ?>
             <h3 style="padding-top: 25px; padding-bottom: 25px; padding-left: 40px; margin-top: 10px;
                 border-top: 2px solid black; border-bottom: 2px solid black; color: white; background: linear-gradient(90deg, #666 35%, #111 80%)!important;">
                 Agendamento do(a) <?php echo $_SESSION['nomec']; ?></h3>
+
+            <?php
+            } else if ($_SESSION['perfilc'] == 'Funcionario' || $_SESSION['perfilc'] == 'Administrador') {
+            ?>
+
+            <h3 style="padding-top: 25px; padding-bottom: 25px; padding-left: 40px; margin-top: 10px;
+                border-top: 2px solid black; border-bottom: 2px solid black; color: white; background: linear-gradient(90deg, #666 35%, #111 80%)!important;">
+                Agendamento em nome do(a) <?php echo $_SESSION['nomec']; ?></h3>
+            <?php } ?>
+
         </div>
 
     <div class="table-responsive">
@@ -274,14 +287,12 @@ if (isset($_POST['excluir'])) {
                                                 } else if ($_SESSION['perfilc'] == 'Funcionario' || $_SESSION['perfilc'] == 'Administrador') {
                                                 
                                                 ?>
-                            <td>
-                                <button type="submit" class="btnDetalhes" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $a; ?>">
-                                    Cliente</button>
+                            <td colspan="2">
+                                <button type="submit" class="btnDetalhesCliente" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $a; ?>">
+                                    Dados Cliente</button>
                             </td>
 
-                            <td><button type="submit" class="btnReagendar" data-bs-toggle="modal" data-bs-target="#exampleModal2<?php echo $a; ?>">
-                                    Reagendar</button>
-                            </td>
+                            
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal<?php echo $a; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -294,8 +305,7 @@ if (isset($_POST['excluir'])) {
                                         </div>
                                         <div class="modal-body">
                                             <form method="post" action="">
-                                                <label style="border-bottom: 1px solid black; padding-bottom: 10px; width: 100%;"><strong>Agendamento efetuado em nome de
-                                                        <?php echo $la->getDataAgenda();?></strong></label>
+                                                <label style="border-bottom: 1px solid black; padding-bottom: 10px; width: 100%;"><strong>Agendamento efetuado em                                                         <?php echo $la->getDataAgenda();?></strong></label>
                                                 <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
 
                                                 <br><br><label>Dados do cliente: </label>
