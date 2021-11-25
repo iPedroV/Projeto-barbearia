@@ -12,7 +12,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 if (isset($_POST)) {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
-    echo "<script>alert($email)</script>";
+   
 } else {
     header("Location: ../sessionDestroy.php");
     exit;
@@ -70,6 +70,7 @@ if (gettype($valcliente) == "object") {
         $_SESSION['perfilc'] = null;
         $_SESSION['verificac'] = null;
     }
+    
     header("Location: ../login.php");
     exit;
 }
