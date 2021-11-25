@@ -90,12 +90,6 @@ input{
     margin-top: 75px;
 }
 
-@media (min-width: 1590px){
-    .container{
-        margin-top: 175px;
-    }
-}
-
 .container form .detalhes-usuario{
     display: flex;
     flex-wrap: wrap;
@@ -147,7 +141,7 @@ form .naopossuiconta a{
 form .esqueciminhasenha{
     position: absolute;
     color: rgb(165, 0, 0);
-    margin-top: 147.2px;
+    margin-top: 152.2px;
     margin-left: 0px;
     text-decoration: none;
 } 
@@ -157,7 +151,7 @@ form .esqueciminhasenha{
     position: relative;
     z-index: 1;
     font-size: 15px;
-    margin: 25px 0 0 -55px;
+    margin: 20px 0 0 -55px;
     cursor:pointer;
 }    
 
@@ -168,6 +162,10 @@ form .esqueciminhasenha{
 #risco{
     display: none;
     margin-top: 16px;
+}
+#textcaps{
+    position: absolute;
+    margin-top: -10px;
 }
 /*Codigo do botão*/
 .btn{
@@ -302,7 +300,7 @@ form .esqueciminhasenha{
     padding: 25px 30px;
     border-radius: 10px;
     box-shadow: 1px 1px 2px 6px #8888;
-    margin-top: -20px; 
+    margin-top: -200px; 
 }
 
 form .detalhes-usuario .input-box{
@@ -331,7 +329,7 @@ form .detalhes-usuario .input-box{
     position: relative;
     z-index: 1;
     font-size: 15px;
-    padding: -60%;
+    padding: -40%;
     cursor:pointer;
   }
 
@@ -343,10 +341,13 @@ form .detalhes-usuario .input-box{
     display: none;
     margin-top: 16px;
 }
+#text{
+    position: relative;
+}
 
 .btn{
     display: relative;
-    margin: 10px 14px 0px 0;
+    margin: 15px 14px 0px 0;
 
 }.container form .detalhes-usuario{
     max-height: 1000px;
@@ -356,7 +357,7 @@ form .detalhes-usuario .input-box{
 form .esqueciminhasenha{
     position: absolute;
     color: rgb(165, 0, 0);
-    margin-top: 150px;
+    margin-top: 160px;
     margin-left: 5px;
     text-decoration: none;
 } 
@@ -401,7 +402,7 @@ form .esqueciminhasenha{
     padding: 25px 30px;
     border-radius: 10px;
     box-shadow: 1px 1px 2px 6px #8888;
-    margin-top: -20px; 
+    margin-top: -170px; 
 }
 
 .container .imagem{

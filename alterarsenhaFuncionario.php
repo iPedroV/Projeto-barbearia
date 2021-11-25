@@ -10,23 +10,33 @@ $msg = new Mensagem();
 $ce = new Usuario();
 
 ?>
-
 <!DOCTYPE html>
-<html lang="pt-bt">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redefinição de Senha</title>
+    <title>Altere sua senha</title>
     <link rel="sorcut icon" href="img/barber-shop.png" type="image/png" style="width: 16px; height: 16px;">
     <Link rel="stylesheet" href="css/style-funcioanarionovasenha.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font/awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
+<style>
+#text {display:none;color:red}
 
+</style>
 <body>
-    <div id="senhafuncionario">
-    <script src="Js/sweetalert2.all.min.js"></script>
 
-    <?php 
+    <div class="container">
+
+        <div class="title"><span><b>A</b></span>lterar <b>S</b>enha</div>
+        <script src="Js/sweetalert2.all.min.js"></script>
+        <?php 
     
     if (isset($_POST['alterarsenha'])) {
         if (($_POST['nsenha']) == ($_POST['csenha'])) {
@@ -78,23 +88,114 @@ $ce = new Usuario();
 
     
     ?>
-        <img src="img/barbearianeves.png" class="imagem">
-        <form method="post">
-            <label for="n_senha">Código verificador:</label>
-            <input type="text" id="token" name="token" value="<?php echo $ce->getToken(); ?>" required>
 
-            <label for="c_senha">Email:</label>
-            <input type="text" id="email" name="email" required value="<?php echo $ce->getEmail(); ?>">
+        <form method="post" >
+            <div class="detalhes-usuario">
+                <div class="input-box">
+                    <span>Código Verificador</span>
+                    <input type="text" id="token" name="token" placeholder="xxxxxxxxxx" value="<?php echo $ce->getToken(); ?>" required>
+                </div>
 
-            <label for="n_senha">Nova senha:</label>
-            <input type="password" id="nsenha" name="nsenha" value="<?php echo $ce->getSenha(); ?>" required>
+                <div class="input-box">
+                    <span class="detalhes">Confirme seu E-mail: </span>
+                    <input type="text" id="email" name="email" placeholder="Confirme seu e-mail" required value="<?php echo $ce->getEmail(); ?>">
+                </div>
 
-            <label for="c_senha">Confirmar senha:</label>
-            <input type="password" id="csenha" name="csenha" required value="<?php echo $ce->getSenha(); ?>">
+                <div class="input-box">
+                    <span class="detalhes" for="n_senha">Nova senha:</span>
+                    <input type="password" placeholder="Digite sua senha" name="nsenha" id="nsenha" maxlength="11" required value="<?php echo $ce->getSenha(); ?>">
+                </div>
 
-            <button type="submit" class="btn efeito-btn" name="alterarsenha">Confirmar</button>
+                <div class="input-box">
+              
+                    <span class="detalhes" for="c_senha">Confirme sua Senha:</span>
+                    <input type="password" placeholder="Confirme sua senha:" name="csenha" id="csenha" maxlength="11" required value="<?php echo $ce->getSenha(); ?>">
+                    <p id="text" class="caps">O Caps lock está ativado</p>
+                </div>
+
+                <span class="p-viewer2">
+                    <i class="fas fa-eye" aria-hidden="true" id="olho" style="color: #000000;" onclick="toggle()"></i>
+                    <i class="fas fa-eye-slash" id="risco" onclick="toggle()"></i>
+                </span>
+
+            </div>
+
+      
+
+            <button type="submit" class="btn efeito-btn" name="alterarsenha">Cadastrar</button>
+           
         </form>
     </div>
+    <script>
+var input = document.getElementById("csenha");
+var text = document.getElementById("text");
+input.addEventListener("keyup", function(event) {
+
+if (event.getModifierState("CapsLock")) {
+    text.style.display = "block";
+  } else {
+    text.style.display = "none"
+  }
+});
+</script>
+<script>
+var input = document.getElementById("nsenha");
+var text = document.getElementById("text");
+input.addEventListener("keyup", function(event) {
+
+if (event.getModifierState("CapsLock")) {
+    text.style.display = "block";
+  } else {
+    text.style.display = "none"
+  }
+});
+</script>
+
+    <script>
+        var senha = document.querySelector('#nsenha');
+
+        senha.addEventListener('blur', (eventoLegal) => {
+            verificaSenha(eventoLegal.target);
+        })
+
+        function verificaSenha(input) {
+            var expSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#!"'%¨¬()+=§_-])[0-9a-zA-Z$*&@#!"'%¨¬()+=§_-]{8,}$/g;
+            var senhaValida = expSenha.exec(input.value);
+            var msgSenha = '';
+
+            if (!senhaValida) {
+                msgSenha = 'Precisa ter pelo menos 1 letra minúscula, maiúscula, número e caracter especial e ao menos 8 caracteres (!@#$&?*).';
+            }
+
+            input.setCustomValidity(msgSenha);
+
+        }
+    </script>
+
+  
+
+    <script>
+        function toggle() {
+            var x = document.getElementById("csenha");
+            var y = document.getElementById("nsenha");
+            if (x.type, y.type === "password") {
+                x.type = "text";
+                y.type = "text";
+                document.getElementById("risco").style.display = "inline-block";
+                document.getElementById("olho").style.display = 'none';
+                document.getElementById("risco").style.color = '#000000';
+                document.getElementById("olho").style.color = '#000000';
+            } else {
+                x.type = "password";
+                y.type = "password";
+                document.getElementById("risco").style.display = 'none';
+                document.getElementById("olho").style.display = 'inline-block';
+                document.getElementById("risco").style.color = '#000000';
+                document.getElementById("olho").style.color = '#000000';
+            }
+        }
+    </script>
+   
 
 </body>
 

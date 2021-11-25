@@ -140,16 +140,22 @@ cursor:pointer;
     display: none;
     margin-top: 16px;
 }
+#text{
+  
+    position: fixed;
+}
 
 form .genero  .seu-genero{
     font-size: 20px;
     font-weight: 500;
+   
 }
 form .genero .categoria{
     display:inherit;
     width: 80%;
     margin: 10px 0;
     justify-content: space-between;
+   
 }
 .genero .categoria label{
     display: flex;
@@ -261,6 +267,9 @@ form .detalhes-usuario .input-box{
     display: none;
     margin-top: 16px;
     
+}
+#text{
+    position: relative;
 }
 form .genero .categoria{
     width: 100%;

@@ -1,100 +1,233 @@
-/*Reset - Configurações padrões para o css*/
-*{
+
+
+
+@import url('https://font.giigkeapis.com/css?family=Poppins:200,300,400,500,700,800,900&display=swap');
+*
+{   
     margin: 0;
     padding: 0;
-    box-sizing: border-box;    
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
     border: none;
-    color: rgb(0, 0, 0);
 }
-/*Retirando as bordas padrões do navegador*/
-textarea:focus, input:focus{
-    outline: none;
+  /*SWEETALERT*/
+
+  .swal2-styled.swal2-default-outline:focus {
+    box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
+  }
+
+.swal2-styled.swal2-confirm:focus {
+    box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
 }
 
-/*Propriedade do Body*/
-body{
-     background-image: linear-gradient(to right, rgb(34, 34, 34) , rgb(0, 0, 0));
-     margin-top: 10%;
+.swal2-styled:focus {
+    outline: 0;
 }
 
-/*Imagem do Body*/
-.logo{
-    width: 500px;
-    margin-top: 7vw;
-}
-
-/*Especificando os A*/
-a {
-    font-size: .8rem;
-}
-
-a:hover {
-    color: #8686;
-}
-
-/*Classe para a imagem*/
-.imagem {
-    width: 280px;
-    padding-right: 5px;
-    padding-left: 6px;
-    padding-bottom: 5px;
-}
-
-/*Login*/
-#senhafuncionario{
-    background-color: #ffffff;
-    width: 350px;
-    height: 510px;
-    margin-left: auto;
-    margin-right: auto;
+  .swal2-styled.swal2-confirm {
+    border: 2px solid #000!important;
+    border-radius: .25em;
+    background: initial;
+    background-color: #444!important;
+    color: #fff!important;
+    font-size: 1em;
     padding: 10px 20px;
-    margin-top: -5vw;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 1px 1px 2px 6px #8888;
+    font-weight: 600!important;
+  }
+
+  .swal2-styled.swal2-confirm:hover{
+    border: 2px solid #444!important;
+    background-color: #000!important;
+    color: white!important;
+  }
+
+        /*SWEETALERT*/
+
+body {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, rgb(34, 34, 34) 40%, rgb(0, 0, 0) 80%)!important;
+    
+ 
 }
 
-@media (min-width: 1590px){
-    #senhafuncionario{
-        margin-top: 5vw;
-    }
-}
-
-
-/*Formulario de cadastro*/
-form{
-    margin-top: 30px;
-    margin-bottom: 50px;
-}
-
-label, input {
-    display: block;
+.container{ /*PARTE BRANCO DO FORMULÁRIO*/
+    max-width: 700px;
     width: 100%;
-    text-align: left;
+    background: rgb(255, 255, 255);
+    padding: 40px 30px;
+    border-radius: 1px;
+    /*margin-left:50%;*/
+    /*border-color: yellowgreen;*/
+
+   
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 6px #8888;
+    margin-top: 125px;
+}
+.container .title{
+font-size: 25px 30px;
+font-weight: 1000;  
+position: relative; 
+font-weight:normal;  
+
+
+
+ 
+
 }
 
-label{
-    font-weight: bold;
-    font-size: 1.1rem;
+.title span
+{
+    color: #000000;
+    font-weight: 500;
+    font-size: 1.5em;
+    left: 50%;
+    
 }
 
-input{
-    border-bottom: 2px solid #8686;
-    padding: 10px;
-    font-size: 1rem;
-    margin-bottom: 20px;
+.container .title::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 3%;
+    background: linear-gradient(135deg,#ffffff ,#000000);
 }
 
-input:focus{
-    border-bottom: 2px solid black;
+.container form .detalhes-usuario{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
 }
+form .detalhes-usuario .input-box{
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+}
+.detalhes-usuario .input-box .detalhes{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    
+}
+.detalhes-usuario .input-box input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+.detalhes-usuario .input-box input:focus,
+.detalhes-usuario .input-box input:valid{
+    border-color: #000000;
+}
+
+form .input-boxlogar{
+  position: relative;
+    
+    margin: 15px 0px 10px 0;
+    
+} 
+form .input-boxlogar a{
+    position: absolute;
+      color: red;
+   margin-top: -18.2px;
+   margin-left: 117px;
+   text-decoration: none;
+    
+  } 
+
+/*
+
+
+
+
+
+
+
+
+
+*/
+
+form   .p-viewer2{
+/*
+    position: relative;
+    z-index: 1;
+    font-size: 15px;
+    color: rgb(250, 0, 0);
+    margin: 30px 0 0 -70px;
+ cursor:pointer;
+*/
+ 
+ right: 10px;
+ position: relative;
+ z-index: 1;
+ font-size: 15px;
+ color: #888;
+ margin: 23px 0 0 -55px;
+cursor:pointer;
+}              
+.fa-eye{
+    margin-top: 16px;
+}
+#risco{
+    display: none;
+    margin-top: 16px;
+}
+#text{
+  
+    position: fixed;
+}
+
+form .genero  .seu-genero{
+    font-size: 20px;
+    font-weight: 500;
+}
+form .genero .categoria{
+    display:inherit;
+    width: 80%;
+    margin: 10px 0;
+    justify-content: space-between;
+}
+.genero .categoria label{
+    display: flex;
+    align-items: center;
+}
+.genero .categoria .ponto{
+    height: 18px;
+    width: 18px;
+    background: #d9d9d9;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 5px solid transparent;
+    transition: all 0.3s ease;
+
+}
+#ponto-1:checked ~ .categoria label .um,
+#ponto-2:checked ~ .categoria label .dois{
+    border-color: #d9d9d9;
+    background: #000000;
+}
+form input[type="radio"]{
+    display: none;
+}
+
 
 /*Codigo do botão*/
 .btn {
 	line-height: 50px;
 	height: 50px;
 	text-align: center;
-	width: 250px;
+	width: 100%;
 	cursor: pointer;
 }
 .efeito-btn {
@@ -133,4 +266,118 @@ input:focus{
 .efeito-btn:hover::after {
 	opacity: 1;
 	transform: scale(1,1);
+}
+    
+
+@media (max-width: 584px){
+    .container { /*PARTE BRANCO DO FORMULÁRIO*/
+        max-width: 300px;
+        width: 150%;
+        background: rgb(255, 255, 255);
+        padding: 25px 30px;
+        border-radius: 10px;
+        box-shadow: 1px 1px 2px 6px #8888;
+        margin-top: 50px; 
+}
+form .detalhes-usuario .input-box{
+    margin-bottom:  18px;
+    width:100%;
+}
+
+
+
+.p-viewer2{
+    /*
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    z-index: 1;
+    cursor:pointer;
+    color: red;
+    */
+    right: 10px;
+    position: relative;
+    
+    z-index: 1;
+    font-size: 15px;
+    color:#000000;
+    margin: 23px 0 0 -30px;
+ cursor:pointer;
+  }
+.fa-eye{
+    margin-top: 16px;
+    
+}
+#risco{
+    display: none;
+    margin-top: 16px;
+    
+}
+#text{
+    position: relative;
+}
+form .genero .categoria{
+    width: 100%;
+}
+
+form .btn{
+    margin-bottom: 20px;
+}
+.container form .detalhes-usuario{
+    max-height: 300px;
+    overflow-y: scroll;
+}
+form .input-boxlogar{
+    position: relative;
+      
+      margin: -50px 10px 15px 0 ;
+    
+  } 
+  form .input-boxlogar a{
+    position: absolute;
+      color: red;
+   margin-top: -18.5px;
+   margin-left: 117px;
+   text-decoration: none;
+    
+  } 
+  
+/*
+form .input-box i{
+    position: absolute;
+    font-size: 25px;
+    color: rgb(255, 0, 0);
+    margin: 15px 0 0 -30px; 
+     overflow-y: auto;
+  
+}              
+i.fa-eye{
+    margin-top: 16px;
+}*/
+
+.detalhes-usuario::-webkit-scrollbar{
+    width: 0;
+}
+
+}
+
+.whatsapp-link
+{
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 25px;
+    right: 30px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 1px 1px 2px #888;
+    z-index: 1000000;
+}
+
+.fa-whatsapp
+{
+    margin-top: 10px;
 }
