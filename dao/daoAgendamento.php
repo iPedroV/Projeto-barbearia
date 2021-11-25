@@ -241,6 +241,44 @@ class DaoAgendamento {
         }
     }
 
+    public function ListarClienteAgendamentoDAO04(){
+        $conn = new Conecta();
+        $msg = new Mensagem();
+        $conecta = $conn->conectadb();
+        if ($conecta) {
+            try {
+                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $rs = $conecta->query("SELECT * FROM agendamentos");
+                $lista = array();
+                $a = 0;
+                if ($rs->execute()) {
+                    if ($rs->rowCount() > 0) {
+                        while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+                            $agenda = new Agendamento();
+                            $agenda->setId($linha->idAgendamento);
+                            $agenda->setHorario($linha->horario);
+                            $agenda->setDataAgenda($linha->data);
+                            $agenda->setForma_Pagamento($linha->forma_de_pagamento);
+                            $agenda->setStatusAgendamento($linha->status_agendamento);
+                            $agenda->setDateTime($linha->data_regs_agendamento);
+                            $agenda->setDataPagemento($linha->data_do_pagamento);
+                            $agenda->setConfirma($linha->confir_envio);
+                            $agenda->setValor($linha->valortotal);
+                            $agenda->setUsuarioID($linha->usuario_id);
+
+                            $lista[$a] = $agenda;
+                            $a++;
+                        }
+                    }
+                }
+            } catch (PDOException $ex) {
+                $msg->setMsg(var_dump($ex->errorInfo));
+            }
+            $conn = null;
+            return $lista;
+        }
+    }
+
 
     //método para excluir produto na tabela produto
     public function excluirAgendamentoDAO($id){
