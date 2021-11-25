@@ -2,7 +2,7 @@
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/servicos_model.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/servicos_has_funcionarios.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/funcionario.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 
 class DaoServicos_agendamentos {
     
@@ -38,10 +38,10 @@ class DaoServicos_agendamentos {
                             $servicos->setValorServico($linha->valor);
                             $servicos->setTempoServico($linha->tempo_estimado);
 
-                            $func = new Funcionario();
-                            $func->setIdFuncionario($linha->id);
+                            $func = new Usuario();
+                            $func->setId($linha->id);
                             $func->setNome($linha->nome);
-                            $func->setCargo($linha->cargo);
+                            $func->setPerfil($linha->perfil);
                             $func->setTelefone($linha->telefone);
                             $func->setEmail($linha->email);
                             $func->setSenha($linha->senha);
@@ -91,10 +91,10 @@ class DaoServicos_agendamentos {
                             $servicos->setValorServico($linha->valor);
                             $servicos->setTempoServico($linha->tempo_estimado);
 
-                            $func = new Funcionario();
-                            $func->setIdFuncionario($linha->id);
+                            $func = new Usuario();
+                            $func->setId($linha->id);
                             $func->setNome($linha->nome);
-                            $func->setCargo($linha->cargo);
+                            $func->setPerfil($linha->perfil);
                             $func->setTelefone($linha->telefone);
                             $func->setEmail($linha->email);
                             $func->setSenha($linha->senha);

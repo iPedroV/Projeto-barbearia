@@ -34,6 +34,15 @@ $msg = new Mensagem();
 </head>
 
 <body>
+
+<header>
+        <a href="index.php" class="logo">Barbearia Neves<span>.</span></a>
+        <div class="menuToggle" onclick=" toggleMenu();"></div>
+        <?php
+        include_once 'C:/xampp/htdocs/Projeto-barbearia/nav.php';
+        echo navBar();
+        ?>
+    </header>
     <div class="container">
         <div class="title"><span><b>C</b></span>adastro de Serviços</div>
 

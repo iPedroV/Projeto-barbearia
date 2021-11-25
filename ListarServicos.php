@@ -22,7 +22,7 @@
     <script src="Js/sweetalert2.all.min.js"></script>
     <!DOCTYPE html>
     <html lang="pt-br">
-
+    
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width. initial-scale=1.0">
@@ -68,7 +68,7 @@
 
             @media screen and (max-width: 380px) {
                 .table-striped {
-                    margin-left: 170px !important;
+                    margin-left: 190px !important;
                 }
             }
         </style>
@@ -93,7 +93,12 @@
                 $sc = new servicosController();
                 unset($_POST['excluir']);
                 $msg = $sc->excluirServico($id);
-                echo $msg->getMsg();
+                echo "<script>Swal.fire({
+                    icon: 'success',
+                    title: 'Dados excluídos com sucesso',
+                    
+                    timer: 2000
+                  })</script>";
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                 URL='ListarServicos.php'\">";
             }
@@ -119,7 +124,7 @@
                    echo "<script>Swal.fire({
                     icon: 'success',
                     title: 'Dados alterados com sucesso',
-                    text: 'Banco de dados pode estar inoperante',
+                    
                     timer: 2000
                   })</script>";
                   echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
