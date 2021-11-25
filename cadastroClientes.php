@@ -3,7 +3,20 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/ClientesController.ph
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
+//require_once 'VerifyEmail.class.php'; 
 $ce = new Usuario();
+/*// Initialize library class
+$mail = new VerifyEmail();
+
+// Set the timeout value on stream
+$mail->setStreamTimeoutWait(2);
+
+// Set debug output mode
+$mail->Debug= FALSE; 
+$mail->Debugoutput= 'html'; 
+
+// Set email address for SMTP request
+$mail->setEmailFrom('from@email.com');*/
 
 ?>
 <!DOCTYPE html>
@@ -21,7 +34,10 @@ $ce = new Usuario();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
+<style>
+#text {display:none;color:red}
 
+</style>
 <body>
 
     <div class="container">
@@ -40,12 +56,18 @@ $ce = new Usuario();
                 $sexo = $_POST['sexo'];
                 $email = $_POST['email'];
                 $telefone = $_POST['telefone'];
-              
             }
 
 
             $cc = new ClientesController();
             unset($_POST['cadastrar']);
+            
+            $ce->setNome($nome);
+            $ce->setSexo($sexo);
+            $ce->setEmail($email);
+            $ce->setTelefone($telefone);
+            $ce->setSenha($senha);
+
             $resp = $cc->inserirClientes(
 
                 $nome,
@@ -55,12 +77,18 @@ $ce = new Usuario();
                 $sexo
             );
             if (getType($resp) == 'object') {
-                $ce = $resp;
+                
+                //alterei essa parte de baixo 
                 echo "<p style='color: red;'>Email já cadastrado!</p>";
-            } else {
+            } else if($resp == "<p style='color: Red;'>"
+            . "E-mail não existe</p>"){
+                echo "<p style='color: red;'>Email inexistente!</p>";
+            }
+            else {
                 echo $resp;
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                URL='cadastroClientes.php'\">";
+                URL='login.php'\">";
+                
             }
         }
         ?>
@@ -84,7 +112,7 @@ $ce = new Usuario();
 
                 <div class="input-box">
                     <span class="detalhes">Telefone Celular </span>
-                    <input id="tel" type="tel" placeholder="(xx)9xxxx-xxxx" name="telefone" maxlength="13" required value="<?php echo $ce->getTelefone(); ?>">
+                    <input id="tel" type="tel" placeholder="(xx)9xxxx-xxxx" name="telefone" maxlength="11" required value="<?php echo $ce->getTelefone(); ?>">
                 </div>
 
                 <div class="input-box">
@@ -95,17 +123,18 @@ $ce = new Usuario();
                 <div class="input-box">
                     <span class="detalhes">Senha</span>
                     <input type="password" placeholder="Digite sua senha" name="senha" id="senha" maxlength="11" required value="<?php echo $ce->getSenha(); ?>">
-
+                    <p id="text" class="caps">O Caps lock está ativado</p>
                 </div>
 
                 <span class="p-viewer2">
                     <i class="fas fa-eye" aria-hidden="true" id="olho" style="color: #000000;" onclick="toggle()"></i>
                     <i class="fas fa-eye-slash" id="risco" onclick="toggle()"></i>
                 </span>
-
+               
             </div>
 
             <div class="genero">
+           
                 <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>" 
                 <?php if ($ce->getSexo() != null) { if ($ce->getSexo() == "Masculino") echo "checked = checked";}?> checked='checked' required>
 
@@ -122,6 +151,7 @@ $ce = new Usuario();
                         <span class="ponto dois"></span>
                         <span class="generoMas" value="Feminino">Feminino</span>
                     </label>
+                   
                 </div>
             </div>
 
@@ -132,8 +162,21 @@ $ce = new Usuario();
             </div>
         </form>
     </div>
+  
 
-    <script>
+<script>
+var input = document.getElementById("senha");
+var text = document.getElementById("text");
+input.addEventListener("keyup", function(event) {
+
+if (event.getModifierState("CapsLock")) {
+    text.style.display = "block";
+  } else {
+    text.style.display = "none"
+  }
+});
+</script>
+<script>
         var senha = document.querySelector('#senha');
 
         senha.addEventListener('blur', (eventoLegal) => {

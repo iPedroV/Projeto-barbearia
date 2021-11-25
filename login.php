@@ -23,14 +23,18 @@ $_SESSION['conferenr'] = "-2";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<title>Login</title>
+    <title>Login</title>
 <link rel="sorcut icon" href="img/barber-shop.png" type="image/png" style="width: 16px; height: 16px;">
 <Link rel="stylesheet" href="css/style-login.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font/awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</head>
 
+<style>
+#textcaps {display:none;color:red}
+
+</style>
 <body>
     <div class="container">
 
@@ -53,6 +57,7 @@ $_SESSION['conferenr'] = "-2";
                 <div class="input-box">
                     <span class="detalhes">Senha:</span>
                     <input type="password" placeholder="Digite sua senha" name="senha" id="senha" required>
+                    <p id="textcaps" class="caps">O Caps lock está ativado</p>
                 </div>
 
                 <a class="esqueciminhasenha" href="#" id="lembrar-senha">Esqueci minha senha</a>
@@ -96,7 +101,18 @@ $_SESSION['conferenr'] = "-2";
         </div>
     </div>
 
+    <script>
+var input = document.getElementById("senha");
+var text = document.getElementById("textcaps");
+input.addEventListener("keyup", function(event) {
 
+if (event.getModifierState("CapsLock")) {
+    text.style.display = "block";
+  } else {
+    text.style.display = "none"
+  }
+});
+</script>
     <script>
         function toggle() {
             var x = document.getElementById("senha");
