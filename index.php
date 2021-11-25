@@ -1,8 +1,5 @@
 <?php
 
-//pedro a validação só esta nessa pagina.
-//Pedro tem um erro nas linhas 63, e 68 ... o login do cliente já está validando.
-
 
 ob_start();
 session_start();
@@ -37,7 +34,7 @@ $msg = new Mensagem();
 <body>
 
     <?php
-    //Também faz parte da validação de login ... Logica do professor ...
+    //Também faz parte da validação de login
     if (isset($_SESSION['msg'])) {
         if ($_SESSION['msg'] != "") {
             echo $_SESSION['msg'];
@@ -68,7 +65,7 @@ $msg = new Mensagem();
             <p class="nome"><strong>Olá, <?php echo $_SESSION['nomec']; ?></strong></p>
 
 
-            <a href="#" class="btn">Feed de notícias</a><br>
+            <a href="feedNoticias.php" class="btn">Feed de notícias</a><br>
             <a href="agendamento.php" class="btn">Fazer Agendamento</a>
 
         </div>
@@ -78,7 +75,7 @@ $msg = new Mensagem();
         <div class="row">
             <div class="col150">
                 <h2 class="titleText"><span>S</span>obre Nós</h2>
-                <p>A mais de 17 anos no mercado da beleza, a Barbearia
+                <p style="text-align: justify; padding-right: 20px;">A mais de 17 anos no mercado da beleza, a Barbearia
                     Neves está sempre atenta as novidades para cuidar
                     melhor da beleza de seus clientes. Gildoes, mais
                     conhecido por todos como Gildo, além de ser um
@@ -104,7 +101,7 @@ $msg = new Mensagem();
                     <img src="img/img_barbearia_neves/cliente2.jpg">
                 </div>
                 <div class="text">
-                    <h3>Cortes Especiais</h3>
+                    <h3>Barbas</h3>
                 </div>
             </div>
 
@@ -113,7 +110,7 @@ $msg = new Mensagem();
                     <img src="img/img_barbearia_neves/cliente3.jpg">
                 </div>
                 <div class="text">
-                    <h3>Cortes Básicos</h3>
+                    <h3>Cortes na Máquina e Tesoura</h3>
                 </div>
             </div>
 
@@ -122,7 +119,7 @@ $msg = new Mensagem();
                     <img src="img/img_barbearia_neves/cliente4.jpg">
                 </div>
                 <div class="text">
-                    <h3>Cortes mais ou menos</h3>
+                    <h3>Cortes para festas</h3>
                 </div>
             </div>
 
@@ -131,7 +128,7 @@ $msg = new Mensagem();
                     <img src="img/img_barbearia_neves/cliente5.jpg">
                 </div>
                 <div class="text">
-                    <h3>Cortes top</h3>
+                    <h3>Alisamentos</h3>
                 </div>
             </div>
 
@@ -140,7 +137,7 @@ $msg = new Mensagem();
                     <img src="img/img_barbearia_neves/cliente1.jpg">
                 </div>
                 <div class="text">
-                    <h3>Cortes Doidera</h3>
+                    <h3>Cortes especiais</h3>
                 </div>
             </div>
 
@@ -149,7 +146,7 @@ $msg = new Mensagem();
                     <img src="img/corte6.jpg">
                 </div>
                 <div class="text">
-                    <h3>Cortes de Graça</h3>
+                    <h3>Cortes do momento</h3>
                 </div>
             </div>
         </div>

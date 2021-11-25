@@ -82,6 +82,18 @@ form .detalhes-usuario .input-box{
     transition: all 0.3s ease;
 }
 
+.detalhes-usuario .input-box textarea{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
 .select{
     height: 45px;
     width: 100%;

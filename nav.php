@@ -24,6 +24,7 @@ function navBar()
                             <li><a href=\"./ListarFuncionario.php\"  onclick=\" toggleMenu();\">Funcionários</a></li>
                             <li><a href=\"dashboard.php\"  onclick=\" toggleMenu();\">Dashboard</a></li>
                             <li><a href=\"./ListarServicos.php\" onclick=\" toggleMenu();\">Servicos</a></li>
+                            <li><a href=\"./cadastroNoticia.php\" onclick=\" toggleMenu();\">Noticias</a></li>
                             <li><a href=\"./sessionDestroy.php\" onclick=\" toggleMenu();\">Sair</a></li>
                             
         </ul>";
