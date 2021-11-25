@@ -306,6 +306,20 @@ span.account-position{
         background-color: #333;
     }
 
+    .btnDetalhesCliente {
+        border: 1px solid #888;
+        background-color: #888;
+        color: white;
+        width: 150px;
+        height: 30px;
+        border-radius: 2px;
+    }
+
+    .btnDetalhesCliente:hover {
+        border: 1px solid #333;
+        background-color: #333;
+    }
+
     .btnReagendar{
         border: 1px solid #333;
         background-color: #333;

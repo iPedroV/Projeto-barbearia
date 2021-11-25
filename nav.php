@@ -42,6 +42,11 @@ function navBar()
                             <li><a href=\"agendamento_ClienteDados.php\"  onclick=\" toggleMenu();\">Agendamentos</a></li>
                             <li><a href=\"./sessionDestroy.php\" onclick=\" toggleMenu();\">Sair</a></li>
                             </ul>";
+    } elseif ($_SESSION['perfilc'] == "Secretaria") {
+        $nav .= "  <ul class=\"navigation\">
+                            <li><a href=\"agendamentosSecretaria.php\"  onclick=\" toggleMenu();\">Agendamentos</a></li>
+                            <li><a href=\"./sessionDestroy.php\" onclick=\" toggleMenu();\">Sair</a></li>
+                            </ul>";
     }
 
     
