@@ -136,6 +136,10 @@ $msg = new Mensagem();
                                 if ($ce->getPerfil() == "Funcionario") {
                                     echo "selected = 'selected'";
                                 } ?>>Funcionario</option>
+                        <option <?php
+                                if ($ce->getPerfil() == "Secretaria") {
+                                    echo "selected = 'selected'";
+                                } ?>>Secretaria</option>
                     </select>
                 </div>
 
@@ -185,7 +189,7 @@ $msg = new Mensagem();
             verificaTelefone(evento.target);
         })
 
-        var expTel = /(^\(?[0]?[1-9]{2}\)?)[.-\s]?([9]?[\s]?[1-9]\d{3})[.-\s]?(\d{4})$/g;
+        var expTel = /(^\(?[0]?[1-9]{2}\)?)[.-\s]?([9]?[\s]?[1-9]\d{4})[.-\s]?(\d{4})$/g;
 
         function verificaTelefone(elemento) {
             var telValido = expTel.exec(elemento.value);
