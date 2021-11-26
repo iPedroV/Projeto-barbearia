@@ -128,7 +128,13 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                         $result_post02 = "Select * from `usuario` WHERE id = $func";
                                         $resultado_post02 = mysqli_query($conn, $result_post02);
                                         while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
-                                            echo '<li style="list-style: none;">' . $row_post02['nome'] . '</li>';
+                                            $form = $row_post02['nome'];
+
+                                            $form = explode(" ", $form);
+                                            $B = end($form); // pega a ultima string do Array
+                                            $A = array_shift($form); // pega a primeira string do Array
+                                            //echo $A." ".$B." "; impressão das variaveis do Array              
+                                            echo '<li style="list-style: none;">' . $A." ".$B." " . '</li>';
                                         }
                                     }
                                     ?>
