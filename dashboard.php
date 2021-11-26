@@ -114,112 +114,112 @@ $nomeUser = $_SESSION['nomec'];
 
     <!-- Página -->
     <div class="container mb-4" style="margin-top: 90px;">
-            <table class="table table-bordered mt-4">
-                <thead class="table-dark">
-                    <tr>
-                        <th style="text-align: center;">Data agendamento</th>
-                        <th style="text-align: center;">Forma de pagamento </th>
-                        <th style="text-align: center;">Valor </th>
-                        <th style="text-align: center;">Status do agendamento </th>
-                        <th style="text-align: center;">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    //Data e hora juntos
-                    function vemDataHora($data)
-                    {
-                        $tempdata = substr($data, 8, 2) . '/' .
-                            substr($data, 5, 2) . '/' .
-                            substr($data, 0, 4) .
-                            substr($data, 10, 9);
+        <table class="table table-bordered mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th style="text-align: center;">Data agendamento</th>
+                    <th style="text-align: center;">Forma de pagamento </th>
+                    <th style="text-align: center;">Valor </th>
+                    <th style="text-align: center;">Status do agendamento </th>
+                    <th style="text-align: center;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                //Data e hora juntos
+                function vemDataHora($data)
+                {
+                    $tempdata = substr($data, 8, 2) . '/' .
+                        substr($data, 5, 2) . '/' .
+                        substr($data, 0, 4) .
+                        substr($data, 10, 9);
+                    return ($tempdata);
+                }
+                function virgula($numero)
+                {
+                    if (substr($numero, 3, 2) == NULL) {
+                        $tempdata = 'R$ ' . substr($numero, 0, 2) . ',' . '00';
+                        return ($tempdata);
+                    } else {
+                        $tempdata = 'R$ ' . substr($numero, 0, 2) . ',' .
+                            substr($numero, 3, 2);
                         return ($tempdata);
                     }
-                    function virgula($numero)
-                        {
-                            if (substr($numero, 3, 2) == NULL) {
-                                $tempdata ='R$ ' . substr($numero, 0, 2) . ',' . '00';
-                                return ($tempdata);
-                            } else {
-                                $tempdata = 'R$ ' . substr($numero, 0, 2) . ',' .
-                                    substr($numero, 3, 2);
-                                return ($tempdata);
-                            }
-                        }
-                    $acTable = new DashboardController();
-                    $listaAgendamentos = $acTable->ListarTodosAgendamentos();
+                }
+                $acTable = new DashboardController();
+                $listaAgendamentos = $acTable->ListarTodosAgendamentos();
 
 
-                    $a = 0;
-                    if ($listaAgendamentos != null) {
-                        foreach ($listaAgendamentos as $la) {
-                            $a++;
-                    ?>
-                            <tr >
-                                <td style="text-align: center; color: black;"><?php print_r(vemDataHora($la->getDataAgenda())); ?></td>
-                                <td style="text-align: center; color: black;"><?php print_r($la->getForma_Pagamento()); ?></td>
-                                <td style="text-align: center; color: black;"><?php print_r(virgula($la->getValor())); ?></td>
-                                <td style="text-align: center; color: black;"><?php print_r($la->getStatusAgendamento()); ?></td>
-                                <td class="d-flex justify-content-center">
-                                    <button type="button" class="btn-sm btn-outline-primary " data-toggle="modal" data-target="#detailModal<?php echo $la->getId(); ?>">Detalhes</button>
-                                    <button type="button" class="btn-sm btn-outline-success " data-toggle="modal" data-target="#successModal<?php echo $la->getId(); ?>">Finalizar</button>
-                                </td>
-                            </tr>
-                            <!-- INICIO Modal detalhes -->
-                            <div class="modal fade" id="detailModal<?php echo $la->getId(); ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title " id="myModalLabel"><strong style="color: black;">Detalhes do agendamento</strong></h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <br>
-                                        </div>
-                                        <div class="modal-body">
-                                            <label style="color: black;">Horário: <?php echo $la->getHorario(); ?></label>
-                                            <br>
-                                            <label style="color: black;">Data do agendamento: <?php echo vemDataHora($la->getDataAgenda()); ?></label>
-                                            <br>
-                                            <label style="color: black;">Forma de pagamento: <?php echo $la->getForma_Pagamento(); ?></label>
-                                            <br>     
-                                            <label style="color: black;">Data de pagamento: <?php echo vemDataHora($la->getDataPagemento()); ?></label>
-                                            <br>
-                                            <label style="color: black;">Valor: <?php echo virgula($la->getValor()); ?></label>
-                                            <br>
-                                            <label style="color: black;">Status: <?php echo $la->getStatusAgendamento(); ?></label>
+                $a = 0;
+                if ($listaAgendamentos != null) {
+                    foreach ($listaAgendamentos as $la) {
+                        $a++;
+                ?>
+                        <tr>
+                            <td style="text-align: center; color: black;"><?php print_r(vemDataHora($la->getDataAgenda())); ?></td>
+                            <td style="text-align: center; color: black;"><?php print_r($la->getForma_Pagamento()); ?></td>
+                            <td style="text-align: center; color: black;"><?php print_r(virgula($la->getValor())); ?></td>
+                            <td style="text-align: center; color: black;"><?php print_r($la->getStatusAgendamento()); ?></td>
+                            <td class="d-flex justify-content-center">
+                                <button type="button" class="btn-sm btn-outline-primary " data-toggle="modal" data-target="#detailModal<?php echo $la->getId(); ?>">Detalhes</button>
+                                <button type="button" class="btn-sm btn-outline-success " data-toggle="modal" data-target="#successModal<?php echo $la->getId(); ?>">Finalizar</button>
+                            </td>
+                        </tr>
+                        <!-- INICIO Modal detalhes -->
+                        <div class="modal fade" id="detailModal<?php echo $la->getId(); ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title " id="myModalLabel"><strong style="color: black;">Detalhes do agendamento</strong></h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <br>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label style="color: black;">Horário: <?php echo $la->getHorario(); ?></label>
+                                        <br>
+                                        <label style="color: black;">Data do agendamento: <?php echo vemDataHora($la->getDataAgenda()); ?></label>
+                                        <br>
+                                        <label style="color: black;">Forma de pagamento: <?php echo $la->getForma_Pagamento(); ?></label>
+                                        <br>
+                                        <label style="color: black;">Data de pagamento: <?php echo vemDataHora($la->getDataPagemento()); ?></label>
+                                        <br>
+                                        <label style="color: black;">Valor: <?php echo virgula($la->getValor()); ?></label>
+                                        <br>
+                                        <label style="color: black;">Status: <?php echo $la->getStatusAgendamento(); ?></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FIM Modal detalhes -->
+                        <div class="modal fade" id="successModal<?php echo $la->getId(); ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title " id="myModalLabel"><strong style="color: black;">Finalizar Agendamento</strong></h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <br>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="">
+                                            <label><strong>Deseja encerrar esse agendamento?</strong></label>
+                                            <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="row">
+                                            <button type="reset" class="btn-sm btn-secondary" data-dismiss="modal">Não</button>
+                                            <button type="submit" id="finalizar" name="finalizar" class="btn-sm btn-primary">Sim</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- FIM Modal detalhes -->
-                            <div class="modal fade" id="successModal<?php echo $la->getId(); ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title " id="myModalLabel"><strong style="color: black;">Finalizar Agendamento</strong></h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <br>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form method="post" action="">
-                                                <label><strong>Deseja encerrar esse agendamento?</strong></label>
-                                                <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <div class="row">
-                                                <button type="reset" class="btn-sm btn-secondary" data-dismiss="modal">Não</button>
-                                                <button type="submit" id="finalizar" name="finalizar" class="btn-sm btn-primary">Sim</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    <?php
-                        }
+                        </div>
+                <?php
                     }
-                    ?>
-                </tbody>
-            </table>
-        </div>
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
     <div id="wrapper flex-column">
         <!-- Conteúdo da Página -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -232,7 +232,9 @@ $nomeUser = $_SESSION['nomec'];
                         <div class="row">
                             <div class="col-md-12 mt-12">
                                 <div class="card mt-5 mb-4">
-                                    <div class="card-header"><h2>Gráfico de Lucros</h2></div>
+                                    <div class="card-header">
+                                        <h2>Gráfico de Lucros</h2>
+                                    </div>
                                     <div class="card-body">
                                         <div class="chart-container pie-chart">
                                             <canvas id="bar_chart"></canvas>
@@ -255,11 +257,55 @@ $nomeUser = $_SESSION['nomec'];
 
         </div>
 
-        
+
         <!-- Fim da página -->
 
     </div>
-    
+    <div class="container">
+
+
+        <div class="card">
+            <div class="card-header">Cadastro de Despesas</div>
+            <div class="card-body">
+                <div class="form-group">
+                    <h4 class="mb-4">Tipo de conta:</h2>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tipo" id="tipo_1" value="Agua" checked>
+                        <label class="form-check-label mb-2" for="tipo_1">Água</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" name="tipo" id="tipo_2" class="form-check-input" value="Luz">
+                        <label class="form-check-label mb-2" for="tipo_2">Luz</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" class="form-check-input" type="radio" name="tipo"  id="tipo_3" value="Salao">
+                        <label class="form-check-label mb-2" for="tipo_3">Salão</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" class="form-check-input" type="radio" name="tipo"  id="tipo_4" value="Outros">
+                        <label class="form-check-label mb-2" for="tipo_4">Outros</label>
+                    </div>
+
+                    <div class="form-group">
+                    <h4 class="mb-4">Já foi paga?</h2>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" id="status_1" value="Sim" checked>
+                        <label class="form-check-label mb-2" for="pago_1">Sim</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" name="status" id="status_2" class="form-check-input" value="Nao">
+                        <label class="form-check-label mb-2" for="tipo_2">Não</label>
+                    </div>
+                    
+                    </div>
+                        
+                </div>
+                <div class="form-group">
+                    <button type="button" name="submit_data" class="btn btn-primary" id="submit_data">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Botão pra voltar pra cima-->
     <footer class="sticky-footer bg-white pt-0 pb-0">
         <div class="container my-auto">
@@ -309,35 +355,41 @@ $nomeUser = $_SESSION['nomec'];
 <script>
     $(document).ready(function() {
 
-        $('#submit_data').click(function(){
+        $('#submit_data').click(function() {
 
-var language = $('input[name=programming_language]:checked').val();
+            var tipo = $('input[name=tipo]:checked').val();
+            var status = $('input[name=status]:checked').val();
 
-$.ajax({
-    url:"data.php",
-    method:"POST",
-    data:{action:'insert', language:language},
-    beforeSend:function()
-    {
-        $('#submit_data').attr('disabled', 'disabled');
-    },
-    success:function(data)
-    {
-        $('#submit_data').attr('disabled', false);
+            $.ajax({
+                url: "data.php",
+                method: "POST",
+                data: {
+                    action: 'insert',
+                    tipo: tipo,
+                    status: status
+                },
+                beforeSend: function() {
+                    $('#submit_data').attr('disabled', 'disabled');
+                },
+                success: function(data) {
+                    $('#submit_data').attr('disabled', false);
 
-        $('#programming_language_1').prop('checked', 'checked');
+                    $('#tipo_1').prop('checked', 'checked');
+                    $('#tipo_2').prop('checked', false);
+                    $('#tipo_3').prop('checked', false);
+                    $('#tipo_4').prop('checked', false);
 
-        $('#programming_language_2').prop('checked', false);
 
-        $('#programming_language_3').prop('checked', false);
+                    $('#status_1').prop('checked', 'checked');
+                    $('#status_2').prop('checked', false);
 
-        alert("Your Feedback has been send...");
+                    alert("Dados enviados...");
 
-        makechart();
-    }
-})
+                    makechart();
+                }
+            })
 
-});
+        });
 
 
         makechart();
@@ -379,42 +431,42 @@ $.ajax({
                         date.push(data[count].date);
                         total.push(data[count].total);
                         color.push(data[count].color);
-                        
+
 
                         if (dia[count] == "Monday") {
                             seg.push(date[count])
                             total1.push(total[count])
-                            
+
                         }
                         if (dia[count] == "Tuesday") {
                             ter.push(date[count])
                             total2.push(total[count])
-                            
+
                         }
                         if (dia[count] == "Wednesday") {
                             qua.push(date[count])
                             total3.push(total[count])
-                            
+
                         }
                         if (dia[count] == "Thursday") {
                             qui.push(date[count])
                             total4.push(total[count])
-                            
+
                         }
                         if (dia[count] == "Friday") {
                             sex.push(date[count])
                             total5.push(total[count])
-                            
+
                         }
                         if (dia[count] == "Saturday") {
                             sab.push(date[count])
                             total6.push(total[count])
-                            
+
                         }
                         if (dia[count] == "Sunday") {
                             dom.push(date[count])
                             total7.push(total[count])
-                            
+
                         }
 
 

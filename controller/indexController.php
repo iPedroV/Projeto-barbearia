@@ -13,7 +13,7 @@ class indexController {
         
         
         $daoindex = new daoIndex();
-        return $daoindex->inserirServicoDAO($noticias);
+        return $daoindex->inserirNoticiaDAO($noticias);
     }
 
 

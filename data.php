@@ -9,6 +9,25 @@ $connect = new PDO("mysql:host=localhost;dbname=dbbarbearia", "root", "root");
 if(isset($_POST["action"]))
 {
 	
+	if($_POST["action"] == 'insert')
+	{
+		$data = array(
+			':tipo'		=>	$_POST["tipo"],
+			':status'		=>	$_POST["status"]
+		);
+
+		$query = "
+		INSERT INTO despesas 
+		(id,tipo,data_regs_despesa,status) VALUES (null,:tipo, NOW(), :status)
+		";
+
+		$statement = $connect->prepare($query);
+
+		$statement->execute($data);
+
+		echo 'done';
+	}
+
 	if($_POST["action"] == 'fetch')
 	{	
 		

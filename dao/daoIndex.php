@@ -9,7 +9,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Mensagem.php';
 class daoIndex
 {
 
-    public function inserirServicoDAO(Noticia $noticias)
+    public function inserirNoticiaDAO(Noticia $noticias)
     {
 
         $conn = new Conecta();
