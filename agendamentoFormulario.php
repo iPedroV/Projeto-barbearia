@@ -295,6 +295,8 @@ require_once __DIR__ . "/bd/banco.php";
             } else {
                 $_POST['valor02'] = "";
                 $_POST['tempoServico02'] = "";
+                $_POST['id_funcionarios2'] = "";
+                $_POST['id_servicos2'] = "";
             }
             
 
