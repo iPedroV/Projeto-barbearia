@@ -66,7 +66,7 @@ body {
    
     border-radius: 10px;
     box-shadow: 1px 1px 2px 6px #8888;
-    margin-top: 125px;
+    margin-top: 220px;
 }
 .container .title{
 font-size: 25px 30px;
@@ -283,6 +283,12 @@ form .detalhes-usuario .input-box{
     margin-bottom:  18px;
     width:100%;
 }
+.container form .detalhes-usuario{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px -10px 33px -10px;
+}
 
 
 
@@ -314,7 +320,7 @@ form .detalhes-usuario .input-box{
     
 }
 #text{
-    position: relative;
+    position: fixed;
 }
 form .genero .categoria{
     width: 100%;
@@ -324,7 +330,7 @@ form .btn{
     margin-bottom: 20px;
 }
 .container form .detalhes-usuario{
-    max-height: 300px;
+    max-height: 345px;
     overflow-y: scroll;
 }
 form .input-boxlogar{
@@ -381,3 +387,12 @@ i.fa-eye{
 {
     margin-top: 10px;
 }
+
+
+/*//////////////////////////////*/
+/*//////////////////////////////*/
+/*//////////////////////////////*/
+/*//////////////////////////////*/
+/*//////////////////////////////*/
+
+

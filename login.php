@@ -72,7 +72,7 @@ $_SESSION['conferenr'] = "-2";
             <button type="submit" class="btn efeito-btn" name="Enviar" value="Enviar">Entrar</button>
 
             <div class="naopossuiconta">
-                <p>Não uma conta?</p><a href="cadastroClientes.php">Cadastrar</a>
+                <p>Não tem uma conta?</p><a href="cadastroClientes.php">Cadastrar</a>
             </div>
 
         </form>

@@ -58,7 +58,7 @@ position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 20px 0 12px 0;
+    margin: 20px -10px 33px -10px;
 }
 form .detalhes-usuario .input-box{
     margin-bottom: 15px;
@@ -369,7 +369,7 @@ form .btn{
     margin-bottom: 70px;
 }
 .container form .detalhes-usuario{
-    max-height: 300px;
+    max-height: 345px;
     overflow-y: scroll;
 }
 /*

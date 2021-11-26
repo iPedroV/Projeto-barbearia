@@ -38,8 +38,15 @@ $mail->setEmailFrom('from@email.com');*/
 #text {display:none;color:red}
 
 </style>
-<body>
 
+<style>
+      input::-ms-reveal,
+      input::-ms-clear {
+        display: none;
+      }
+    </style>
+<body>
+<script src="Js/sweetalert2.all.min.js"></script>
     <div class="container">
 
         <div class="title"><span><b>C</b></span>adastro</div>
@@ -79,12 +86,13 @@ $mail->setEmailFrom('from@email.com');*/
             if (getType($resp) == 'object') {
                 
                 //alterei essa parte de baixo 
-                echo "<p style='color: red;'>Email já cadastrado!</p>";
-            } else if($resp == "<p style='color: Red;'>"
-            . "E-mail não existe</p>"){
-                echo "<p style='color: red;'>Email inexistente!</p>";
-            }
-            else {
+                echo "<script>setTimeout(Swal.fire({
+                    icon: 'warning',
+                    title: 'Email ja cadastrado!',
+                    
+                    timer: 200000
+                    }))</script>";
+            }else {
                 echo $resp;
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                 URL='login.php'\">";
@@ -184,7 +192,7 @@ if (event.getModifierState("CapsLock")) {
         })
 
         function verificaSenha(input) {
-            var expSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#!"'%¨¬()+=§])[0-9a-zA-Z$*&@#!"'%¨¬()+=§]{8,}$/g;
+            var expSenha = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#!"'%¨¬()+=§-_])[0-9a-zA-Z$*&@#!"'%¨¬()+=§-_]{8,}$/g;
             var senhaValida = expSenha.exec(input.value);
             var msgSenha = '';
 
