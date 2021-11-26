@@ -9,6 +9,39 @@
     border: none;
 }
 
+/*SWEETALERT*/
+
+  .swal2-styled.swal2-default-outline:focus {
+    box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
+  }
+
+.swal2-styled.swal2-confirm:focus {
+    box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
+}
+
+.swal2-styled:focus {
+    outline: 0;
+}
+
+  .swal2-styled.swal2-confirm {
+    border: 2px solid #000!important;
+    border-radius: .25em;
+    background: initial;
+    background-color: #444!important;
+    color: #fff!important;
+    font-size: 1em;
+    padding: 10px 20px;
+    font-weight: 600!important;
+  }
+
+  .swal2-styled.swal2-confirm:hover{
+    border: 2px solid #444!important;
+    background-color: #000!important;
+    color: white!important;
+  }
+
+        /*SWEETALERT*/
+
 body {
     display: flex;
     height: 100vh;
@@ -21,6 +54,8 @@ body {
  
 }
 
+    
+    
 .container{ /*PARTE BRANCO DO FORMULÁRIO*/
     max-width: 700px;
     width: 100%;
@@ -29,11 +64,14 @@ body {
     border-radius: 1px;
     /*margin-left:50%;*/
     /*border-color: yellowgreen;*/
+    margin-top:190px;
+    
 }
 .container .title{
-font-size: 25px;
+font-size: 25px 30px;
 font-weight: 500;  
 position: relative;  
+
 
 }
 
@@ -232,7 +270,17 @@ form input[type="radio"]{
     .container { /*PARTE BRANCO DO FORMULÁRIO*/
         max-width: 100%;
         position: fixed;
-        /*margin-left:100% ;*/
+       
+}
+.container{ 
+    max-width: 300px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    padding: 7px 30px;
+    border-radius: 1px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 6px #8888;
+    margin-top: 623px; 
 }
 form .detalhes-usuario .input-box{
     margin-bottom:  18px;
@@ -269,7 +317,7 @@ form .detalhes-usuario .input-box{
     
 }
 #text{
-    position: relative;
+    position: fixed;
 }
 form .genero .categoria{
     width: 100%;
@@ -279,7 +327,7 @@ form .btn{
     margin-bottom: 70px;
 }
 .container form .detalhes-usuario{
-    max-height: 300px;
+    max-height: 345px;
     overflow-y: scroll;
 }
 form .input-boxlogar{

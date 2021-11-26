@@ -30,11 +30,15 @@ $ce = new Usuario();
 #text {display:none;color:red}
 
 </style>
+<style>
+#textcaps {display:none;color:red}
+
+</style>
 <body>
 
     <div class="container">
 
-        <div class="title"><span><b>A</b></span>lterar <b>S</b>enha</div>
+        <div class="title"><span><b>A</b>lterar <b>S</b>enha</span></div>
         <script src="Js/sweetalert2.all.min.js"></script>
         <?php 
     
