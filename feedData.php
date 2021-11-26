@@ -28,7 +28,7 @@ foreach($result as $row)
 {
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
-$publish_Date = strftime('%A %d de %B de %Y, %r', strtotime($row["horario"]));
+$publish_Date = strftime('%A, %d de %B de %Y, %r', strtotime($row["horario"]));
  //$publish_Date = date("D, d M Y H:i:s", strtotime($row["data"]));
 
  

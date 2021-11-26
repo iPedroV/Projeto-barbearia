@@ -118,7 +118,7 @@ $msg = new Mensagem();
 
             echo $resp;
             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-			    URL='../Projeto-Barbearia/ListarFuncionario.php'\">";
+			    URL='../Projeto-Barbearia/feedNoticias.php'\">";
         }
 
         ?>

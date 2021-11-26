@@ -1,3 +1,6 @@
+
+
+
 $(document).ready(function () {
 
 
@@ -39,9 +42,9 @@ $(document).ready(function () {
                     color.push(data[count].color);
                     color.push(data[count].color);
                     seg = "Seg"
-                    //ter = "Ter"
-                    //qua = "Seg"
-                    //qui = "Seg"
+                    ter = "Ter"
+                    qua = "Seg"
+                    qui = "Seg"
                     sex = "Sex"
                     sab = "Sab"
                     dom = "Dom"

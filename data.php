@@ -2,7 +2,7 @@
 
 //data.php
 
-$connect = new PDO("mysql:host=localhost;dbname=dbbarbearia", "root", "senac");
+$connect = new PDO("mysql:host=localhost;dbname=dbbarbearia", "root", "root");
 
 
 
@@ -10,13 +10,14 @@ if(isset($_POST["action"]))
 {
 	
 	if($_POST["action"] == 'fetch')
-	{
+	{	
+		
 		$query = "
 		SELECT data, DAYNAME(data) AS Dia, SUM(valortotal) AS Total 
 		FROM agendamentos
-		WHERE YEARWEEK(data, 1) = YEARWEEK(NOW(), 1)
+		WHERE YEARWEEK(data, 1) = YEARWEEK(NOW(), 1) AND status_agendamento = 'concluido'
 		GROUP BY data
-		ORDER BY data DESC
+		ORDER BY data ASC
 		";
 
 		//$query2 = "
@@ -53,6 +54,9 @@ if(isset($_POST["action"]))
 		SELECT data
 		FROM agendamentos
 		WHERE YEARWEEK(data, 1) = YEARWEEK(NOW(), 1)*/
+		
+
+		
 		function vemdata($qqdata){
 			$tempdata=substr($qqdata,8,2).'/'.
 				  substr($qqdata,5,2).'/'.
@@ -63,10 +67,10 @@ if(isset($_POST["action"]))
 		{
 			$dataFormatada = vemdata($row["data"]);
 			$data[] = array(
-				'data'		=>	$dataFormatada,
-				'total'			=>	$row["Total"],
-				'dia' 				=> 	$row["Dia"],
-				'color'			=>	'#1375EC'
+				'dia' => $row["Dia"],
+				'date' =>	$dataFormatada,
+				'total'	=>	$row["Total"],
+				'color'	 =>	'#' . rand(100000, 999999) . ''
 			);
 		}
 		

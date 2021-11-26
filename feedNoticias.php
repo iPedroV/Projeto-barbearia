@@ -27,211 +27,212 @@ $content = $object->getElementsByTagName("item");
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<style>    *
-{   
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth;
-    border: none;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            border: none;
+        }
 
-body {
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    background-color: #888;
-    background-image:url('../img/fundo-login.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-header
-{
-    position: fixed!important;
-    top: 0!important;
-    left: 0!important;
-    width: 100%!important;
-    padding: 30px 100px!important;
-    z-index: 10000!important;
-    display: flex!important;
-    justify-content: space-between!important;
-    align-items: center!important;
-    transition: 0.5s!important;
-}
+        body {
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            background-color: #888;
+            background-image: url('../img/fundo-login.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 
-header.sticky /* Não pode espaço!!!*/
-{
-    background: #fff;
-    padding: 10px 100px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-}
+        header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            padding: 30px 100px !important;
+            z-index: 10000 !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            transition: 0.5s !important;
+        }
 
-header .logo
-{
-    color: #fff;
-    font-weight: 700;
-    font-size: 2em;
-    text-decoration: none;
-    
-}
+        header.sticky
 
-header.sticky .logo /* Não pode espaço em "header.stick"!!!*/
-{
-    color: #111;
-}
+        /* Não pode espaço!!!*/
+            {
+            background: #fff;
+            padding: 10px 100px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
 
-header .logo span
-{
-    color: #888;
-}
+        header .logo {
+            color: #fff;
+            font-weight: 700;
+            font-size: 2em;
+            text-decoration: none;
 
-header .navigation
-{
-    position: relative;
-    display: flex;
-}
+        }
 
-header .navigation li
-{
-    list-style: none; /* Tira os pontinhos da lista ul */
-    margin-left: 30px; /* Separa os itens da lista */
-}
+        header.sticky .logo
 
-header .navigation li a
-{
-    text-decoration: none;
-    color: #fff;
-    font-weight: 300;
-    font-weight: bolder;
-}
+        /* Não pode espaço em "header.stick"!!!*/
+            {
+            color: #111;
+        }
 
-header.sticky .navigation li a
-{
-    color: #111;
-    font-weight: bolder;
-}
+        header .logo span {
+            color: #888;
+        }
 
-header .navigation li a:hover{
-    color: #888;
-}
-.container {
-    
-    width: 90%;
-    height: 99%;
-    font-size: 15px;
-    margin-top: 60px;
-    background-color: white;
-}
+        header .navigation {
+            position: relative;
+            display: flex;
+        }
 
-.menuToggle
-    {
-        visibility: hidden;
-        position: relative;
-        width: 40px;
-        height: 40px;
-        background: url(../img/menu.jpg);
-        background-size: 30px;
-        background-repeat: no-repeat;
-        background-position: center;
-        cursor: pointer;
-    }
-    .menuToggle.active
-    {
-        background: url(../img/menu-close.png);
-        background-size: 25px;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    header.sticky .menuToggle
-    {
-        filter: invert(1);
-    }
+        header .navigation li {
+            list-style: none;
+            /* Tira os pontinhos da lista ul */
+            margin-left: 30px;
+            /* Separa os itens da lista */
+        }
 
-::-webkit-scrollbar
-{
-	width: 6px;
-	background-color: #fffdfd;
-}
+        header .navigation li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 300;
+            font-weight: bolder;
+        }
 
-::-webkit-scrollbar-thumb
-{
-	background-color: #050505;
-}
+        header.sticky .navigation li a {
+            color: #111;
+            font-weight: bolder;
+        }
 
-@media (max-width: 768px){
-.container {
-    width: 750px!important;
-    width: 90%!important;
-    height: 99%!important;
-    font-size: 50px!important;
-}
-h2 {
-    font-size: 78px;
-}
-.h3, h3 {
-    font-size: 67px;
-}
+        header .navigation li a:hover {
+            color: #888;
+        }
 
-    header,
-    header.sticky
-    {
-        padding: 10px 20px;
-    }
-    header .navigation
-    {
-        display: none;
-    }
-    header .navigation.active
-    {
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 65px;
-        left: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        background: #fff;
-    }
-    header .navigation li
-    {
-        margin-left: 0
-    }
-    header .navigation li a
-    {
-        text-decoration: none;
-        color: #111;
-        font-size: 1.6em;
-        font-weight: 300;
-    }
-    .menuToggle
-    {
-        visibility: visible;
-        position: relative;
-        width: 40px;
-        height: 40px;
-        background: url(../img/menu.jpg);
-        background-size: 30px;
-        background-repeat: no-repeat;
-        background-position: center;
-        cursor: pointer;
-    }
-    .menuToggle.active
-    {
-        background: url(../img/menu-close.png);
-        background-size: 25px;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    header.sticky .menuToggle
-    {
-        filter: invert(1);
-    }
-}
-</style>
+        .container {
+
+            width: 90%;
+            height: 99%;
+            font-size: 15px;
+            margin-top: 60px;
+            background-color: white;
+            border-radius: 40px;
+        }
+
+        .menuToggle {
+            visibility: hidden;
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background: url(../img/menu.jpg);
+            background-size: 30px;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        .menuToggle.active {
+            background: url(../img/menu-close.png);
+            background-size: 25px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        header.sticky .menuToggle {
+            filter: invert(1);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            background-color: #fffdfd;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #050505;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 750px !important;
+                width: 90% !important;
+                height: 99% !important;
+                font-size: 50px !important;
+            }
+
+            h2 {
+                font-size: 78px;
+            }
+
+            .h3,
+            h3 {
+                font-size: 67px;
+            }
+
+            header,
+            header.sticky {
+                padding: 10px 20px;
+            }
+
+            header .navigation {
+                display: none;
+            }
+
+            header .navigation.active {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                top: 65px;
+                left: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                background: #fff;
+            }
+
+            header .navigation li {
+                margin-left: 0
+            }
+
+            header .navigation li a {
+                text-decoration: none;
+                color: #111;
+                font-size: 1.6em;
+                font-weight: 300;
+            }
+
+            .menuToggle {
+                visibility: visible;
+                position: relative;
+                width: 40px;
+                height: 40px;
+                background: url(../img/menu.jpg);
+                background-size: 30px;
+                background-repeat: no-repeat;
+                background-position: center;
+                cursor: pointer;
+            }
+
+            .menuToggle.active {
+                background: url(../img/menu-close.png);
+                background-size: 25px;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            header.sticky .menuToggle {
+                filter: invert(1);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -278,17 +279,17 @@ h2 {
     </div>
 </body>
 <script type="text/javascript">
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            header.classList.toggle("sticky", window.scrollY > 0);
-        });
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        header.classList.toggle("sticky", window.scrollY > 0);
+    });
 
-        function toggleMenu() {
-            const menuToggle = document.querySelector('.menuToggle');
-            const navigation = document.querySelector('.navigation');
-            menuToggle.classList.toggle('active');
-            navigation.classList.toggle('active');
-        }
-    </script>
+    function toggleMenu() {
+        const menuToggle = document.querySelector('.menuToggle');
+        const navigation = document.querySelector('.navigation');
+        menuToggle.classList.toggle('active');
+        navigation.classList.toggle('active');
+    }
+</script>
 
 </html>
