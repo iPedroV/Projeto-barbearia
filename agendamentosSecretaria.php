@@ -54,99 +54,104 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
         ?>
     </header>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Data Agendada</th>
-                <th>Horário</th>
-                <th>Forma de Pagamento</th>
-                <th>Valor Total</th>
-                <th>Serviço</th>
-                <th>Funcionario</th>
-                <th>Cliente</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            //FUNÇÃO QUE FORMATA A DATA QUE VEM DO MYSQL
-            function vemData($qqdata)
-            {
-                $tempdata = substr($qqdata, 8, 2) . '/' .
-                    substr($qqdata, 5, 2) . '/' .
-                    substr($qqdata, 0, 4);
-                return ($tempdata);
-            }
-
-            //FUNÇÃO QUE FORMATA A HORA QUE VEM DO MYSQL
-            function horaMin($qqdata)
-            {
-                $tempdata = substr($qqdata, 0, 2) . 'h' .
-                    substr($qqdata, 3, 2) . 'min';
-                return ($tempdata);
-            }
-
-            $TabelaVisual = new AgendamentoController();
-            if ($_SESSION['perfilc'] == 'Secretaria') {
-                $listaAgendamento = $TabelaVisual->ListarClienteAgendamento04();
-            }
-            $a = 0;
-            if ($listaAgendamento != null) {
-                foreach ($listaAgendamento as $la) {
-
-                    $a++;
-            ?>
+    <div class="table-responsive d-flex justify-content-center mt-3 mb-5">
+        <div>
+            <table class="table table-striped">
+                <thead class="table-dark">
                     <tr>
-                        <td><?php print_r(vemData($la->getDataAgenda())); ?></td>
-                        <td><?php print_r(horaMin($la->getHorario())); ?></td>
-                        <td><?php print_r($la->getForma_Pagamento()); ?></td>
-                        <td>R$ <?php print_r($la->getValor()); ?></td>
-                        <td>
-                            <?php $result_post = "SELECT * FROM `agendamentos_dos_servicos` "
-                                . "WHERE agendamentos_id = " . $la->getId() . "";
-                            $resultado_post = mysqli_query($conn, $result_post);
-                            while ($row_post = mysqli_fetch_assoc($resultado_post)) {
-                                $serv = $row_post['sf_servicos'];
-
-                                $result_post02 = "Select * from `servicos` WHERE idServicos = $serv";
-                                $resultado_post02 = mysqli_query($conn, $result_post02);
-                                while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
-                                    echo '<li style="list-style: none;">' . $row_post02['nome'] . '</li>';
-                                }
-                            } ?>
-                        </td>
-                        <td>
-                            <?php
-                            $result_post = "SELECT * FROM `agendamentos_dos_servicos` "
-                                . "WHERE agendamentos_id = " . $la->getId();
-                            $resultado_post = mysqli_query($conn, $result_post);
-                            while ($row_post = mysqli_fetch_assoc($resultado_post)) {
-                                $func = $row_post['sf_funcionario'];
-
-                                $result_post02 = "Select * from `usuario` WHERE id = $func";
-                                $resultado_post02 = mysqli_query($conn, $result_post02);
-                                while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
-                                    echo '<li style="list-style: none;">' . $row_post02['nome'] . '</li>';
-                                }
-                            }
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            $result_post = "SELECT * FROM `agendamentos` "
-                                . "INNER JOIN usuario on agendamentos.usuario_id = usuario.id WHERE agendamentos.idAgendamento = " . $la->getId();
-                            $resultado_post = mysqli_query($conn, $result_post);
-                            while ($row_post = mysqli_fetch_assoc($resultado_post)) {
-                                echo '<li style="list-style: none;" >' . $row_post['nome'] . '</li>';
-                            }
-                            ?>
-                        </td>
+                        <th colspan="1" class="text-start">Data Agendada:</th>
+                        <th colspan="1" class="text-start">Horário:</th>
+                        <!--<th colspan="1" class="text-start">Forma de Pagamento:</th>-->
+                        <th colspan="1" class="text-start">Valor Total:</th>
+                        <th colspan="1" class="text-start">Serviço:</th>
+                        <th colspan="1" class="text-start">Funcionario:</th>
+                        <th colspan="1" class="text-start">Cliente:</th>
                     </tr>
-            <?php
-                }
-            }
-            ?>
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    <?php
+                    //FUNÇÃO QUE FORMATA A DATA QUE VEM DO MYSQL
+                    function vemData($qqdata)
+                    {
+                        $tempdata = substr($qqdata, 8, 2) . '/' .
+                            substr($qqdata, 5, 2) . '/' .
+                            substr($qqdata, 0, 4);
+                        return ($tempdata);
+                    }
+
+                    //FUNÇÃO QUE FORMATA A HORA QUE VEM DO MYSQL
+                    function horaMin($qqdata)
+                    {
+                        $tempdata = substr($qqdata, 0, 2) . 'h' .
+                            substr($qqdata, 3, 2) . 'min';
+                        return ($tempdata);
+                    }
+
+                    $TabelaVisual = new AgendamentoController();
+                    if ($_SESSION['perfilc'] == 'Secretaria') {
+                        $listaAgendamento = $TabelaVisual->ListarClienteAgendamento04();
+                    }
+                    $a = 0;
+                    if ($listaAgendamento != null) {
+                        foreach ($listaAgendamento as $la) {
+
+                            $a++;
+                    ?>
+                            <tr class=" align-middle">
+                                <td><?php print_r(vemData($la->getDataAgenda())); ?></td>
+                                <td><?php print_r(horaMin($la->getHorario())); ?></td>
+                                <!--td><?php //print_r($la->getForma_Pagamento()); 
+                                        ?></td>-->
+                                <td>R$ <?php print_r($la->getValor()); ?></td>
+                                <td>
+                                    <?php $result_post = "SELECT * FROM `agendamentos_dos_servicos` "
+                                        . "WHERE agendamentos_id = " . $la->getId() . "";
+                                    $resultado_post = mysqli_query($conn, $result_post);
+                                    while ($row_post = mysqli_fetch_assoc($resultado_post)) {
+                                        $serv = $row_post['sf_servicos'];
+
+                                        $result_post02 = "Select * from `servicos` WHERE idServicos = $serv";
+                                        $resultado_post02 = mysqli_query($conn, $result_post02);
+                                        while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
+                                            echo '<li style="list-style: none;">' . $row_post02['nome'] . '</li>';
+                                        }
+                                    } ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    $result_post = "SELECT * FROM `agendamentos_dos_servicos` "
+                                        . "WHERE agendamentos_id = " . $la->getId();
+                                    $resultado_post = mysqli_query($conn, $result_post);
+                                    while ($row_post = mysqli_fetch_assoc($resultado_post)) {
+                                        $func = $row_post['sf_funcionario'];
+
+                                        $result_post02 = "Select * from `usuario` WHERE id = $func";
+                                        $resultado_post02 = mysqli_query($conn, $result_post02);
+                                        while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
+                                            echo '<li style="list-style: none;">' . $row_post02['nome'] . '</li>';
+                                        }
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    $result_post = "SELECT * FROM `agendamentos` "
+                                        . "INNER JOIN usuario on agendamentos.usuario_id = usuario.id WHERE agendamentos.idAgendamento = " . $la->getId();
+                                    $resultado_post = mysqli_query($conn, $result_post);
+                                    while ($row_post = mysqli_fetch_assoc($resultado_post)) {
+                                        echo $row_post['nome'];
+                                    }
+                                    ?>
+                                </td>
+                            </tr>
+                    <?php
+                        }
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 <script type="text/javascript">
     window.addEventListener('scroll', function() {
