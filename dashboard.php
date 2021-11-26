@@ -162,7 +162,7 @@ $nomeUser = $_SESSION['nomec'];
                             <td style="text-align: center; color: black;"><?php print_r($la->getStatusAgendamento()); ?></td>
                             <td class="d-flex justify-content-center">
                                 <button type="button" class="btn-sm btn-outline-primary " data-toggle="modal" data-target="#detailModal<?php echo $la->getId(); ?>">Detalhes</button>
-                                <button type="button" class="btn-sm btn-outline-success " data-toggle="modal" data-target="#successModal<?php echo $la->getId(); ?>">Finalizar</button>
+                                <button type="button" class="btn-sm btn-outline-success ml-2" data-toggle="modal" data-target="#successModal<?php echo $la->getId(); ?>">Finalizar</button>
                             </td>
                         </tr>
                         <!-- INICIO Modal detalhes -->
