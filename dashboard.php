@@ -264,11 +264,11 @@ $nomeUser = $_SESSION['nomec'];
     <div class="container">
 
 
-        <div class="card">
-            <div class="card-header">Cadastro de Despesas</div>
+        <div class="card mt-4 mb-4">
+            <div class="card-header"><h2> Cadastro de Despesas </h2></div>
             <div class="card-body">
                 <div class="form-group">
-                    <h4 class="mb-4">Tipo de conta:</h2>
+                    <h4 class="mb-4">Tipo de conta:</h4>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="tipo" id="tipo_1" value="Agua" checked>
                         <label class="form-check-label mb-2" for="tipo_1">Água</label>
@@ -287,7 +287,7 @@ $nomeUser = $_SESSION['nomec'];
                     </div>
 
                     <div class="form-group">
-                    <h4 class="mb-4">Já foi paga?</h2>
+                    <h4 class="mb-4">Já foi paga?</h4>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="status" id="status_1" value="Sim" checked>
                         <label class="form-check-label mb-2" for="pago_1">Sim</label>
