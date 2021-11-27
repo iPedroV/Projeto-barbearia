@@ -1,101 +1,189 @@
-/*Reset - Configurações padrões para o css*/
-*{
+@import url('https://font.giigkeapis.com/css?family=Poppins:200,300,400,500,700,800,900&display=swap');
+*{   
     margin: 0;
     padding: 0;
-    box-sizing: border-box;    
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
     border: none;
-    color: rgb(0, 0, 0);
-}
-/*Retirando as bordas padrões do navegador*/
-textarea:focus, input:focus{
-    outline: none;
 }
 
-/*Propriedade do Body*/
+
+            /*SWEETALERT*/
+
+      .swal2-styled.swal2-default-outline:focus {
+        box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
+      }
+  
+    .swal2-styled.swal2-confirm:focus {
+        box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
+    }
+  
+    .swal2-styled:focus {
+        outline: 0;
+    }
+  
+      .swal2-styled.swal2-confirm {
+        border: 2px solid #000!important;
+        border-radius: .25em;
+        background: initial;
+        background-color: #444!important;
+        color: #fff!important;
+        font-size: 1em;
+        padding: 10px 20px;
+        font-weight: 600!important;
+      }
+  
+      .swal2-styled.swal2-confirm:hover{
+        border: 2px solid #444!important;
+        background-color: #000!important;
+        color: white!important;
+      }
+  
+            /*SWEETALERT*/
+
+
+
 body{
-     background-image: linear-gradient(to right, rgb(34, 34, 34) , rgb(0, 0, 0));
-     margin-top: 10%;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    /*background-color: linear-gradient(to right, rgb(34, 34, 34) , rgb(0, 0, 0));*/
+    background: linear-gradient(90deg, rgb(34, 34, 34) 40%, rgb(0, 0, 0) 80%)!important;
 }
 
-/*Imagem do Body*/
-.logo{
-    width: 500px;
-    margin-top: 7vw;
-}
-
-/*Especificando os A*/
-a {
-    font-size: .8rem;
-}
-
-a:hover {
-    color: #8686;
-}
-
-/*Classe para a imagem*/
-.imagem {
-    width: 280px;
-    padding-right: 5px;
-    padding-left: 6px;
-    padding-bottom: 5px;
-}
-
-/*Login*/
-#login{
-    background-color: #ffffff;
-    width: 350px;
-    height: 450px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px 20px;
-    margin-top: 5vw;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 1px 1px 2px 6px #8888;
-}
-
-/*Formulario de cadastro*/
-form{
-    margin-top: 30px;
-    margin-bottom: 50px;
-}
-
-label, input {
-    display: block;
+.container{ 
+    max-width: 300px;
     width: 100%;
-    text-align: left;
+    background: rgb(255, 255, 255);
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 6px #8888;
+    margin-top: 75px; 
 }
 
-label{
-    font-weight: bold;
-    font-size: 1.1rem;
+.container .imagem{
+    width: 330px;
+    padding-right: 95px;
+    padding-left: 5px;
+    right: center;
+    left: center;
 }
 
 input{
     border-bottom: 2px solid #8686;
     padding: 10px;
     font-size: 1rem;
+    size: 100%;
     margin-bottom: 20px;
+    outline: none;
 }
 
-input:focus{
-    border-bottom: 2px solid black;
+.container {
+    max-width: 300px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 6px #8888;
+    margin-top: 75px;
 }
 
+.container form .detalhes-usuario{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 35px -20px 10px 0;
+}
+
+form .detalhes-usuario .input-box{
+    margin-bottom: 5px;
+    width: calc(100% / 1 - 20px);
+}
+
+.detalhes-usuario .input-box .detalhes{
+    display: block;
+    margin-bottom: 1px;
+    outline: none;
+}
+
+.detalhes-usuario .input-box input{
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    outline: none;
+    border-bottom: 2px solid #8686;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.input-boxmodal input{
+    width: 100%;
+    outline: none;
+    font-size: 2.2rem;
+    outline: none;
+    border-bottom: 2px solid #8686;
+}
+
+form .naopossuiconta{
+    position: relative;
+    margin: 15px 0px 10px 0;   
+} 
+form .naopossuiconta a{
+    position: absolute;
+    color: rgb(165, 0, 0);
+    margin-top: -18.2px;
+    margin-left: 149px;
+    text-decoration: none; 
+} 
+  
+form .esqueciminhasenha{
+    position: absolute;
+    color: rgb(165, 0, 0);
+    margin-top: 152.2px;
+    margin-left: 0px;
+    text-decoration: none;
+} 
+
+.p-viewer2{
+    right:25px;
+    position: relative;
+    z-index: 1;
+    font-size: 15px;
+    margin: 20px 0 0 -55px;
+    cursor:pointer;
+}    
+
+.fa-eye{
+    margin-top: 16px;
+}
+
+#risco{
+    display: none;
+    margin-top: 16px;
+}
+#textcaps{
+    position: absolute;
+    margin-top: -10px;
+}
 /*Codigo do botão*/
-.btn {
+.btn{
+    margin-top: 0px;
 	line-height: 50px;
 	height: 50px;
 	text-align: center;
-	width: 250px;
+	width: 100%;
 	cursor: pointer;
 }
-.efeito-btn {
+
+.efeito-btn{
 	color: rgb(0, 0, 0);
 	transition: all 0.5s;
 	position: relative;
 }
-.efeito-btn::before {
+
+.efeito-btn::before{
 	content: '';
 	position: absolute;
 	top: 0;
@@ -106,11 +194,13 @@ input:focus{
 	background-color: rgba(163, 159, 159, 0.39);
 	transition: all 0.3s;
 }
-.efeito-btn:hover::before {
+
+.efeito-btn:hover::before{
 	opacity: 0 ;
 	transform: scale(0.5,0.5);
 }
-.efeito-btn::after {
+
+.efeito-btn::after{
 	content: '';
 	position: absolute;
 	top: 0;
@@ -123,7 +213,241 @@ input:focus{
 	border: 1px solid #000000;
 	transform: scale(1.2,1.2);
 }
-.efeito-btn:hover::after {
+
+.efeito-btn:hover::after{
 	opacity: 1;
 	transform: scale(1,1);
 }
+
+/*Estilo da modal*/
+.modal-container{
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.575);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container.mostrar{
+    display: flex;
+}
+
+.modal{
+    background: white;
+    width: 600px;
+    min-width: 300px;
+    padding: 40px;
+    border: 10px solid #353535;
+    box-shadow: 0 0 0 10px white;
+    position: relative;
+}
+
+@keyframes modal{
+    from{
+    opacity: 0;
+    transform: translate3d(0, -60px, 0);
+    }
+    to{
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    }
+}
+
+.mostrar .modal{
+    animation: modal .3s;
+}
+
+.fechar{
+    position: absolute;
+    font-size: 2.2em;
+    top: -30px;
+    right: -30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 4px solid white;
+    background: #1d1d1d;
+    color: white;
+    font-family: "PT Mono", monospace;
+    cursor: pointer;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,.3);
+}
+.fechar:hover,
+.fechar:focus{
+    color: #888;
+    cursor: pointer;
+}
+
+@media (max-width: 584px){
+
+    body{background: linear-gradient(90deg, rgb(34, 34, 34) 40%, rgb(0, 0, 0) 80%)!important; margin-top: 400px;}
+
+.container{ 
+    width: 100%;
+    position: fixed;
+     
+}
+
+.container{ 
+    max-width: 300px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 6px #8888;
+    margin-top: -200px; 
+}
+
+form .detalhes-usuario .input-box{
+    margin-bottom:  18px;
+    width:100%; 
+    font-size: 1rem;
+    padding: 5px;
+    margin-bottom: 0px;
+    outline: none;
+}
+
+.container form .detalhes-usuario{
+    margin: 35px 0px 5px 0;
+}
+
+.container .imagem{
+    width: 330px;
+    padding-right: 90.5px;
+    padding-left: 0;
+    right: center;
+    left: center;
+}
+
+.container form .p-viewer2{
+    right:10px;
+    position: relative;
+    z-index: 1;
+    font-size: 15px;
+    padding: -40%;
+    cursor:pointer;
+  }
+
+.fa-eye{
+    margin-top: 16px;
+}
+
+#risco{
+    display: none;
+    margin-top: 16px;
+}
+#text{
+    position: relative;
+}
+
+.btn{
+    display: relative;
+    margin: 3px 14px 1px 0;
+
+}.container form .detalhes-usuario{
+    max-height: 1000px;
+    overflow-y: none;
+}
+
+form .esqueciminhasenha{
+    position: absolute;
+    color: rgb(165, 0, 0);
+    margin-top: 160px;
+    margin-left: 5px;
+    text-decoration: none;
+} 
+
+.modal{
+    background: white;
+    width: 320px;
+    min-width: 150px;
+    padding: 40px;
+    border: 10px solid #353535;
+    box-shadow: 0 0 0 10px white;
+    position: relative;
+}
+
+.input-boxmodal input{
+    font-size: 1.5rem;
+}
+
+.fechar{
+    position: absolute;
+    font-size: 2.2em;
+}
+ 
+.detalhes-usuario::-webkit-scrollbar{
+    width: 0;
+}
+}
+
+@media (max-width: 280px){
+    body{background: linear-gradient(90deg, rgb(34, 34, 34) 40%, rgb(0, 0, 0) 80%)!important; margin-top: 400px;}
+
+.container{ 
+    width: 100%;
+    position: fixed;
+     
+}
+
+.container{ 
+    max-width: 300px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 6px #8888;
+    margin-top: -170px; 
+}
+
+.container .imagem{
+    width: 330px;
+    padding-right: 110px;
+    padding-left: 0;
+    right: center;
+    left: center;
+}
+
+.modal{
+    background: white;
+    width: 280px;
+    min-width: 100px;
+    padding: 40px;
+    border: 10px solid #353535;
+    box-shadow: 0 0 0 10px white;
+    position: relative;
+
+}
+
+.input-boxmodal input{
+    font-size: 1rem;
+}
+
+.fechar{
+    position: absolute;
+    font-size: 2.2em;
+    top: -35px;
+    right: -11px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 4px solid white;
+    background: #1d1d1d;
+    color: white;
+    font-family: "PT Mono", monospace;
+    cursor: pointer;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,.3);
+}
+
+.fechar:hover,
+.fechar:focus{
+color: #888;
+cursor: pointer;
+}
+}
+
