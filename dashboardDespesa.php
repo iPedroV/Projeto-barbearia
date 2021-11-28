@@ -36,11 +36,11 @@ $nomeUser = $_SESSION['nomec'];
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!-- Bootstrap core JavaScript-->
-    
-    
+
+    <!-- ESSE CARA TA DANDO
     <script src="vendor/jquery/jquery.min.js"></script>
-    
-    
+    -->
+
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -58,30 +58,37 @@ $nomeUser = $_SESSION['nomec'];
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="css/style-dashboard.css" rel="stylesheet">
     <link href="css/Style-Agend.css" rel="stylesheet">
+    <style>
+        .page-item.active .page-link {
+            z-index: 3;
+            color: #fff;
+            background-color: #414142;
+            border-color: #000000;
+        }
 
+        .page-item:last-child .page-link {
+            border-top-right-radius: 0.35rem;
+            border-bottom-right-radius: 0.35rem;
+            color: #414142;
+        }
+
+        .page-link {
+            position: relative;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: #1d1e22;
+            background-color: #fff;
+            border: 1px solid #dddfeb;
+        }
+    </style>
 
 </head>
 
 <body id="page-top">
     <?php
-    if (isset($_POST['finalizar'])) {
-        if ($am != null) {
-            $id = $_POST['ide'];
 
-            $ac = new DashboardController();
-            $msg = $ac->concluirAgendamento($id);
-
-            echo "<script>Swal.fire({
-                icon: 'success',
-                title: 'O agendamento encerrado com sucesso!',
-                
-                timer: 2000
-              })</script>";
-            unset($_POST['finalizar']);
-            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                URL='dashboard.php'\">";
-        }
-    }
     ?>
     <header style="z-index: 1000;">
         <a href="./index.php" class="logo">Barbearia Neves<span>.</span></a>
@@ -108,17 +115,17 @@ $nomeUser = $_SESSION['nomec'];
                         </div>
 
                         <!-- item-->
-                        <a href="dashboardDespesa.php" class="dropdown-item notify-item">
+                        <a href="dashboard.php" class="dropdown-item notify-item">
                             <i class="mdi mdi-account-circle me-1"></i>
-                            <span>Minhas Despesas</span>
+                            <span>Meus Lucros</span>
                         </a>
 
                         <div class="dropdown-divider"></div>
 
                         <!-- item-->
-                        <div class="SairDiv" style="cursor: pointer;">
-                            <a data-toggle="modal" data-target="#logoutModal" class="SairLogin">
-                                
+                        <div class="SairDiv">
+                            <a href="sessionDestroy.php" class="SairLogin">
+                                <i class="mdi mdi-lock-outline me-1"></i>
                                 <span>Sair &#8608;</span>
                             </a>
                         </div>
@@ -132,113 +139,60 @@ $nomeUser = $_SESSION['nomec'];
 
     <!-- Página -->
     <div class="container mb-4" style="margin-top: 90px;">
-        <table class="table table-bordered mt-4">
+
+        <!-- TABELA DE DESPESAS -->
+        <table id="example" class="table  row-border table-striped table-bordered mt-4">
             <thead class="table-dark">
                 <tr>
-                    <th style="text-align: center;">Data agendamento</th>
-                    <th style="text-align: center;">Forma de pagamento </th>
-                    <th style="text-align: center;">Valor </th>
-                    <th style="text-align: center;">Status do agendamento </th>
-                    <th style="text-align: center;">Ações</th>
+                    <th style="text-align: center;">tipo </th>
+                    <th style="text-align: center;">Data </th>
+                    <th style="text-align: center;">Pagamento Realizado</th>
+                    <th style="text-align: center;">Valor</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                //Data e hora juntos
-                function vemDataHora($data)
+                $dcTable = new DashboardController();
+                $listaDespesas = $dcTable->ListarTodasDespesas();
+                function vemData($data)
                 {
                     $tempdata = substr($data, 8, 2) . '/' .
                         substr($data, 5, 2) . '/' .
-                        substr($data, 0, 4) .
-                        substr($data, 10, 9);
+                        substr($data, 0, 4);
                     return ($tempdata);
                 }
+
                 function virgula($numero)
                 {
                     if (substr($numero, 3, 2) == NULL) {
-                        $tempdata = 'R$ ' . substr($numero, 0, 2) . ',' . '00';
+                        $tempdata = 'R$ ' . substr($numero, 0, 3) . ',' . '00';
                         return ($tempdata);
                     } else {
-                        $tempdata = 'R$ ' . substr($numero, 0, 2) . ',' .
-                            substr($numero, 3, 2);
+                        $tempdata = 'R$ ' . substr($numero, 0, 4) . ',' .
+                            substr($numero, 5, 2) . '00';
                         return ($tempdata);
                     }
                 }
-                $acTable = new DashboardController();
-                $listaAgendamentos = $acTable->ListarTodosAgendamentos();
-
 
                 $a = 0;
-                if ($listaAgendamentos != null) {
-                    foreach ($listaAgendamentos as $la) {
+                if ($listaDespesas != null) {
+                    foreach ($listaDespesas as $ld) {
                         $a++;
                 ?>
                         <tr>
-                            <td style="text-align: center; color: black;"><?php print_r(vemDataHora($la->getDataAgenda())); ?></td>
-                            <td style="text-align: center; color: black;"><?php print_r($la->getForma_Pagamento()); ?></td>
-                            <td style="text-align: center; color: black;"><?php print_r(virgula($la->getValor())); ?></td>
-                            <td style="text-align: center; color: black;"><?php print_r($la->getStatusAgendamento()); ?></td>
-                            <td class="d-flex justify-content-center">
-                                <button type="button" class="btn-sm btn-outline-primary " data-toggle="modal" data-target="#detailModal<?php echo $la->getId(); ?>">Detalhes</button>
-                                <button type="button" class="btn-sm btn-outline-success ml-2" data-toggle="modal" data-target="#successModal<?php echo $la->getId(); ?>">Finalizar</button>
-                            </td>
+                            <td style="text-align: center; color: black;"><?php print_r($ld->getTipo()); ?></td>
+                            <td style="text-align: center; color: black;"><?php print_r(vemData($ld->getDataRegistroDespesa())); ?></td>
+                            <td style="text-align: center; color: black;"><?php print_r($ld->getStatus()); ?></td>
+                            <td style="text-align: center; color: black;"><?php print_r(virgula($ld->getValor())); ?></td>
                         </tr>
-                        <!-- INICIO Modal detalhes -->
-                        <div class="modal fade" id="detailModal<?php echo $la->getId(); ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title " id="myModalLabel"><strong style="color: black;">Detalhes do agendamento</strong></h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <br>
-                                    </div>
-                                    <div class="modal-body">
-                                        <label style="color: black;">Horário: <?php echo $la->getHorario(); ?></label>
-                                        <br>
-                                        <label style="color: black;">Data do agendamento: <?php echo vemDataHora($la->getDataAgenda()); ?></label>
-                                        <br>
-                                        <label style="color: black;">Forma de pagamento: <?php echo $la->getForma_Pagamento(); ?></label>
-                                        <br>
-                                        <label style="color: black;">Data de pagamento: <?php echo vemDataHora($la->getDataPagemento()); ?></label>
-                                        <br>
-                                        <label style="color: black;">Valor: <?php echo virgula($la->getValor()); ?></label>
-                                        <br>
-                                        <label style="color: black;">Status: <?php echo $la->getStatusAgendamento(); ?></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- FIM Modal detalhes -->
-                        <div class="modal fade" id="successModal<?php echo $la->getId(); ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title " id="myModalLabel"><strong style="color: black;">Finalizar Agendamento</strong></h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <br>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form method="post" action="">
-                                            <label><strong>Deseja encerrar esse agendamento?</strong></label>
-                                            <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <div class="row">
-                                            <button type="reset" class="btn-sm btn-secondary" data-dismiss="modal">Não</button>
-                                            <button type="submit" id="finalizar" name="finalizar" class="btn-sm btn-primary">Sim</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+
                 <?php
                     }
                 }
                 ?>
             </tbody>
         </table>
-
-        
     </div>
     <div id="wrapper flex-column">
         <!-- Conteúdo da Página -->
@@ -253,7 +207,7 @@ $nomeUser = $_SESSION['nomec'];
                             <div class="col-md-12 mt-12">
                                 <div class="card mt-5 mb-4">
                                     <div class="card-header">
-                                        <h2>Gráfico de Lucros</h2>
+                                        <h2>Gráfico de Despesas</h2>
                                     </div>
                                     <div class="card-body">
                                         <div class="chart-container pie-chart">
@@ -281,65 +235,117 @@ $nomeUser = $_SESSION['nomec'];
         <!-- Fim da página -->
 
     </div>
-    
-    <!-- Botão pra voltar pra cima-->
-    <footer class="sticky-footer bg-white pt-0 pb-0">
-        <div class="container my-auto">
-            <div class="copyrightText bg-white">
-                <p>Copyright 2021 <a href="#">Senac</a>. Todos os Direitos Reservados</p>
+    <div class="container">
+
+
+        <div class="card mt-4 mb-4">
+            <div class="card-header">
+                <h2> Cadastro de Despesas </h2>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <h4 class="mb-4">Tipo de conta:</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tipo" id="tipo_1" value="Agua" checked>
+                        <label class="form-check-label mb-2" for="tipo_1">Água</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" name="tipo" id="tipo_2" class="form-check-input" value="Luz">
+                        <label class="form-check-label mb-2" for="tipo_2">Luz</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" class="form-check-input" type="radio" name="tipo" id="tipo_3" value="Salao">
+                        <label class="form-check-label mb-2" for="tipo_3">Salão</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" class="form-check-input" type="radio" name="tipo" id="tipo_4" value="Outros">
+                        <label class="form-check-label mb-2" for="tipo_4">Outros</label>
+                    </div>
+
+                    <div class="form-group">
+                        <h4 class="mb-4">Já foi paga?</h4>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="status_1" value="Sim" checked>
+                            <label class="form-check-label mb-2" for="pago_1">Sim</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="status" id="status_2" class="form-check-input" value="Nao">
+                            <label class="form-check-label mb-2" for="tipo_2">Não</label>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <h4 class="mb-4">Data da despesa: <input for="data" type="date" name="data" id="data" value="<?php echo date('Y-m-d'); ?>" required></h4>
+
+                    </div>
+
+                    <div class="form-group">
+                        <h4 class="mb-4">Valor (apenas números): <input for="valor" type="number" name="valor" id="valor" value="1" required></h4>
+
+
+                    </div>
+                    <div class="form-group">
+                        <button type="button" name="submit_data" class="btn btn-primary" id="submit_data">Submit</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </footer>
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+        <!-- Botão pra voltar pra cima-->
+        <footer class="sticky-footer bg-white pt-0 pb-0">
+            <div class="container my-auto">
+                <div class="copyrightText bg-white">
+                    <p>Copyright 2021 <a href="#">Senac</a>. Todos os Direitos Reservados</p>
+                </div>
+            </div>
+        </footer>
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
 
-    
-    <!-- Modal para deslogar -->
+        <!-- Possível  PARTE EXTRA
+
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Deseja sair?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Escolhendo "Sair" Você será desconectado da sessão atual.</div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
-                    <a class="btn-sm btn-secondary" type="button" data-dismiss="modal" style="color: #fff;">Cancel</a>
-                    <a type="button" class="btn-sm btn-primary" href="sessionDestroy.php" >Sair</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
         </div>
     </div>
  
-    
+    -->
 </body>
 
 </html>
 
 <script>
-    
-    $('#example').DataTable( {
+    $('#example').DataTable({
         "language": {
-            "info":           "Mostrando de _START_ até _END_ das _TOTAL_ informações",
-            "infoEmpty":      "Nada para mostrar!",
-            "infoFiltered":   "(filtrado das _MAX_ total informações)",
-            "lengthMenu":     "Mostrar _MENU_ informações",
-            "search":         "Pesquisa:",
-            "emptyTable":     "Tabela Vazia!",
-            "zeroRecords":    "Não há nada com essa informação!",
-                "paginate": {
-                    "previous": "Anterior",
-                    "next": "Próximo",
-            
-    }
-  }
-    } );
+            "info": "Mostrando de _START_ até _END_ das _TOTAL_ informações",
+            "infoEmpty": "Nada para mostrar!",
+            "infoFiltered": "(filtrado das _MAX_ total informações)",
+            "lengthMenu": "Mostrar _MENU_ informações",
+            "search": "Pesquisa:",
+            "emptyTable": "Tabela Vazia!",
+            "zeroRecords": "Não há nada com essa informação!",
+            "paginate": {
+                "previous": "Anterior",
+                "next": "Próximo",
 
+            }
+        }
+    });
 </script>
 
 <script>
@@ -349,14 +355,17 @@ $nomeUser = $_SESSION['nomec'];
 
             var tipo = $('input[name=tipo]:checked').val();
             var status = $('input[name=status]:checked').val();
-
+            var dat = $("input[name=data]").val();
+            var valor = $("input[name=valor]").val();
             $.ajax({
-                url: "data.php",
+                url: "dataDespesa.php",
                 method: "POST",
                 data: {
                     action: 'insert',
                     tipo: tipo,
-                    status: status
+                    status: status,
+                    dat: dat,
+                    valor: valor
                 },
                 beforeSend: function() {
                     $('#submit_data').attr('disabled', 'disabled');
@@ -372,10 +381,13 @@ $nomeUser = $_SESSION['nomec'];
 
                     $('#status_1').prop('checked', 'checked');
                     $('#status_2').prop('checked', false);
+                    //so serve para voltar o valor original
+                    $('#valor').val('1');
 
-                    alert("Dados enviados...");
+                    alert(dat);
 
                     makechart();
+                    window.location.reload();
                 }
             })
 
@@ -386,7 +398,7 @@ $nomeUser = $_SESSION['nomec'];
 
         function makechart() {
             $.ajax({
-                url: "data.php",
+                url: "dataDespesa.php",
                 method: "POST",
                 data: {
                     action: 'fetch'
@@ -420,8 +432,9 @@ $nomeUser = $_SESSION['nomec'];
                         dia.push(data[count].dia)
                         date.push(data[count].date);
                         total.push(data[count].total);
-                        color.push(data[count].color);
-
+                        for (i = 0; i < 7; i++) {
+                            color.push('#e80707');
+                        }
 
                         if (dia[count] == "Monday") {
                             seg.push(date[count])
@@ -469,19 +482,14 @@ $nomeUser = $_SESSION['nomec'];
                         labels: [seg, ter, qua, qui, sex, sab, dom],
                         datasets: [{
                             label: 'Total em R$',
-                            backgroundColor: [color, color, color, color, color, color, color],
+                            backgroundColor: color,
                             data: [total1, total2, total3, total4, total5, total6, total7]
                         }],
                     };
 
                     var options = {
                         responsive: true,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'TESTEEEEE'
-                            }
-                        },
+
                         scales: {
                             yAxes: [{
                                 ticks: {

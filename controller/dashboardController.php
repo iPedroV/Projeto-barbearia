@@ -11,6 +11,11 @@ class DashboardController {
         return $daoDashboard->ListarTodosAgendamentosDAO();
     }
 
+    public function ListarTodasDespesas(){
+        $daoDashboard = new daoDashboard();
+        return $daoDashboard->ListarTodasDespesasDAO();
+    }
+
     public function concluirAgendamento($id){
         $daoDashboard = new daoDashboard();
         return $daoDashboard->concluirAgendamentoDAO($id);

@@ -4,6 +4,7 @@
 
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_model.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Despesa.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Mensagem.php';
 
 class daoDashboard
@@ -34,6 +35,48 @@ class daoDashboard
                             $agendamento->setConfirma($linha->confir_envio);
                             $agendamento->setValor($linha->valortotal);
                             $lista[$a] = $agendamento;
+                            $a++;
+                            
+                            
+                           
+                        }
+                    }
+                }
+            } catch (Exception $ex) {
+                $msg->setMsg($ex);
+            }
+            $conn = null;
+        } else {
+            echo "<script>alert('Banco inoperante!')</script>";
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
+			 URL='../Projeto-Barbearia/index.php'\">";
+        }
+        return $lista;
+    }
+
+    public function ListarTodasDespesasDAO()
+    {
+        $msg = new Mensagem();
+        $conn = new Conecta();
+        $conecta = $conn->conectadb();
+        
+        $lista = array();
+        if ($conecta) {
+            try {
+                $rs = $conecta->prepare("SELECT * FROM despesas ORDER BY data_regs_despesa ASC");
+                $a = 0;
+                if ($rs->execute()) {
+                    if ($rs->rowCount() > 0) {
+                        while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+
+                            $despesa = new Despesa();
+                            $despesa->setIdDespesa($linha->id);
+                            $despesa->setTipo($linha->tipo);
+                            $despesa->setDataRegistroDespesa($linha->data_regs_despesa);
+                            $despesa->setStatus($linha->status);
+                            $despesa->setValor($linha->valor);
+
+                            $lista[$a] = $despesa;
                             $a++;
                             
                             
