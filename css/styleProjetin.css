@@ -9,39 +9,6 @@
     border: none;
 }
 
-/*SWEETALERT*/
-
-.swal2-styled.swal2-default-outline:focus {
-    box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
-  }
-
-.swal2-styled.swal2-confirm:focus {
-    box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
-}
-
-.swal2-styled:focus {
-    outline: 0;
-}
-
-  .swal2-styled.swal2-confirm {
-    border: 2px solid #000!important;
-    border-radius: .25em;
-    background: initial;
-    background-color: #444!important;
-    color: #fff!important;
-    font-size: 1em;
-    padding: 10px 20px;
-    font-weight: 600!important;
-  }
-
-  .swal2-styled.swal2-confirm:hover{
-    border: 2px solid #444!important;
-    background-color: #000!important;
-    color: white!important;
-  }
-
-        /*SWEETALERT*/
-
 body {
     display: flex;
     height: 100vh;
@@ -250,7 +217,150 @@ form input[type="radio"]{
 	opacity: 1;
 	transform: scale(1,1);
 }
+
+/*Dimensões ipad mini*/
+@media (max-width: 768px){
+    .container { /*PARTE BRANCO DO FORMULÁRIO*/
+        max-width: 100%;
+        position: fixed;
+        /*margin-left:100% ;*/
+}
+form .detalhes-usuario .input-box{
+    margin-bottom:  18px;
+    width:100%;
+}
+
+
+
+.p-viewer2{
+    /*
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    z-index: 1;
+    cursor:pointer;
+    color: red;
+    */
+    right: 10px;
+    position: relative;
     
+    z-index: 1;
+    font-size: 15px;
+    color:#000000;
+    margin: 23px 0 0 -30px;
+ cursor:pointer;
+  }
+.fa-eye{
+    margin-top: 16px;
+    
+}
+#risco{
+    display: none;
+    margin-top: 16px;
+    
+}
+#text{
+    position: fixed;
+}
+form .genero .categoria{
+    width: 100%;
+}
+
+form .btn{
+    margin-bottom: 70px;
+}
+.container form .detalhes-usuario{
+    max-height: 350px;
+    overflow-y: scroll;
+}
+form .input-boxlogar{
+    position: relative;
+      
+      margin: -50px 10px 15px 0 ;
+    
+  } 
+  form .input-boxlogar a{
+    position: absolute;
+      color: red;
+   margin-top: -18.5px;
+   margin-left: 117px;
+   text-decoration: none;
+    
+  } 
+
+}
+
+/*ipad pro*/
+@media (max-width: 1024px){
+    .container { /*PARTE BRANCO DO FORMULÁRIO*/
+        max-width: 100%;
+        position: fixed;
+        /*margin-left:100% ;*/
+}
+form .detalhes-usuario .input-box{
+    margin-bottom:  18px;
+    width:100%;
+}
+
+
+
+.p-viewer2{
+    /*
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    z-index: 1;
+    cursor:pointer;
+    color: red;
+    */
+    right: 10px;
+    position: relative;
+    
+    z-index: 1;
+    font-size: 15px;
+    color:#000000;
+    margin: 23px 0 0 -30px;
+ cursor:pointer;
+  }
+.fa-eye{
+    margin-top: 16px;
+    
+}
+#risco{
+    display: none;
+    margin-top: 16px;
+    
+}
+#text{
+    position: fixed;
+}
+form .genero .categoria{
+    width: 100%;
+}
+
+form .btn{
+    margin-bottom: 70px;
+}
+.container form .detalhes-usuario{
+    max-height: 350px;
+    overflow-y: scroll;
+}
+form .input-boxlogar{
+    position: relative;
+      
+      margin: -50px 10px 15px 0 ;
+    
+  } 
+  form .input-boxlogar a{
+    position: absolute;
+      color: red;
+   margin-top: -18.5px;
+   margin-left: 117px;
+   text-decoration: none;
+    
+  } 
+}
+
 
 @media (max-width: 584px){
     .container { /*PARTE BRANCO DO FORMULÁRIO*/
@@ -293,7 +403,7 @@ form .detalhes-usuario .input-box{
     
 }
 #text{
-    position: relative;
+    position: fixed;
 }
 form .genero .categoria{
     width: 100%;
@@ -303,7 +413,7 @@ form .btn{
     margin-bottom: 70px;
 }
 .container form .detalhes-usuario{
-    max-height: 300px;
+    max-height: 350px;
     overflow-y: scroll;
 }
 form .input-boxlogar{

@@ -84,19 +84,12 @@ $mail->setEmailFrom('from@email.com');*/
                 $sexo
             );
             if (getType($resp) == 'object') {
-                
-                //alterei essa parte de baixo 
-                echo "<script>setTimeout(Swal.fire({
-                    icon: 'warning',
-                    title: 'Email ja cadastrado!',
-                    
-                    timer: 200000
-                    }))</script>";
-            }else {
+                $ce = $resp;
+                echo "<p style='color: red;'>Email já cadastrado!</p>";
+            } else {
                 echo $resp;
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                URL='login.php'\">";
-                
+                URL='cadastroClientes.php'\">";
             }
         }
         ?>

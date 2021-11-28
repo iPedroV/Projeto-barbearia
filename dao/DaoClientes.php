@@ -46,13 +46,9 @@ class DaoClientes
 			$stmt->bindParam(7, $verifica);
                         $stmt->bindParam(8, $token);
                     $stmt->execute();
-                    $resp = "<script>setTimeout(Swal.fire({
-                        icon: 'success',
-                        title: 'Cadastro Efetuado com Sucesso!',
-                        
-                        timer: 2000
-                        }))</script>";
-                }
+                    $resp = "<p style='color: green;'>"
+                    . "Dados Cadastrados com sucesso</p>";
+            }
             } catch (Exception $ex) {
                 $resp = $ex;
             }
