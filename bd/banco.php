@@ -40,4 +40,7 @@ https://www.php.net/manual/pt_BR/function.date.php
 
 Visualizar o Site Versão mobile.
 https://www.responsinator.com/
+
+MD5
+https://www.md5hashgenerator.com/
 */
