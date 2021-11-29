@@ -36,7 +36,7 @@ class DaoLogin
                     }
                     return $cliente;
                 } else {
-                    return "<p style='color: red; font-weight: bold;'>Usuário inexistente!</p>";
+                    return "<p style='color: red; font-weight: bold; margin-top: 10px;'>Usuário inexistente!</p>";
                 }
             } catch (PDOException $ex) {
                 return "<p style='color: red;'>'Erro no Banco de dados!'</p>" . $ex;
