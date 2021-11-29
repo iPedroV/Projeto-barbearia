@@ -27,7 +27,7 @@ class daoIndex
             try {
                 
                     $stmt = $conecta->prepare("insert into noticias values "
-                        . "(null,?,?,?,NOW())");
+                        . "(null,?,?,?,NOW(),0)");
 
                     $stmt->bindParam(1, $titulo);
                     $stmt->bindParam(2, $descricao);

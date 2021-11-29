@@ -44,11 +44,12 @@ $nomeUser = $_SESSION['nomec'];
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
+    <script src="Js/sweetalert2.all.min.js"></script>
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="Js/sweetalert2.all.min.js"></script>
     <title>💈 Barbearia Neves 💈</title>
-
+    
 
     <!--Fontes-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -285,7 +286,7 @@ $nomeUser = $_SESSION['nomec'];
 
                     </div>
                     <div class="form-group">
-                        <button type="button" name="submit_data" class="btn btn-primary" id="submit_data">Submit</button>
+                        <button type="button" name="submit_data"  class="btn btn-primary" id="submit_data">Submit</button>
                     </div>
                 </div>
             </div>
@@ -383,11 +384,17 @@ $nomeUser = $_SESSION['nomec'];
                     $('#status_2').prop('checked', false);
                     //so serve para voltar o valor original
                     $('#valor').val('1');
-
-                    alert(dat);
-
-                    makechart();
-                    window.location.reload();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Dados excluídos com sucesso',
+                
+                        timer: 2000
+                    })
+                    setTimeout(() => {makechart();
+                    window.location.reload();}, 2000);
+                
+                    
+                    
                 }
             })
 

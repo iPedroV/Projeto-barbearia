@@ -138,14 +138,14 @@ $msg = new Mensagem();
                     <span>Titulo</span>
                     <input type="text" placeholder="Digite o Título" name="titulo" required value="<?php echo $nt->getTitulo(); ?>">
 
-                    <span class="detalhes">Autor</span>
+                    <span >Autor</span>
                     <input type="text" placeholder="Digite o autor" name="autor" required value="<?php echo $nt->getAutor(); ?>">
                 </div>
 
 
                 <div class="input-box">
-                    <span class="detalhes">Descrição</span>
-                    <textarea id="descricao" type="text" placeholder="Digite a mensagem" name="descricao" required value="<?php echo $nt->getDescricao(); ?>"></textarea>
+                    <span >Descrição</span>
+                    <textarea id="descricao" style="padding-top: 12px" type="text" placeholder="Digite a mensagem" name="descricao" required value="<?php echo $nt->getDescricao(); ?>"></textarea>
                 </div>
 
 
