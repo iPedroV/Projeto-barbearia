@@ -274,13 +274,13 @@ if (isset($_POST['excluir'])) {
                                                     $resultado_post = mysqli_query($conn, $result_post);
                                                     while ($row_post = mysqli_fetch_assoc($resultado_post)) {
                                                         $func = $row_post['sf_funcionario'];
+                                                    }
 
-                                                        $result_post02 = "Select * from `usuario` WHERE id = $func";
-                                                        $resultado_post02 = mysqli_query($conn, $result_post02);
+                                                    $result_post02 = "Select * from `usuario` WHERE id = $func LIMIT 1";
+                                                    $resultado_post02 = mysqli_query($conn, $result_post02);
                                                         while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
                                                             echo '<li style="list-style: none;">' . $row_post02['nome'] . '</li>';
                                                         }
-                                                    }
                                                     ?>
                                                 </ul>
                                                 <?php
