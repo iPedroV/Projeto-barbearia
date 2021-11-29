@@ -297,7 +297,6 @@ require_once __DIR__ . "/bd/banco.php";
                 $_SESSION['servico2'] = "";
                 $_SESSION['nome_Servico2'] = "";
                 $_SESSION['agendamentoServicoTempo2'] = "";
-                $_SESSION['agendamentoServicoValor'] = "";
             }
             
 
