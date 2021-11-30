@@ -40,6 +40,11 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 
     <link href="css/secretaria-agenda.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="Js/sweetalert2.all.min.js"></script>
 
     <title>Agendamentos</title>
 </head>
@@ -66,10 +71,47 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                         <th colspan="1" class="text-start">Serviço:</th>
                         <th colspan="1" class="text-start">Funcionario:</th>
                         <th colspan="1" class="text-start">Cliente:</th>
+                        <th colspan="1" class="text-start">Telefone do Cliente</th>
+                        <th></th>
+                        <th colspan="1" class="text-start">Cancelar</th>
+                        <th colspan="1" class="text-start">Concluir</th>
                     </tr>
                 </thead>
                 <tbody>
+
                     <?php
+                    if (isset($_POST['excluir'])) {
+
+                        if ($dt != null) {
+                            $id = $_POST['ide'];
+
+                            $pc = new AgendamentoController();
+                            unset($_POST['excluir']);
+                            $msg = $pc->excluirAgendamento($id);
+                            $msg = $pc->excluirAgendamento2($id);
+                        }
+                    }
+
+
+                    if (isset($_POST['concluir'])) {
+                        if ($dt != null) {
+                            $id = $_POST['ide'];
+
+                            $ac = new DashboardController();
+                            $msg = $ac->concluirAgendamento($id);
+
+                            echo "<script>Swal.fire({
+                                    icon: 'success',
+                                    title: 'O agendamento encerrado com sucesso!',
+                
+                                    timer: 2000
+                                    })</script>";
+                            unset($_POST['finalizar']);
+                            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                                        URL='agendamentoSecretaria.php'\">";
+                        }
+                    }
+
                     //FUNÇÃO QUE FORMATA A DATA QUE VEM DO MYSQL
                     function vemData($qqdata)
                     {
@@ -100,10 +142,11 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                             <tr class=" align-middle">
                                 <td><?php print_r(vemData($la->getDataAgenda())); ?></td>
                                 <td><?php print_r(horaMin($la->getHorario())); ?></td>
-                                <!--td><?php //print_r($la->getForma_Pagamento()); 
+                                <!--td><?php //print_r($la->getForma_Pagamento());
                                         ?></td>-->
                                 <td>R$ <?php print_r($la->getValor()); ?></td>
                                 <td>
+                                    <!--Select do serviço-->
                                     <?php $result_post = "SELECT * FROM `agendamentos_dos_servicos` "
                                         . "WHERE agendamentos_id = " . $la->getId() . "";
                                     $resultado_post = mysqli_query($conn, $result_post);
@@ -118,6 +161,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                     } ?>
                                 </td>
                                 <td>
+                                    <!--Select do Funcionario-->
                                     <?php
                                     $result_post = "SELECT * FROM `agendamentos_dos_servicos` "
                                         . "WHERE agendamentos_id = " . $la->getId();
@@ -134,22 +178,96 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                             $B = end($form); // pega a ultima string do Array
                                             $A = array_shift($form); // pega a primeira string do Array
                                             //echo $A." ".$B." "; impressão das variaveis do Array              
-                                            echo '<li style="list-style: none;">' . $A." ".$B." " . '</li>';
+                                            echo '<li style="list-style: none;">' . $A . " " . $B . " " . '</li>';
                                         }
                                     }
                                     ?>
                                 </td>
                                 <td>
+                                    <!--Select do Cliente-->
                                     <?php
                                     $result_post = "SELECT * FROM `agendamentos` "
                                         . "INNER JOIN usuario on agendamentos.usuario_id = usuario.id WHERE agendamentos.idAgendamento = " . $la->getId();
                                     $resultado_post = mysqli_query($conn, $result_post);
                                     while ($row_post = mysqli_fetch_assoc($resultado_post)) {
-                                        echo $row_post['nome'];
+                                        $form = $row_post['nome'];
+
+                                        $form = explode(" ", $form);
+                                        $B = end($form); // pega a ultima string do Array
+                                        $A = array_shift($form); // pega a primeira string do Array
+                                        //echo $A." ".$B." "; impressão das variaveis do Array              
+                                        echo '<li style="list-style: none;">' . $A . " " . $B . " " . '</li>';
                                     }
                                     ?>
                                 </td>
+                                <td colspan="1" class="text-center">
+                                    <?php
+                                    $result_post = "SELECT * FROM `agendamentos` "
+                                        . "INNER JOIN usuario on agendamentos.usuario_id = usuario.id WHERE agendamentos.idAgendamento = " . $la->getId();
+                                    $resultado_post = mysqli_query($conn, $result_post);
+                                    while ($row_post = mysqli_fetch_assoc($resultado_post)) {
+                                        echo $row_post['telefone'];
+                                    }
+                                    ?>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
+                                        Cancelar</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal2">
+                                        Concluir</button>
+                                </td>
                             </tr>
+
+                            <!--Modal de excluir o agendamento pela secretaria-->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Cancelar Agendamento</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form method="post">
+                                            <div class="modal-body">
+                                                <label style="border-bottom: 1px solid black; padding-bottom: 10px; width: 100%;">Deseja cancelar o agendamento?</label>
+                                                <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal" name="excluir">Sim</button>
+                                                <button type="button" class="btn btn-outline-primary">Não</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Modal de Concluir o agendamento pela secretaria-->
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Concluir Agendamento</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form method="post">
+                                            <div class="modal-body">
+                                                <label style="border-bottom: 1px solid black; padding-bottom: 10px; width: 100%;">Deseja Concluir o agendamento?</label>
+                                                <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal" name="concluir">Sim</button>
+                                                <button type="button" class="btn btn-outline-primary">Não</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                     <?php
                         }
                     }

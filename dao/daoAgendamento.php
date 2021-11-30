@@ -248,7 +248,7 @@ class DaoAgendamento {
         if ($conecta) {
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $rs = $conecta->query("SELECT * FROM agendamentos");
+                $rs = $conecta->query("select * from agendamentos where status_agendamento = 'agendado' order by data, horario asc");
                 $lista = array();
                 $a = 0;
                 if ($rs->execute()) {
