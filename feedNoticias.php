@@ -122,7 +122,7 @@ $content = $object->getElementsByTagName("item");
             width: 90%;
             height: 99%;
             font-size: 15px;
-            margin-top: 60px;
+            margin-top: 80px!important;
             background-color: white;
             border-radius: 40px;
         }
@@ -237,7 +237,7 @@ $content = $object->getElementsByTagName("item");
 
 <body>
     <header>
-        <a href="index.php" class="logo">Barbearia Neves<span>.</span></a>
+        <a href="index.php" class="logo" style="padding-bottom: 5px;">Barbearia Neves<span>.</span></a>
         <div class="menuToggle" onclick=" toggleMenu();"></div>
         <?php
         include_once 'C:/xampp/htdocs/Projeto-barbearia/nav.php';

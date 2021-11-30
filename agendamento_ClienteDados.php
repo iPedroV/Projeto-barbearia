@@ -155,12 +155,18 @@ if (isset($_POST['excluir'])) {
                 Agendamento do(a) <?php echo $_SESSION['nomec']; ?></h3>
 
             <?php
-            } else if ($_SESSION['perfilc'] == 'Funcionario' || $_SESSION['perfilc'] == 'Administrador') {
+            } else if ($_SESSION['perfilc'] == 'Funcionario') {
             ?>
 
             <h3 style="padding-top: 25px; padding-bottom: 25px; padding-left: 40px; margin-top: 10px;
                 border-top: 2px solid black; border-bottom: 2px solid black; color: white; background: linear-gradient(90deg, #666 35%, #111 80%)!important;">
                 Agendamento em nome do(a) <?php echo $_SESSION['nomec']; ?></h3>
+            <?php } else if ($_SESSION['perfilc'] == 'Secretaria' || $_SESSION['perfilc'] == 'Administrador') {
+                ?>
+
+                <h3 style="padding-top: 25px; padding-bottom: 25px; padding-left: 40px; margin-top: 10px;
+                    border-top: 2px solid black; border-bottom: 2px solid black; color: white; background: linear-gradient(90deg, #666 35%, #111 80%)!important;">
+                    Listagem dos Agendamentos</h3>
             <?php } ?>
 
         </div>
@@ -202,7 +208,7 @@ if (isset($_POST['excluir'])) {
                     $listaAgendamento = $TabelaVisual->ListarClienteAgendamento();
                 } else if ($_SESSION['perfilc'] == 'Funcionario') {
                     $listaAgendamento = $TabelaVisual->ListarClienteAgendamento02();
-                } else if ($_SESSION['perfilc'] == 'Administrador') {
+                } else if ($_SESSION['perfilc'] == 'Administrador' || $_SESSION['perfilc'] == 'Secretaria') {
                     $listaAgendamento = $TabelaVisual->ListarClienteAgendamento03();
                 }
                 $a = 0;
@@ -284,7 +290,7 @@ if (isset($_POST['excluir'])) {
                                                     ?>
                                                 </ul>
                                                 <?php
-                                                } else if ($_SESSION['perfilc'] == 'Funcionario' || $_SESSION['perfilc'] == 'Administrador') {
+                                                } else if ($_SESSION['perfilc'] == 'Funcionario' || $_SESSION['perfilc'] == 'Administrador' || $_SESSION['perfilc'] == 'Secretaria') {
                                                 
                                                 ?>
                             <td colspan="2">
