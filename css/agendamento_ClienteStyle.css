@@ -1,5 +1,90 @@
 @import url('https://font.giigkeapis.com/css?family=Poppins:200,300,400,500,700,800,900&display=swap');
 
+
+              /*SWEETALERT*/
+    .swal2-styled.swal2-default-outline:focus {
+      box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
+    }
+
+  .swal2-styled.swal2-confirm:focus {
+      box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
+  }
+
+  .swal2-styled:focus {
+      outline: 0;
+  }
+
+    .swal2-styled.swal2-confirm {
+      border: 0px solid white;
+      border-radius: .25em;
+      background: initial;
+      background-color: #ffffff!important;
+      color: #fff;
+      font-size: 1em;
+      font-weight: 600;
+      padding: 7px 0px;
+    }
+
+    .swal2-styled.swal2-confirm:hover{
+      background-color: #333!important;
+      color: #fff;
+    }
+
+    .swal2-styled.swal2-confirm a {
+      text-decoration: none; 
+      color: black; 
+      border: 2px solid black; 
+      padding: 10px 14px; 
+      border-radius: .25em;
+      font-weight: 600;
+    }
+
+    .swal2-styled.swal2-confirm a:hover{
+      color: white!important;
+    }
+
+
+    /* Sendo usado na página de listagem do agendamento */
+    .swal2-styled.swal2-confirm l {
+        text-decoration: none; 
+        color: black; 
+        border: 2px solid black; 
+        padding: 10px 14px; 
+        border-radius: .25em;
+        font-weight: 600;
+        text-decoration: none!important;
+      }
+  
+      .swal2-styled.swal2-confirm l:hover{
+        color: white!important;
+      }
+
+    .swal2-styled.swal2-cancel {
+      border: 0;
+      border-radius: .25em;
+      background: initial;
+      background-color: #555!important;
+      color: #fff;
+      font-size: 1em;
+      padding: 8px 14px;
+  }
+
+  .swal2-actions {
+    display: flex;
+    z-index: 1;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 90%!important;
+    margin: 2.25em auto 0!important;
+    padding: 15px!important;
+
+    border-top: 3px solid black!important; border-bottom: 3px solid black!important;
+    border-left: 2px solid #888!important; border-right: 2px solid #888!important;
+}
+
+              /*SWEETALERT*/
 *
 {   
     margin: 0;
