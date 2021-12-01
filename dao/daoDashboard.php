@@ -63,7 +63,7 @@ class daoDashboard
         $lista = array();
         if ($conecta) {
             try {
-                $rs = $conecta->prepare("SELECT * FROM despesas ORDER BY data_regs_despesa ASC");
+                $rs = $conecta->prepare("SELECT * FROM despesas ORDER BY data_regs_despesa DESC");
                 $a = 0;
                 if ($rs->execute()) {
                     if ($rs->rowCount() > 0) {
