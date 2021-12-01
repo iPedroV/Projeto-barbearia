@@ -68,28 +68,6 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 
 <body>
     <header>
-        <?php
-        $result_post02 = "Select * from `agendamentos` WHERE usuario_id = $id and status_agendamento = 'concluido'";
-        $resultado_post02 = mysqli_query($conn, $result_post02);
-        while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
-            $user = $row_post02['usuario_id'];
-            $status = $row_post02['status_agendamento'];
-
-            if ($status == "concluido") {
-        ?>
-                <script>
-                    Swal.fire({
-                        title: 'Agendamento Concluído!',
-                        text: 'Por favor clique em REAGENDAR para poder fazer um novo agendamento.',
-                        icon: 'warning',
-                        confirmButtonText: '<l>Concluído</l>'
-                    })
-                </script>
-        <?php
-            }
-        }
-        ?>
-
         <a href="./index.php" class="logo">Barbearia Neves<span>.</span></a>
         <div class="menuToggle" onclick=" toggleMenu();">
             <ul class="navigation">
@@ -398,6 +376,30 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
         <div class="row" id="some" style="width: 99%;">
             <div class="col-md-2 offset-2"></div>
             <form method="POST" action="">
+           
+            <?php
+             if ($_SESSION['perfilc'] == 'Cliente') {
+                $result_post02 = "Select * from `agendamentos` WHERE usuario_id = $id and status_agendamento = 'concluido'";
+                $resultado_post02 = mysqli_query($conn, $result_post02);
+                while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
+                    $user = $row_post02['usuario_id'];
+                    $status = $row_post02['status_agendamento'];
+
+                    if ($status == "concluido") {
+                ?>
+                        <script>
+                            /*Swal.fire({
+                                title: 'Agendamento Concluído!',
+                                text: 'Por favor clique em REAGENDAR para poder fazer um novo agendamento.',
+                                icon: 'warning',
+                                confirmButtonText: '<l>Concluído</l>'
+                            })*/
+                        </script>
+                <?php
+                    }
+                }
+            }
+            ?>
                 <label class="nenhumAgendamento">Nenhum agendamento foi realizado.</label>
                 <button type="submit" class="btn" name="fazerAgendamento" id="fazerAgendamento">&#8652; Fazer Agendamento &#8651;</button>
             </form>

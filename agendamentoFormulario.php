@@ -379,7 +379,7 @@ require_once __DIR__ . "/bd/banco.php";
 					$('.cliqueAqui').show(); 
 
 					$.getJSON('agendamentoFormularioSub.php?search=',{id_servicos: $(this).val(), ajax: 'true'}, function(j){
-						var options = "";	
+						var options = '<option value="">Escolher Funcionario</option>';	
 						var optionsV = "";	
 						for (var i = 0; i < j.length; i++) {
 							options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
@@ -458,7 +458,7 @@ require_once __DIR__ . "/bd/banco.php";
                     alert(dao1 + " famoso " + dao2);
 
 				} else {
-					$('#id_funcionarios2').html('<option value="">– Escolher Funcionario –</option>');
+					$('#id_funcionarios2').html('<option value="">Selecionar Serviço 2</option>');
 				}
 			});
 		});
@@ -531,8 +531,8 @@ require_once __DIR__ . "/bd/banco.php";
                 $('#loadMore').show();
                 $('#showLess').show();
 
-                $('#id_funcionarios2').html('<option value="">– Escolher Funcionario –</option>');
-                $('#valorServico2').html('<option value="">0</option>');
+                //$('#id_funcionarios2').html('<option value="">Selecionar Serviço 2</option>');
+                //$('#valorServico2').html('<option value=""></option>');
                 if(x == 2){
                     //$('#showLess').hide();
                 }
