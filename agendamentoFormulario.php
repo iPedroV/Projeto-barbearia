@@ -140,7 +140,7 @@ require_once __DIR__ . "/bd/banco.php";
 
             <div class="row">
                 <div class="col-md-2 offset-5" id="loadMore">&#8606; Adicionar serviço &#8608;</div>
-                <div class="col-md-2 offset-5" id="showLess">mostrar menos</div>
+                <div class="col-md-2 offset-5" id="showLess">Remover serviço 2</div>
             </div>
                 <div id="modar3">
                     <div class="row">
