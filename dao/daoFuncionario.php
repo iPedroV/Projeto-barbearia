@@ -99,7 +99,7 @@ class DaoFuncionario
         return $lista;
     }
 
-    public function atualizarSenhaFuncioanrioDAO(Usuario $funcioanrio)
+    public function atualizarSenhaFuncionarioDAO(Usuario $funcioanrio)
     {
         $conn = new Conecta();
         $msg = new Mensagem();

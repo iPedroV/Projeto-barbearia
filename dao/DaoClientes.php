@@ -108,7 +108,7 @@ class DaoClientes
     }
 
     //Select de id cliente
-    public function pesquisarEmailClienteDAO($email)
+    /*public function pesquisarEmailClienteDAO($email)
     {
         $msg = new Mensagem();
         $conn = new Conecta();
@@ -172,5 +172,5 @@ class DaoClientes
         }
         //return serialize($lista);
         return $lista;
-    }
+    }*/
 }

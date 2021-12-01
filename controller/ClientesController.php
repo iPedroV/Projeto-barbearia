@@ -22,7 +22,7 @@ class ClientesController {
     }
 
 
-    public function pesquisarEmailcliente($email){
+    /*public function pesquisarEmailcliente($email){
         $daoClientes2 = new DaoClientes();
         return $daoClientes2->pesquisarEmailClienteDAO($email);
     }
@@ -30,7 +30,7 @@ class ClientesController {
     public function PesquisarIdCLiente($email){
         $daoClientes = new DaoClientes();
         return $daoClientes->pesquisarIdClienteoDAO($email);
-    }
+    }*/
 
     public function editarSenhaClientes($senha, $email){
 

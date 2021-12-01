@@ -49,7 +49,7 @@ class FuncionarioController
         $funcionario->setToken($token);
 
         $daoClientes3 = new DaoFuncionario();
-        return $daoClientes3->atualizarSenhaFuncioanrioDAO($funcionario);
+        return $daoClientes3->atualizarSenhaFuncionarioDAO($funcionario);
 
     }
     public function excluirFuncionario($id){
