@@ -531,8 +531,7 @@ require_once __DIR__ . "/bd/banco.php";
                 $('#loadMore').show();
                 $('#showLess').show();
 
-                //$('#id_funcionarios2').html('<option value="">Selecionar Serviço 2</option>');
-                //$('#valorServico2').html('<option value=""></option>');
+                $('#id_funcionarios2').html('<option value="">Selecionar Serviço 2</option>');
                 if(x == 2){
                     //$('#showLess').hide();
                 }
