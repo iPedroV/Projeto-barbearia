@@ -286,7 +286,7 @@ $nomeUser = $_SESSION['nomec'];
 
                     </div>
                     <div class="form-group">
-                        <button type="button" name="submit_data"  class="btn btn-primary" id="submit_data">Submit</button>
+                        <button type="button" name="submit_data"  class="btn btn-primary" id="submit_data">Cadastrar</button>
                     </div>
                 </div>
             </div>
@@ -386,7 +386,7 @@ $nomeUser = $_SESSION['nomec'];
                     $('#valor').val('1');
                     Swal.fire({
                         icon: 'success',
-                        title: 'Dados excluídos com sucesso',
+                        title: 'Dados cadastrados com sucesso',
                 
                         timer: 2000
                     })
