@@ -207,7 +207,7 @@ $_SESSION['agendamentoServicoValor'] = "";
             $dataFinalSemana = $_POST['final_semana'];
 
             $result_usuario = "select * from agendamentos inner join usuario "
-                . "on agendamentos.usuario_id = usuario.id where usuario.id = ". $id;
+                . "on agendamentos.usuario_id = usuario.id where usuario.id = ". $id . " and status_agendamento = 'agendado'";
             $resultado_usuario = mysqli_query($conn, $result_usuario);
 
             while($row_usuario = mysqli_fetch_assoc($resultado_usuario)){

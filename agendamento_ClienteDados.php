@@ -224,9 +224,29 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                             Detalhes</button>
                                     </td>
 
-                                    <td><button type="submit" class="btnReagendar" data-bs-toggle="modal" data-bs-target="#exampleModal2<?php echo $a; ?>">
-                                            Reagendar</button>
-                                    </td>
+                                    <?php
+                                        
+                                            $result_post02 = "Select status_agendamento from `agendamentos` WHERE usuario_id = $id";
+                                            $resultado_post02 = mysqli_query($conn, $result_post02);
+                                            while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
+                                                $status = $row_post02['status_agendamento'];
+
+                                                if ($status == "concluido") {
+                                            ?>
+                                                </table>
+                                                    <li style="list-style: none; font-size: 18px; padding-top: 15px; padding-bottom: 15px;">
+                                                        <Strong>Agendamento foi realizado!</Strong> Por favor, clique em <strong>Novo Agendamento</strong> para poder fazer um novo agendamento.</li><li><button>Novo Agendamento</button></li>
+                                            <?php
+                                                } else {
+                                                    ?>
+                                                    <td><button type="submit" class="btnReagendar" data-bs-toggle="modal" data-bs-target="#exampleModal2<?php echo $a; ?>">
+                                                            Reagendar</button>
+                                                    </td> <?php
+                                                }
+                                            }
+                                        
+                                    ?>
+                                    
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal<?php echo $a; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -378,25 +398,6 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                             header("Location: agendamento.php");
                         }
                     }
-    ?>
-
-
-    <?php
-    if ($_SESSION['perfilc'] == 'Cliente') {
-        $result_post02 = "Select status_agendamento from `agendamentos` WHERE usuario_id = $id";
-        $resultado_post02 = mysqli_query($conn, $result_post02);
-        while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
-            $status = $row_post02['status_agendamento'];
-
-            if ($status == "concluido") {
-        ?>
-            </table>
-                <li style="list-style: none; font-size: 18px; padding-top: 15px; padding-bottom: 15px;">
-                    <Strong>Agendamento foi realizado!</Strong> Por favor, clique em <strong>REAGENDAR</strong> para poder fazer um novo agendamento.</li>
-        <?php
-            }
-        }
-    }
     ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
