@@ -5,15 +5,18 @@ if (!isset($_SESSION)) {
 if (!isset($_SESSION['msg'])) {
     $_SESSION['msg'] = "";
 }
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/servicosController.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/funcionarioController.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/DaoClientes.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoIndex.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
+include_once "C:/xampp/htdocs/Projeto-barbearia/model/servicos_model.php";
 include_once 'C:/xampp/htdocs/Projeto-barbearia/enviar.php';
 $ce = new Usuario();
 $msg = new Mensagem();
+$sm = new Servicos_model();
 ?>
 
 
@@ -28,7 +31,7 @@ $msg = new Mensagem();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font/awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -47,9 +50,9 @@ $msg = new Mensagem();
 
     <div class="container">
         <div class="title"><span><b>C</b></span>adastro Funcionario</div>
-         
+
         <?php
-        
+
         //Fução do Token*
         //substr((time()), 0, 20 )
 
@@ -57,20 +60,20 @@ $msg = new Mensagem();
         $msg = new Mensagem();
         $conecta = $conn->conectadb();
         if (isset($_POST['cadastrar'])) {
-           
-                $telefone = str_replace("(","", $_POST['telefone']);
-                    $telefone = str_replace(")","", $telefone);
-                    $telefone = str_replace(" ","", $telefone);
-                    $telefone = str_replace("-","", $telefone);
-                $senha = $telefone;
-                if ($senha != "") {
-    
-                    $nome = $_POST['nome'];
-                    $perfil = $_POST['cargo'];
-                    $email = $_POST['email'];
-                    $sexo = $_POST['sexo'];
-                    $token = $_POST['token'];
-                }
+
+            $telefone = str_replace("(", "", $_POST['telefone']);
+            $telefone = str_replace(")", "", $telefone);
+            $telefone = str_replace(" ", "", $telefone);
+            $telefone = str_replace("-", "", $telefone);
+            $senha = $telefone;
+            if ($senha != "") {
+
+                $nome = $_POST['nome'];
+                $perfil = $_POST['cargo'];
+                $email = $_POST['email'];
+                $sexo = $_POST['sexo'];
+                $token = $_POST['token'];
+            }
 
             $cc = new FuncionarioController();
             unset($_POST['cadastrar']);
@@ -88,15 +91,14 @@ $msg = new Mensagem();
                 $ce = $resp;
                 echo "<p style='color: red;'>Email já cadastrado!</p>";
             } else {
-                
+
                 $msg = new Mensagem();
                 $EmailEnviado = new FuncionarioController();
                 $msg = $EmailEnviado->EnviarSenhaController();
-                
+
                 echo $resp;
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
 			    URL='../Projeto-Barbearia/ListarFuncionario.php'\">";
-                
             }
         }
 
@@ -120,9 +122,9 @@ $msg = new Mensagem();
 
                 <div class="input-box">
                     <span class="detalhes">Telefone Celular:</span>
-                    <input id="tel" type="tel" placeholder="(xx)9xxxx-xxxx" name="telefone"  maxlength="11" required value="<?php echo $ce->getTelefone(); ?>">
+                    <input id="tel" type="tel" placeholder="(xx)9xxxx-xxxx" name="telefone" maxlength="11" required value="<?php echo $ce->getTelefone(); ?>">
                 </div>
-            
+
                 <div class="input-box">
                     <span class="detalhes">Cargo:</span>
                     <select name="cargo" class="select">
@@ -149,20 +151,40 @@ $msg = new Mensagem();
                     <span class="detalhes">Email:</span>
                     <input type="email" placeholder="Digite seu email" name="email" required value="<?php echo $ce->getEmail(); ?>">
                 </div>
+                
+                <?php
+                $scTable = new servicosController();
+                $listaServicos = $scTable->listarServicos();
+                $a = 0;
+                if ($listaServicos != null) {
+                    foreach ($listaServicos as $ls) {
+                        $a++;
+                ?>
+                <div >
+                <span class=""><?php echo $ls->getNomeServico(); ?></span>
+                <input type="checkbox" name="check" required value="<?php echo $ls->getNomeServico(); ?>">
+                <br>
+                </div>
+                <?php
+                    }
+                }
+                ?>
 
                 <div class="input-box">
-                    <input type="hidden" name="token" required value="<?php echo substr((time()), 0, 20 )?> <?php echo $ce->getToken(); ?>">
+                    <input type="hidden" name="token" required value="<?php echo substr((time()), 0, 20) ?> <?php echo $ce->getToken(); ?>">
                 </div>
                 
 
-                
+
             </div>
             <div class="genero">
 
-                <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>" 
-                <?php if ($ce->getSexo() != null) {if ($ce->getSexo() == "Masculino") echo "checked = checked";} ?> checked='checked' required>
-                <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>" 
-                <?php if ($ce->getSexo() != null) {if ($ce->getSexo() == "Feminino") echo "checked = checked";} ?>required>
+                <input type="radio" name="sexo" id="ponto-1" value="Masculino" value="<?php echo $ce->getSexo(); ?>" <?php if ($ce->getSexo() != null) {
+                                                                                                                            if ($ce->getSexo() == "Masculino") echo "checked = checked";
+                                                                                                                        } ?> checked='checked' required>
+                <input type="radio" name="sexo" id="ponto-2" value="Feminino" value="<?php echo $ce->getSexo(); ?>" <?php if ($ce->getSexo() != null) {
+                                                                                                                        if ($ce->getSexo() == "Feminino") echo "checked = checked";
+                                                                                                                    } ?>required>
                 <span class="seu-genero">Gênero</span>
                 <div class="categoria">
                     <label for="ponto-1">
@@ -180,7 +202,7 @@ $msg = new Mensagem();
             </div>
         </form>
     </div>
-   
+
 
     <script>
         var telefone = document.querySelector('#tel');
@@ -244,7 +266,7 @@ $msg = new Mensagem();
             navigation.classList.toggle('active');
         }
     </script>
-    
+
 
 </body>
 
