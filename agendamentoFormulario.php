@@ -186,7 +186,8 @@ require_once __DIR__ . "/bd/banco.php";
                                 <button name="horarioAgend" id="btnHorario11" onclick="horario11()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">17:45</span></button>
                             </div>
 
-                            <div class="col-md-12 offset-12" style="border-bottom: 2px solid white; margin-bottom: 15px; margin-top: 0px;"></div>
+                            <div class="col-md-12 offset-12" style="position: relative; background-color: transparent; height: 125px; margin-top: -100px; top: 110px;"></div>
+                            <div class="col-md-12 offset-12" style="border-bottom: 2px solid white; margin-bottom: 15px; margin-top: -200px;"></div>
                             <div class="col-md-12 offset-12">
                                 <div class="campoFormHorario2">
                                     <label>Horário Escolhido &nbsp;&#8658;</label>
