@@ -111,6 +111,7 @@
       font-size: 24px;
       width: 800px;
       padding: 5px;
+      margin-top: 15px;
     }
 
     h4 {
@@ -412,6 +413,7 @@
 
 .conteudo label {
  margin-left: -50px;
+ margin-top: 25px;
 }
 
 .PainelAG {

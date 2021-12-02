@@ -183,7 +183,7 @@ $_SESSION['agendamentoServicoValor'] = "";
     </section>
 
     <div class="botaoCancelar">
-        <a href="index.php" class="CancelarAgendamento"><span>C</span>ancelar agendamento</a>
+        
     </div>
     
     <?php
