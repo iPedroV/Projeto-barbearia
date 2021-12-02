@@ -307,11 +307,10 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                 ?>
                     <script>
                         Swal.fire({
-                            title: 'Agendamento realizado com sucesso!',
+                            title: 'Dados cadastrados com sucesso!',
                             text: '',
                             icon: 'success',
-                            confirmButtonColor: '#000',
-                            confirmButtonText: 'Agendamento Realizado'
+                            confirmButtonText: '<a href="./agendamento_ClienteDados.php">Dados Cadastrados</a>'
                         })
                     </script>
                 <?php
