@@ -13,10 +13,20 @@ if ((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 }
 
 $id = $_SESSION['idc'];
+
 include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/agendamentoController.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/controller/dashboardController.php';
+
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoAgendamento.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoDashboard.php';
+
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_model.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/agendamento_dos_servicos.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
+
+include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
+
+
 
 $dt = new Agendamento();
 $agendamento = new Agendamentos_dos_servicos();
@@ -24,8 +34,7 @@ $dt->setId($agendamento);
 
 $dts = new AgendamentoController();
 
-include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
-include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
+
 
 ?>
 
@@ -39,21 +48,11 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
     <link rel="sorcut icon" href="img/barber-shop.png" type="image/png" style="width: 16px; height: 16px;">
 
     <link href="css/secretaria-agenda.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <script src="Js/sweetalert2.all.min.js"></script>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
     <title>Agendamentos</title>
 </head>
@@ -75,6 +74,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                     <tr>
                         <th colspan="1" class="text-start">Data Agendada:</th>
                         <th colspan="1" class="text-start">Horário:</th>
+                        <th colspan="1" class="text-start">Status:</th>
                         <!--<th colspan="1" class="text-start">Forma de Pagamento:</th>-->
                         <th colspan="1" class="text-start">Valor Total:</th>
                         <th colspan="1" class="text-start">Serviço:</th>
@@ -98,6 +98,15 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                             unset($_POST['excluir']);
                             $msg = $pc->excluirAgendamento($id);
                             $msg = $pc->excluirAgendamento2($id);
+
+                            echo "<script>Swal.fire({
+                                icon: 'success',
+                                title: 'O agendamento cancelado com sucesso!',
+                                timer: 2000
+                                })</script>";
+
+                            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                                    URL='agendamentosSecretaria.php'\">";
                         }
                     }
 
@@ -112,12 +121,11 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                             echo "<script>Swal.fire({
                                     icon: 'success',
                                     title: 'O agendamento encerrado com sucesso!',
-                
                                     timer: 2000
                                     })</script>";
-                            unset($_POST['finalizar']);
+                            unset($_POST['concluir']);
                             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                                        URL='agendamentoSecretaria.php'\">";
+                                        URL='agendamentosSecretaria.php'\">";
                         }
                     }
 
@@ -151,6 +159,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                             <tr class=" align-middle">
                                 <td><?php print_r(vemData($la->getDataAgenda())); ?></td>
                                 <td><?php print_r(horaMin($la->getHorario())); ?></td>
+                                <td><?php print_r($la->getStatusAgendamento()); ?></td>
                                 <!--td><?php //print_r($la->getForma_Pagamento());
                                         ?></td>-->
                                 <td>R$ <?php print_r($la->getValor()); ?></td>
@@ -210,6 +219,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                     ?>
                                 </td>
                                 <td colspan="1" class="text-center">
+                                    <!--Select do telefone do Cliente-->
                                     <?php
                                     $result_post = "SELECT * FROM `agendamentos` "
                                         . "INNER JOIN usuario on agendamentos.usuario_id = usuario.id WHERE agendamentos.idAgendamento = " . $la->getId();
@@ -220,27 +230,23 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                     ?>
                                 </td>
                                 <td></td>
-                               <td>
-                                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#ModalExcluir">
-                                        Cancelar</button>
-                               </td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal2">
+                                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#ModalExcluir<?php echo $a; ?>">
+                                        Cancelar</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#ModalConcluir<?php echo $a; ?>">
                                         Concluir</button>
                                 </td>
                             </tr>
-                          
-                            
-                           
-                           
-                            </div>
+
                             <!--Modal de excluir o agendamento pela secretaria-->
-                            <div class="modal fade" id="ModalExcluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="ModalExcluir<?php echo $a; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Cancelar Agendamento</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -250,8 +256,8 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                                 <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal" name="excluir">Sim</button>
-                                                <button type="button" class="btn btn-outline-primary">Não</button>
+                                                <button type="button" class="btn btn-outline-danger" name="excluir">Sim</button>
+                                                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Não</button>
                                             </div>
                                         </form>
                                     </div>
@@ -259,24 +265,26 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                             </div>
 
                             <!--Modal de Concluir o agendamento pela secretaria-->
-                            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="ModalConcluir<?php echo $a; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Concluir Agendamento</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <form method="post">
                                             <div class="modal-body">
-                                                <label style="border-bottom: 1px solid black; padding-bottom: 10px; width: 100%;">Deseja Concluir o agendamento?</label>
+                                                <label style="border-bottom: 1px solid black; padding-bottom: 10px; width: 100%;">Deseja cancelar o agendamento?</label>
                                                 <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal" name="concluir">Sim</button>
-                                                <button type="button" class="btn btn-outline-primary">Não</button>
-                                            </div>
+                                            <form method="post">
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" name="excluir">Sim</button>
+                                                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Não</button>
+                                                </div>
+                                            </form>
                                         </form>
                                     </div>
                                 </div>
@@ -290,6 +298,8 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
         </div>
     </div>
 </body>
+
+<script src="Js/bootstrap.min.js"></script>
 <script type="text/javascript">
     window.addEventListener('scroll', function() {
         const header = document.querySelector('header');
