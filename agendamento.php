@@ -137,7 +137,7 @@ $_SESSION['agendamentoServicoValor'] = "";
                                     <input type="text" name="data_agendamentoFormatado" id="dataAgendamentoFormatado" class="campoData" value="">
                                     <input type="text" name="final_semana" id="final_semana" class="campoData" value="">
                                     <?php 
-                                        if ($_SESSION['perfilc'] == "Cliente") {
+                                        if ($_SESSION['perfilc'] == "Cliente" || $_SESSION['perfilc'] == "Secretaria") {
                                             ?>
                                             <input type="submit" name="enviar" class="add-event-day-field-btn" id="Modalagenda" value="Agende Aqui!">
                                             <?php

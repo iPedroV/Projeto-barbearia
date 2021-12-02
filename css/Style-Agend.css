@@ -515,6 +515,8 @@ select.form-control {
     background-color: rgba(0, 0, 0, 0.5);
     width: 900px;
     margin-bottom: 30px;
+    margin-left: 2px!important;
+    margin-top: 15px!important;
 }
 
 .campoForm2{

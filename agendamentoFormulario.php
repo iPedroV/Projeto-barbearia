@@ -120,7 +120,7 @@ require_once __DIR__ . "/bd/banco.php";
                         <div class="col-md-4 servico2">
                             <label style="padding: 5px; font-size: 18px; color: white "><strong>Serviços 2</strong></label>
                             <select name="id_servicos2" id="id_servicos2" class="form-control" >
-                                <option value=""></option>
+                                <option value="">Escolher serviço</option>
                             </select>
                         </div>
 
@@ -186,8 +186,7 @@ require_once __DIR__ . "/bd/banco.php";
                                 <button name="horarioAgend" id="btnHorario11" onclick="horario11()" type="button" class="btn btn-outline-secondary" style="margin-bottom: 10px;"><span style="color: white;">17:45</span></button>
                             </div>
 
-                            <div class="col-md-12 offset-12" style="position: relative; background-color: transparent; height: 125px; margin-top: -100px; top: 110px;"></div>
-                            <div class="col-md-12 offset-12" style="border-bottom: 2px solid white; margin-bottom: 15px; margin-top: -200px;"></div>
+                            <div class="col-md-12 offset-12" style="border-bottom: 2px solid white; margin-bottom: 15px; margin-top: 10px;"></div>
                             <div class="col-md-12 offset-12">
                                 <div class="campoFormHorario2">
                                     <label>Horário Escolhido &nbsp;&#8658;</label>
@@ -287,17 +286,21 @@ require_once __DIR__ . "/bd/banco.php";
                 $_SESSION['nome_Servico2'] = $servicoN2;
 
                 //echo " <p style='color: white;'>-: servico 02 :==>  $servico2, $servicoN2, $funcionario2 valor: R$$valor2 </p>";
-
-                $valorTotal = $valor1 + $valor2;
                 //echo " <p style='color: white;'>- valor Total a pagar: $valorTotal </p>";
                 //echo " <p style='color: white;'>- tempo Total: $tempoServ2 </p>";
-                $_SESSION['agendamentoServicoValor'] = $valorTotal;
+                $_SESSION['agendamentoServicoValor2'] = $valor2;
                 $_SESSION['agendamentoServicoTempo2'] = $tempoServ2;
             } else {
+                $_SESSION['agendamentoServicoValor2'] = 0;
                 $_SESSION['funcionario2'] = "";
                 $_SESSION['servico2'] = "";
                 $_SESSION['nome_Servico2'] = "";
                 $_SESSION['agendamentoServicoTempo2'] = "";
+            }
+
+            if ($servicoN2 == "Escolher serviço" && $funcionario2 != "Selecionar Serviço 2") {
+                $_POST['valor02'] = 0;
+                $_SESSION['agendamentoServicoValor2'] = 0;
             }
             
 
@@ -431,7 +434,7 @@ require_once __DIR__ . "/bd/banco.php";
                     $('.cliqueAqui2').show();
 
 					$.getJSON('agendamentoFormularioSub2.php?search=',{id_servicos2: $(this).val(), ajax: 'true'}, function(j){
-						var options = "";	
+						var options = '<option value="">Escolher Funcionario</option>';	
 						for (var i = 0; i < j.length; i++) {
 							options += '<option value="' + j[i].id + '">' + j[i].nome + '</option>';
 						}	
@@ -533,6 +536,15 @@ require_once __DIR__ . "/bd/banco.php";
                 $('#showLess').show();
 
                 $('#id_funcionarios2').html('<option value="">Selecionar Serviço 2</option>');
+                $.getJSON('agendamentoFormularioServico2.php?search=',{id_servicos: $(this).val(), ajax: 'true'}, function(j){
+						var options = '<option value="">Escolher serviço</option>';	
+						for (var i = 0; i < j.length; i++) {
+							options += '<option value="' + j[i].idServicos + '">' + j[i].nome + '</option>';
+                            
+						}	
+						$('#id_servicos2').html(options).show();
+                    
+					});
                 if(x == 1){
                     $('#showLess').hide();
                 }

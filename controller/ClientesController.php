@@ -21,6 +21,15 @@ class ClientesController {
         return $daoClientes->inserir($clientes);
     }
 
+    public function listarCliente(){
+        $daoClientes2 = new DaoClientes();
+        return $daoClientes2->listarUsuarioDAO();
+    }
+
+    public function pesquisarUsuarioId($id){
+        $daoClientes2 = new DaoClientes();
+        return $daoClientes2->pesquisarUsuarioDAO($id);
+    }
 
     /*public function pesquisarEmailcliente($email){
         $daoClientes2 = new DaoClientes();

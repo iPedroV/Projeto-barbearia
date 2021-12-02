@@ -107,6 +107,84 @@ class DaoClientes
         return $msg;
     }
 
+    public function listarUsuarioDAO()
+    {
+        $msg = new Mensagem();
+        $conn = new Conecta();
+        $conecta = $conn->conectadb();
+        
+        $lista = array();
+        if ($conecta) {
+            try {
+                $rs = $conecta->prepare("SELECT * FROM usuario Where perfil = 'cliente' ORDER BY nome DESC");
+                $a = 0;
+                if ($rs->execute()) {
+                    if ($rs->rowCount() > 0) {
+                        while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+                            $usuario = new Usuario();
+                            $usuario->setId($linha->id);
+                            $usuario->setNome($linha->nome);
+                            $usuario->setPerfil($linha->perfil);
+                            $usuario->setTelefone($linha->telefone);
+                            $usuario->setEmail($linha->email);
+                            $usuario->setSenha($linha->senha);
+                            $usuario->setSexo($linha->sexo);
+                            $usuario->setVerifica($linha->verifica);
+                            $usuario->setToken($linha->token);
+
+                            $lista[$a] = $usuario;
+                            $a++;
+                        }
+                    }
+                }
+            } catch (Exception $ex) {
+                $msg->setMsg($ex);
+            }
+            $conn = null;
+        } else {
+            echo "<script>alert('Banco inoperante!')</script>";
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
+			 URL='../Projeto-Barbearia/index.php'\">";
+        }
+        return $lista;
+    }
+
+    public function pesquisarUsuarioDAO($id)
+    {
+        $msg = new Mensagem();
+        $conn = new Conecta();
+        $conecta = $conn->conectadb();
+        $usuario = new Usuario();
+
+        if($conecta){
+            try {
+                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $rs = $conecta->prepare("SELECT * FROM usuario Where id = ?");
+                $rs->bindParam(1, $id);
+                if ($rs->execute()) {
+                    if ($rs->rowCount() > 0) {
+                        while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+                            $usuario->setId($linha->id);
+                            $usuario->setNome($linha->nome);
+                            $usuario->setPerfil($linha->perfil);
+                            $usuario->setTelefone($linha->telefone);
+                            $usuario->setEmail($linha->email);
+                            $usuario->setSenha($linha->senha);
+                            $usuario->setSexo($linha->sexo);
+                            $usuario->setVerifica($linha->verifica);
+                            $usuario->setToken($linha->token);
+                        }
+                    }
+                }
+
+            }catch (Exception $ex) {
+                $msg->setMsg($ex);
+            }
+            $conn = null;
+        }
+        return $usuario;
+    }
+
     //Select de id cliente
     /*public function pesquisarEmailClienteDAO($email)
     {
