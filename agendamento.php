@@ -170,6 +170,7 @@ $_SESSION['agendamentoServicoValor'] = "";
                                 <ul class="calendar-days"></ul>
                             </div>
                         </div>
+                        <div class="barreiraMes"></div>
                     </div>
 
                     <!-- Modal para Cadstrar -->

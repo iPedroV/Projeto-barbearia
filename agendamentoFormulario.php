@@ -453,16 +453,17 @@ require_once __DIR__ . "/bd/banco.php";
 							optionsV3 += '<option value="' + h[i].tempo_estimado + '">Tempo: ' + h[i].tempo_estimado + '</option>';
 						}	
 						$('#valorServico2').html(optionsV).show();
-						let dao2 = $('#tempoServicoForm2').html(optionsV3).show();
+                        $('#tempoServicoForm2').html(optionsV3).show();
                         $('#nomeServico2').html(optionsV2).show();
                     
 					});
 
-                    let dao1 = document.getElementById('valorServico');
-                    alert(dao1 + " famoso " + dao2);
-
 				} else {
+                    optionsV = '0';
 					$('#id_funcionarios2').html('<option value="">Selecionar Serviço 2</option>');
+					$('#valorServico2').html(optionsV);
+					$('#tempoServicoForm2').html(optionsV);
+                    $('#nomeServico2').html(optionsV);
 				}
 			});
 		});

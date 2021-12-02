@@ -378,7 +378,14 @@
       border: 1px solid rgb(255, 255, 255);
     }
 
-
+    .barreiraMes{
+      position: absolute;
+      background-color: rgba(0 0 0 / 50%);
+      height: 350px;
+      width: 68px;
+      top: 155px;
+      left: 42%;
+    }
 
 
 
@@ -744,6 +751,15 @@
 
     .pcs {
       height: 200px;
+    }
+
+    .barreiraMes{
+      position: absolute;
+      background-color: rgba(0 0 0 / 50%);
+      height: 380px;
+      width: 50px;
+      top: 250px;
+      left: 2%;
     }
 
 }

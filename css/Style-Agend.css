@@ -1081,10 +1081,49 @@ transform: scale(1,1);
 
 
 
+    /*SWEETALERT*/
+.swal2-styled.swal2-default-outline:focus {
+    box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
+  }
 
+.swal2-styled.swal2-confirm:focus {
+    box-shadow: 0 0 0 3px rgb(255 255 255 / 100%)!important;
+}
 
+.swal2-styled:focus {
+    outline: 0;
+}
 
+  .swal2-styled.swal2-confirm {
+    border: 0px solid white;
+    border-radius: .25em;
+    background: initial;
+    background-color: #ffffff!important;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 7px 0px;
+  }
 
+  .swal2-styled.swal2-confirm:hover{
+    background-color: #333!important;
+    color: #fff;
+  }
+
+  .swal2-styled.swal2-confirm a {
+    text-decoration: none; 
+    color: black; 
+    border: 2px solid black; 
+    padding: 10px 14px; 
+    border-radius: .25em;
+    font-weight: 600;
+  }
+
+  .swal2-styled.swal2-confirm a:hover{
+    color: white!important;
+  }
+
+  /*SWEETALERT*/
 
 
 

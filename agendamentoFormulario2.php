@@ -173,7 +173,7 @@ $pr = null;
                         <div class="col-md-6 p-4">
                             <div class="campoForm2">
                                 <?php if ($_SESSION['perfilc'] == "Cliente") { ?>
-                                    <label for="nome">Nome/Usuário: </label><br>
+                                    <label for="nome">Cliente: </label><br>
                                     <input type="text" id="nome" name="nome" value="<?php echo $_SESSION['nomec']; ?>" disabled><br>
 
                                     <br><label for="email">E-mail: </label><br>
@@ -188,7 +188,7 @@ $pr = null;
                                         $pc = new ClientesController();
                                         $pr = $pc->pesquisarUsuarioId($id);
                                     }?>
-                                    <label for="nome">Nome/Usuário: </label><br>
+                                    <label for="nome">Cliente: </label><br>
                                     <?php 
                                         if ($pr == "") {
                                             

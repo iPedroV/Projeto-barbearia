@@ -241,7 +241,8 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                                                     ?>
                                                 </table>
                                                     <li style="list-style: none; font-size: 18px; padding-top: 15px; padding-bottom: 15px;">
-                                                        <Strong>Agendamento foi realizado!</Strong> Por favor, clique em <strong>Novo Agendamento</strong> para poder fazer um novo agendamento.</li><li><button>Novo Agendamento</button></li>
+                                                        <Strong>Agendamento foi realizado!</Strong> Por favor, clique em <strong>Novo Agendamento</strong> para poder fazer um novo agendamento.</li>
+                                                    <li style="list-style: none; padding-bottom: 30px;"><a href="./agendamento.php" class="botao-color-two" style="vertical-align:middle"><span>Novo Agendamento</span></a></li>
                                                 <?php
                                                 }
                                             }

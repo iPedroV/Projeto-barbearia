@@ -422,6 +422,54 @@ span.account-position{
         color: #fff;
     }
 
+    .botao-color-two {
+        color: #fff;
+        border: 1px solid #333;
+        background-color: #333;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+        font-size: 17px;
+        font-family: Comic Sans MS;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-decoration: none;
+    }
+    
+    .botao-color-two:hover{
+        border: 1px solid #000;
+        background-color: #000;
+        color: #fff;
+    }
+    
+    a.botao-color-two span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s; 
+    }
+      
+    a.botao-color-two span:after {
+        color: #000;
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        left: 180px;
+        transition: 0.5s;
+    }
+      
+    a.botao-color-two:hover span {
+        padding-left: 5px;
+    }
+      
+    a.botao-color-two:hover span:after {
+        opacity: 1;
+        left: 190px;
+    }
+    
+
     .modalSair{
         color: #fff;
         background-color: #888;
