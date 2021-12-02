@@ -125,16 +125,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
             unset($_POST['excluir']);
             $msg = $pc->excluirAgendamento($id);
             $msg = $pc->excluirAgendamento2($id);
-    ?>
-            <script>
-                Swal.fire({
-                    title: 'Agendamento não pode ser realizado!',
-                    text: 'O dia escolhido não pode ser agendado antes do dia atual (<?php echo $dateEscolhida ?>)!',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                })
-            </script>
-    <?php
+
             $_SESSION['funcionario2'] = "";
             $_SESSION['servico2'] = "";
             $_SESSION['nome_Servico2'] = "";
@@ -376,30 +367,6 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
         <div class="row" id="some" style="width: 99%;">
             <div class="col-md-2 offset-2"></div>
             <form method="POST" action="">
-           
-            <?php
-             if ($_SESSION['perfilc'] == 'Cliente') {
-                $result_post02 = "Select * from `agendamentos` WHERE usuario_id = $id and status_agendamento = 'concluido'";
-                $resultado_post02 = mysqli_query($conn, $result_post02);
-                while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
-                    $user = $row_post02['usuario_id'];
-                    $status = $row_post02['status_agendamento'];
-
-                    if ($status == "concluido") {
-                ?>
-                        <script>
-                            /*Swal.fire({
-                                title: 'Agendamento Concluído!',
-                                text: 'Por favor clique em REAGENDAR para poder fazer um novo agendamento.',
-                                icon: 'warning',
-                                confirmButtonText: '<l>Concluído</l>'
-                            })*/
-                        </script>
-                <?php
-                    }
-                }
-            }
-            ?>
                 <label class="nenhumAgendamento">Nenhum agendamento foi realizado.</label>
                 <button type="submit" class="btn" name="fazerAgendamento" id="fazerAgendamento">&#8652; Fazer Agendamento &#8651;</button>
             </form>
@@ -411,6 +378,25 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                             header("Location: agendamento.php");
                         }
                     }
+    ?>
+
+
+    <?php
+    if ($_SESSION['perfilc'] == 'Cliente') {
+        $result_post02 = "Select status_agendamento from `agendamentos` WHERE usuario_id = $id";
+        $resultado_post02 = mysqli_query($conn, $result_post02);
+        while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
+            $status = $row_post02['status_agendamento'];
+
+            if ($status == "concluido") {
+        ?>
+            </table>
+                <li style="list-style: none; font-size: 18px; padding-top: 15px; padding-bottom: 15px;">
+                    <Strong>Agendamento foi realizado!</Strong> Por favor, clique em <strong>REAGENDAR</strong> para poder fazer um novo agendamento.</li>
+        <?php
+            }
+        }
+    }
     ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
