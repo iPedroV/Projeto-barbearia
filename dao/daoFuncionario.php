@@ -2,6 +2,7 @@
 
 include_once 'C:/xampp/htdocs/Projeto-barbearia/bd/banco.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/servicos_has_funcionarios.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Mensagem.php';
 
 class DaoFuncionario
@@ -47,7 +48,7 @@ class DaoFuncionario
                     $stmt->bindParam(8, $token);
                     $stmt->execute();
                     $resp = "<p style='color: green;'>"
-                        . "Dados Cadastrados com sucesso</p>";
+                            . "Dados Cadastrados com sucesso</p>";  
                 }
             } catch (Exception $ex) {
                 $resp = $ex;
@@ -113,35 +114,33 @@ class DaoFuncionario
             $token = $funcioanrio->getToken();
 
 
-                $st = $conecta->prepare("SELECT * FROM usuario where token = ? and email = ?");
-                $st->execute([$token, $email]);
-                
-                $result = $st->rowCount();
-                if ($result > 0) {
-                    try {
-                        
-                        $stmt = $conecta->prepare("UPDATE usuario SET senha= md5(?), verifica = ? WHERE token = ?");
-                       
-                    
-                        $stmt->bindParam(1, $senha);
-                      
-                        $stmt->bindParam(2, $verifica);
-                        $stmt->bindParam(3, $token);
-                        $stmt->execute();
-                        $msg->setMsg("<script>Swal.fire({
+            $st = $conecta->prepare("SELECT * FROM usuario where token = ? and email = ?");
+            $st->execute([$token, $email]);
+
+            $result = $st->rowCount();
+            if ($result > 0) {
+                try {
+
+                    $stmt = $conecta->prepare("UPDATE usuario SET senha= md5(?), verifica = ? WHERE token = ?");
+
+
+                    $stmt->bindParam(1, $senha);
+
+                    $stmt->bindParam(2, $verifica);
+                    $stmt->bindParam(3, $token);
+                    $stmt->execute();
+                    $msg->setMsg("<script>Swal.fire({
                             icon: 'success',
                             title: 'Senha alterada com sucesso',
                             timer: 2000
                           })
                           </script>");
-                    } catch (PDOException $ex) {
-                        $msg->setMsg(var_dump($ex->errorInfo));
-                    }
-                }else{
-                    $resp = $funcioanrio;
+                } catch (PDOException $ex) {
+                    $msg->setMsg(var_dump($ex->errorInfo));
                 }
-
-            
+            } else {
+                $resp = $funcioanrio;
+            }
         } else {
             $msg->setMsg("<script>Swal.fire({
                 icon: 'error',
@@ -251,7 +250,6 @@ class DaoFuncionario
 				timer: 2000
 			  })
 			  </script>");
-                
             } catch (PDOException $ex) {
                 $msg->setMsg(var_dump($ex->errorInfo));
             }
@@ -262,10 +260,66 @@ class DaoFuncionario
 			text: 'Banco de dados pode estar inoperante',
 			timer: 2000
 		  })</script>");
-            
         }
         $conn = null;
         return $msg;
+    }
+
+    public function ultimoIdInseridoDAO (){
+        $conn = new Conecta();
+        $conecta = $conn->conectadb();
+
+
+        $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $rs = $conecta->prepare("SELECT MAX(id) AS sim FROM usuario");
+        $rs->execute();
+        while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+
+            $funcionario = new Usuario();
+            $funcionario->setId($linha->sim);
+            
+            
+        }
+
+        return $funcionario;
+    }
+
+    public function inserirFuncionarioAssociativaDAO(Servicos_has_funcionarios $funcionario)
+    {
+
+        $conn = new Conecta();
+        $msg = new Mensagem();
+        $conecta = $conn->conectadb();
+
+        if ($conecta) {
+
+            $resp = null;
+            
+            $idServicos = $funcionario->getServicos_id();
+            $idFuncionario = $funcionario->getFuncionarios_id();
+            
+
+
+            try {
+                
+                $stmt = $conecta->prepare("insert into servicos_do_funcionario (funcionarios_id, servicos_id) values "
+                    . "(?,?)");
+
+                $stmt->bindParam(1, $idFuncionario);
+                $stmt->bindParam(2, $idServicos);
+
+                $stmt->execute();
+                $resp = "<p style='color: green;'>"
+                    . "Dados Cadastrados com sucesso</p>";
+            } catch (Exception $ex) {
+                $resp = $ex;
+            }
+        } else {
+            $resp = "<p style='color: red;'>"
+                . "Erro na conexão com o banco de dados.</p>";
+        }
+        $conn = null;
+        return $resp;
     }
 
 

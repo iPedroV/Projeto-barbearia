@@ -3,6 +3,7 @@
 include_once 'C:/xampp/htdocs/Projeto-barbearia/dao/daoFuncionario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/enviar.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
+include_once 'C:/xampp/htdocs/Projeto-barbearia/model/servicos_has_funcionarios.php';
 
 class FuncionarioController
 {
@@ -66,7 +67,23 @@ class FuncionarioController
         $daoPessoa = new DaoFuncionario();
         return $daoPessoa->editarFuncionarioDAO($id);
     }
-    
+
+    public function ultimoIdInserido(){
+        $daoPessoa = new DaoFuncionario();
+        return $daoPessoa->ultimoIdInseridoDAO();
+
+    }
+
+    public function inserirFuncionarioAssociativa($test, $s){
+        $funcionarios = new Servicos_has_funcionarios();
+        
+
+        $funcionarios->setServicos_id($test);
+        $funcionarios->setFuncionarios_id($s);
+
+        $daofuncionarios = new DaoFuncionario();
+        return $daofuncionarios->inserirFuncionarioAssociativaDAO($funcionarios);
+    }
     /*public function tokenenviar(){
         $daoPessoa = new DaoFuncionario();
         return $daoPessoa->token();

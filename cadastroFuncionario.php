@@ -87,6 +87,13 @@ $sm = new Servicos_model();
                 $sexo,
                 $token
             );
+            if($perfil == "Funcionario"){
+                $resp3 = $cc->ultimoIdInserido();
+                $s = $resp3->getId();
+                $test = $_POST['check'];
+                $resp2 = $cc->inserirFuncionarioAssociativa($test, $s);
+            }
+            //print_r($s);
             if (getType($resp) == 'object') {
                 $ce = $resp;
                 echo "<p style='color: red;'>Email já cadastrado!</p>";
@@ -96,7 +103,7 @@ $sm = new Servicos_model();
                 $EmailEnviado = new FuncionarioController();
                 $msg = $EmailEnviado->EnviarSenhaController();
 
-                echo $resp;
+                echo $resp2;
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
 			    URL='../Projeto-Barbearia/ListarFuncionario.php'\">";
             }
@@ -160,11 +167,12 @@ $sm = new Servicos_model();
                     foreach ($listaServicos as $ls) {
                         $a++;
                 ?>
-                <div >
-                <span class=""><?php echo $ls->getNomeServico(); ?></span>
-                <input type="checkbox" name="check" required value="<?php echo $ls->getNomeServico(); ?>">
-                <br>
+                <div style="display:block;">
+                    <input type="checkbox" name="check" value="<?php echo $ls->getIdServicos(); ?>">
+                    <label ><?php echo $ls->getNomeServico(); ?></label>
+                
                 </div>
+                <br>
                 <?php
                     }
                 }
