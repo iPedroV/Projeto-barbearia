@@ -256,8 +256,8 @@ $dts = new AgendamentoController();
                                                 <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-danger" name="excluir">Sim</button>
-                                                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Não</button>
+                                                <button type="submit" class="btn btn-outline-danger" name="excluir">Sim</button>
+                                                <button type="reset" class="btn btn-outline-primary" data-bs-dismiss="modal">Não</button>
                                             </div>
                                         </form>
                                     </div>
@@ -281,7 +281,7 @@ $dts = new AgendamentoController();
                                             </div>
                                             <form method="post">
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" name="excluir">Sim</button>
+                                                    <button type="submit" class="btn btn-outline-danger" name="concluir">Sim</button>
                                                     <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Não</button>
                                                 </div>
                                             </form>
