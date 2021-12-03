@@ -111,8 +111,8 @@ class DaoAgendamento {
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $rs = $conecta->query("select * from agendamentos"
-                    . " inner join usuario on agendamentos.usuario_id = usuario.id where usuario.id = ". $id
-                    . " and idAgendamento=(SELECT max(idAgendamento) FROM agendamentos)");
+                    . " inner join usuario on agendamentos.usuario_id = usuario.id where" 
+                    . " idAgendamento=(SELECT max(idAgendamento) FROM agendamentos WHERE usuario_id = ".$id.")");
                 $lista = array();
                 $a = 0;
                 if ($rs->execute()) {

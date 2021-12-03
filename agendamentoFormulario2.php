@@ -99,6 +99,13 @@ $pr = null;
         color: white;
     }
 
+    #example_wrapper{
+        margin-left: 25.5%;
+        width: 875px;
+    }
+
+    
+
     #example_filter label{
         color: white!important;
     }
@@ -130,7 +137,8 @@ $pr = null;
             <?php if ($_SESSION['perfilc'] == "Secretaria") { ?>
                 <!-- TABELA DE DESPESAS -->
                 <div class="row">
-                    <div class="col-md-8 offset-2">
+                <div class="table-responsive">
+                    <div class="col-md-8">
                         <table id="example" class="table  row-border table-striped table-bordered mt-2">
                             <thead class="table-dark" style="border: 1px solid white;">
                                 <tr>
@@ -165,6 +173,7 @@ $pr = null;
                                 ?>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
             <?php } ?>
