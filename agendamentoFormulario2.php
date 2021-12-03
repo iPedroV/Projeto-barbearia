@@ -194,7 +194,9 @@ $pr = null;
                                     <label for="nome">Cliente: </label><br>
                                     <?php 
                                         if ($pr == "") {
-                                            
+                                            ?>
+                                            <label style="margin-top: 50px; margin-left: 20px;">Aguardando...</label>
+                                            <?php
                                         } else {
                                     ?>
                                     <input type="text" id="nome" name="nome" value="<?php echo $pr->getNome();?>" disabled><br>
