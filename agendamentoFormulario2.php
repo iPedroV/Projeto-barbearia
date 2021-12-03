@@ -11,7 +11,10 @@ if ((!isset($_SESSION['emailc']) || !isset($_SESSION['nomec']))
 }
 
 $data = $_SESSION['dataAgendamento'];
-
+if ($data == "") {
+    echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
+            URL='http://localhost/Projeto-barbearia/agendamento_ClienteDados.php'\">";
+}
 // Chamando o id da associativa de servicos para poder usar para inserir
 $servico = null;
 $servico2 = null;
@@ -470,7 +473,7 @@ $pr = null;
                 "lengthMenu": "Mostrar _MENU_ informações",
                 "search": "Pesquisar Cliente:",
                 "emptyTable": "Tabela Vazia!",
-                "zeroRecords": "Cliente não cadastrado!",
+                "zeroRecords": "Cliente não cadastrado! Cadastre-o, <a href='cadastroClientes.php'>clicando aqui</a>.",
                 "paginate": {
                     "previous": "Anterior",
                     "next": "Próximo",
