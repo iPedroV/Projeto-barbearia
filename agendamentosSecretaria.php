@@ -103,7 +103,7 @@ $dts = new AgendamentoController();
 
                             echo "<script>Swal.fire({
                                 icon: 'success',
-                                title: 'O agendamento cancelado com sucesso!',
+                                title: 'Cancelado com sucesso!',
                                 timer: 2000
                                 })</script>";
 
@@ -122,7 +122,7 @@ $dts = new AgendamentoController();
 
                             echo "<script>Swal.fire({
                                     icon: 'success',
-                                    title: 'O agendamento encerrado com sucesso!',
+                                    title: 'Agendamento encerrado com sucesso!',
                                     timer: 2000
                                     })</script>";
                             unset($_POST['concluir']);
@@ -247,7 +247,7 @@ $dts = new AgendamentoController();
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Cancelar Agendamento</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Deseja cancelar esse agendamento?</h5>
                                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -278,7 +278,7 @@ $dts = new AgendamentoController();
                                         </div>
                                         <form method="post">
                                             <div class="modal-body">
-                                                <label style="border-bottom: 1px solid black; padding-bottom: 10px; width: 100%;">Deseja cancelar o agendamento?</label>
+                                                <label style="border-bottom: 1px solid black; padding-bottom: 10px; width: 100%;">Deseja encerrar esse agendamento?</label>
                                                 <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
                                             </div>
                                             <form method="post">
