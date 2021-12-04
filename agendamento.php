@@ -128,7 +128,10 @@ $_SESSION['agendamentoServicoValor'] = "";
                             <div class="current-day-events">
                                 <div>Pesquisar agendamento:</div>
                                 <ul class="current-day-events-list" style="color: transparent;"></ul>
-                                <a href="agendamento_ClienteDados.php"><input type="submit" class="agendamento" value="Verificar Agendamento"></a>
+                                <?php 
+                                        if ($_SESSION['perfilc'] == "Cliente" || $_SESSION['perfilc'] == "Funcionario" || $_SESSION['perfilc'] == "Administrador") { ?>
+                                <a href="agendamento_ClienteDados.php"><input type="submit" class="agendamento" value="Verificar Agendamento"></a> 
+                                <?php } else if($_SESSION['perfilc'] == "Secretaria") {} ?>
                             </div>
                             <div class="add-event-day">
                                 <span type="" class="add-event-day-field" placeholder=""></span>
