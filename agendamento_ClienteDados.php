@@ -226,7 +226,7 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 
                                     <?php
                                         
-                                            $result_post02 = "Select status_agendamento from `agendamentos` WHERE usuario_id = $id and idAgendamento=(SELECT max(idAgendamento) FROM agendamentos)";
+                                            $result_post02 = "Select status_agendamento from `agendamentos` WHERE idAgendamento=(SELECT max(idAgendamento) FROM agendamentos WHERE usuario_id = $id)";
                                             $resultado_post02 = mysqli_query($conn, $result_post02);
                                             while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
                                                 $status = $row_post02['status_agendamento'];
