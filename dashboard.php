@@ -217,8 +217,8 @@ $nomeUser = $_SESSION['nomec'];
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <br>
                                     </div>
+                                    <form method="post" action="">
                                     <div class="modal-body">
-                                        <form method="post" action="">
                                             <label><strong>Deseja encerrar esse agendamento?</strong></label>
                                             <input type="hidden" name="ide" value="<?php echo $la->getId(); ?>">
                                     </div>
@@ -228,6 +228,7 @@ $nomeUser = $_SESSION['nomec'];
                                             <button type="submit" id="finalizar" name="finalizar" class="btn-sm btn-primary">Sim</button>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
