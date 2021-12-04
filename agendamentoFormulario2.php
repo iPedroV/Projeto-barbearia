@@ -197,6 +197,25 @@ $pr = null;
                                         $btAtualizar = TRUE;
                                         $btExcluir = TRUE;
                                         $id = $_GET['id'];
+                                        
+                                        $envio02 = "select * from agendamentos where usuario_id = $id";
+                                        $resultado_post02 = mysqli_query($conn, $envio02);
+                                            while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
+                                                $teste02 = $row_post02['status_agendamento'];
+                                                if ($teste02 == "agendado") {
+                                                    ?>
+                                                    <script>
+                                                    Swal.fire({
+                                                        icon: 'warning',
+                                                        title: 'O cliente já possui um agendamento em andamento!',
+                                                        text: '',
+                                                        confirmButtonText: '<a href="./index.php">Cancelar Agendamento</a>'  
+                                                    })
+                                                </script>
+                                                <?php
+                                                }
+                                            }
+
                                         $pc = new ClientesController();
                                         $pr = $pc->pesquisarUsuarioId($id);
                                     }?>
@@ -371,8 +390,32 @@ $pr = null;
                         </div>
 
                         <div class="footer" style="background-color: #fff; margin-top: -100px;">
-                            <button type="submit" class="btn efeito-btn" name="enviar" id="enviar"> Confirmar agendamento</button>
-                            <button type="submit" class="btn btn-secondary" name="cancelar">Cancelar agendamento</button>
+                            <?php if (isset($_GET['id'])) {
+                                        $btEnviar = TRUE;
+                                        $btAtualizar = TRUE;
+                                        $btExcluir = TRUE;
+                                        $id = $_GET['id'];
+                                        
+                                        $teste02 = "";
+                                        $envio02 = "select * from agendamentos where usuario_id = $id";
+                                        $resultado_post02 = mysqli_query($conn, $envio02);
+                                            while ($row_post02 = mysqli_fetch_assoc($resultado_post02)) {
+                                                $teste02 = $row_post02['status_agendamento'];
+                                            }
+
+                                            if ($teste02 != "") {
+                                                ?>
+                                                <button type="submit" class="btn btn-secondary" name="cancelar" style="margin-left: 150px;">Cancelar agendamento</button>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <button type="submit" class="btn efeito-btn" name="enviar" id="enviar"> Confirmar agendamento</button> 
+                                                <button type="submit" class="btn btn-secondary" name="cancelar">Cancelar agendamento</button>
+                                                <?php
+                                            }
+                                    }?>
+                            
+                            
                         </div>
                     </div>
                 </div>
@@ -402,8 +445,8 @@ $pr = null;
             $valorTotal = $_SESSION['agendamentoServicoValor'];
             //echo " <p style='color: white;'>- valor Total a pagar: $valorTotal </p>";
 
-            $status = "agendado";
-            $confirmar = "confirmado";
+                $status = "agendado";
+                $confirmar = "confirmado";
 
             if ($_SESSION['perfilc'] == "Cliente") {
                 $dts = new AgendamentoController();
