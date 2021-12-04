@@ -440,7 +440,9 @@ $nomeUser = $_SESSION['nomec'];
                         date.push(data[count].date);
                         total.push(data[count].total);
                         for (i = 0; i < 7; i++) {
-                            color.push('#e80707');
+                            color.push('#730d10');
+
+
                         }
 
                         if (dia[count] == "Monday") {
