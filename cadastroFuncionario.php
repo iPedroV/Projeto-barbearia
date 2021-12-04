@@ -77,8 +77,8 @@ $sm = new Servicos_model();
 
             $cc = new FuncionarioController();
             unset($_POST['cadastrar']);
+            /*precisa ta na MESMA ORDEM DO BANCO*/
             $resp = $cc->inserirFuncionario(
-                /*precisa ta na MESMA ORDEM DO BANCO*/
                 $nome,
                 $perfil,
                 $telefone,
@@ -90,11 +90,15 @@ $sm = new Servicos_model();
             if($perfil == "Funcionario"){
                 $resp3 = $cc->ultimoIdInserido();
                 $s = $resp3->getId();
-                $test = $_POST['check'];
-                $resp2 = $cc->inserirFuncionarioAssociativa($test, $s);
+                $test[] = $_POST['check'];
+                
+                    
+                    $resp2 = $cc->inserirFuncionarioAssociativa($test, $s);
+                    print_r($resp2);
+                
             }
             //print_r($s);
-            if (getType($resp) == 'object') {
+           /* if (getType($resp) == 'object') {
                 $ce = $resp;
                 echo "<p style='color: red;'>Email já cadastrado!</p>";
             } else {
@@ -103,10 +107,10 @@ $sm = new Servicos_model();
                 $EmailEnviado = new FuncionarioController();
                 $msg = $EmailEnviado->EnviarSenhaController();
 
-                echo $resp2;
+                //echo $resp2;
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
 			    URL='../Projeto-Barbearia/ListarFuncionario.php'\">";
-            }
+            }*/
         }
 
         ?>
@@ -134,7 +138,7 @@ $sm = new Servicos_model();
 
                 <div class="input-box">
                     <span class="detalhes">Cargo:</span>
-                    <select name="cargo" class="select">
+                    <select name="cargo" id="cargo" class="select">
                         <option hidden>Selecione</option>
                         <option <?php
                                 if ($ce->getPerfil() == "Administrador") {
@@ -159,7 +163,8 @@ $sm = new Servicos_model();
                     <input type="email" placeholder="Digite seu email" name="email" required value="<?php echo $ce->getEmail(); ?>">
                 </div>
                 
-                <?php
+                <span class="detalhes">Serviços:</span><br>
+                <?php  
                 $scTable = new servicosController();
                 $listaServicos = $scTable->listarServicos();
                 $a = 0;
@@ -167,9 +172,9 @@ $sm = new Servicos_model();
                     foreach ($listaServicos as $ls) {
                         $a++;
                 ?>
-                <div style="display:block;">
-                    <input type="checkbox" name="check" value="<?php echo $ls->getIdServicos(); ?>">
-                    <label ><?php echo $ls->getNomeServico(); ?></label>
+                <div style="display: block;">
+                    <input type="checkbox" name="check[]" checked value="<?php echo $ls->getIdServicos(); ?>">
+                    <label ><?php echo $ls->getNomeServico(); ?><br></label>
                 
                 </div>
                 <br>

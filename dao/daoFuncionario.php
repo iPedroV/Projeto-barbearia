@@ -200,6 +200,12 @@ class DaoFuncionario
         $msg = new Mensagem();
         if ($conecta) {
             try {
+
+                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stmt = $conecta->prepare("DELETE FROM servicos_do_funcionario WHERE funcionarios_id = ?");
+                $stmt->bindParam(1, $id);
+                $stmt->execute();
+                
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $stmt = $conecta->prepare("delete from usuario "
                     . "where id = ?");
@@ -297,18 +303,23 @@ class DaoFuncionario
             
             $idServicos = $funcionario->getServicos_id();
             $idFuncionario = $funcionario->getFuncionarios_id();
+            foreach($idServicos as $valor_pergunta){
+                $valor_do_meu_checkbox = $valor_pergunta;
+            }
             
+            $qtd = count($valor_do_meu_checkbox);
 
-
-            try {
-                
+            
+           try {
+                for($i=0;$i<$qtd;$i++){
                 $stmt = $conecta->prepare("insert into servicos_do_funcionario (funcionarios_id, servicos_id) values "
                     . "(?,?)");
 
                 $stmt->bindParam(1, $idFuncionario);
-                $stmt->bindParam(2, $idServicos);
+                $stmt->bindParam(2, $valor_do_meu_checkbox[$i]);
 
                 $stmt->execute();
+                }
                 $resp = "<p style='color: green;'>"
                     . "Dados Cadastrados com sucesso</p>";
             } catch (Exception $ex) {
@@ -317,7 +328,7 @@ class DaoFuncionario
         } else {
             $resp = "<p style='color: red;'>"
                 . "Erro na conexão com o banco de dados.</p>";
-        }
+        } 
         $conn = null;
         return $resp;
     }
