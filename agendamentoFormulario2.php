@@ -451,6 +451,8 @@ $pr = null;
             }
 
             $_SESSION['dataAgendamento'] = "";
+
+            if ($_SESSION['perfilc'] == "Cliente") {
     ?>
             <script>
                 Swal.fire({
@@ -464,6 +466,22 @@ $pr = null;
 
             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                         URL='http://localhost/Projeto-barbearia/agendamento_ClienteDados.php'\">";
+
+            } else if ($_SESSION['perfilc'] == "Secretaria") {
+                ?>
+            <script>
+                Swal.fire({
+                    title: 'Dados cadastrados com sucesso!',
+                    text: '',
+                    icon: 'success',
+                    confirmButtonText: '<a href="./index.php">Dados Cadastrados</a>'
+                })
+            </script>
+    <?php
+
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                        URL='http://localhost/Projeto-barbearia/index.php'\">";
+            }
         } else {
 
             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"0;
