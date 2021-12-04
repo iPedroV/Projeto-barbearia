@@ -84,7 +84,7 @@ class DaoClientes
                 $stmt->execute();
                 $msg->setMsg("<script>Swal.fire({
                     icon: 'success',
-                    title: 'Senha alterada com sucesso',
+                    title: 'Senha alterada com sucesso!',
                     timer: 2000
                   })
                   </script>");

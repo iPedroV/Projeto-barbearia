@@ -168,7 +168,7 @@ if (event.getModifierState("CapsLock")) {
             var msgSenha = '';
 
             if (!senhaValida) {
-                msgSenha = 'Precisa ter pelo menos 1 letra minúscula, maiúscula, número e caracter especial e ao menos 8 caracteres (!@#$&?*).';
+                msgSenha = 'Precisa ter pelo menos 1 letra maiúscula, número e caracter especial e ao menos 8 caracteres (!@#$&?*).';
             }
 
             input.setCustomValidity(msgSenha);

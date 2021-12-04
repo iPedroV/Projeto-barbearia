@@ -95,7 +95,7 @@ if (isset($_POST['esenha'])) {
 
             </div>
 
-            <button type="submit" class="btn efeito-btn" name="esenha" value="Enviar">Entrar</button>
+            <button type="submit" class="btn efeito-btn" name="esenha" value="Enviar">Enviar</button>
 
          
 

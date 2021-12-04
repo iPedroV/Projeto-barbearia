@@ -98,7 +98,7 @@ $sm = new Servicos_model();
                 
             }
             //print_r($s);
-           /* if (getType($resp) == 'object') {
+            if (getType($resp) == 'object') {
                 $ce = $resp;
                 echo "<p style='color: red;'>Email já cadastrado!</p>";
             } else {
@@ -110,7 +110,7 @@ $sm = new Servicos_model();
                 //echo $resp2;
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
 			    URL='../Projeto-Barbearia/ListarFuncionario.php'\">";
-            }*/
+            }
         }
 
         ?>
