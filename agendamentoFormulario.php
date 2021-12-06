@@ -233,7 +233,7 @@ require_once __DIR__ . "/bd/banco.php";
                         title: 'Por favor, escolha um serviço',
                         text: 'para continuar o agendamento é nescessário escolher um serviço primeiro',
                         icon: 'warning',
-                        confirmButtonText: 'Ok'
+                        confirmButtonText: '<a>Ok</a>'
                     })
                 </script>
             <?php    
@@ -244,7 +244,7 @@ require_once __DIR__ . "/bd/banco.php";
                     title: 'Por favor, escolha um funcionario',
                     text: 'para continuar o agendamento é nescessário escolher um funcionario',
                     icon: 'warning',
-                    confirmButtonText: 'Ok'
+                    confirmButtonText: '<a>Ok</a>'
                 })
             </script>
         <?php    
@@ -316,12 +316,29 @@ require_once __DIR__ . "/bd/banco.php";
                                 title: 'Escolha um horário para continuar',
                                 text: 'O horário não foi selecionado.',
                                 icon: 'warning',
-                                confirmButtonText: 'Ok'
+                                confirmButtonText: '<a>Ok</a>'
                             })
                         </script>
                     <?php    
             } else {
                 $_SESSION['horarioAgendamento'] = $horario;
+
+                //FUNÇÃO QUE FORMATA A DATA QUE VEM DO MYSQL
+                function vemData($qqdata)
+                {
+                    $tempdata = substr($qqdata, 8, 2) . '/' .
+                        substr($qqdata, 5, 2) . '/' .
+                        substr($qqdata, 0, 4);
+                    return ($tempdata);
+                }
+
+                //FUNÇÃO QUE FORMATA A HORA QUE VEM DO MYSQL
+                function horaMin($qqdata)
+                {
+                    $tempdata = substr($qqdata, 0, 2) . 'h' .
+                        substr($qqdata, 3, 2) . 'min';
+                    return ($tempdata);
+                }
 
                 // Metodo apra verfificar a Data e horário que estão sendo escolhidas pelo usuário
                 //$result_usuario = "SELECT * FROM agendamentos WHERE data = '$data' AND horario = '$horario'";
@@ -336,17 +353,18 @@ require_once __DIR__ . "/bd/banco.php";
                     $dataBC = $row_usuario['data'];
                     $horarioBC = $row_usuario['horario'];
 
+                    
                     if ($row_usuario['horario'] != null) {
-                        ?>
-                        <script>
+                        
+                        echo "<script>
                             Swal.fire({
                                 title: 'Vaga Indisponível neste horário.',
-                                text: 'Por favor escolha outro horário ou mude a data do agendamento.',
+                                text: 'Por favor escolha outro horário diferente de ".horaMin($horarioBC)." ou mude a data do agendamento. $dataForm.',
                                 icon: 'error',
-                                confirmButtonText: 'Ok'
+                                confirmButtonText: '<a>Ok</a>'
                             })
-                        </script>
-                    <?php    
+                        </script>";
+                       
                     }   
                 }
 
