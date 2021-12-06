@@ -7,6 +7,10 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/Usuario.php';
 include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 
 $email = $_GET['email'];
+$data = $_GET['hora'];
+date_default_timezone_set('America/Sao_Paulo'); // se tirar isso o tempo +4 hours
+$data_agora = date('His', strtotime('now'));
+$data3 = intval($data_agora);
 $msg = new Mensagem();
 
 ?>
@@ -69,6 +73,10 @@ if (isset($_POST['esenha'])) {
 }
 
 ?>
+<?php
+    
+    if($data > $data3){
+?>
         <img src="img/barbearianeves.png" class="imagem">
 
         <form method="post">
@@ -76,7 +84,7 @@ if (isset($_POST['esenha'])) {
             <div class="detalhes-usuario">
 
                 <div class="input-box">
-                    <span class="detalhes" for="n_senha">Nova Senha:</span>
+                    <span class="detalhes" for="n_senha">Nova Senha: <?php echo $data3 ?></span>
                     <input type="password" id="nsenha" name="nsenha" placeholder="Digite sua nova senha" required>
                 </div>
 
@@ -100,8 +108,21 @@ if (isset($_POST['esenha'])) {
          
 
         </form>
+        <?php
+    }else{
+        
+    
+
+?>
+                <div class="input-box">
+                    <span class="detalhes" for="c_senha" style="text-align:center">Link expirou! Solicite o link novamente!</span>
+                    <a href="cadastroClientes.php">Página inicial</a>
+                </div>
 
     </div>
+    <?php
+    }
+?>
 
     <script>
         var senha = document.querySelector('#nsenha');

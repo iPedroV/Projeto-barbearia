@@ -138,17 +138,17 @@ $sm = new Servicos_model();
 
                 <div class="input-box">
                     <span class="detalhes">Cargo:</span>
-                    <select name="cargo" id="cargo" class="select">
-                        <option hidden>Selecione</option>
+                    <select name="cargo" id="cargo" class="select" required>
+                    <option <?php
+                                if ($ce->getPerfil() == "Funcionario") {
+                                    echo "selected = 'selected'";
+                                } ?>>Funcionario</option>
                         <option <?php
                                 if ($ce->getPerfil() == "Administrador") {
                                     echo "selected = 'selected'";
                                 } ?>>Administrador</option>
 
-                        <option <?php
-                                if ($ce->getPerfil() == "Funcionario") {
-                                    echo "selected = 'selected'";
-                                } ?>>Funcionario</option>
+                        
                         <option <?php
                                 if ($ce->getPerfil() == "Secretaria") {
                                     echo "selected = 'selected'";

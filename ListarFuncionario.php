@@ -257,6 +257,11 @@ $msg = new Mensagem();
                                                             }
                                                             ?>>Funcionario</option>
                                                     <option <?php
+                                                            if ($lf->getPerfil() == "Secretaria") {
+                                                                echo "selected = 'selected'";
+                                                            }
+                                                            ?>>Secretaria</option>
+                                                    <option <?php
                                                             if ($lf->getPerfil() == "Administrador") {
                                                                 echo "selected = 'selected'";
                                                             }

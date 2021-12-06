@@ -19,7 +19,9 @@ class Enviar
         date_default_timezone_set('America/Sao_Paulo');
         $data_envio = date('d/m/y');
         $hora_envio = date('H:i:s');
-        $data_expirar = date('H:i:s', strtotime('4 hours'));
+        $data_agora = date('His', strtotime('now'));
+        $data = date('His', strtotime('+1 minutes')); // Samuel, coloque aqui "+4 hours" aonde está escrito "+1 minutes"
+        $data2 = intval($data);
 
         $corpoemail = " 
         <!DOCTYPE html>
@@ -32,10 +34,10 @@ class Enviar
                 <div>
                     <h1>Recuperar de senha</h1>
                     <div class=\"filhadiv\">
-                        <p>Por favor, <a href=\"http://localhost/Projeto-barbearia/novasenha.php?email=$email\" target=\"_blank\">clique aqui</a> para resetar sua senha.</p>
+                        <p>Por favor, <a href=\"http://localhost/Projeto-barbearia/novasenha.php?email=$email&hora=$data2\" target=\"_blank\">clique aqui</a> para resetar sua senha.</p>
                         <p>Caso não tenha solicitado este email para resetar sua senha, por favor, entre em contato para resolver o problema.</p>
                         <p>Este Email foi enviado dia: $data_envio às: $hora_envio</p>
-                        <p>O link irá expirar em: 4 (quatro) horas</p>
+                        <p>O link irá expirar em: 4 $data(quatro) horas</p>
                     </div>
                 </div>
             </body>
