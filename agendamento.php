@@ -126,12 +126,14 @@ $_SESSION['agendamentoServicoValor'] = "";
                                 <div class="calendar-left-side-day-of-week"></div>
                             </div>
                             <div class="current-day-events">
-                                <div>Pesquisar agendamento:</div>
-                                <ul class="current-day-events-list" style="color: transparent;"></ul>
                                 <?php 
-                                        if ($_SESSION['perfilc'] == "Cliente" || $_SESSION['perfilc'] == "Funcionario" || $_SESSION['perfilc'] == "Administrador") { ?>
-                                <a href="agendamento_ClienteDados.php"><input type="submit" class="agendamento" value="Verificar Agendamento"></a> 
-                                <?php } else if($_SESSION['perfilc'] == "Secretaria") {} ?>
+                                if ($_SESSION['perfilc'] == "Cliente" || $_SESSION['perfilc'] == "Funcionario" || $_SESSION['perfilc'] == "Administrador") { ?>
+                                    <div>Pesquisar agendamento:</div>
+                                    <ul class="current-day-events-list" style="color: transparent;"></ul>
+                                    <a href="agendamento_ClienteDados.php"><input type="submit" class="agendamento" value="Verificar Agendamento"></a> 
+                                <?php } else if($_SESSION['perfilc'] == "Secretaria") { ?> 
+                                    <ul class="current-day-events-list" style="color: transparent;"></ul>
+                                    <?php } ?>
                             </div>
                             <div class="add-event-day">
                                 <span type="" class="add-event-day-field" placeholder=""></span>
