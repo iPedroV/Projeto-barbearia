@@ -34,6 +34,18 @@ $msg = new Mensagem();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style-index.css">
 
+    <style>
+        .dropdown-menu{
+            top: 65%; 
+            left: 410px;
+        }
+        @media (max-width: 375px)  {      
+            .dropdown-menu{
+                top: 70%; 
+                left: 115px;
+            }
+        }
+    </style>
 <body>
 
     <?php
@@ -52,7 +64,7 @@ $msg = new Mensagem();
     <header>
         <a href="#" class="logo">Barbearia Neves<span>.</span></a>
         <a href="feedNoticias.php" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span> <span class="glyphicon glyphicon-bell" style="font-size:18px; color:aliceblue"></span></a>
-                    <ul class="dropdown-menu" style="top: 65%; left: 400px;"></ul>
+                    <ul class="dropdown-menu" ></ul>
         <div class="menuToggle" onclick=" toggleMenu();"></div>
         <?php
         include_once 'C:/xampp/htdocs/Projeto-barbearia/nav.php';
