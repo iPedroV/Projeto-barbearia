@@ -390,7 +390,12 @@ $pr = null;
                         </div>
 
                         <div class="footer" style="background-color: #fff; margin-top: -100px;">
-                            <?php if (isset($_GET['id'])) {
+                        
+                            <?php 
+                            if ($_SESSION['perfilc'] == "Secretaria") {
+                                # code...
+                            
+                            if (isset($_GET['id'])) {
                                         $btEnviar = TRUE;
                                         $btAtualizar = TRUE;
                                         $btExcluir = TRUE;
@@ -413,7 +418,12 @@ $pr = null;
                                                 <button type="submit" class="btn btn-secondary" name="cancelar">Cancelar agendamento</button>
                                                 <?php
                                             }
-                                    }?>
+                                        
+                                    }
+                                } else if ($_SESSION['perfilc'] == "Cliente") {?>
+                                        <button type="submit" class="btn efeito-btn" name="enviar" id="enviar"> Confirmar agendamento</button> 
+                                        <button type="submit" class="btn btn-secondary" name="cancelar">Cancelar agendamento</button>
+                                <?php } ?>
                             
                             
                         </div>
