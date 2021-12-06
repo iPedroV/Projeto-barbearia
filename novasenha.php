@@ -105,26 +105,60 @@ if (isset($_POST['esenha'])) {
 
             <button type="submit" class="btn efeito-btn" name="esenha" value="Enviar">Enviar</button>
 
-         
+           
 
         </form>
         <?php
     }else{
-        
+        $msg->setMsg("<script>setTimeout(Swal.fire({
+            icon: 'error',
+            title: 'Link expirado',
+            text: 'Solicite o link novamente!',
+            timer: 7000
+          }))</script>");
+          echo $msg->getMsg();
+          echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+          URL='login.php'\">";
     
 
-?>
+?> 
+
+        <img src="img/barbearianeves.png" class="imagem">
+
+        <form method="post">
+          
+            <div class="detalhes-usuario">
+
                 <div class="input-box">
-                    <span class="detalhes" for="c_senha" style="text-align:center">Link expirou! Solicite o link novamente!</span>
-                    <a href="cadastroClientes.php">Página inicial</a>
+                    <span class="detalhes" for="n_senha">Nova Senha:</span>
+                    <input type="password" id="nsenha" name="nsenha" placeholder="Digite sua nova senha" disabled required>
                 </div>
 
-    </div>
+                <div class="input-box">
+                    <span class="detalhes" for="c_senha">Confirmar Senha:</span>
+                    <input type="password" placeholder="Confirme sua nova senha" id="csenha" name="csenha" disabled required>
+                    <p id="textcaps" class="caps">O Caps lock está ativado</p>
+                </div>
+
+             
+
+                <span class="p-viewer2">
+                    <i class="fas fa-eye" aria-hidden="true" id="olho" disabled style="color: #000000;" ></i>
+                    <i class="fas fa-eye-slash" id="risco" disabled ></i>
+                </span>
+
+            </div>
+
+            <button type="submit" class="btn efeito-btn" name="esenha" disabled value="Enviar">Enviar</button>
+
+
+
     <?php
     }
 ?>
 
-    <script>
+ 
+ <script>
         var senha = document.querySelector('#nsenha');
 
         senha.addEventListener('blur', (eventoLegal) => {

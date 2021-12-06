@@ -102,6 +102,18 @@ form .detalhes-usuario .input-box{
     width: calc(100% / 1 - 20px);
 }
 
+form .naopossuiconta{
+    position: relative;
+    margin: 15px 0px 10px 0;   
+} 
+form .naopossuiconta a{
+    position: absolute;
+    color: rgb(165, 0, 0);
+    margin-top: -18.2px;
+    margin-left: 149px;
+    text-decoration: none; 
+} 
+
 .detalhes-usuario .input-box .detalhes{
     display: block;
     margin-bottom: 1px;
