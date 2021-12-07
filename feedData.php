@@ -2,7 +2,7 @@
 
 //feedData.php: daqui sera criado a estrutura e absorvido os dados do banco
 
-$connect = new PDO("mysql:host=localhost;dbname=dbbarbearia", "root", "root");
+$connect = new PDO("mysql:host=localhost;dbname=dbbarbearia", "root", "senac");
 
 $query = "SELECT * FROM noticias ORDER BY id DESC";
 

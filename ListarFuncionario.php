@@ -119,6 +119,17 @@ $msg = new Mensagem();
             unset($_POST['alterar']);
             $fc = new FuncionarioController();
             $msg = $fc->editarFuncionario($id);
+            $msg2 = $msg->getMsg();
+            if($msg2 == "Não"){
+                echo "<script>Swal.fire({
+                    icon: 'error',
+                    title: 'Este e-mail pertence a outro usuário!',
+                    
+                    timer: 2000
+                  })</script>";
+                echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
+                    URL='ListarFuncionario.php'\">";
+            }else{
             echo "<script>Swal.fire({
                 icon: 'success',
                 title: 'Dados alterados com sucesso',
@@ -127,6 +138,7 @@ $msg = new Mensagem();
               })</script>";
             echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
                 URL='ListarFuncionario.php'\">";
+            }
         }
     }
     ?>

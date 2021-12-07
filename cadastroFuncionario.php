@@ -87,22 +87,22 @@ $sm = new Servicos_model();
                 $sexo,
                 $token
             );
-            if($perfil == "Funcionario"){
-                $resp3 = $cc->ultimoIdInserido();
-                $s = $resp3->getId();
-                $test[] = $_POST['check'];
-                
-                    
-                    $resp2 = $cc->inserirFuncionarioAssociativa($test, $s);
-                    print_r($resp2);
-                
-            }
+            
             //print_r($s);
             if (getType($resp) == 'object') {
                 $ce = $resp;
                 echo "<p style='color: red;'>Email já cadastrado!</p>";
             } else {
-
+                if($perfil == "Funcionario"){
+                    $resp3 = $cc->ultimoIdInserido();
+                    $s = $resp3->getId();
+                    $test[] = $_POST['check'];
+                    
+                        
+                        $resp2 = $cc->inserirFuncionarioAssociativa($test, $s);
+                        print_r($resp2);
+                    
+                }
                 $msg = new Mensagem();
                 $EmailEnviado = new FuncionarioController();
                 $msg = $EmailEnviado->EnviarSenhaController();

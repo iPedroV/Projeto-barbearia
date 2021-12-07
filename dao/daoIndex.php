@@ -36,7 +36,7 @@ class daoIndex
 
                     $stmt->execute();
                     $resp = "<p style='color: green;'>"
-                        . "Notícias publicada com sucesso!</p>";
+                        . "Notícia publicada com sucesso!</p>";
                 
             } catch (Exception $ex) {
                 $resp = $ex;

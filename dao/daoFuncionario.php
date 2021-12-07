@@ -241,21 +241,33 @@ class DaoFuncionario
 				. "'$email', '$senha'</p>"); */
 
             try {
+
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stmt = $conecta->prepare("UPDATE usuario SET nome = ?, email = ?, perfil = ?, sexo = ?, telefone = ? WHERE id = ?");
-                $stmt->bindParam(1, $nome);
-                $stmt->bindParam(2, $email);
-                $stmt->bindParam(3, $perfil);
-                $stmt->bindParam(4, $sexo);
-                $stmt->bindParam(5, $telefone);
-                $stmt->bindParam(6, $id);
-                $stmt->execute();
-                $msg->setMsg("<script>Swal.fire({
-				icon: 'success',
-				title: 'Dados alterados com sucesso',
-				timer: 2000
-			  })
-			  </script>");
+                $rs = $conecta->prepare("select * from usuario where email = ?");
+                $rs->bindParam(1, $email);
+                $rs->execute(); 
+                    if ($rs->rowCount() > 0) {
+                        while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+
+                            $funcionario = new Usuario();
+                            
+                            $funcionario->setEmail($linha->email);
+                            $msg->setMsg("Não");
+                        }
+                    }else{
+                        $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $stmt = $conecta->prepare("UPDATE usuario SET nome = ?, email = ?, perfil = ?, sexo = ?, telefone = ? WHERE id = ?");
+                        $stmt->bindParam(1, $nome);
+                        $stmt->bindParam(2, $email);
+                        $stmt->bindParam(3, $perfil);
+                        $stmt->bindParam(4, $sexo);
+                        $stmt->bindParam(5, $telefone);
+                        $stmt->bindParam(6, $id);
+                        $stmt->execute();
+                        $msg->setMsg("OK");
+                    }
+                
+                
             } catch (PDOException $ex) {
                 $msg->setMsg(var_dump($ex->errorInfo));
             }
