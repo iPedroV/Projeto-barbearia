@@ -3,7 +3,11 @@
 //Banco Utilizado para poder chamar de forma estruturada a chamada dos Selects com interação
 $servidor = "localhost";
 $usuario = "root";
+<<<<<<< HEAD
 $senha = "senac";
+=======
+$senha = "root";
+>>>>>>> 91f199936259bf83a33982c3fe870a85473bdfa6
 $dbname = "dbbarbearia";
 
 //Criar a conexão
@@ -15,7 +19,11 @@ class Conecta {
         $pdo = null;
         try{
             $pdo = new PDO("mysql:host=localhost;dbname=dbbarbearia", 
+<<<<<<< HEAD
             "root", "senac");
+=======
+            "root", "root");
+>>>>>>> 91f199936259bf83a33982c3fe870a85473bdfa6
         }catch(Exception $ex){
             echo "<script>alert('Erro na conexão com o "
                 . "banco de dados.')</script>";
