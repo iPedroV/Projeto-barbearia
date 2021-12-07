@@ -66,7 +66,7 @@ class Enviar
             $mensagem2 = "<script>Swal.fire({
             icon: 'error',
             title: 'Erro ao enviar',
-            text: 'Emeil não encontrado',
+            text: 'Email não encontrado',
             timer: 3000
             })</script>";
             echo $msg->setMsg($mensagem2);
