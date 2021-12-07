@@ -100,14 +100,14 @@ $sm = new Servicos_model();
                     
                         
                         $resp2 = $cc->inserirFuncionarioAssociativa($test, $s);
-                        print_r($resp2);
+                        //print_r($resp2);
                     
                 }
                 $msg = new Mensagem();
                 $EmailEnviado = new FuncionarioController();
                 $msg = $EmailEnviado->EnviarSenhaController();
 
-                //echo $resp2;
+                echo $resp;
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
 			    URL='../Projeto-Barbearia/ListarFuncionario.php'\">";
             }
