@@ -84,7 +84,7 @@ if (isset($_POST['esenha'])) {
             <div class="detalhes-usuario">
 
                 <div class="input-box">
-                    <span class="detalhes" for="n_senha">Nova Senha: <?php echo $data3 ?></span>
+                    <span class="detalhes" for="n_senha">Nova Senha:</span>
                     <input type="password" id="nsenha" name="nsenha" placeholder="Digite sua nova senha" required>
                 </div>
 
