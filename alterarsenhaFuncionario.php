@@ -61,7 +61,7 @@ $ce = new Usuario();
                     $ce = $resp;
                     $msg->setMsg("<script>setTimeout(Swal.fire({
                         icon: 'error',
-                        title: 'Código incorreto',
+                        title: 'Código ou e-mail incorreto.',
                         text: 'Favor, insira o código corretamente!',
                         timer: 3000
                         }))</script>");

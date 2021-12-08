@@ -199,9 +199,9 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
                     $TabelaVisual = new AgendamentoController();
                     if ($_SESSION['perfilc'] == 'Cliente') {
                         $listaAgendamento = $TabelaVisual->ListarClienteAgendamento();
-                    } else if ($_SESSION['perfilc'] == 'Funcionario') {
+                    } else if ($_SESSION['perfilc'] == 'Funcionario' || $_SESSION['perfilc'] == 'Administrador') {
                         $listaAgendamento = $TabelaVisual->ListarClienteAgendamento02();
-                    } else if ($_SESSION['perfilc'] == 'Administrador' || $_SESSION['perfilc'] == 'Secretaria') {
+                    } else if ($_SESSION['perfilc'] == 'Secretaria') {
                         $listaAgendamento = $TabelaVisual->ListarClienteAgendamento03();
                     }
                     $a = 0;
