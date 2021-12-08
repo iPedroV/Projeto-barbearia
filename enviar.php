@@ -20,7 +20,7 @@ class Enviar
         $data_envio = date('d/m/y');
         $hora_envio = date('H:i:s');
         $data_agora = date('His', strtotime('now'));
-        $data = date('His', strtotime('+1 minutes')); // Samuel, coloque aqui "+4 hours" aonde está escrito "+1 minutes"
+        $data = date('His', strtotime('+4 hours')); // Samuel, coloque aqui "+4 hours" aonde está escrito "+1 minutes"
         $data2 = intval($data);
 
         $corpoemail = " 
@@ -30,15 +30,38 @@ class Enviar
             <meta charset=\"UTF-8\">
             <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
         </head> 
-            <body>
-                <div>
-                    <h1>Recuperação de senha</h1>
-                    <div class=\"filhadiv\">
-                        <p>Por favor, <a href=\"http://localhost/Projeto-barbearia/novasenha.php?email=$email&hora=$data2\" target=\"_blank\">clique aqui</a> para resetar sua senha.</p>
-                        <p>Caso não tenha solicitado este email para resetar sua senha, por favor, entre em contato para resolver o problema.</p>
-                        <p>Este Email foi enviado dia: $data_envio às: $hora_envio</p>
-                        <p>O link irá expirar em: 4 (quatro) horas</p>
-                    </div>
+            <body style=\"background: white;
+                        background-position: center;
+                        background-size: 100%;
+                        margin: 0;\">
+                <div style=\"width: 250px;
+                            height: 350px;
+                            margin-top: 25px;
+                            align-items: center;
+                            border-radius: 5%;
+                            background: linear-gradient(90deg, rgb(218, 218, 218) 40%, rgb(172, 167, 167) 80%);
+                            text-align: center;
+                            color: rgb(0, 0, 0);
+                            box-shadow: 1px 1px 2px 6px rgba(85, 82, 82, 0.533);\">
+                    <h1 style=\"padding-top: 10px;
+                                font-size: 1.7rem; font-family: Brush Script MT, Brush Script Std, cursive;
+                                font-weight: 100\">Recuperação de senha</h1>
+                    <p style=\"font-size: 1.0rem;
+                                font-family: cursive;
+                                font-style: italic;\">Por favor, <a
+                            href=\"http://localhost/Projeto-barbearia/novasenha.php?email=$email&hora=$data2\"
+                            target=\"_blank\">clique aqui</a> para resetar sua senha.</p>
+                    <p style=\"font-size: 1.0rem;
+                                font-family: cursive;
+                                font-style: italic;\">Caso não tenha solicitado este email 
+                                                        para resetar sua senha, por favor, 
+                                                        entre emcontato para resolver oproblema.</p>
+                    <p style=\"font-size: 0.7rem;
+                                font-family: cursive;
+                                font-style: italic;\">Este Email foi enviado dia: $data_envio às: $hora_envio</p>
+                    <p style=\"font-size: 0.7rem;
+                                font-family: cursive;
+                                font-style: italic;\">O link irá expirar em: 4 (quatro) horas</p>
                 </div>
             </body>
         </html>";
