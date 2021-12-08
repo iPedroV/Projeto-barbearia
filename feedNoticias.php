@@ -19,11 +19,9 @@ $content = $object->getElementsByTagName("item");
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
 
 <head>
     <title>Barbearia Neves</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -251,25 +249,25 @@ $content = $object->getElementsByTagName("item");
         <?php
 
         foreach ($content as $row) {
-            echo '<h3 class="text-info">' . $row->getElementsByTagName("title")->item(0)->nodeValue . '</h3>';
+            echo '<h3 class="text-info">' . utf8_decode($row->getElementsByTagName("title")->item(0)->nodeValue) . '</h3>';
             echo '<hr />';
             echo '
     <div class="row">
      <div class="col-md-3">
-      <p>' . $row->getElementsByTagName("pubDate")->item(0)->nodeValue . '</p>
+      <p>' . utf8_decode($row->getElementsByTagName("pubDate")->item(0)->nodeValue) . '</p>
       <br />
       
      </div>
      <div class="col-md-12">
-     <p>' . $row->getElementsByTagName("description")->item(0)->nodeValue . '</p>
+     <p>' . utf8_decode($row->getElementsByTagName("description")->item(0)->nodeValue) . '</p>
       
      
-      <p align="right"><b><i>Por: ' . $row->getElementsByTagNameNS("ns:1", "*")->item(0)->nodeValue . '</i></b></p>
+      <p align="right"><b><i>Por: ' . utf8_decode($row->getElementsByTagNameNS("ns:1", "*")->item(0)->nodeValue) . '</i></b></p>
      </div>
     </div>
     ';
 
-            echo '<span class="label label-primary">' . $row->getElementsByTagName("category")->item(0)->nodeValue . '</span>';
+            echo '<span class="label label-primary">' . utf8_decode($row->getElementsByTagName("category")->item(0)->nodeValue) . '</span>';
             echo '<br />';
             echo '<hr />';
             echo '<br />';

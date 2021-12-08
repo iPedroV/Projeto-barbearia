@@ -14,15 +14,16 @@ $result = $statement->fetchAll();
 
 header("Content-Type: text/xml;charset=iso-8859-1");
 
-$base_url = "http://localhost/Projeto-barbearia/feedData.php";
+utf8_decode($base_url = "http://localhost/Projeto-barbearia/feedData.php");
 
-echo "<?xml version='1.0' encoding='UTF-8' ?>" . PHP_EOL;
-echo "<rss version='2.0'>".PHP_EOL;
-echo "<channel>".PHP_EOL;
-echo "<title>Feed Title | RSS</title>".PHP_EOL;
-echo "<link>".$base_url."index.php</link>".PHP_EOL;
-echo "<description>Cloud RSS</description>".PHP_EOL;
-echo "<language>pt-br</language>".PHP_EOL;
+echo "<?xml version='1.0' ?>";
+echo "<locale xmlns='http://purl.org/net/xbiblio/csl' version='1.0' xml:lang='pt-BR'>";
+echo "<rss version='2.0'>";
+echo "<channel>";
+echo "<title>Feed Title | RSS</title>";
+echo "<link>".$base_url."</link>";
+echo "<description>Cloud RSS</description>";
+echo "<language>pt-br</language>";
 
 foreach($result as $row)
 {
@@ -46,5 +47,6 @@ $publish_Date = strftime('%A, %d de %B de %Y, %r', strtotime($row["horario"]));
 
 echo '</channel>'.PHP_EOL;
 echo '</rss>'.PHP_EOL;
+echo '</locale>'.PHP_EOL;
 
 ?>
