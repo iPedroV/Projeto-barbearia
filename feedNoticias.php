@@ -254,7 +254,7 @@ $content = $object->getElementsByTagName("item");
             echo '
     <div class="row">
      <div class="col-md-3">
-      <p>' . utf8_decode($row->getElementsByTagName("pubDate")->item(0)->nodeValue) . '</p>
+      <p>' . ($row->getElementsByTagName("pubDate")->item(0)->nodeValue) . '</p>
       <br />
       
      </div>
