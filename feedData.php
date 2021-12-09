@@ -11,6 +11,8 @@ $statement = $connect->prepare($query);
 $statement->execute();
 
 $result = $statement->fetchAll();
+if ($result != null) {
+    # code...
 
 header("Content-Type: text/xml;charset=iso-8859-1");
 
@@ -48,5 +50,32 @@ $publish_Date = strftime('%A, %d de %B de %Y, %r', strtotime($row["horario"]));
 echo '</channel>'.PHP_EOL;
 echo '</rss>'.PHP_EOL;
 echo '</locale>'.PHP_EOL;
+} else {
 
+header("Content-Type: text/xml;charset=iso-8859-1");
+
+utf8_decode($base_url = "http://localhost/Projeto-barbearia/feedData.php");
+
+echo "<?xml version='1.0' ?>";
+echo "<locale xmlns='http://purl.org/net/xbiblio/csl' version='1.0' xml:lang='pt-BR'>";
+echo "<rss version='2.0'>";
+echo "<channel>";
+echo "<title>Feed Title | RSS</title>";
+echo "<link>".$base_url."</link>";
+echo "<description>Cloud RSS</description>";
+echo "<language>pt-br</language>";
+echo "<item xmlns:dc='ns:1'>";
+echo "<title>Não possui nenhuma notícia publicada.</title>";
+echo "<guid>6512bd43d9caa6e02c990b0a82652dca</guid>";
+echo "<pubDate></pubDate>";
+echo "<dc:creator>ADM</dc:creator>";
+echo "<description>";
+echo "<![CDATA[ ]]>";
+echo "</description>";
+echo "<category>Administrador</category>";
+echo "</item>";
+echo '</channel>'.PHP_EOL;
+echo '</rss>'.PHP_EOL;
+echo '</locale>'.PHP_EOL;
+}
 ?>

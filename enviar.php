@@ -45,7 +45,8 @@ class Enviar
                             background: linear-gradient(90deg, rgb(218, 218, 218) 40%, rgb(172, 167, 167) 80%);
                             text-align: center;
                             color: rgb(0, 0, 0);
-                            box-shadow: 1px 1px 2px 6px rgba(85, 82, 82, 0.533);\">
+                            box-shadow: 1px 1px 2px 6px rgba(85, 82, 82, 0.533);
+                            padding: 0px 10px;\">
                     <h1 style=\"padding-top: 10px;
                                 font-size: 1.7rem; font-family: Brush Script MT, Brush Script Std, cursive;
                                 font-weight: 100\">Recuperação de senha</h1>

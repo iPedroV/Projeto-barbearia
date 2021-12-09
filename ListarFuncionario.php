@@ -74,7 +74,7 @@ $msg = new Mensagem();
         }
     </style>
 
-<body>
+<body style="background-color: #333;">
 
     <?php
     //Também faz parte da validação de login ... Logica do professor ...
@@ -157,7 +157,7 @@ $msg = new Mensagem();
 
 
         <br>
-        <table class="table table-striped" style=" border-radius: 3px; overflow:hidden;">
+        <table class="table table-striped bg-light" style=" border-radius: 3px; overflow:hidden;">
             <thead class="table-dark">
                 <tr>
                     <th>

@@ -73,7 +73,7 @@
             }
         </style>
 
-    <body>
+    <body style="background-color: #333;">
 
         <?php
         //Também faz parte da validação de login ... Logica do professor ...
@@ -149,7 +149,7 @@
 
             <div class="col-md-10 offset-0">
 
-                <table class="table table-striped" style="width: 80%;border-radius: 3px; overflow:hidden; margin-left: 125px;">
+                <table class="table table-striped bg-light" style="width: 80%;border-radius: 3px; overflow:hidden; margin-left: 125px;">
 
                     <thead class="table-dark">
 
@@ -189,6 +189,10 @@
                         {
                             if (substr($qqdata, 3, 2) == NULL) {
                                 $tempdata = substr($qqdata, 0, 2) . ',' . '00';
+                                return ($tempdata);
+                            } else if ($tempdata = substr($qqdata, 0, 1) == 9.) {
+                                $tempdata = substr($qqdata, 0, 1) . ',' .
+                                    substr($qqdata, 2, 4);
                                 return ($tempdata);
                             } else {
                                 $tempdata = substr($qqdata, 0, 2) . ',' .

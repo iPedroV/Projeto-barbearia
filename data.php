@@ -32,10 +32,10 @@ if(isset($_POST["action"]))
 	{	
 		
 		$query = "
-		SELECT data, DAYNAME(data) AS Dia, SUM(valortotal) AS Total 
+		SELECT data_do_pagamento, DAYNAME(data_do_pagamento) AS Dia, SUM(valortotal) AS Total 
 		FROM agendamentos
 		WHERE YEARWEEK(data, 1) = YEARWEEK(NOW(), 1) AND status_agendamento = 'concluido'
-		GROUP BY data
+		GROUP BY data_do_pagamento
 		ORDER BY data ASC
 		";
 
@@ -84,7 +84,7 @@ if(isset($_POST["action"]))
 		}
 		foreach($result as $row)
 		{
-			$dataFormatada = vemdata($row["data"]);
+			$dataFormatada = vemdata($row["data_do_pagamento"]);
 			$data[] = array(
 				'dia' => $row["Dia"],
 				'date' =>	$dataFormatada,

@@ -108,7 +108,7 @@ class daoDashboard
 
             try {
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stmt = $conecta->prepare("UPDATE agendamentos SET status_agendamento = ? WHERE idAgendamento = ?");
+                $stmt = $conecta->prepare("UPDATE agendamentos SET status_agendamento = ?, data_do_pagamento = NOW() WHERE idAgendamento = ?");
                 $stmt->bindParam(1, $status);
                 $stmt->bindParam(2, $id);
                 $stmt->execute();
