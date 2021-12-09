@@ -8,8 +8,10 @@ include_once 'C:/xampp/htdocs/Projeto-barbearia/model/mensagem.php';
 
 $email = $_GET['email'];
 $data = $_GET['hora'];
+$dia = $_GET['dia'];
 date_default_timezone_set('America/Sao_Paulo'); // se tirasr isso o tempo +4 hours
 $data_agora = date('His', strtotime('now'));
+$dia_de_hoje = date('dmy', strtotime('now'));
 $data3 = intval($data_agora);
 $msg = new Mensagem();
 
@@ -75,7 +77,7 @@ if (isset($_POST['esenha'])) {
 ?>
 <?php
     
-    if($data > $data3){
+    if($data > $data3 || $dia_de_hoje < $dia){
 ?>
         <img src="img/barbearianeves.png" class="imagem">
 
@@ -155,6 +157,7 @@ if (isset($_POST['esenha'])) {
 
     <?php
     }
+
 ?>
 
  

@@ -20,6 +20,9 @@ class Enviar
         $data_envio = date('d/m/y');
         $hora_envio = date('H:i:s');
         $data_agora = date('His', strtotime('now'));
+        date_default_timezone_set('America/Sao_Paulo');
+        $dia = date('dmy', strtotime('+1 day'));
+        $dia2 = intval($dia);
         $data = date('His', strtotime('+4 hours')); // Samuel, coloque aqui "+4 hours" aonde está escrito "+1 minutes"
         $data2 = intval($data);
 
@@ -49,7 +52,7 @@ class Enviar
                     <p style=\"font-size: 1.0rem;
                                 font-family: cursive;
                                 font-style: italic;\">Por favor, <a
-                            href=\"http://localhost/Projeto-barbearia/novasenha.php?email=$email&hora=$data2\"
+                            href=\"http://localhost/Projeto-barbearia/novasenha.php?email=$email&hora=$data2&dia=$dia2\"
                             target=\"_blank\">clique aqui</a> para resetar sua senha.</p>
                     <p style=\"font-size: 1.0rem;
                                 font-family: cursive;
