@@ -62,7 +62,7 @@ $nomeUser = $_SESSION['nomec'];
 
 </head>
 
-<body id="page-top">
+<body id="page-top" style="background-color: #333">
     <?php
     if (isset($_POST['finalizar'])) {
         if ($am != null) {

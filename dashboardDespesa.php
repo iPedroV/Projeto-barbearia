@@ -87,7 +87,7 @@ $nomeUser = $_SESSION['nomec'];
 
 </head>
 
-<body id="page-top">
+<body id="page-top"  style="background-color: #333">
     <?php
 
     ?>
@@ -142,7 +142,7 @@ $nomeUser = $_SESSION['nomec'];
     <div class="container mb-4" style="margin-top: 90px;">
 
         <!-- TABELA DE DESPESAS -->
-        <table id="example" class="table  row-border table-striped table-bordered mt-4">
+        <table id="example" class="table bg-light row-border table-striped table-bordered mt-4">
             <thead class="table-dark">
                 <tr>
                     <th style="text-align: center;">tipo </th>
@@ -295,6 +295,7 @@ $nomeUser = $_SESSION['nomec'];
                 </div>
             </div>
         </div>
+    </div>
         <!-- Botão pra voltar pra cima-->
         <footer class="sticky-footer bg-white pt-0 pb-0">
             <div class="container my-auto">
