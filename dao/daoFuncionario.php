@@ -48,7 +48,7 @@ class DaoFuncionario
                     $stmt->bindParam(8, $token);
                     $stmt->execute();
                     $resp = "<p style='color: green;'>"
-                            . "Dados Cadastrados com sucesso</p>";  
+                        . "Dados Cadastrados com sucesso</p>";
                 }
             } catch (Exception $ex) {
                 $resp = $ex;
@@ -205,7 +205,7 @@ class DaoFuncionario
                 $stmt = $conecta->prepare("DELETE FROM servicos_do_funcionario WHERE funcionarios_id = ?");
                 $stmt->bindParam(1, $id);
                 $stmt->execute();
-                
+
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $stmt = $conecta->prepare("delete from usuario "
                     . "where id = ?");
@@ -243,18 +243,18 @@ class DaoFuncionario
             try {
 
                 $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $rs = $conecta->prepare("select * from usuario where email = ?");
-                $rs->bindParam(1, $email);
-                $rs->execute(); 
-                    if ($rs->rowCount() > 0) {
-                        while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+                $rs = $conecta->prepare("select email from usuario where id = ?");
+                $rs->bindParam(1, $id);
+                $rs->execute();
+                while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
 
-                            $funcionario = new Usuario();
-                            
-                            $funcionario->setEmail($linha->email);
-                            $msg->setMsg("Não");
-                        }
-                    }else{
+                    $funcionario = new Usuario();
+
+                    $funcionario->setEmail($linha->email);
+                    $email_igual = $funcionario->getEmail();
+                    $msg->setMsg("Não");
+                    if ($email_igual == $email) {
+
                         $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         $stmt = $conecta->prepare("UPDATE usuario SET nome = ?, email = ?, perfil = ?, sexo = ?, telefone = ? WHERE id = ?");
                         $stmt->bindParam(1, $nome);
@@ -265,9 +265,33 @@ class DaoFuncionario
                         $stmt->bindParam(6, $id);
                         $stmt->execute();
                         $msg->setMsg("OK");
+                    } else {
+                        $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $rs = $conecta->prepare("select * from usuario where email = ?");
+                        $rs->bindParam(1, $email);
+                        $rs->execute();
+                        if ($rs->rowCount() > 0) {
+                            while ($linha = $rs->fetch(PDO::FETCH_OBJ)) {
+
+                                $funcionario = new Usuario();
+
+                                $funcionario->setEmail($linha->email);
+                                $msg->setMsg("Não");
+                            }
+                        } else {
+                            $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                            $stmt = $conecta->prepare("UPDATE usuario SET nome = ?, email = ?, perfil = ?, sexo = ?, telefone = ? WHERE id = ?");
+                            $stmt->bindParam(1, $nome);
+                            $stmt->bindParam(2, $email);
+                            $stmt->bindParam(3, $perfil);
+                            $stmt->bindParam(4, $sexo);
+                            $stmt->bindParam(5, $telefone);
+                            $stmt->bindParam(6, $id);
+                            $stmt->execute();
+                            $msg->setMsg("OK");
+                        }
                     }
-                
-                
+                }
             } catch (PDOException $ex) {
                 $msg->setMsg(var_dump($ex->errorInfo));
             }
@@ -283,7 +307,8 @@ class DaoFuncionario
         return $msg;
     }
 
-    public function ultimoIdInseridoDAO (){
+    public function ultimoIdInseridoDAO()
+    {
         $conn = new Conecta();
         $conecta = $conn->conectadb();
 
@@ -295,8 +320,6 @@ class DaoFuncionario
 
             $funcionario = new Usuario();
             $funcionario->setId($linha->sim);
-            
-            
         }
 
         return $funcionario;
@@ -312,25 +335,25 @@ class DaoFuncionario
         if ($conecta) {
 
             $resp = null;
-            
+
             $idServicos = $funcionario->getServicos_id();
             $idFuncionario = $funcionario->getFuncionarios_id();
-            foreach($idServicos as $valor_pergunta){
+            foreach ($idServicos as $valor_pergunta) {
                 $valor_do_meu_checkbox = $valor_pergunta;
             }
-            
+
             $qtd = count($valor_do_meu_checkbox);
 
-            
-           try {
-                for($i=0;$i<$qtd;$i++){
-                $stmt = $conecta->prepare("insert into servicos_do_funcionario (funcionarios_id, servicos_id) values "
-                    . "(?,?)");
 
-                $stmt->bindParam(1, $idFuncionario);
-                $stmt->bindParam(2, $valor_do_meu_checkbox[$i]);
+            try {
+                for ($i = 0; $i < $qtd; $i++) {
+                    $stmt = $conecta->prepare("insert into servicos_do_funcionario (funcionarios_id, servicos_id) values "
+                        . "(?,?)");
 
-                $stmt->execute();
+                    $stmt->bindParam(1, $idFuncionario);
+                    $stmt->bindParam(2, $valor_do_meu_checkbox[$i]);
+
+                    $stmt->execute();
                 }
                 $resp = "<p style='color: green;'>"
                     . "Dados Cadastrados com sucesso</p>";
@@ -340,7 +363,7 @@ class DaoFuncionario
         } else {
             $resp = "<p style='color: red;'>"
                 . "Erro na conexão com o banco de dados.</p>";
-        } 
+        }
         $conn = null;
         return $resp;
     }

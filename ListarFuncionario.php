@@ -116,6 +116,7 @@ $msg = new Mensagem();
     if (isset($_POST['alterar'])) {
         if ($ce != null) {
             $id = $_POST['id'];
+            $email = $_POST['email'];
             unset($_POST['alterar']);
             $fc = new FuncionarioController();
             $msg = $fc->editarFuncionario($id);
