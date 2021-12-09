@@ -92,6 +92,7 @@
 
                 $sc = new servicosController();
                 unset($_POST['excluir']);
+                $msg = $sc->excluirServico2($id);
                 $msg = $sc->excluirServico($id);
                 echo "<script>Swal.fire({
                     icon: 'success',

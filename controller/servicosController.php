@@ -19,6 +19,11 @@ class ServicosController {
         return $daoservicos->inserirServicoDAO($servicos);
     }
 
+    public function excluirServico2($id){
+        $daoservicos = new DaoServicos();
+        return $daoservicos->excluirServicoDAO02($id);
+    }
+
     public function excluirServico($id){
         $daoservicos = new DaoServicos();
         return $daoservicos->excluirServicoDAO($id);
