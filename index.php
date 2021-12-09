@@ -167,9 +167,7 @@ $msg = new Mensagem();
                 </div>
             </div>
         </div>
-        <div class="title">
-            <a href="#" class="btn">Ver todos</a>
-        </div>
+        
     </section>
 
     <section class="salao" id="salao">

@@ -166,11 +166,15 @@ $nomeUser = $_SESSION['nomec'];
                 function virgula($numero)
                 {
                     if (substr($numero, 3, 2) == NULL) {
-                        $tempdata = 'R$ ' . substr($numero, 0, 3) . ',' . '00';
+                        $tempdata = 'R$ ' . substr($numero, 0, 2) . ',' . '00';
+                        return ($tempdata);
+                    } else if ($tempdata = substr($numero, 0, 1) == 9.) {
+                        $tempdata = 'R$ ' . substr($numero, 0, 1) . ',' .
+                            substr($numero, 2, 4);
                         return ($tempdata);
                     } else {
-                        $tempdata = 'R$ ' . substr($numero, 0, 4) . ',' .
-                            substr($numero, 5, 2) . '00';
+                        $tempdata = 'R$ ' . substr($numero, 0, 2) . ',' .
+                            substr($numero, 3, 2);
                         return ($tempdata);
                     }
                 }

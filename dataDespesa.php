@@ -36,7 +36,7 @@ if(isset($_POST["action"]))
 		$query = "
 		SELECT data_regs_despesa, DAYNAME(data_regs_despesa) AS Dia, SUM(valor) AS Total 
 		FROM despesas
-		WHERE YEARWEEK(data_regs_despesa, 1) = YEARWEEK(NOW(), 1)
+		WHERE YEARWEEK(data_regs_despesa, 1) = YEARWEEK(NOW(), 1) AND status = 'sim'
 		GROUP BY data_regs_despesa
 		ORDER BY data_regs_despesa ASC
 		";
