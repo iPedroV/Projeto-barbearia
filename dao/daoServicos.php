@@ -80,6 +80,30 @@ class DaoServicos
         return $resp;
     }
 
+    public function excluirServicoDAO02($id)
+    {
+        $conn = new Conecta();
+        $conecta = $conn->conectadb();
+        $msg = new Mensagem();
+        if ($conecta) {
+            try {
+                $conecta->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stmt = $conecta->prepare("delete from servicos_do_funcionario "
+                    . "where servicos_id = ?");
+                $stmt->bindParam(1, $id);
+                $stmt->execute();
+                $msg->setMsg("<p style='color: green;'>" // colocar aqui o sweet alert dps
+                    . "Serviço excluído com sucesso.</p>");
+            } catch (PDOException $ex) {
+                $msg->setMsg(var_dump($ex->errorInfo));
+            }
+        } else {
+            $msg->setMsg("<p style='color: red;'>'Banco inoperante!'</p>");
+        }
+        $conn = null;
+        return $msg;
+    }
+
     public function excluirServicoDAO($id)
     {
         $conn = new Conecta();
