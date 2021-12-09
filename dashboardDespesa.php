@@ -289,7 +289,7 @@ $nomeUser = $_SESSION['nomec'];
 
 
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-flex justify-content-center">
                         <button type="button" name="submit_data"  class="btn btn-primary" id="submit_data">Cadastrar</button>
                     </div>
                 </div>
@@ -300,7 +300,7 @@ $nomeUser = $_SESSION['nomec'];
         <footer class="sticky-footer bg-white pt-0 pb-0">
             <div class="container my-auto">
                 <div class="copyrightText bg-white">
-                    <p>Copyright 2021 <a href="#">Senac</a>. Todos os Direitos Reservados</p>
+                    <p>Copyright 2021 <strong href="#">Senac</strong>. Todos os Direitos Reservados</p>
                 </div>
             </div>
         </footer>

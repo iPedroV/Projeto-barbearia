@@ -70,7 +70,27 @@ $msg = new Mensagem();
                 flex-direction: column;
                 background: #fff;
             }
+            @media (max-width: 584px){
+            .container {
+                max-width: 100%;
+                position: fixed;
+                /* margin-left: 100%; */
+                margin-top: 71px;
+            }
+            header {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                padding: 0px 42px !important;
+                z-index: 10000 !important;
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                transition: 0.5s !important;
+            }
         }
+    }
     </style>
 </head>
 
