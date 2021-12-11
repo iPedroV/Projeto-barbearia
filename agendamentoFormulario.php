@@ -309,18 +309,31 @@ require_once __DIR__ . "/bd/banco.php";
             
 
             $horario = $_POST['horario_agendamento'];
+            date_default_timezone_set('America/Sao_Paulo');
+            $data_atual = date('d/m/y');
+            $hora_atual = date('H:i:s');
             if ($horario == null) {
                 ?>
                         <script>
                             Swal.fire({
                                 title: 'Escolha um horário para continuar',
-                                text: 'O horário não foi selecionado.',
+                                text: 'O horário não foi selecionado. $hora_atual',
                                 icon: 'warning',
                                 confirmButtonText: '<a>Ok</a>'
                             })
                         </script>
                     <?php    
-            } else {
+            } else if($horario < $hora_atual){
+                    echo "<script>
+                            Swal.fire({
+                                title: 'Horário antecipado ao atual!',
+                                text: 'Agende em um horário subsequente as $hora_atual',
+                                icon: 'warning',
+                                confirmButtonText: '<a>Ok</a>'
+                            })
+                        </script>";
+            }
+            else {
                 $_SESSION['horarioAgendamento'] = $horario;
 
                 //FUNÇÃO QUE FORMATA A DATA QUE VEM DO MYSQL

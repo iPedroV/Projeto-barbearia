@@ -59,7 +59,7 @@ class Enviar
                                 font-family: cursive;
                                 font-style: italic;\">Caso não tenha solicitado este email 
                                                         para resetar sua senha, por favor, 
-                                                        entre emcontato para resolver oproblema.</p>
+                                                        entre em contato para resolver o problema.</p>
                     <p style=\"font-size: 0.7rem;
                                 font-family: cursive;
                                 font-style: italic;\">Este Email foi enviado dia: $data_envio às: $hora_envio</p>

@@ -225,7 +225,7 @@ $_SESSION['agendamentoServicoValor'] = "";
 
             }    
         
-            if ($data <= $dateEscolhida) {
+            if ($data < $dateEscolhida) {
                 function vemData($qqdata){
                     $tempdata=substr($qqdata,8,2).'/'.
                         substr($qqdata,5,2).'/'.

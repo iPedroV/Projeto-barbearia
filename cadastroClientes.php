@@ -89,7 +89,7 @@ $mail->setEmailFrom('from@email.com');*/
             } else {
                 echo $resp;
                 echo "<META HTTP-EQUIV='REFRESH' CONTENT=\"2;
-                URL='cadastroClientes.php'\">";
+                URL='login.php'\">";
             }
         }
         ?>

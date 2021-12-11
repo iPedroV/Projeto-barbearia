@@ -77,7 +77,7 @@ if (isset($_POST['esenha'])) {
 ?>
 <?php
     
-    if($data > $data3 || $dia_de_hoje < $dia){
+    if($data > $data3 && $dia_de_hoje < $dia){
 ?>
         <img src="img/barbearianeves.png" class="imagem">
 
