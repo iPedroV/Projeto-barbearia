@@ -311,39 +311,54 @@ require_once __DIR__ . "/bd/banco.php";
             $horario = $_POST['horario_agendamento'];
             date_default_timezone_set('America/Sao_Paulo');
             $data_atual = date('d/m/y');
-            $hora_atual = date('H:i:s');
-            if ($horario == null) {
-                ?>
-                        <script>
-                            Swal.fire({
-                                title: 'Escolha um horário para continuar',
-                                text: 'O horário não foi selecionado. $hora_atual',
-                                icon: 'warning',
-                                confirmButtonText: '<a>Ok</a>'
-                            })
-                        </script>
-                    <?php    
-            } else if($horario < $hora_atual){
-                    echo "<script>
-                            Swal.fire({
-                                title: 'Horário antecipado ao atual!',
-                                text: 'Agende em um horário subsequente as $hora_atual',
-                                icon: 'warning',
-                                confirmButtonText: '<a>Ok</a>'
-                            })
-                        </script>";
-            }
-            else {
-                $_SESSION['horarioAgendamento'] = $horario;
+            $hora_atual = date('H:i');
 
-                //FUNÇÃO QUE FORMATA A DATA QUE VEM DO MYSQL
-                function vemData($qqdata)
+            function vemData02($qqdata)
                 {
                     $tempdata = substr($qqdata, 8, 2) . '/' .
                         substr($qqdata, 5, 2) . '/' .
                         substr($qqdata, 0, 4);
                     return ($tempdata);
                 }
+
+            $defaultTimeZone = 'UTC';
+            if (date_default_timezone_get() != $defaultTimeZone) date_default_timezone_set($defaultTimeZone);
+        
+            function _dateAtual($format = "r", $timestamp = false, $timezone = false)
+            {
+                $userTimezone = new DateTimeZone(!empty($timezone) ? $timezone : 'GMT');
+                $gmtTimezone = new DateTimeZone('GMT');
+                $myDateTime = new DateTime(($timestamp != false ? date("r", (int)$timestamp) : date("r")), $gmtTimezone);
+                $offset = $userTimezone->getOffset($myDateTime);
+                return date($format, ($timestamp != false ? (int)$timestamp : $myDateTime->format('U')) + $offset);
+            }
+            $dateEscolhida = _dateAtual("Y-m-d", false, 'America/Sao_Paulo');
+
+            if ($horario == null) {
+                
+                    echo "   <script>
+                            Swal.fire({
+                                title: 'Escolha um horário para continuar',
+                                text: 'O horário não foi selecionado.',
+                                icon: 'warning',
+                                confirmButtonText: '<a>Ok</a>'
+                            })
+                        </script>";
+                       
+            } else if($data === $dateEscolhida && $horario < $hora_atual) {
+                
+                        echo "<script>
+                                Swal.fire({
+                                    title: 'Horário antecipado ao atual!',
+                                    text: 'Agende em um horário subsequente as $hora_atual',
+                                    icon: 'warning',
+                                    confirmButtonText: '<a>Ok</a>'
+                                })
+                            </script>";
+            } else {
+            
+
+                $_SESSION['horarioAgendamento'] = $horario;
 
                 //FUNÇÃO QUE FORMATA A HORA QUE VEM DO MYSQL
                 function horaMin($qqdata)
