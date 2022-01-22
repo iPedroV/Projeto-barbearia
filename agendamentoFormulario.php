@@ -311,7 +311,7 @@ require_once __DIR__ . "/bd/banco.php";
             $horario = $_POST['horario_agendamento'];
             date_default_timezone_set('America/Sao_Paulo');
             $data_atual = date('d/m/y');
-            $hora_atual = date('H:i');
+            $hora_atual = date('H:i:s');
 
             function vemData02($qqdata)
                 {

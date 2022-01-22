@@ -397,8 +397,6 @@ $nomeUser = $_SESSION['nomec'];
                     })
                     setTimeout(() => {makechart();
                     window.location.reload();}, 2000);
-                
-                    
                     
                 }
             })
